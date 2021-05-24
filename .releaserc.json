@@ -1,0 +1,44 @@
+{
+  "branches": [
+    "master"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "npm version ${nextRelease.version} --no-git-tag-version --allow-same-version"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "dotnet pack src/BasisTheory.net.sln -o output --no-build --no-restore -c Release -p:PackageVersion=${nextRelease.version}"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "dotnet nuget push ./output/*.nupkg --skip-duplicate -k ${process.env.NUGET_API_KEY} -s https://api.nuget.org/v3/index.json"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": ["output/*.nupkg"]
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}

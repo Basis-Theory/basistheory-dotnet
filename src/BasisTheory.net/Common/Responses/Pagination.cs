@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace BasisTheory.net.Common.Responses
@@ -5,15 +6,19 @@ namespace BasisTheory.net.Common.Responses
     public class Pagination
     {
         [JsonProperty("total_items")]
-        public int TotalItems { get; }
+        [JsonPropertyName("total_items")]
+        public int TotalItems { get; set; }
 
         [JsonProperty("page_number")]
-        public int PageNumber { get; }
+        [JsonPropertyName("page_number")]
+        public int PageNumber { get; set; }
 
         [JsonProperty("page_size")]
-        public int PageSize { get; }
+        [JsonPropertyName("page_size")]
+        public int PageSize { get; set; }
 
         [JsonProperty("total_pages")]
-        public int TotalPages { get; }
+        [JsonPropertyName("total_pages")]
+        public int TotalPages { get; set; }
     }
 }
