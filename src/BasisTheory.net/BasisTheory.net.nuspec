@@ -14,6 +14,7 @@
             <group targetFramework="netstandard2.1">
                 <dependency id="Microsoft.Extensions.Http.Polly" version="5.0.1" />
                 <dependency id="Newtonsoft.Json" version="13.0.1" />
+                <dependency id="System.Text.Json" version="5.0.2" />
             </group>
         </dependencies>
     </metadata>
