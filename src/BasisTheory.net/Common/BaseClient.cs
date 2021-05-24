@@ -50,7 +50,8 @@ namespace BasisTheory.net.Common
                 .ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        protected async Task<T> GetAsync<T>(string path, GetRequest request = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        protected async Task<T> GetAsync<T>(string path, GetRequest request = null,
+            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             var requestPath = path;
             var queryString = request?.BuildQuery();
@@ -68,10 +69,23 @@ namespace BasisTheory.net.Common
                 .ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        protected async Task<T> PostAsync<T>(string path, object body, RequestOptions requestOptions, CancellationToken cancellationToken = default)
+        protected async Task<T> PostAsync<T>(string path, object body, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
         {
             var content = await RequestAsync(HttpMethod.Post, path, body, requestOptions, cancellationToken);
             return JsonConvert.DeserializeObject<T>(content);
+        }
+
+        protected void Post(string path, object body, RequestOptions requestOptions)
+        {
+            this.PostAsync(path, body, requestOptions)
+                .ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        protected async Task PostAsync(string path, object body, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
+        {
+            await RequestAsync(HttpMethod.Post, path, body, requestOptions, cancellationToken);
         }
 
         protected T Put<T>(string path, object body, RequestOptions requestOptions)
@@ -80,7 +94,8 @@ namespace BasisTheory.net.Common
                 .ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        protected async Task<T> PutAsync<T>(string path, object body, RequestOptions requestOptions, CancellationToken cancellationToken = default)
+        protected async Task<T> PutAsync<T>(string path, object body, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
         {
             var content = await RequestAsync(HttpMethod.Put, path, body, requestOptions, cancellationToken);
             return JsonConvert.DeserializeObject<T>(content);
@@ -92,12 +107,14 @@ namespace BasisTheory.net.Common
                 .ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        protected async Task DeleteAsync(string path, RequestOptions requestOptions, CancellationToken cancellationToken = default)
+        protected async Task DeleteAsync(string path, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
         {
             await RequestAsync(HttpMethod.Delete, path, null, requestOptions, cancellationToken);
         }
 
-        private async Task<string> RequestAsync(HttpMethod method, string path, object body, RequestOptions requestOptions,
+        private async Task<string> RequestAsync(HttpMethod method, string path, object body,
+            RequestOptions requestOptions,
             CancellationToken cancellationToken = default)
         {
             var message = new HttpRequestMessage(method, path);
