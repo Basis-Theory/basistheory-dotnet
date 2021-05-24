@@ -28,14 +28,14 @@ namespace BasisTheory.net.Tokens
         Task<PaginatedList<Token>> GetChildrenAsync(Guid parentTokenId, TokenGetRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
-        Token Create(TokenCreateRequest request, RequestOptions requestOptions = null);
+        Token Create(Token token, RequestOptions requestOptions = null);
 
-        Task<Token> CreateAsync(TokenCreateRequest request, RequestOptions requestOptions = null,
+        Task<Token> CreateAsync(Token token, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Token CreateChild(Guid parentTokenId, TokenCreateRequest request, RequestOptions requestOptions = null);
+        Token CreateChild(Guid parentTokenId, Token child, RequestOptions requestOptions = null);
 
-        Task<Token> CreateChildAsync(Guid parentTokenId, TokenCreateRequest request,
+        Task<Token> CreateChildAsync(Guid parentTokenId, Token child,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
         void Delete(Guid tokenId, RequestOptions requestOptions = null);
@@ -98,26 +98,26 @@ namespace BasisTheory.net.Tokens
                 cancellationToken);
         }
 
-        public Token Create(TokenCreateRequest request, RequestOptions requestOptions = null)
+        public Token Create(Token token, RequestOptions requestOptions = null)
         {
-            return Post<Token>(BasePath, request, requestOptions);
+            return Post<Token>(BasePath, token, requestOptions);
         }
 
-        public async Task<Token> CreateAsync(TokenCreateRequest request, RequestOptions requestOptions = null,
+        public async Task<Token> CreateAsync(Token token, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>(BasePath, request, requestOptions, cancellationToken);
+            return await PostAsync<Token>(BasePath, token, requestOptions, cancellationToken);
         }
 
-        public Token CreateChild(Guid parentTokenId, TokenCreateRequest request, RequestOptions requestOptions = null)
+        public Token CreateChild(Guid parentTokenId, Token child, RequestOptions requestOptions = null)
         {
-            return Post<Token>($"{BasePath}/{parentTokenId}/children", request, requestOptions);
+            return Post<Token>($"{BasePath}/{parentTokenId}/children", child, requestOptions);
         }
 
-        public async Task<Token> CreateChildAsync(Guid parentTokenId, TokenCreateRequest request,
+        public async Task<Token> CreateChildAsync(Guid parentTokenId, Token child,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>($"{BasePath}/{parentTokenId}/children", request, requestOptions,
+            return await PostAsync<Token>($"{BasePath}/{parentTokenId}/children", child, requestOptions,
                 cancellationToken);
         }
 
