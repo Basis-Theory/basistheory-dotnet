@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Net.Mime;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
@@ -121,7 +123,8 @@ namespace BasisTheory.net.Common
             SetRequestHeaders(message, requestOptions);
 
             if (body != null)
-                message.Content = new StringContent(JsonConvert.SerializeObject(body, _jsonSerializerSettings));
+                message.Content = new StringContent(JsonConvert.SerializeObject(body, _jsonSerializerSettings),
+                    Encoding.UTF8, MediaTypeNames.Application.Json);
 
             var response = await HttpClient.SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
