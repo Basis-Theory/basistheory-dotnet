@@ -7,12 +7,7 @@ namespace BasisTheory.net.Tokens.Requests
     public class TokenGetByIdRequest : GetRequest
     {
         public bool Children { get; set; }
-        public List<string> ChildrenTypes { get; }
-
-        public TokenGetByIdRequest()
-        {
-            ChildrenTypes = new List<string>();
-        }
+        public List<string> ChildrenTypes { get; set; } = new List<string>();
 
         public override string BuildQuery()
         {
