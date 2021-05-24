@@ -7,18 +7,18 @@ namespace BasisTheory.net.Common.Responses
     {
         [JsonProperty("total_items")]
         [JsonPropertyName("total_items")]
-        public int TotalItems { get; }
+        public int TotalItems { get; set; }
 
         [JsonProperty("page_number")]
         [JsonPropertyName("page_number")]
-        public int PageNumber { get; }
+        public int PageNumber { get; set; }
 
         [JsonProperty("page_size")]
         [JsonPropertyName("page_size")]
-        public int PageSize { get; }
+        public int PageSize { get; set; }
 
         [JsonProperty("total_pages")]
         [JsonPropertyName("total_pages")]
-        public int TotalPages { get; }
+        public int TotalPages { get; set; }
     }
 }
