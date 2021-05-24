@@ -109,7 +109,7 @@ namespace BasisTheory.net.Common
             var response = await HttpClient.SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
-            var responseStream = new StreamReader(await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false));
+            var responseStream = new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false));
             var content = await responseStream.ReadToEndAsync().ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
