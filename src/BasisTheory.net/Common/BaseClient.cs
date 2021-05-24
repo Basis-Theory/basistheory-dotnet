@@ -147,11 +147,11 @@ namespace BasisTheory.net.Common
 
         private void SetRequestHeaders(HttpRequestMessage message, RequestOptions requestOptions)
         {
-            var apiKey = requestOptions.ApiKey ?? ApiKey;
+            var apiKey = requestOptions?.ApiKey ?? ApiKey;
             if (!string.IsNullOrEmpty(apiKey))
                 message.Headers.Add("X-API-KEY", apiKey);
 
-            if (!string.IsNullOrEmpty(requestOptions.CorrelationId))
+            if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("bt-trace-id", requestOptions.CorrelationId);
         }
 
