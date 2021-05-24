@@ -6,9 +6,15 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetRequest : PaginatedGetRequest
     {
-        public List<string> Types { get; } = new();
+        public List<string> Types { get; set; }
         public bool Children { get; set; }
-        public List<string> ChildrenTypes { get; } = new();
+        public List<string> ChildrenTypes { get; set; }
+
+        public TokenGetRequest()
+        {
+            Types = new List<string>();
+            ChildrenTypes = new List<string>();
+        }
 
         public override string BuildQuery()
         {

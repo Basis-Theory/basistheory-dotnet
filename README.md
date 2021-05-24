@@ -1,1 +1,1 @@
-# Official Basis Theory .NET SDK
+# Basis Theory .NET SDK

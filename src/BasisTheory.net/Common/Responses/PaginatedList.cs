@@ -6,9 +6,9 @@ namespace BasisTheory.net.Common.Responses
     public class PaginatedList<T> where T : class
     {
         [JsonProperty("pagination")]
-        public Pagination Pagination { get; init; }
+        public Pagination Pagination { get; set; }
 
         [JsonProperty("data")]
-        public List<T> Data { get; init; }
+        public List<T> Data { get; set; }
     }
 }
