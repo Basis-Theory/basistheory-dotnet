@@ -6,7 +6,7 @@
         <authors>Basis Theory</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <projectUrl>https://github.com/Basis-Theory/basistheory-dotnet</projectUrl>
-        <repository type="git" url="https://github.com/Basis-Theory/basistheory-dotnet" />
+        <repository type="git" url="https://github.com/Basis-Theory/basistheory-dotnet.git" />
         <description>Basis Theory .NET SDK</description>
         <copyright>Copyright 2021</copyright>
         <tags>BasisTheory,SDK</tags>
