@@ -2,6 +2,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net", "BasisTheory.net\BasisTheory.net.csproj", "{86961741-7427-45D7-8D52-A2DA8BE54436}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{DCB78F2D-FB22-4374-BB95-207944E4E650}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\dependabot.yml = ..\.github\dependabot.yml
+	..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
+	..\.github\workflows\verify.yml = ..\.github\workflows\verify.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A61B503-F25D-4C83-B6CD-B03F70B18AD7}"
+ProjectSection(SolutionItems) = preProject
+	..\README.md = ..\README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
