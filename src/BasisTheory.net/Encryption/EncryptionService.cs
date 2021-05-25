@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Extensions;
 using BasisTheory.net.Encryption.Entities;
+using BasisTheory.net.Encryption.Extensions;
 using BasisTheory.net.Tokens.Entities;
 
 namespace BasisTheory.net.Encryption
@@ -31,7 +32,7 @@ namespace BasisTheory.net.Encryption
             using (var aes = Aes.Create())
             {
                 encryptedContent = await AesEncryptionService.Encrypt(aes, plaintext);
-                cekPlaintext = $"{aes.Key.ToBase64String()}.{aes.IV.ToBase64String()}";
+                cekPlaintext = aes.ToAesString();
             }
 
             var dataEncryption = _encryptionFactories[key.Provider][key.Algorithm];
@@ -59,11 +60,7 @@ namespace BasisTheory.net.Encryption
             var dataEncryption = _encryptionFactories[key.Provider][key.Algorithm];
             var cekPlaintext = await dataEncryption.Decrypt(key.ProviderKeyId, data.ContentEncryptionKey.Key);
 
-            var aes = Aes.Create();
-            var aesParts = cekPlaintext.Split('.');
-            aes.Key = aesParts[0].FromBase64String();
-            aes.IV = aesParts[1].FromBase64String();
-
+            using var aes = cekPlaintext.FromAesString();
             return await AesEncryptionService.Decrypt(aes, data.CipherText);
         }
     }
