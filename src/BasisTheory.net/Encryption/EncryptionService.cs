@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using BasisTheory.net.Common.Extensions;
 using BasisTheory.net.Encryption.Entities;
 using BasisTheory.net.Encryption.Extensions;
 using BasisTheory.net.Tokens.Entities;
