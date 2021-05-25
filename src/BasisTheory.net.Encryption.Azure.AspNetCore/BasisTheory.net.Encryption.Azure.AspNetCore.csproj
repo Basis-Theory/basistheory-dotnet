@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+
+        <IsPackable>true</IsPackable>
+        <Description>Basis Theory .NET Azure Encryption AspNetCore Extensions</Description>
+        <Copyright>Copyright 2021</Copyright>
+        <PackageProjectUrl>https://github.com/Basis-Theory/basistheory-dotnet</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
+        <PackageTags>BasisTheory,SDK,Azure,AspNetCore</PackageTags>
+        <NuspecProperties>version=$(Version)</NuspecProperties>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.Identity" Version="1.4.0" />
+      <PackageReference Include="LazyCache.AspNetCore" Version="2.1.3" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj" />
+      <ProjectReference Include="..\BasisTheory.net\BasisTheory.net.csproj" />
+    </ItemGroup>
+
+</Project>

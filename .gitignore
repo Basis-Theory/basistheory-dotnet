@@ -89,6 +89,7 @@ publish/
 sftp/
 newrelic/
 .idea/
+output/
 # Fake GraphQL directives #
 ###########################
 _not-imported-dev.graphql

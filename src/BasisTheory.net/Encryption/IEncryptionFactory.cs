@@ -7,7 +7,7 @@ namespace BasisTheory.net.Encryption
         string Provider { get; }
         string Algorithm { get; }
 
-        Task<string> Encrypt(string keyId, string plaintext);
-        Task<string> Decrypt(string keyId, string ciphertext);
+        Task<string> Encrypt(string providerKeyId, string plaintext);
+        Task<string> Decrypt(string providerKeyId, string ciphertext);
     }
 }
