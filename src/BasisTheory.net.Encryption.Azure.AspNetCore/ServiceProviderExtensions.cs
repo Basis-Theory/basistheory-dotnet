@@ -16,8 +16,8 @@ namespace BasisTheory.net.Encryption.Azure.AspNetCore
 
             services.AddLazyCache();
 
-            services.TryAddScoped<IEncryptionFactory, AesKeyVaultEncryptionFactory>();
-            services.TryAddScoped<IEncryptionFactory, RSAKeyVaultEncryptionFactory>();
+            services.AddScoped<IEncryptionFactory, AesKeyVaultEncryptionFactory>();
+            services.AddScoped<IEncryptionFactory, RSAKeyVaultEncryptionFactory>();
 
             return services;
         }
