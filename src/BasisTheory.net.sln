@@ -15,6 +15,10 @@ ProjectSection(SolutionItems) = preProject
 	..\.gitignore = ..\.gitignore
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure", "BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj", "{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure.AspNetCore", "BasisTheory.net.Encryption.Azure.AspNetCore\BasisTheory.net.Encryption.Azure.AspNetCore.csproj", "{1F61590A-716D-4504-8E92-C9B4F8817D42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +29,13 @@ Global
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
