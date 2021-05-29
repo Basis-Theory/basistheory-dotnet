@@ -1,14 +1,15 @@
 # Basis Theory .NET AspNetCore Extensions
 
-In `Startup.cs`
+## Configure the exception filter
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) =>
     services
         ...
+        .AddScoped<BasisTheoryExceptionFilter>();
         .AddControllers(o =>
         {
-            o.Filters.Add(new BasisTheoryExceptionFilter()); <-- Add this line
+            options.Filters.Add<BasisTheoryExceptionFilter>();
         })
         ...
 ```
