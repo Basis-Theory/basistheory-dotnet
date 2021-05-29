@@ -105,13 +105,13 @@ namespace BasisTheory.net.Applications
 
         public Application Update(Guid applicationId, Application application, RequestOptions requestOptions = null)
         {
-            return Put<Application>($"BasePath/{applicationId}", application, requestOptions);
+            return Put<Application>($"{BasePath}/{applicationId}", application, requestOptions);
         }
 
         public async Task<Application> UpdateAsync(Guid applicationId, Application application, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PutAsync<Application>($"BasePath/{applicationId}", application, requestOptions, cancellationToken);
+            return await PutAsync<Application>($"{BasePath}/{applicationId}", application, requestOptions, cancellationToken);
         }
 
         public Application RegenerateKey(Guid applicationId, RequestOptions requestOptions = null)
