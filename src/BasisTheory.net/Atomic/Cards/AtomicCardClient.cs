@@ -22,9 +22,9 @@ namespace BasisTheory.net.Atomic.Cards
         Task<PaginatedList<AtomicCard>> GetAsync(CardGetRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        AtomicCard Create(AtomicCard bank, RequestOptions requestOptions = null);
+        AtomicCard Create(AtomicCard card, RequestOptions requestOptions = null);
 
-        Task<AtomicCard> CreateAsync(AtomicCard bank, RequestOptions requestOptions = null,
+        Task<AtomicCard> CreateAsync(AtomicCard card, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid tokenId, RequestOptions requestOptions = null);
@@ -68,14 +68,14 @@ namespace BasisTheory.net.Atomic.Cards
             return await GetAsync<PaginatedList<AtomicCard>>(BasePath, request, requestOptions, cancellationToken);
         }
 
-        public AtomicCard Create(AtomicCard bank, RequestOptions requestOptions = null)
+        public AtomicCard Create(AtomicCard card, RequestOptions requestOptions = null)
         {
-            return Post<AtomicCard>(BasePath, bank, requestOptions);
+            return Post<AtomicCard>(BasePath, card, requestOptions);
         }
 
-        public async Task<AtomicCard> CreateAsync(AtomicCard bank, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<AtomicCard> CreateAsync(AtomicCard card, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await PostAsync<AtomicCard>(BasePath, bank, requestOptions, cancellationToken);
+            return await PostAsync<AtomicCard>(BasePath, card, requestOptions, cancellationToken);
         }
 
         public void Delete(Guid tokenId, RequestOptions requestOptions = null)
