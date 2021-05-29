@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure.AspNetCore", "BasisTheory.net.Encryption.Azure.AspNetCore\BasisTheory.net.Encryption.Azure.AspNetCore.csproj", "{1F61590A-716D-4504-8E92-C9B4F8817D42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.AspNetCore", "BasisTheory.net.AspNetCore\BasisTheory.net.AspNetCore.csproj", "{98C8822E-8FE3-4542-8378-CF6D95673C30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +39,9 @@ Global
 		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
