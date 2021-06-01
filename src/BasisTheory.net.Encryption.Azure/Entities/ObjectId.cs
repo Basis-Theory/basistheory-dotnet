@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace BasisTheory.net.Encryption.Azure.Entities
 {
-    public class ObjectId
+    public sealed class ObjectId
     {
         public Uri Id { get; set; }
 

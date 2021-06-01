@@ -19,6 +19,9 @@ namespace BasisTheory.net.Encryption.Azure.AspNetCore
             services.AddScoped<IEncryptionFactory, AesKeyVaultEncryptionFactory>();
             services.AddScoped<IEncryptionFactory, RSAKeyVaultEncryptionFactory>();
 
+            services.AddScoped<IProviderKeyFactory, AesKeyVaultProviderKeyFactory>();
+            services.AddScoped<IProviderKeyFactory, RSAKeyVaultProviderKeyFactory>();
+
             return services;
         }
     }
