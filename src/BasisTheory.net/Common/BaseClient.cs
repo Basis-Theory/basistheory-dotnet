@@ -160,7 +160,12 @@ namespace BasisTheory.net.Common
 
         private HttpClient BuildDefaultHttpClient()
         {
-            return new HttpClient(new PolicyHttpMessageHandler(GetRetryPolicy()))
+            var handler = new PolicyHttpMessageHandler(GetRetryPolicy())
+            {
+                InnerHandler = new HttpClientHandler()
+            };
+
+            return new HttpClient(handler)
             {
                 Timeout = TimeSpan.FromSeconds(90),
                 BaseAddress = BaseApiUrl
