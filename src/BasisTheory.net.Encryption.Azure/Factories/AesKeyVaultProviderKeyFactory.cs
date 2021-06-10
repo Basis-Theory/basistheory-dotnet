@@ -7,6 +7,7 @@ using BasisTheory.net.Encryption.Azure.Entities;
 using BasisTheory.net.Encryption.Entities;
 using BasisTheory.net.Encryption.Extensions;
 using LazyCache;
+using Newtonsoft.Json;
 
 namespace BasisTheory.net.Encryption.Azure.Factories
 {
@@ -15,26 +16,36 @@ namespace BasisTheory.net.Encryption.Azure.Factories
         private readonly IAppCache _cache;
         private readonly TokenCredential _tokenCredential;
         private readonly KeyVaultProviderKeyOptions _options;
+        private readonly Lazy<IProviderKeyService> _providerKeyService;
+        private readonly Lazy<IEncryptionService> _encryptionService;
 
         public string Provider => "AZURE";
         public string Algorithm => EncryptionAlgorithm.AES.ToString();
 
         public AesKeyVaultProviderKeyFactory(IAppCache cache, TokenCredential tokenCredential,
-            KeyVaultProviderKeyOptions options)
+            KeyVaultProviderKeyOptions options, Lazy<IProviderKeyService> providerKeyService,
+            Lazy<IEncryptionService> encryptionService)
         {
             _cache = cache;
             _tokenCredential = tokenCredential;
             _options = options;
+            _providerKeyService = providerKeyService;
+            _encryptionService = encryptionService;
         }
 
         public async Task<ProviderEncryptionKey> Create(string name)
         {
+            var rsaKey = await _providerKeyService.Value.GetOrCreateAsync(name,
+                Provider, EncryptionAlgorithm.RSA.ToString());
+
             using var aesKey = Aes.Create();
             var keyValue = aesKey.ToAesString();
 
+            var encryptionKey = await _encryptionService.Value.Encrypt(keyValue, rsaKey);
+
             var secretClient = new SecretClient(_options.KeyVaultUri, _tokenCredential);
 
-            var key = await secretClient.SetSecretAsync(new KeyVaultSecret(name, keyValue)
+            var key = await secretClient.SetSecretAsync(new KeyVaultSecret(name, JsonConvert.SerializeObject(encryptionKey))
             {
                 Properties =
                 {
