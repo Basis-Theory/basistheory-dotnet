@@ -6,6 +6,7 @@ using BasisTheory.net.Encryption.Azure.Entities;
 using BasisTheory.net.Encryption.Entities;
 using BasisTheory.net.Encryption.Extensions;
 using LazyCache;
+using Newtonsoft.Json;
 
 namespace BasisTheory.net.Encryption.Azure.Factories
 {
@@ -13,14 +14,19 @@ namespace BasisTheory.net.Encryption.Azure.Factories
     {
         private readonly IAppCache _cache;
         private readonly TokenCredential _tokenCredential;
+        private readonly Lazy<IProviderKeyService> _providerKeyService;
+        private readonly Lazy<IEncryptionService> _encryptionService;
 
         public string Provider => "AZURE";
         public string Algorithm => EncryptionAlgorithm.AES.ToString();
 
-        public AesKeyVaultEncryptionFactory(IAppCache cache, TokenCredential tokenCredential)
+        public AesKeyVaultEncryptionFactory(IAppCache cache, TokenCredential tokenCredential,
+            Lazy<IProviderKeyService> providerKeyService, Lazy<IEncryptionService> encryptionService)
         {
             _cache = cache;
             _tokenCredential = tokenCredential;
+            _providerKeyService = providerKeyService;
+            _encryptionService = encryptionService;
         }
 
         public async Task<string> Encrypt(string providerKeyId, string plaintext)
@@ -54,7 +60,13 @@ namespace BasisTheory.net.Encryption.Azure.Factories
         {
             var secretClient = new SecretClient(id.VaultUri, _tokenCredential);
             var response = await secretClient.GetSecretAsync(id.Name, id.Version);
-            return response.Value?.Value;
+            if (response.Value?.Value == null) return null;
+
+            var data = JsonConvert.DeserializeObject<EncryptedDataResult>(response.Value.Value);
+            if (data == null) return null;
+
+            var providerEncryptionKey = await _providerKeyService.Value.GetKeyByKeyIdAsync(data.KeyEncryptionKey.Key);
+            return await _encryptionService.Value.Decrypt(data, providerEncryptionKey);
         }
     }
 }
