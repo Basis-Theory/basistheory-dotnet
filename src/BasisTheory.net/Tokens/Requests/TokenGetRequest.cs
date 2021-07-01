@@ -7,9 +7,12 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetRequest : PaginatedGetRequest
     {
+        public List<Guid> TokenIds { get; set; } = new List<Guid>();
+
         public List<string> Types { get; set; } = new List<string>();
 
         public bool? Children { get; set; }
+
         public List<string> ChildrenTypes { get; set; } = new List<string>();
 
         public override string BuildQuery()
@@ -23,6 +26,9 @@ namespace BasisTheory.net.Tokens.Requests
                 queryParts.Add($"size={PageSize}");
 
             queryParts.AddRange(Types.Select(type => $"type={type}"));
+
+            if (TokenIds.Any())
+                queryParts.AddRange(TokenIds.Select(tokenId => $"id={tokenId}"));
 
             if (Children.HasValue)
                 queryParts.Add($"children={Children.Value.ToString().ToLower()}");
