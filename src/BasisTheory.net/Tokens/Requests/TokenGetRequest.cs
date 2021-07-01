@@ -27,7 +27,7 @@ namespace BasisTheory.net.Tokens.Requests
 
             queryParts.AddRange(Types.Select(type => $"type={type}"));
 
-            if (TokenIds.Any())
+            if (TokenIds?.Any() ?? false)
                 queryParts.AddRange(TokenIds.Select(tokenId => $"id={tokenId}"));
 
             if (Children.HasValue)

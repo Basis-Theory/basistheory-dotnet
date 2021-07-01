@@ -23,7 +23,7 @@ namespace BasisTheory.net.Exchanges.Requests
             if (PageSize.HasValue)
                 queryParts.Add($"size={PageSize}");
 
-            if (ExchangeIds.Any())
+            if (ExchangeIds?.Any() ?? false)
                 queryParts.AddRange(ExchangeIds.Select(exchangeId => $"id={exchangeId}"));
 
             if(!string.IsNullOrWhiteSpace(Name))
