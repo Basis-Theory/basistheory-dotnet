@@ -19,7 +19,7 @@ namespace BasisTheory.net.Applications.Requests
             if (PageSize.HasValue)
                 queryParts.Add($"size={PageSize}");
 
-            if (ApplicationIds.Any())
+            if (ApplicationIds?.Any() ?? false)
                 queryParts.AddRange(ApplicationIds.Select(applicationId => $"id={applicationId}"));
 
             return string.Join("&", queryParts);
