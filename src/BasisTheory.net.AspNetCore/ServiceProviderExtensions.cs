@@ -7,7 +7,7 @@ namespace BasisTheory.net.AspNetCore
 {
     public static class ServiceProviderExtensions
     {
-        public static IServiceCollection AddBasisTheory(this IServiceCollection services)
+        public static IServiceCollection AddBasisTheoryEncryption(this IServiceCollection services)
         {
             services.TryAddScoped<IEncryptionService, EncryptionService>();
             services.TryAddScoped<IProviderKeyService, ProviderKeyService>();
