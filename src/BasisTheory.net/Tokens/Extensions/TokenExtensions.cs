@@ -1,6 +1,7 @@
 using System;
 using BasisTheory.net.Encryption.Entities;
 using BasisTheory.net.Tokens.Entities;
+using Newtonsoft.Json.Linq;
 
 namespace BasisTheory.net.Tokens.Extensions
 {
@@ -16,6 +17,24 @@ namespace BasisTheory.net.Tokens.Extensions
                 ContentEncryptionKey = token.Encryption?.ContentEncryptionKey,
                 KeyEncryptionKey = token.Encryption?.KeyEncryptionKey
             };
+        }
+
+        public static T ToDataType<T>(this Token token) where T : class
+        {
+            return token == null ? default(T) : (T) ConvertDynamicToObject<T>(token.Data);
+        }
+
+        public static T ToMetadataType<T>(this Token token) where T : class
+        {
+            return token == null ? default(T) : (T) ConvertDynamicToObject<T>(token.Metadata);
+        }
+
+        private static T ConvertDynamicToObject<T>(dynamic data) where T : class
+        {
+            if ((data is JObject jObjectData))
+                return jObjectData.ToObject<T>();
+
+            return data as T;
         }
     }
 }
