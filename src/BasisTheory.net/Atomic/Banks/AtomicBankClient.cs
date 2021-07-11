@@ -13,23 +13,25 @@ namespace BasisTheory.net.Atomic.Banks
     public interface IAtomicBankClient
     {
         AtomicBank GetById(Guid tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null);
-
+        AtomicBank GetById(string tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null);
         Task<AtomicBank> GetByIdAsync(Guid tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task<AtomicBank> GetByIdAsync(string tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         PaginatedList<AtomicBank> Get(BankGetRequest request = null, RequestOptions requestOptions = null);
-
         Task<PaginatedList<AtomicBank>> GetAsync(BankGetRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         AtomicBank Create(AtomicBank bank, RequestOptions requestOptions = null);
-
         Task<AtomicBank> CreateAsync(AtomicBank bank, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid tokenId, RequestOptions requestOptions = null);
-
+        void Delete(string tokenId, RequestOptions requestOptions = null);
         Task DeleteAsync(Guid tokenId, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task DeleteAsync(string tokenId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
 
@@ -44,7 +46,12 @@ namespace BasisTheory.net.Atomic.Banks
 
         public AtomicBank GetById(Guid tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null)
         {
-            var decryptPath = request?.DecryptBank ?? false ? "/decrypt" : string.Empty;
+            return GetById(tokenId.ToString(), request, requestOptions);
+        }
+
+        public AtomicBank GetById(string tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null)
+        {
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
 
             return Get<AtomicBank>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions);
         }
@@ -52,7 +59,13 @@ namespace BasisTheory.net.Atomic.Banks
         public async Task<AtomicBank> GetByIdAsync(Guid tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            var decryptPath = request?.DecryptBank ?? false ? "/decrypt" : string.Empty;
+            return await GetByIdAsync(tokenId.ToString(), request, requestOptions, cancellationToken);
+        }
+
+        public async Task<AtomicBank> GetByIdAsync(string tokenId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
 
             return await GetAsync<AtomicBank>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions, cancellationToken);
         }
@@ -80,12 +93,22 @@ namespace BasisTheory.net.Atomic.Banks
 
         public void Delete(Guid tokenId, RequestOptions requestOptions = null)
         {
-            Delete($"{BasePath}/{tokenId}", requestOptions);
+            Delete(tokenId.ToString(), requestOptions);
+        }
+
+        public new void Delete(string tokenId, RequestOptions requestOptions = null)
+        {
+            base.Delete($"{BasePath}/{tokenId}", requestOptions);
         }
 
         public async Task DeleteAsync(Guid tokenId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            await DeleteAsync($"{BasePath}/{tokenId}", requestOptions, cancellationToken);
+            await DeleteAsync(tokenId.ToString(), requestOptions, cancellationToken);
+        }
+
+        public new async Task DeleteAsync(string tokenId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            await base.DeleteAsync($"{BasePath}/{tokenId}", requestOptions, cancellationToken);
         }
     }
 }

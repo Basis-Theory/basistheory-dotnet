@@ -14,31 +14,37 @@ namespace BasisTheory.net.ExchangeTemplates
     {
         ExchangeTemplate GetById(Guid exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
             RequestOptions requestOptions = null);
-
+        ExchangeTemplate GetById(string exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
+            RequestOptions requestOptions = null);
         Task<ExchangeTemplate> GetByIdAsync(Guid exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
+            RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
+        Task<ExchangeTemplate> GetByIdAsync(string exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
         PaginatedList<ExchangeTemplate> Get(ExchangeTemplateGetRequest request = null,
             RequestOptions requestOptions = null);
-
         Task<PaginatedList<ExchangeTemplate>> GetAsync(ExchangeTemplateGetRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         ExchangeTemplate Create(ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null);
-
         Task<ExchangeTemplate> CreateAsync(ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         ExchangeTemplate Update(Guid exchangeTemplateId, ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null);
-
+        ExchangeTemplate Update(string exchangeTemplateId, ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null);
         Task<ExchangeTemplate> UpdateAsync(Guid exchangeTemplateId, ExchangeTemplate exchangeTemplate,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task<ExchangeTemplate> UpdateAsync(string exchangeTemplateId, ExchangeTemplate exchangeTemplate,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid exchangeTemplateId, RequestOptions requestOptions = null);
-
+        void Delete(string exchangeTemplateId, RequestOptions requestOptions = null);
         Task DeleteAsync(Guid exchangeTemplateId, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task DeleteAsync(string exchangeTemplateId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
 
@@ -55,10 +61,22 @@ namespace BasisTheory.net.ExchangeTemplates
         public ExchangeTemplate GetById(Guid exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
             RequestOptions requestOptions = null)
         {
+            return GetById(exchangeTemplateId.ToString(), request, requestOptions);
+        }
+
+        public ExchangeTemplate GetById(string exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
+            RequestOptions requestOptions = null)
+        {
             return Get<ExchangeTemplate>($"{BasePath}/{exchangeTemplateId}", request, requestOptions);
         }
 
         public async Task<ExchangeTemplate> GetByIdAsync(Guid exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
+            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await GetByIdAsync(exchangeTemplateId.ToString(), request, requestOptions, cancellationToken);
+        }
+
+        public async Task<ExchangeTemplate> GetByIdAsync(string exchangeTemplateId, ExchangeTemplateGetByIdRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await GetAsync<ExchangeTemplate>($"{BasePath}/{exchangeTemplateId}", request, requestOptions,
@@ -92,10 +110,23 @@ namespace BasisTheory.net.ExchangeTemplates
 
         public ExchangeTemplate Update(Guid exchangeTemplateId, ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null)
         {
+            return Update(exchangeTemplateId.ToString(), exchangeTemplate, requestOptions);
+        }
+
+        public ExchangeTemplate Update(string exchangeTemplateId, ExchangeTemplate exchangeTemplate, RequestOptions requestOptions = null)
+        {
             return Put<ExchangeTemplate>($"{BasePath}/{exchangeTemplateId}", exchangeTemplate, requestOptions);
         }
 
         public async Task<ExchangeTemplate> UpdateAsync(Guid exchangeTemplateId, ExchangeTemplate exchangeTemplate,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await UpdateAsync(exchangeTemplateId.ToString(), exchangeTemplate, requestOptions,
+                cancellationToken);
+        }
+
+        public async Task<ExchangeTemplate> UpdateAsync(string exchangeTemplateId, ExchangeTemplate exchangeTemplate,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
@@ -105,13 +136,24 @@ namespace BasisTheory.net.ExchangeTemplates
 
         public void Delete(Guid exchangeTemplateId, RequestOptions requestOptions = null)
         {
-            Delete($"{BasePath}/{exchangeTemplateId}", requestOptions);
+            Delete(exchangeTemplateId.ToString(), requestOptions);
+        }
+
+        public new void Delete(string exchangeTemplateId, RequestOptions requestOptions = null)
+        {
+            base.Delete($"{BasePath}/{exchangeTemplateId}", requestOptions);
         }
 
         public async Task DeleteAsync(Guid exchangeTemplateId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            await DeleteAsync($"{BasePath}/{exchangeTemplateId}", requestOptions, cancellationToken);
+            await DeleteAsync(exchangeTemplateId.ToString(), requestOptions, cancellationToken);
+        }
+
+        public new async Task DeleteAsync(string exchangeTemplateId, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            await base.DeleteAsync($"{BasePath}/{exchangeTemplateId}", requestOptions, cancellationToken);
         }
     }
 }

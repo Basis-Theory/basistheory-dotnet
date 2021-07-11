@@ -12,7 +12,6 @@ namespace BasisTheory.net.Permissions
     public interface IPermissionClient
     {
         List<Permission> Get(PermissionGetRequest request = null, RequestOptions requestOptions = null);
-
         Task<List<Permission>> GetAsync(PermissionGetRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
