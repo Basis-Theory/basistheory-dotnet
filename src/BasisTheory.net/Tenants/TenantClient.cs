@@ -10,15 +10,12 @@ namespace BasisTheory.net.Tenants
     public interface ITenantClient
     {
         Tenant GetSelf(RequestOptions requestOptions = null);
-
         Task<Tenant> GetSelfAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
         Tenant Update(Tenant tenant, RequestOptions requestOptions = null);
-
         Task<Tenant> UpdateAsync(Tenant tenant, RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
         void Delete(RequestOptions requestOptions = null);
-
         Task DeleteAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
     }
 
