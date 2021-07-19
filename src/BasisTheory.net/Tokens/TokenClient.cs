@@ -248,7 +248,7 @@ namespace BasisTheory.net.Tokens
 
         public void DeleteAssociation(string parentTokenId, string childTokenId, RequestOptions requestOptions = null)
         {
-            Delete($"{BasePath}/{parentTokenId}/children/{childTokenId}", requestOptions);
+            base.Delete($"{BasePath}/{parentTokenId}/children/{childTokenId}", requestOptions);
         }
 
         public async Task DeleteAssociationAsync(Guid parentTokenId, Guid childTokenId, RequestOptions requestOptions = null,
@@ -260,7 +260,7 @@ namespace BasisTheory.net.Tokens
         public async Task DeleteAssociationAsync(string parentTokenId, string childTokenId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            await DeleteAsync($"{BasePath}/{parentTokenId}/children/{childTokenId}", requestOptions, cancellationToken);
+            await base.DeleteAsync($"{BasePath}/{parentTokenId}/children/{childTokenId}", requestOptions, cancellationToken);
         }
     }
 }
