@@ -128,8 +128,24 @@ namespace BasisTheory.net.Common
 
         private static BasisTheoryException ProcessErrorResponse(HttpResponseMessage response, string content)
         {
-            var error = string.IsNullOrEmpty(content) ? null : JsonConvert.DeserializeObject<BasisTheoryError>(content);
-            var errorMessage = error?.Title ?? error?.Detail ?? content;
+            var error = new BasisTheoryError
+            {
+                Status = (int) response.StatusCode
+            };
+            var errorMessage = content;
+
+            if (string.IsNullOrEmpty(content))
+                return new BasisTheoryException(response.StatusCode, error, errorMessage);
+
+            try
+            {
+                error = JsonUtility.DeserializeObject<BasisTheoryError>(content);
+                errorMessage = error?.Title ?? error?.Detail ?? content;
+            }
+            catch (JsonSerializationException)
+            {
+                errorMessage = string.Empty;
+            }
 
             return new BasisTheoryException(response.StatusCode, error, errorMessage);
         }
