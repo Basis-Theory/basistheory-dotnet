@@ -39,6 +39,10 @@ namespace BasisTheory.net.ExchangeTemplates.Entities
         [JsonPropertyName("configuration")]
         public List<ExchangeTemplateConfiguration> Configuration { get; set; }
 
+        [JsonProperty("request_parameters")]
+        [JsonPropertyName("request_parameters")]
+        public List<ExchangeTemplateRequestParameter> RequestParameters { get; set; }
+
         [JsonProperty("created_at")]
         [JsonPropertyName("created_at")]
         public DateTimeOffset CreatedDate { get; set; }
