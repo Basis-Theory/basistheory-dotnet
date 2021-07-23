@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
@@ -20,7 +21,7 @@ namespace BasisTheory.net.Common.Responses
 
         [JsonProperty("metadata")]
         [JsonPropertyName("metadata")]
-        public dynamic Metadata { get; set; }
+        public List<KeyValuePair<string, string>> Metadata { get; set; }
 
         [JsonProperty("created_by")]
         [JsonPropertyName("created_by")]
