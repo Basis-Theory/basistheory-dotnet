@@ -142,7 +142,7 @@ namespace BasisTheory.net.Common
                 error = JsonUtility.DeserializeObject<BasisTheoryError>(content);
                 errorMessage = error?.Title ?? error?.Detail ?? content;
             }
-            catch (JsonSerializationException)
+            catch (JsonReaderException)
             {
                 errorMessage = string.Empty;
             }
