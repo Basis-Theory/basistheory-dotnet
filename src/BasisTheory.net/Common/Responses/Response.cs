@@ -21,7 +21,7 @@ namespace BasisTheory.net.Common.Responses
 
         [JsonProperty("metadata")]
         [JsonPropertyName("metadata")]
-        public List<KeyValuePair<string, string>> Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("created_by")]
         [JsonPropertyName("created_by")]
