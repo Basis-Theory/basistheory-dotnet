@@ -67,16 +67,7 @@ namespace BasisTheory.net.Tests.Tokens
             var serializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(serializedToken)
-                })
-                .Callback<HttpRequestMessage, CancellationToken>((message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
 
             var responseToken = await getByIdCall(fixture.Client, token.Id, null, null);
 
@@ -94,16 +85,7 @@ namespace BasisTheory.net.Tests.Tokens
             var serializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(serializedToken)
-                })
-                .Callback<HttpRequestMessage, CancellationToken>((message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
             {
@@ -122,16 +104,7 @@ namespace BasisTheory.net.Tests.Tokens
             var serializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(serializedToken)
-                })
-                .Callback<HttpRequestMessage, CancellationToken>((message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
             {
@@ -150,16 +123,7 @@ namespace BasisTheory.net.Tests.Tokens
             var serializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(serializedToken)
-                })
-                .Callback<HttpRequestMessage, CancellationToken>((message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
@@ -178,16 +142,7 @@ namespace BasisTheory.net.Tests.Tokens
             var serializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(serializedToken)
-                })
-                .Callback<HttpRequestMessage, CancellationToken>((message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
@@ -205,14 +160,7 @@ namespace BasisTheory.net.Tests.Tokens
             var tokenId = Guid.NewGuid();
             var serializedError = JsonConvert.SerializeObject(error);
 
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.BadRequest,
-                    Content = new StringContent(serializedError)
-                });
+            SetupHandler(HttpStatusCode.BadRequest, serializedError);
 
             var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
 
@@ -225,13 +173,7 @@ namespace BasisTheory.net.Tests.Tokens
         {
             var tokenId = Guid.NewGuid();
 
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.Forbidden
-                });
+            SetupHandler(HttpStatusCode.Forbidden);
 
             var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
 
@@ -247,20 +189,32 @@ namespace BasisTheory.net.Tests.Tokens
             var error = Guid.NewGuid().ToString();
             var tokenId = Guid.NewGuid();
 
-            fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.Forbidden,
-                    Content = new StringContent(error)
-                });
+            SetupHandler(HttpStatusCode.InternalServerError, error);
 
             var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
 
-            Assert.Equal(403, exception.Error.Status);
+            Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
             Assert.Null(exception.Error.Detail);
+        }
+
+        private void SetupHandler(HttpStatusCode statusCode, string content = null, Action<HttpRequestMessage, CancellationToken> messageHandler = null)
+        {
+            var httpResponseMessage = string.IsNullOrEmpty(content) ?
+                new HttpResponseMessage { StatusCode = statusCode } :
+                new HttpResponseMessage
+                {
+                    StatusCode = statusCode,
+                    Content = new StringContent(content)
+                };
+
+            var returnResult = fixture.MessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(httpResponseMessage);
+
+            if (messageHandler != null)
+                returnResult.Callback(messageHandler);
         }
     }
 }
