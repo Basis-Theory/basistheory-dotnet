@@ -86,7 +86,9 @@ namespace BasisTheory.net.Tokens
 
         public Token GetById(string tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null)
         {
-            return Get<Token>($"{BasePath}/{tokenId}", request, requestOptions);
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return Get<Token>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions);
         }
 
         public async Task<Token> GetByIdAsync(Guid tokenId, TokenGetByIdRequest request = null,
@@ -98,18 +100,24 @@ namespace BasisTheory.net.Tokens
         public async Task<Token> GetByIdAsync(string tokenId, TokenGetByIdRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await GetAsync<Token>($"{BasePath}/{tokenId}", request, requestOptions, cancellationToken);
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return await GetAsync<Token>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<Token> Get(TokenGetRequest request = null, RequestOptions requestOptions = null)
         {
-            return Get<PaginatedList<Token>>(BasePath, request, requestOptions);
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return Get<PaginatedList<Token>>($"{BasePath}{decryptPath}", request, requestOptions);
         }
 
         public async Task<PaginatedList<Token>> GetAsync(TokenGetRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await GetAsync<PaginatedList<Token>>(BasePath, request, requestOptions, cancellationToken);
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return await GetAsync<PaginatedList<Token>>($"{BasePath}{decryptPath}", request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<Token> GetChildren(Guid parentTokenId, TokenGetRequest request = null,
@@ -121,7 +129,9 @@ namespace BasisTheory.net.Tokens
         public PaginatedList<Token> GetChildren(string parentTokenId, TokenGetRequest request = null,
             RequestOptions requestOptions = null)
         {
-            return Get<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children", request, requestOptions);
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return Get<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children{decryptPath}", request, requestOptions);
         }
 
         public async Task<PaginatedList<Token>> GetChildrenAsync(Guid parentTokenId, TokenGetRequest request = null,
@@ -134,7 +144,9 @@ namespace BasisTheory.net.Tokens
         public async Task<PaginatedList<Token>> GetChildrenAsync(string parentTokenId, TokenGetRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await GetAsync<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children", request, requestOptions,
+            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
+
+            return await GetAsync<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children{decryptPath}", request, requestOptions,
                 cancellationToken);
         }
 

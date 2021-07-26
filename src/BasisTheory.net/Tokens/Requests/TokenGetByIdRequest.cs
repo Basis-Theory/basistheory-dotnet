@@ -6,6 +6,7 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetByIdRequest : GetRequest
     {
+        public bool Decrypt { get; set; } = false;
         public bool? Children { get; set; }
         public List<string> ChildrenTypes { get; set; } = new List<string>();
 
