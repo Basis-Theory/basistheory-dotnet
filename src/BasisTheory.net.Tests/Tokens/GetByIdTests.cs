@@ -171,7 +171,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldHandleNEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
         {
             var tokenId = Guid.NewGuid();
 
