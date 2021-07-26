@@ -64,14 +64,15 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetTokenById(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
         {
             var token = TokenFactory.Token();
-            var serializedToken = JsonConvert.SerializeObject(token);
+            var expectedSerializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
             var responseToken = await getByIdCall(fixture.Client, token.Id, null, null);
+            var actualSerializedToken = JsonConvert.SerializeObject(responseToken);
 
-            Assert.Equal(serializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerializedToken, actualSerializedToken);
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
@@ -101,10 +102,10 @@ namespace BasisTheory.net.Tests.Tokens
         {
             var token = TokenFactory.Token();
             var childType = Guid.NewGuid().ToString();
-            var serializedToken = JsonConvert.SerializeObject(token);
+            var expectedSerializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
             {
@@ -119,18 +120,18 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetTokenByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
         {
             var token = TokenFactory.Token();
-            var apiKey = Guid.NewGuid().ToString();
-            var serializedToken = JsonConvert.SerializeObject(token);
+            var expectedApiKey = Guid.NewGuid().ToString();
+            var expectedSerializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
-                ApiKey = apiKey
+                ApiKey = expectedApiKey
             });
 
-            Assert.Equal(apiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -138,18 +139,18 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetTokenByIdWithCorrelationId(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
         {
             var token = TokenFactory.Token();
-            var correlationId = Guid.NewGuid().ToString();
-            var serializedToken = JsonConvert.SerializeObject(token);
+            var expectedCorrelationId = Guid.NewGuid().ToString();
+            var expectedSerializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
             await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
-                CorrelationId = correlationId
+                CorrelationId = expectedCorrelationId
             });
 
-            Assert.Equal(correlationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
         [Theory]
@@ -158,13 +159,14 @@ namespace BasisTheory.net.Tests.Tokens
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var tokenId = Guid.NewGuid();
-            var serializedError = JsonConvert.SerializeObject(error);
+            var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            SetupHandler(HttpStatusCode.BadRequest, serializedError);
+            SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
             var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
+            var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
-            Assert.Equal(serializedError, JsonConvert.SerializeObject(exception.Error));
+            Assert.Equal(expectedSerializedError, actualSerializedError);
         }
 
         [Theory]
