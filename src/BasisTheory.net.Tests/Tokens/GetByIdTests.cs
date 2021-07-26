@@ -70,9 +70,8 @@ namespace BasisTheory.net.Tests.Tokens
             SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
             var responseToken = await getByIdCall(fixture.Client, token.Id, null, null);
-            var actualSerializedToken = JsonConvert.SerializeObject(responseToken);
 
-            Assert.Equal(expectedSerializedToken, actualSerializedToken);
+            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
@@ -83,17 +82,20 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetTokenByIdWithChildren(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
         {
             var token = TokenFactory.Token();
-            var serializedToken = JsonConvert.SerializeObject(token);
+            var expectedSerializedToken = JsonConvert.SerializeObject(token);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, serializedToken, (message, _) => requestMessage = message);
+            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
-            await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
+            var responseToken = await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
             {
                 Children = true
             }, null);
 
+            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{token.Id}?children=true", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -107,12 +109,15 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
-            await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
+            var responseToken = await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
             {
                 ChildrenTypes = new List<string> { childType }
             }, null);
 
+            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{token.Id}?children_type={childType}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -126,11 +131,14 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
-            await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
+            var responseToken = await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
+            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(HttpMethod.Get, requestMessage.Method);
+            Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
@@ -145,11 +153,15 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
 
-            await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
+            var responseToken = await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
+            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(HttpMethod.Get, requestMessage.Method);
+            Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
