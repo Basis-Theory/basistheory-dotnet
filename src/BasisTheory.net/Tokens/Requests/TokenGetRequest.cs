@@ -7,6 +7,7 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetRequest : PaginatedGetRequest
     {
+        public bool Decrypt { get; set; } = false;
         public List<Guid> TokenIds { get; set; } = new List<Guid>();
 
         public List<string> Types { get; set; } = new List<string>();
