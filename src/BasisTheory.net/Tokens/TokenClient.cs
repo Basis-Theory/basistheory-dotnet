@@ -36,7 +36,6 @@ namespace BasisTheory.net.Tokens
         Token Create(Token token, RequestOptions requestOptions = null);
         Task<Token> CreateAsync(Token token, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-
         Token Create(object data, Dictionary<string, string> metadata = null, RequestOptions requestOptions = null);
         Task<Token> CreateAsync(object data, Dictionary<string, string> metadata = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
