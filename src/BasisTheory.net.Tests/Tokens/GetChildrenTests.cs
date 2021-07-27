@@ -60,7 +60,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokens(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokens(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.PaginatedTokens();
@@ -79,7 +79,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var type1 = Guid.NewGuid().ToString();
             var type2 = Guid.NewGuid().ToString();
@@ -104,7 +104,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithChildren(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithChildren(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.PaginatedTokens();
@@ -126,7 +126,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithChildrenByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithChildrenByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var childType1 = Guid.NewGuid().ToString();
             var childType2 = Guid.NewGuid().ToString();
@@ -151,7 +151,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensByIds(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensByIds(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var tokenId1 = Guid.NewGuid();
             var tokenId2 = Guid.NewGuid();
@@ -176,7 +176,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPagination(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithPagination(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var random = new Randomizer();
             var size = random.Int(1, 20);
@@ -203,7 +203,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var random = new Randomizer();
             var type = Guid.NewGuid().ToString();
@@ -238,7 +238,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -262,7 +262,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithCorrelationId(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetChildTokensWithCorrelationId(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -315,7 +315,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>call)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
         {
             var error = Guid.NewGuid().ToString();
 
