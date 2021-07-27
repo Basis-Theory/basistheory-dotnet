@@ -63,7 +63,7 @@ namespace BasisTheory.net.Tests.Tokens
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
             var response = await call(fixture.Client, content, null);
 
@@ -83,7 +83,7 @@ namespace BasisTheory.net.Tests.Tokens
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
             var response = await call(fixture.Client, content, new RequestOptions
             {
@@ -106,7 +106,7 @@ namespace BasisTheory.net.Tests.Tokens
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
             var response = await call(fixture.Client, content, new RequestOptions
             {
