@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tokens.Constants;
 using BasisTheory.net.Tokens.Entities;
@@ -30,6 +31,16 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
             .RuleFor(a => a.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
 
+        public static readonly Faker<PaginatedList<Token>> PagintedListFaker = new Faker<PaginatedList<Token>>()
+            .RuleFor(a => a.Pagination, (f, _) => new Pagination
+            {
+                TotalItems = f.Random.Number(1, 10),
+                TotalPages = f.Random.Number(1, 10),
+                PageNumber = f.Random.Number(1, 10),
+                PageSize = f.Random.Number(1, 10),
+            })
+            .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => TokenFaker.Generate()).ToList());
+
         public static Token Token(Action<Token> applyOverrides = null)
         {
             var token = TokenFaker.Generate();
@@ -37,6 +48,15 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             applyOverrides?.Invoke(token);
 
             return token;
+        }
+
+        public static PaginatedList<Token> PaginatedTokens(Action<PaginatedList<Token>> applyOverrides = null)
+        {
+            var list = PagintedListFaker.Generate();
+
+            applyOverrides?.Invoke(list);
+
+            return list;
         }
     }
 }

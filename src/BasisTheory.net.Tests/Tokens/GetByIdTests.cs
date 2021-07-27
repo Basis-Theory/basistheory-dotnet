@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
@@ -12,8 +11,6 @@ using BasisTheory.net.Tests.Tokens.Helpers;
 using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
 using BasisTheory.net.Tokens.Requests;
-using Moq;
-using Moq.Protected;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -28,7 +25,7 @@ namespace BasisTheory.net.Tests.Tokens
             this.fixture = fixture;
         }
 
-        public static IEnumerable<object[]> GetByIdMethods
+        public static IEnumerable<object[]> Methods
         {
             get
             {
@@ -60,136 +57,137 @@ namespace BasisTheory.net.Tests.Tokens
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldGetTokenById(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldGetTokenById(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var token = TokenFactory.Token();
-            var expectedSerializedToken = JsonConvert.SerializeObject(token);
+            var content = TokenFactory.Token();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var responseToken = await getByIdCall(fixture.Client, token.Id, null, null);
+            var response = await call(fixture.Client, content.Id, null, null);
 
-            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldGetTokenByIdWithChildren(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldGetTokenByIdWithChildren(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var token = TokenFactory.Token();
-            var expectedSerializedToken = JsonConvert.SerializeObject(token);
+            var content = TokenFactory.Token();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var responseToken = await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
+            var response = await call(fixture.Client, content.Id, new TokenGetByIdRequest
             {
                 Children = true
             }, null);
 
-            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{token.Id}?children=true", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/tokens/{content.Id}?children=true", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldGetTokenByIdWithChildrenByType(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldGetTokenByIdWithChildrenByType(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var token = TokenFactory.Token();
-            var childType = Guid.NewGuid().ToString();
-            var expectedSerializedToken = JsonConvert.SerializeObject(token);
+            var childType1 = Guid.NewGuid().ToString();
+            var childType2 = Guid.NewGuid().ToString();
+
+            var content = TokenFactory.Token();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var responseToken = await getByIdCall(fixture.Client, token.Id, new TokenGetByIdRequest
+            var response = await call(fixture.Client, content.Id, new TokenGetByIdRequest
             {
-                ChildrenTypes = new List<string> { childType }
+                ChildrenTypes = new List<string> { childType1, childType2 }
             }, null);
 
-            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{token.Id}?children_type={childType}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/tokens/{content.Id}?children_type={childType1}&children_type={childType2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldGetTokenByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldGetTokenByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var token = TokenFactory.Token();
             var expectedApiKey = Guid.NewGuid().ToString();
-            var expectedSerializedToken = JsonConvert.SerializeObject(token);
+
+            var content = TokenFactory.Token();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var responseToken = await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
+            var response = await call(fixture.Client, content.Id, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
-            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldGetTokenByIdWithCorrelationId(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldGetTokenByIdWithCorrelationId(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var token = TokenFactory.Token();
             var expectedCorrelationId = Guid.NewGuid().ToString();
-            var expectedSerializedToken = JsonConvert.SerializeObject(token);
+
+            var content = TokenFactory.Token();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            SetupHandler(HttpStatusCode.OK, expectedSerializedToken, (message, _) => requestMessage = message);
+            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var responseToken = await getByIdCall(fixture.Client, token.Id, null, new RequestOptions
+            var response = await call(fixture.Client, content.Id, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
-            Assert.Equal(expectedSerializedToken, JsonConvert.SerializeObject(responseToken));
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{token.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
-            var tokenId = Guid.NewGuid();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+            fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, Guid.NewGuid(), null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
-            var tokenId = Guid.NewGuid();
+            fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            SetupHandler(HttpStatusCode.Forbidden);
-
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, Guid.NewGuid(), null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -197,38 +195,18 @@ namespace BasisTheory.net.Tests.Tokens
         }
 
         [Theory]
-        [MemberData(nameof(GetByIdMethods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> getByIdCall)
+        [MemberData(nameof(Methods))]
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> call)
         {
             var error = Guid.NewGuid().ToString();
-            var tokenId = Guid.NewGuid();
 
-            SetupHandler(HttpStatusCode.InternalServerError, error);
+            fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => getByIdCall(fixture.Client, tokenId, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client,  Guid.NewGuid(), null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
             Assert.Null(exception.Error.Detail);
-        }
-
-        private void SetupHandler(HttpStatusCode statusCode, string content = null, Action<HttpRequestMessage, CancellationToken> messageHandler = null)
-        {
-            var httpResponseMessage = string.IsNullOrEmpty(content) ?
-                new HttpResponseMessage { StatusCode = statusCode } :
-                new HttpResponseMessage
-                {
-                    StatusCode = statusCode,
-                    Content = new StringContent(content)
-                };
-
-            var returnResult = fixture.MessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(httpResponseMessage);
-
-            if (messageHandler != null)
-                returnResult.Callback(messageHandler);
         }
     }
 }

@@ -1,7 +1,11 @@
 using System;
+using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using BasisTheory.net.Tokens;
 using Moq;
+using Moq.Protected;
 
 namespace BasisTheory.net.Tests.Tokens.Helpers
 {
@@ -25,7 +29,27 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
 
         public void Dispose()
         {
-            HttpClient.Dispose();
+            HttpClient?.Dispose();
+        }
+
+        public void SetupHandler(HttpStatusCode statusCode, string content = null,
+            Action<HttpRequestMessage, CancellationToken> messageHandler = null)
+        {
+            var httpResponseMessage = string.IsNullOrEmpty(content) ?
+                new HttpResponseMessage { StatusCode = statusCode } :
+                new HttpResponseMessage
+                {
+                    StatusCode = statusCode,
+                    Content = new StringContent(content)
+                };
+
+            var returnResult = MessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(httpResponseMessage);
+
+            if (messageHandler != null)
+                returnResult.Callback(messageHandler);
         }
     }
 }
