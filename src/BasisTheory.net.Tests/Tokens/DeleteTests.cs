@@ -56,14 +56,14 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteToken(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldDeleteToken(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var tokenId = Guid.NewGuid();
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await call(fixture.Client, tokenId, null);
+            await mut(fixture.Client, tokenId, null);
 
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal($"/tokens/{tokenId}", requestMessage.RequestUri?.PathAndQuery);
@@ -72,7 +72,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteTokenWithPerRequestApiKey(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldDeleteTokenWithPerRequestApiKey(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -81,7 +81,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.Created, null, (message, _) => requestMessage = message);
 
-            await call(fixture.Client, tokenId, new RequestOptions
+            await mut(fixture.Client, tokenId, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -93,7 +93,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteTokenWithCorrelationId(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldDeleteTokenWithCorrelationId(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -102,7 +102,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await call(fixture.Client, tokenId, new RequestOptions
+            await mut(fixture.Client, tokenId, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -115,14 +115,14 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -130,11 +130,11 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -143,13 +143,13 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, RequestOptions, Task> call)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

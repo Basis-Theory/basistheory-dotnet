@@ -48,7 +48,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokens(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokens(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -56,7 +56,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, null, null);
+            var response = await mut(fixture.Client, null, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
@@ -66,7 +66,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type1 = Guid.NewGuid().ToString();
             var type2 = Guid.NewGuid().ToString();
@@ -77,7 +77,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 Types = new List<string> { type1, type2 }
             }, null);
@@ -90,7 +90,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithChildren(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithChildren(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -98,7 +98,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 Children = true
             }, null);
@@ -111,7 +111,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithChildrenByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithChildrenByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var childType1 = Guid.NewGuid().ToString();
             var childType2 = Guid.NewGuid().ToString();
@@ -122,7 +122,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 ChildrenTypes = new List<string> { childType1, childType2 }
             }, null);
@@ -135,7 +135,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensByIds(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensByIds(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var tokenId1 = Guid.NewGuid();
             var tokenId2 = Guid.NewGuid();
@@ -146,7 +146,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 TokenIds = new List<Guid> { tokenId1, tokenId2 }
             }, null);
@@ -159,7 +159,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var random = new Randomizer();
             var size = random.Int(1, 20);
@@ -171,7 +171,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 PageSize = size,
                 Page = page
@@ -185,7 +185,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var random = new Randomizer();
             var type = Guid.NewGuid().ToString();
@@ -200,7 +200,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, new TokenGetRequest
+            var response = await mut(fixture.Client, new TokenGetRequest
             {
                 Types = new List<string> { type },
                 Children = true,
@@ -219,7 +219,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPerRequestApiKey(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithPerRequestApiKey(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -229,7 +229,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, null, new RequestOptions
+            var response = await mut(fixture.Client, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -242,7 +242,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithCorrelationId(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldGetTokensWithCorrelationId(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -252,7 +252,7 @@ namespace BasisTheory.net.Tests.Tokens
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await call(fixture.Client, null, new RequestOptions
+            var response = await mut(fixture.Client, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -266,14 +266,14 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -281,11 +281,11 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -294,13 +294,13 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> call)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => call(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
