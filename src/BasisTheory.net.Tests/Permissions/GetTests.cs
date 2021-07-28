@@ -110,7 +110,7 @@ namespace BasisTheory.net.Tests.Permissions
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithCorrelationId(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldGetPermissionsWithCorrelationId(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
