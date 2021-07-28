@@ -17,9 +17,5 @@ namespace BasisTheory.net.Permissions.Entities
         [JsonProperty("application_types")]
         [JsonPropertyName("application_types")]
         public List<string> ApplicationTypes { get; set; }
-
-        [JsonProperty("dependencies")]
-        [JsonPropertyName("dependencies")]
-        public List<string> Dependencies { get; set; }
     }
 }
