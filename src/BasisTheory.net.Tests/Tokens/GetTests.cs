@@ -12,7 +12,6 @@ using BasisTheory.net.Tests.Tokens.Helpers;
 using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
 using BasisTheory.net.Tokens.Requests;
-using Bogus;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -113,8 +112,8 @@ namespace BasisTheory.net.Tests.Tokens
         [MemberData(nameof(Methods))]
         public async Task ShouldGetTokensWithChildrenByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
-            var childType1 = Guid.NewGuid().ToString();
-            var childType2 = Guid.NewGuid().ToString();
+            var childType1 = fixture.Faker.Lorem.Word();
+            var childType2 = fixture.Faker.Lorem.Word();
 
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -161,9 +160,8 @@ namespace BasisTheory.net.Tests.Tokens
         [MemberData(nameof(Methods))]
         public async Task ShouldGetTokensWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
-            var random = new Randomizer();
-            var size = random.Int(1, 20);
-            var page = random.Int(1, 20);
+            var size = fixture.Faker.Random.Int(1, 20);
+            var page = fixture.Faker.Random.Int(1, 20);
 
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -187,12 +185,11 @@ namespace BasisTheory.net.Tests.Tokens
         [MemberData(nameof(Methods))]
         public async Task ShouldGetTokensWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
-            var random = new Randomizer();
-            var type = Guid.NewGuid().ToString();
-            var childType = Guid.NewGuid().ToString();
+            var type = fixture.Faker.Lorem.Word();
+            var childType = fixture.Faker.Lorem.Word();
             var tokenId = Guid.NewGuid();
-            var size = random.Int(1, 20);
-            var page = random.Int(1, 20);
+            var size = fixture.Faker.Random.Int(1, 20);
+            var page = fixture.Faker.Random.Int(1, 20);
 
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
