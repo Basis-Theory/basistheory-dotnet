@@ -87,7 +87,7 @@ namespace BasisTheory.net.Tests.Permissions
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPerRequestApiKey(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldGetPermissionsWithPerRequestApiKey(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
