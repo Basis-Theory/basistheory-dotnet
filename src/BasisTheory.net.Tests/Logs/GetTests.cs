@@ -216,7 +216,7 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithPerRequestApiKey(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetLogsWithPerRequestApiKey(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
