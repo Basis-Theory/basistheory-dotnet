@@ -27,7 +27,7 @@ namespace BasisTheory.net.Tests.Logs.Helpers
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => LogFaker.Generate()).ToList());
 
-        public static Log Token(Action<Log> applyOverrides = null)
+        public static Log Log(Action<Log> applyOverrides = null)
         {
             var log = LogFaker.Generate();
 
