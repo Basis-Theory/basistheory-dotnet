@@ -239,7 +239,7 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokensWithCorrelationId(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetLogsWithCorrelationId(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
