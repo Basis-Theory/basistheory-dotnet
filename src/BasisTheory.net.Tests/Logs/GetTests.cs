@@ -47,7 +47,7 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetTokens(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetLogs(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
         {
             var content = LogFactory.PaginatedLogs();
             var expectedSerialized = JsonConvert.SerializeObject(content);
