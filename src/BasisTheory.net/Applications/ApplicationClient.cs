@@ -149,7 +149,7 @@ namespace BasisTheory.net.Applications
 
         public Application RegenerateKey(string applicationId, RequestOptions requestOptions = null)
         {
-            return Post<Application>($"{BasePath}/regenerate", null, requestOptions);
+            return Post<Application>($"{BasePath}/{applicationId}/regenerate", null, requestOptions);
         }
 
         public async Task<Application> RegenerateKeyAsync(Guid applicationId, RequestOptions requestOptions = null,
@@ -161,7 +161,7 @@ namespace BasisTheory.net.Applications
         public async Task<Application> RegenerateKeyAsync(string applicationId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Application>($"{BasePath}/regenerate", null, requestOptions, cancellationToken);
+            return await PostAsync<Application>($"{BasePath}/{applicationId}/regenerate", null, requestOptions, cancellationToken);
         }
 
         public void Delete(Guid applicationId, RequestOptions requestOptions = null)
