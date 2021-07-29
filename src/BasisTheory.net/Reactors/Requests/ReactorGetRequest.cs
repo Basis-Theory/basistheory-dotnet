@@ -24,7 +24,7 @@ namespace BasisTheory.net.Reactors.Requests
                 queryParts.Add($"size={PageSize}");
 
             if (ReactorIds?.Any() ?? false)
-                queryParts.AddRange(ReactorIds.Select(exchangeId => $"id={exchangeId}"));
+                queryParts.AddRange(ReactorIds.Select(reactorId => $"id={reactorId}"));
 
             if(!string.IsNullOrWhiteSpace(Name))
                 queryParts.Add($"name={Name}");
