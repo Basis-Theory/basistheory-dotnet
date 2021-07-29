@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
-using BasisTheory.net.Logs;
-using BasisTheory.net.Logs.Entities;
-using BasisTheory.net.Logs.Requests;
+using BasisTheory.net.Exchanges;
+using BasisTheory.net.Exchanges.Entities;
+using BasisTheory.net.Exchanges.Requests;
+using BasisTheory.net.Tests.Exchanges.Helpers;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Logs.Helpers;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Logs
+namespace BasisTheory.net.Tests.Exchanges
 {
-    public class GetTests : IClassFixture<LogFixture>
+    public class GetTests : IClassFixture<ExchangeFixture>
     {
-        readonly LogFixture fixture;
+        readonly ExchangeFixture fixture;
 
-        public GetTests(LogFixture fixture)
+        public GetTests(ExchangeFixture fixture)
         {
             this.fixture = fixture;
         }
@@ -32,14 +32,14 @@ namespace BasisTheory.net.Tests.Logs
             {
                 yield return new object []
                 {
-                    (Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>>)(
+                    (Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>>)(
                         async (client, request, options) => await client.GetAsync(request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>>)(
-                        (client, request, options) => Task.FromResult(client.Get(request, options))
+                    (Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>>)(
+                        (client, request, options) =>  Task.FromResult(client.Get(request, options))
                     )
                 };
             }
@@ -47,9 +47,10 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetAll(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetAll(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -59,116 +60,98 @@ namespace BasisTheory.net.Tests.Logs
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/logs", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal("/exchanges", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByEntityType(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetByIds(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
-            var entityType = fixture.Faker.Lorem.Word();
+            var exchangeId1 = Guid.NewGuid();
+            var exchangeId2 = Guid.NewGuid();
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new LogGetRequest
+            var response = await mut(fixture.Client, new ExchangeGetRequest
             {
-                EntityType = entityType
+                ExchangeIds = new List<Guid> { exchangeId1, exchangeId2 }
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?entity_type={entityType}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/exchanges?id={exchangeId1}&id={exchangeId2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByEntityId(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetByName(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
-            var entityId = fixture.Faker.Lorem.Word();
+            var name = fixture.Faker.Lorem.Word();
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new LogGetRequest
+            var response = await mut(fixture.Client, new ExchangeGetRequest
             {
-                EntityId = entityId
+                Name = name
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?entity_id={entityId}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/exchanges?name={name}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetAfterStartDate(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetBySourceTokenType(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
-            var startDate = fixture.Faker.Date.PastOffset();
+            var sourceTokenType = fixture.Faker.Lorem.Word();
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new LogGetRequest
+            var response = await mut(fixture.Client, new ExchangeGetRequest
             {
-                StartDate = startDate
+                SourceTokenType = sourceTokenType
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?start_date={startDate:s}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/exchanges?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetBeforeEndDate(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
-        {
-            var endDate = fixture.Faker.Date.FutureOffset();
-
-            var content = LogFactory.PaginatedLogs();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(fixture.Client, new LogGetRequest
-            {
-                EndDate = endDate
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?end_date={endDate:s}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPagination(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetWithPagination(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             var size = fixture.Faker.Random.Int(1, 20);
             var page = fixture.Faker.Random.Int(1, 20);
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new LogGetRequest
+            var response = await mut(fixture.Client, new ExchangeGetRequest
             {
                 PageSize = size,
                 Page = page
@@ -176,51 +159,51 @@ namespace BasisTheory.net.Tests.Logs
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/exchanges?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithAllParameters(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetWithAllParameters(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
-            var entityType = fixture.Faker.Lorem.Word();
-            var entityId = fixture.Faker.Lorem.Word();
-            var startDate = fixture.Faker.Date.PastOffset();
-            var endDate = fixture.Faker.Date.FutureOffset();
+            var exchangeId = Guid.NewGuid();
+            var name = fixture.Faker.Lorem.Word();
+            var sourceTokenType = fixture.Faker.Lorem.Word();
             var size = fixture.Faker.Random.Int(1, 20);
             var page = fixture.Faker.Random.Int(1, 20);
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new LogGetRequest
+            var response = await mut(fixture.Client, new ExchangeGetRequest
             {
-                EntityType = entityType,
-                EntityId = entityId,
-                StartDate = startDate,
-                EndDate = endDate,
+                ExchangeIds = new List<Guid> { exchangeId },
+                Name = name,
+                SourceTokenType = sourceTokenType,
                 PageSize = size,
                 Page = page
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/logs?page={page}&size={size}&entity_type={entityType}&entity_id={entityId}&start_date={startDate:s}&end_date={endDate:s}",
+            Assert.Equal($"/exchanges?page={page}&size={size}&id={exchangeId}&name={name}&source_token_type={sourceTokenType}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPerRequestApiKey(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetWithPerRequestApiKey(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -233,17 +216,18 @@ namespace BasisTheory.net.Tests.Logs
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/logs", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal("/exchanges", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithCorrelationId(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldGetWithCorrelationId(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = LogFactory.PaginatedLogs();
+            var content = ExchangeFactory.PaginatedExchanges();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -256,14 +240,15 @@ namespace BasisTheory.net.Tests.Logs
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/logs", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal("/exchanges", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -278,7 +263,8 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -291,7 +277,8 @@ namespace BasisTheory.net.Tests.Logs
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(
+            Func<IExchangeClient, ExchangeGetRequest, RequestOptions, Task<PaginatedList<Exchange>>> mut)
         {
             var error = Guid.NewGuid().ToString();
 

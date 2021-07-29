@@ -1,4 +1,5 @@
 using BasisTheory.net.Permissions;
+using BasisTheory.net.Tests.Helpers;
 
 namespace BasisTheory.net.Tests.Permissions.Helpers
 {

@@ -45,7 +45,7 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateTenant(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdate(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
         {
             var content = TenantFactory.Tenant();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -63,7 +63,7 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateTenantWithPerRequestApiKey(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdateWithPerRequestApiKey(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -86,7 +86,7 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateTenantWithCorrelationId(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdateWithCorrelationId(Func<ITenantClient, Tenant, RequestOptions, Task<Tenant>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
