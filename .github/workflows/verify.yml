@@ -9,7 +9,7 @@ defaults:
     working-directory: ./src
 
 jobs:
-  build:
+  build-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,3 +43,13 @@ jobs:
         run: dotnet nuget push ./output/*.nupkg --skip-duplicate -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/Basis-Theory/index.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Slack Release Alert
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          channel: ${{ secrets.SLACK_RELEASE_CHANNEL_ID }}
+          fields: 'repo,commit,message,workflow,job'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
