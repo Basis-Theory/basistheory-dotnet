@@ -81,7 +81,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateChildToken(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreate(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.Token();
@@ -100,7 +100,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateChildTokenWithPerRequestApiKey(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -124,7 +124,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateChildTokenWithCorrelationId(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 

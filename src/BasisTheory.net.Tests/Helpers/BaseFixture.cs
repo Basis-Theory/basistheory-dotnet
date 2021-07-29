@@ -7,7 +7,7 @@ using Bogus;
 using Moq;
 using Moq.Protected;
 
-namespace BasisTheory.net.Tests
+namespace BasisTheory.net.Tests.Helpers
 {
     public abstract class BaseFixture : IDisposable
     {

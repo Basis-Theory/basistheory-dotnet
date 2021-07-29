@@ -56,7 +56,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteToken(Func<ITokenClient, Guid, RequestOptions, Task> mut)
+        public async Task ShouldDelete(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var tokenId = Guid.NewGuid();
 
@@ -72,7 +72,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteTokenWithPerRequestApiKey(Func<ITokenClient, Guid, RequestOptions, Task> mut)
+        public async Task ShouldDeleteWithPerRequestApiKey(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -93,7 +93,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldDeleteTokenWithCorrelationId(Func<ITokenClient, Guid, RequestOptions, Task> mut)
+        public async Task ShouldDeleteWithCorrelationId(Func<ITokenClient, Guid, RequestOptions, Task> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 

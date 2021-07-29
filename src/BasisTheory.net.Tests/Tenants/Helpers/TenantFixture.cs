@@ -1,4 +1,5 @@
 using BasisTheory.net.Tenants;
+using BasisTheory.net.Tests.Helpers;
 
 namespace BasisTheory.net.Tests.Tenants.Helpers
 {

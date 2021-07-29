@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
-using BasisTheory.net.Tenants;
-using BasisTheory.net.Tenants.Entities;
+using BasisTheory.net.Applications;
+using BasisTheory.net.Applications.Entities;
+using BasisTheory.net.Tests.Applications.Helpers;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Tenants.Helpers;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Tenants
+namespace BasisTheory.net.Tests.Applications
 {
-    public class GetSelfTests : IClassFixture<TenantFixture>
+    public class UpdateTests : IClassFixture<ApplicationFixture>
     {
-        readonly TenantFixture fixture;
+        readonly ApplicationFixture fixture;
 
-        public GetSelfTests(TenantFixture fixture)
+        public UpdateTests(ApplicationFixture fixture)
         {
             this.fixture = fixture;
         }
@@ -30,14 +30,26 @@ namespace BasisTheory.net.Tests.Tenants
             {
                 yield return new object []
                 {
-                    (Func<ITenantClient, RequestOptions, Task<Tenant>>)(
-                        async (client, options) => await client.GetSelfAsync(options)
+                    (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
+                        async (client, application, options) => await client.UpdateAsync(application.Id, application, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITenantClient, RequestOptions, Task<Tenant>>)(
-                        (client, options) => Task.FromResult(client.GetSelf(options))
+                    (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
+                        async (client, application, options) => await client.UpdateAsync(application.Id.ToString(), application, options)
+                    )
+                };
+                yield return new object []
+                {
+                    (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
+                        (client, application, options) => Task.FromResult(client.Update(application.Id, application, options))
+                    )
+                };
+                yield return new object []
+                {
+                    (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
+                        (client, application, options) => Task.FromResult(client.Update(application.Id.ToString(), application, options))
                     )
                 };
             }
@@ -45,79 +57,79 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetSelf(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdate(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
-            var content = TenantFactory.Tenant();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null);
+            var response = await mut(fixture.Client, content, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPerRequestApiKey(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdateWithPerRequestApiKey(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = TenantFactory.Tenant();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new RequestOptions
+            var response = await mut(fixture.Client, content, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithCorrelationId(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldUpdateWithCorrelationId(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = TenantFactory.Tenant();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new RequestOptions
+            var response = await mut(fixture.Client, content, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, new Application(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -125,11 +137,11 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
             fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, new Application(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -138,13 +150,13 @@ namespace BasisTheory.net.Tests.Tenants
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITenantClient, RequestOptions, Task<Tenant>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, new Application(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

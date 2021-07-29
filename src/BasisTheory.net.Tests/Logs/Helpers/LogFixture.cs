@@ -1,4 +1,5 @@
 using BasisTheory.net.Logs;
+using BasisTheory.net.Tests.Helpers;
 
 namespace BasisTheory.net.Tests.Logs.Helpers
 {

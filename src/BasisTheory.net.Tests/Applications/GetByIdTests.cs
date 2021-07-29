@@ -6,21 +6,21 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
-using BasisTheory.net.Permissions;
-using BasisTheory.net.Permissions.Entities;
-using BasisTheory.net.Permissions.Requests;
+using BasisTheory.net.Applications;
+using BasisTheory.net.Applications.Entities;
+using BasisTheory.net.Applications.Requests;
+using BasisTheory.net.Tests.Applications.Helpers;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Permissions.Helpers;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Permissions
+namespace BasisTheory.net.Tests.Applications
 {
-    public class GetTests : IClassFixture<PermissionFixture>
+    public class GetByIdTests : IClassFixture<ApplicationFixture>
     {
-        readonly PermissionFixture fixture;
+        readonly ApplicationFixture fixture;
 
-        public GetTests(PermissionFixture fixture)
+        public GetByIdTests(ApplicationFixture fixture)
         {
             this.fixture = fixture;
         }
@@ -31,14 +31,30 @@ namespace BasisTheory.net.Tests.Permissions
             {
                 yield return new object []
                 {
-                    (Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>>)(
-                        async (client, request, options) => await client.GetAsync(request, options)
+                    (Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>>)(
+                        async (client, applicationId, request, options) =>
+                            await client.GetByIdAsync(applicationId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>>)(
-                        (client, request, options) => Task.FromResult(client.Get(request, options))
+                    (Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>>)(
+                        async (client, applicationId, request, options) =>
+                            await client.GetByIdAsync(applicationId.ToString(), request, options)
+                    )
+                };
+                yield return new object []
+                {
+                    (Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>>)(
+                        (client, applicationId, request, options) =>
+                            Task.FromResult(client.GetById(applicationId, request, options))
+                    )
+                };
+                yield return new object []
+                {
+                    (Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>>)(
+                        (client, applicationId, request, options) =>
+                            Task.FromResult(client.GetById(applicationId.ToString(), request, options))
                     )
                 };
             }
@@ -46,102 +62,79 @@ namespace BasisTheory.net.Tests.Permissions
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetAll(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldGetById(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
-            var content = PermissionFactory.PermissionList();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, null);
+            var response = await mut(fixture.Client, content.Id, null, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByApplicationType(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
-        {
-            var applicationType = Guid.NewGuid().ToString();
-
-            var content = PermissionFactory.PermissionList();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(fixture.Client, new PermissionGetRequest
-            {
-                ApplicationType = applicationType
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/permissions?application_type={applicationType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPerRequestApiKey(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = PermissionFactory.PermissionList();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(fixture.Client, content.Id, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithCorrelationId(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = PermissionFactory.PermissionList();
+            var content = ApplicationFactory.Application();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(fixture.Client, content.Id, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/applications/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -149,11 +142,11 @@ namespace BasisTheory.net.Tests.Permissions
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
             fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -162,13 +155,13 @@ namespace BasisTheory.net.Tests.Permissions
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IApplicationClient, Guid, ApplicationGetByIdRequest, RequestOptions, Task<Application>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

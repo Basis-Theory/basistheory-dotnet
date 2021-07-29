@@ -59,7 +59,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokens(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetAll(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.PaginatedTokens();
@@ -78,7 +78,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type1 = Guid.NewGuid().ToString();
             var type2 = Guid.NewGuid().ToString();
@@ -103,7 +103,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithChildren(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithChildren(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.PaginatedTokens();
@@ -125,7 +125,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithChildrenByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithChildrenByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var childType1 = Guid.NewGuid().ToString();
             var childType2 = Guid.NewGuid().ToString();
@@ -150,7 +150,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensByIds(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetByIds(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var tokenId1 = Guid.NewGuid();
             var tokenId2 = Guid.NewGuid();
@@ -175,7 +175,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithPagination(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithPagination(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var size = fixture.Faker.Random.Int(1, 20);
             var page = fixture.Faker.Random.Int(1, 20);
@@ -201,7 +201,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type = fixture.Faker.Lorem.Word();
             var childType = fixture.Faker.Lorem.Word();
@@ -235,7 +235,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -259,7 +259,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetChildTokensWithCorrelationId(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        public async Task ShouldGetWithCorrelationId(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
