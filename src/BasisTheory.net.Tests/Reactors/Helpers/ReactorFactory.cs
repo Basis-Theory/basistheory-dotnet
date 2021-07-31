@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Reactors.Entities;
+using BasisTheory.net.Reactors.Requests;
 using BasisTheory.net.Tests.ReactorFormulas.Helpers;
 using Bogus;
 
@@ -31,6 +32,15 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => ReactorFaker.Generate()).ToList());
 
+        public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
+            .RuleFor(a => a.ReactorId, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.RequestParameters, (f, _) =>
+                f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
+                    .ToDictionary(x => x.Key, x => (object) x.Value))
+            .RuleFor(t => t.Metadata, (f, _) =>
+                f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
+                    .ToDictionary(x => x.Key, x => x.Value));
+
         public static Reactor Reactor(Action<Reactor> applyOverrides = null)
         {
             var reactor = ReactorFaker.Generate();
@@ -47,6 +57,15 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             applyOverrides?.Invoke(list);
 
             return list;
+        }
+
+        public static ReactRequest ReactRequest(Action<ReactRequest> applyOverrides = null)
+        {
+            var request = ReactRequestFaker.Generate();
+
+            applyOverrides?.Invoke(request);
+
+            return request;
         }
     }
 }
