@@ -20,7 +20,8 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
                     KeyVaultUri = new Uri("https://localhost:10090/")
                 });
 
-                services.AddBasisTheoryAzureEncryption();
+                var tokenCredential = new LocalTokenCredential();
+                services.AddBasisTheoryAzureEncryption(tokenCredential);
             });
         }
     }
