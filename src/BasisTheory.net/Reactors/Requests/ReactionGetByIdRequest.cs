@@ -1,11 +1,9 @@
 using BasisTheory.net.Common.Requests;
 
-namespace BasisTheory.net.Atomic.Cards.Requests
+namespace BasisTheory.net.Reactors.Requests
 {
-    public class CardGetByIdRequest : GetRequest
+    public class ReactionGetByIdRequest : GetRequest
     {
-        public bool Decrypt { get; set; }
-
         public override string BuildQuery()
         {
             return string.Empty;

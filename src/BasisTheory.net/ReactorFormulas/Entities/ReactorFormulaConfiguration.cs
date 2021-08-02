@@ -9,6 +9,10 @@ namespace BasisTheory.net.ReactorFormulas.Entities
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
+        [JsonProperty("description")]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
         [JsonProperty("type")]
         [JsonPropertyName("type")]
         public string Type { get; set; }

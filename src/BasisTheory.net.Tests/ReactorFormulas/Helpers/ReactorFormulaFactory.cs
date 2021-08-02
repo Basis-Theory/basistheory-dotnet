@@ -27,6 +27,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas.Helpers
         public static readonly Faker<ReactorFormulaConfiguration> ReactorFormulaConfigurationFaker =
             new Faker<ReactorFormulaConfiguration>()
                 .RuleFor(a => a.Name, (f, _) => f.Random.String2(20))
+                .RuleFor(a => a.Description, (f, _) => f.Lorem.Sentence())
                 .RuleFor(a => a.Type, (f, _) => f.Lorem.Word());
 
         public static readonly Faker<ReactorFormulaRequestParameter> ReactorFormulaRequestParameterFaker =
