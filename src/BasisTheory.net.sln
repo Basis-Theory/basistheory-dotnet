@@ -13,6 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 ProjectSection(SolutionItems) = preProject
 	..\README.md = ..\README.md
 	..\.gitignore = ..\.gitignore
+	.dockerignore = .dockerignore
+	docker-compose.yml = docker-compose.yml
+	makefile = makefile
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure", "BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj", "{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}"
@@ -24,6 +27,25 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{42CEC05B-16F1-4AE6-BC38-5C235A7AA971}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Tests", "BasisTheory.net.Tests\BasisTheory.net.Tests.csproj", "{094EF019-8B3E-4879-8141-0435D78C8679}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{91D3F183-B710-43B5-8590-CC3F9182DA6C}"
+ProjectSection(SolutionItems) = preProject
+	scripts\acceptancetest.sh = scripts\acceptancetest.sh
+	scripts\build.sh = scripts\build.sh
+	scripts\dependencycheck.sh = scripts\dependencycheck.sh
+	scripts\startdocker.sh = scripts\startdocker.sh
+	scripts\stopdocker.sh = scripts\stopdocker.sh
+	scripts\verify.sh = scripts\verify.sh
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Checks", "Checks", "{FD793053-73FF-411D-9AE1-78CB1EA11AE3}"
+ProjectSection(SolutionItems) = preProject
+	scripts\checks\dockercheck.sh = scripts\checks\dockercheck.sh
+	scripts\checks\dockercomposecheck.sh = scripts\checks\dockercomposecheck.sh
+	scripts\checks\dotnetcheck.sh = scripts\checks\dotnetcheck.sh
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.AcceptanceTests", "BasisTheory.net.AcceptanceTests\BasisTheory.net.AcceptanceTests.csproj", "{4D84E20A-6773-42DC-8A46-40E1C287E391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +73,14 @@ Global
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{094EF019-8B3E-4879-8141-0435D78C8679} = {42CEC05B-16F1-4AE6-BC38-5C235A7AA971}
+		{FD793053-73FF-411D-9AE1-78CB1EA11AE3} = {91D3F183-B710-43B5-8590-CC3F9182DA6C}
+		{4D84E20A-6773-42DC-8A46-40E1C287E391} = {42CEC05B-16F1-4AE6-BC38-5C235A7AA971}
 	EndGlobalSection
 EndGlobal
