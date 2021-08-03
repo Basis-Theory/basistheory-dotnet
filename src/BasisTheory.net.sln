@@ -16,6 +16,7 @@ ProjectSection(SolutionItems) = preProject
 	.dockerignore = .dockerignore
 	docker-compose.yml = docker-compose.yml
 	makefile = makefile
+	package.json = package.json
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure", "BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj", "{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}"
@@ -37,6 +38,8 @@ ProjectSection(SolutionItems) = preProject
 	scripts\stopdocker.sh = scripts\stopdocker.sh
 	scripts\verify.sh = scripts\verify.sh
 	scripts\importcert.sh = scripts\importcert.sh
+	scripts\release.sh = scripts\release.sh
+	scripts\dry-release.sh = scripts\dry-release.sh
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Checks", "Checks", "{FD793053-73FF-411D-9AE1-78CB1EA11AE3}"

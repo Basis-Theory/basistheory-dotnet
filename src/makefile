@@ -14,3 +14,9 @@ start-docker:
 
 stop-docker:
 	./scripts/stopdocker.sh
+
+release:
+    ./scripts/release.sh
+
+dry-release:
+    ./scripts/dry-release.sh

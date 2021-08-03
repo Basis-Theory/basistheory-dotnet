@@ -1,0 +1,44 @@
+{
+  "name": "basistheory-dotnet",
+  "version": "0.1.0",
+  "description": "Basis Theory .NET SDK",
+  "repository": "https://github.com/Basis-Theory/basistheory-dotnet",
+  "author": "Basis Theory",
+  "license": "MIT",
+  "scripts": {
+    "release": "semantic-release",
+    "release-dry": "semantic-release --dry-run"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.3",
+    "@semantic-release/npm": "^7.1.3",
+    "@semantic-release/release-notes-generator": "^9.0.3",
+    "semantic-release": "^17.4.4"
+  },
+  "release": {
+    "branches": [
+      "release",
+      {
+        "name": "master",
+        "prerelease": "beta"
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": ["package.json", "CHANGELOG.md"],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}
