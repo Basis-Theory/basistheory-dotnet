@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using BasisTheory.net.Encryption;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -9,7 +10,8 @@ namespace BasisTheory.net.AspNetCore
     {
         public static IServiceCollection AddBasisTheoryEncryption(this IServiceCollection services)
         {
-            services.TryAddSingleton<IProviderKeyRespository, InMemoryProviderKeyRespository>();
+            if (services.All(x => x.ServiceType != typeof(IProviderKeyRespository)))
+                throw new ArgumentException($"{typeof(IProviderKeyRespository)} must be registered");
 
             services.TryAddScoped<IEncryptionService, EncryptionService>();
             services.TryAddScoped<IProviderKeyService, ProviderKeyService>();
