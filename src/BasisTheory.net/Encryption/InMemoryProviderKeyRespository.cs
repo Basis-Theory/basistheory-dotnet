@@ -1,10 +1,9 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
-using BasisTheory.net.Encryption;
 using BasisTheory.net.Encryption.Entities;
 
-namespace BasisTheory.net.AcceptanceTests.Encryption.Helpers
+namespace BasisTheory.net.Encryption
 {
     public class InMemoryProviderKeyRespository : IProviderKeyRespository
     {

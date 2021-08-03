@@ -9,6 +9,8 @@ namespace BasisTheory.net.AspNetCore
     {
         public static IServiceCollection AddBasisTheoryEncryption(this IServiceCollection services)
         {
+            services.TryAddSingleton<IProviderKeyRespository, InMemoryProviderKeyRespository>();
+
             services.TryAddScoped<IEncryptionService, EncryptionService>();
             services.TryAddScoped<IProviderKeyService, ProviderKeyService>();
 

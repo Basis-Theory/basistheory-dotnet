@@ -1,9 +1,7 @@
 using System;
 using BasisTheory.net.AcceptanceTests.Encryption.Helpers;
 using BasisTheory.net.Encryption.Azure.AspNetCore;
-using BasisTheory.net.Encryption.Azure.Entities;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
 {
@@ -13,15 +11,10 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
         {
             builder.ConfigureServices(services =>
             {
-                services.AddSingleton(new KeyVaultProviderKeyOptions
+                services.AddBasisTheoryAzureEncryption(options =>
                 {
-                    KeyProviderExpirationInDays = 30,
-                    RsaKeySize = 2048,
-                    KeyVaultUri = new Uri("https://localhost:10090/")
-                });
-
-                var tokenCredential = new LocalTokenCredential();
-                services.AddBasisTheoryAzureEncryption(tokenCredential);
+                    options.KeyVaultUri = new Uri("https://localhost:10090/");
+                }, new LocalTokenCredential());
             });
         }
     }
