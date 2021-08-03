@@ -30,7 +30,7 @@ jobs:
       - name: Verify
         run: make verify
 
-      - name: Release
+      - name: Dry Release
         run: make dry-release
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
