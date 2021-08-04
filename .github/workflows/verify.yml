@@ -2,11 +2,7 @@ name: Verify
 
 on:
   push:
-    branches: [master]
-
-defaults:
-  run:
-    working-directory: ./src
+    branches: [master, release]
 
 jobs:
   build-publish:
@@ -20,6 +16,12 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+
       - name: Docker Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -30,20 +32,10 @@ jobs:
       - name: Verify
         run: make verify
 
-      - name: Version and Tag
-        id: bump_version
-        uses: mathieudutour/github-tag-action@v5.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_prefix: ''
-
-      - name: Pack
-        run: dotnet pack -o output --no-build --no-restore -c Release -p:PackageVersion=${{ steps.bump_version.outputs.new_tag }}
-
-      - name: Push
-        run: dotnet nuget push ./output/*.nupkg --skip-duplicate -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/Basis-Theory/index.json
+      - name: Release
+        run: make release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
 
       - name: Slack Release Alert
         uses: 8398a7/action-slack@v3
