@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* rename repository ([#46](https://github.com/Basis-Theory/basistheory-dotnet/issues/46)) ([5ad69ae](https://github.com/Basis-Theory/basistheory-dotnet/commit/5ad69aefaeb12cfc8b761f11776b4134c28fbb0c))
+
 # 1.0.0-beta.1 (2021-08-04)
 
 
