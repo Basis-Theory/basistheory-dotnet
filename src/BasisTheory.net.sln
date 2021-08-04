@@ -39,7 +39,6 @@ ProjectSection(SolutionItems) = preProject
 	scripts\verify.sh = scripts\verify.sh
 	scripts\importcert.sh = scripts\importcert.sh
 	scripts\release.sh = scripts\release.sh
-	scripts\dry-release.sh = scripts\dry-release.sh
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Checks", "Checks", "{FD793053-73FF-411D-9AE1-78CB1EA11AE3}"

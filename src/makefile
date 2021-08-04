@@ -17,6 +17,3 @@ stop-docker:
 
 release:
 	./scripts/release.sh
-
-dry-release:
-	./scripts/dry-release.sh

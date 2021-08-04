@@ -5,7 +5,8 @@ current_directory="$PWD"
 
 cd $(dirname $0)/..
 
-# Do Something
+yarn install
+yarn release
 
 result=$?
 
