@@ -6,7 +6,7 @@ using BasisTheory.net.Encryption.Entities;
 
 namespace BasisTheory.net.AcceptanceTests.Encryption.Helpers
 {
-    public class InMemoryProviderKeyRespository : IProviderKeyRespository
+    public class InMemoryProviderKeyRepository : IProviderKeyRepository
     {
         private readonly ConcurrentBag<ProviderEncryptionKey> EncryptionKeys = new ConcurrentBag<ProviderEncryptionKey>();
 

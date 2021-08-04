@@ -14,14 +14,14 @@ namespace BasisTheory.net.Tests.Encryption
         private const string algorithm = "RSA";
 
         private readonly IAppCache _cache;
-        private readonly Mock<IProviderKeyRespository> _providerKeyRespository;
+        private readonly Mock<IProviderKeyRepository> _providerKeyRepository;
         private readonly IProviderKeyService _providerKeyService;
 
         public ProviderKeyServiceTests()
         {
             _cache = new CachingService();
-            _providerKeyRespository = new Mock<IProviderKeyRespository>();
-            _providerKeyService = new ProviderKeyService(_cache, _providerKeyRespository.Object,
+            _providerKeyRepository = new Mock<IProviderKeyRepository>();
+            _providerKeyService = new ProviderKeyService(_cache, _providerKeyRepository.Object,
                 new [] { new StubProviderKeyFactory() });
         }
 
@@ -36,7 +36,7 @@ namespace BasisTheory.net.Tests.Encryption
                 KeyId = keyId
             };
 
-            _providerKeyRespository.Setup(x => x.GetKeyByKeyIdAsync(keyId)).ReturnsAsync(expectedProviderKey);
+            _providerKeyRepository.Setup(x => x.GetKeyByKeyIdAsync(keyId)).ReturnsAsync(expectedProviderKey);
 
             var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
@@ -64,7 +64,7 @@ namespace BasisTheory.net.Tests.Encryption
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyRespository.Verify(x => x.GetKeyByKeyIdAsync(keyId), Times.Never);
+            _providerKeyRepository.Verify(x => x.GetKeyByKeyIdAsync(keyId), Times.Never);
         }
 
         [Fact]
@@ -89,7 +89,7 @@ namespace BasisTheory.net.Tests.Encryption
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyRespository.Verify(x => x.GetKeyByNameAsync(keyName, provider, algorithm), Times.Never);
+            _providerKeyRepository.Verify(x => x.GetKeyByNameAsync(keyName, provider, algorithm), Times.Never);
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace BasisTheory.net.Tests.Encryption
                 Algorithm = algorithm
             };
 
-            _providerKeyRespository.Setup(x => x.GetKeyByNameAsync(keyName, provider, algorithm))
+            _providerKeyRepository.Setup(x => x.GetKeyByNameAsync(keyName, provider, algorithm))
                 .ReturnsAsync(expectedProviderKey);
 
             var providerKey = await _providerKeyService.GetOrCreateAsync(keyName, provider, algorithm);
@@ -115,7 +115,7 @@ namespace BasisTheory.net.Tests.Encryption
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyRespository.Verify(x => x.SaveAsync(It.IsAny<ProviderEncryptionKey>()), Times.Never);
+            _providerKeyRepository.Verify(x => x.SaveAsync(It.IsAny<ProviderEncryptionKey>()), Times.Never);
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace BasisTheory.net.Tests.Encryption
 
             ProviderEncryptionKey savedProviderKey = null;
 
-            _providerKeyRespository.Setup(x => x.SaveAsync(It.IsAny<ProviderEncryptionKey>()))
+            _providerKeyRepository.Setup(x => x.SaveAsync(It.IsAny<ProviderEncryptionKey>()))
                 .Returns<ProviderEncryptionKey>(Task.FromResult)
                 .Callback<ProviderEncryptionKey>(key =>
                 {
