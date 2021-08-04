@@ -16,14 +16,14 @@ namespace BasisTheory.net.Encryption
     public class ProviderKeyService : IProviderKeyService
     {
         private readonly IAppCache _cache;
-        private readonly IProviderKeyRespository _providerKeyRespository;
+        private readonly IProviderKeyRepository _providerKeyRepository;
         private readonly Dictionary<string, Dictionary<string, IProviderKeyFactory>> _providerKeyFactories;
 
-        public ProviderKeyService(IAppCache cache, IProviderKeyRespository providerKeyRespository,
+        public ProviderKeyService(IAppCache cache, IProviderKeyRepository providerKeyRepository,
             IEnumerable<IProviderKeyFactory> providerKeyFactories)
         {
             _cache = cache;
-            _providerKeyRespository = providerKeyRespository;
+            _providerKeyRepository = providerKeyRepository;
             _providerKeyFactories = providerKeyFactories.GroupBy(x => x.Provider)
                 .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Algorithm, y => y));
         }
@@ -31,7 +31,7 @@ namespace BasisTheory.net.Encryption
         public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId)
         {
             return await _cache.GetOrAddAsync($"providerkeys_{keyId}",
-                async () => await _providerKeyRespository.GetKeyByKeyIdAsync(keyId),
+                async () => await _providerKeyRepository.GetKeyByKeyIdAsync(keyId),
                 DateTimeOffset.UtcNow.AddHours(1));
         }
 
@@ -41,14 +41,14 @@ namespace BasisTheory.net.Encryption
                 async () =>
                 {
                     var providerEncryptionKey =
-                        await _providerKeyRespository.GetKeyByNameAsync(keyName, provider, algorithm);
+                        await _providerKeyRepository.GetKeyByNameAsync(keyName, provider, algorithm);
                     if (providerEncryptionKey != null)
                         return providerEncryptionKey;
 
                     var providerKeyFactory = _providerKeyFactories[provider][algorithm];
                     providerEncryptionKey = await providerKeyFactory.Create(keyName);
 
-                    return await _providerKeyRespository.SaveAsync(providerEncryptionKey);
+                    return await _providerKeyRepository.SaveAsync(providerEncryptionKey);
                 }, DateTimeOffset.UtcNow.AddHours(1));
         }
     }

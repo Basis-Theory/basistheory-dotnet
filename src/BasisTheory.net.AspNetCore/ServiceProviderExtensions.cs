@@ -10,8 +10,8 @@ namespace BasisTheory.net.AspNetCore
     {
         public static IServiceCollection AddBasisTheoryEncryption(this IServiceCollection services)
         {
-            if (services.All(x => x.ServiceType != typeof(IProviderKeyRespository)))
-                throw new ArgumentException($"{typeof(IProviderKeyRespository)} must be registered");
+            if (services.All(x => x.ServiceType != typeof(IProviderKeyRepository)))
+                throw new ArgumentException($"{typeof(IProviderKeyRepository)} must be registered");
 
             services.TryAddScoped<IEncryptionService, EncryptionService>();
             services.TryAddScoped<IProviderKeyService, ProviderKeyService>();

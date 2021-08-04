@@ -9,7 +9,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Helpers
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services) =>
-            services.AddSingleton<IProviderKeyRespository, InMemoryProviderKeyRespository>()
+            services.AddSingleton<IProviderKeyRepository, InMemoryProviderKeyRepository>()
                 .AddBasisTheoryEncryption()
                 .AddControllers();
 
