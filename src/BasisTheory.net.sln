@@ -17,6 +17,7 @@ ProjectSection(SolutionItems) = preProject
 	docker-compose.yml = docker-compose.yml
 	makefile = makefile
 	package.json = package.json
+	.releaserc.json = .releaserc.json
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure", "BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj", "{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}"
