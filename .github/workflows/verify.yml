@@ -2,7 +2,7 @@ name: Verify
 
 on:
   push:
-    branches: [master, release]
+    branches: [master, beta]
 
 jobs:
   build-publish:
