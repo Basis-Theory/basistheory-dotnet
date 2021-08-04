@@ -5,6 +5,7 @@
   "repository": "https://github.com/Basis-Theory/basistheory-dotnet",
   "author": "Basis Theory",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "release": "semantic-release"
   },
