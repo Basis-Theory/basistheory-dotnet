@@ -42,14 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: Pack
-#        run: dotnet pack -o output --no-build --no-restore -c Release -p:PackageVersion=${{ steps.bump_version.outputs.new_tag }}
-#
-#      - name: Push
-#        run: dotnet nuget push ./output/*.nupkg --skip-duplicate -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/Basis-Theory/index.json
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Slack Release Alert
         uses: 8398a7/action-slack@v3
         if: always()
