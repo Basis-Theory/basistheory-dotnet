@@ -4,10 +4,6 @@ on:
   push:
     branches: [master, release]
 
-defaults:
-  run:
-    working-directory: ./src
-
 jobs:
   build-publish:
     runs-on: ubuntu-latest

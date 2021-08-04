@@ -4,10 +4,6 @@ on:
   pull_request:
     branches: [master, release]
 
-defaults:
-  run:
-    working-directory: ./src
-
 jobs:
   build:
     runs-on: ubuntu-latest

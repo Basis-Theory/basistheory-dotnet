@@ -3,7 +3,7 @@ set -e
 
 current_directory="$PWD"
 
-cd $(dirname $0)/..
+cd $(dirname $0)/../src
 
 dotnet restore
 

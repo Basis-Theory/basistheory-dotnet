@@ -19,7 +19,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "dotnet pack -o output --no-build --no-restore -c Release -p:PackageVersion=${nextRelease.version}"
+        "prepareCmd": "dotnet pack src/BasisTheory.net.sln -o output --no-build --no-restore -c Release -p:PackageVersion=${nextRelease.version}"
       }
     ],
     [
