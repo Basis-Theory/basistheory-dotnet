@@ -1,6 +1,6 @@
 {
   "name": "basistheory-dotnet",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.1",
   "description": "Basis Theory .NET SDK",
   "repository": "https://github.com/Basis-Theory/basistheory-dotnet",
   "author": "Basis Theory",
