@@ -10,11 +10,16 @@
         <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
         <PackageTags>BasisTheory,SDK,AspNetCore</PackageTags>
         <NuspecProperties>version=$(Version)</NuspecProperties>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
     <ItemGroup>
