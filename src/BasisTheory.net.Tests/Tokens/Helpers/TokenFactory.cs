@@ -27,7 +27,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
             .RuleFor(a => a.Key, (f, _) => f.Random.Word());
 
-        public static readonly Faker<EncryptionData> EncryptionDataModelFaker = new Faker<EncryptionData>()
+        public static readonly Faker<EncryptionMetadata> EncryptionDataModelFaker = new Faker<EncryptionMetadata>()
             .RuleFor(a => a.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
             .RuleFor(a => a.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
 

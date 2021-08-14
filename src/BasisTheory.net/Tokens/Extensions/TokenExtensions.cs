@@ -7,11 +7,11 @@ namespace BasisTheory.net.Tokens.Extensions
 {
     public static class TokenExtensions
     {
-        public static EncryptedDataResult ToEncryptedData(this Token token)
+        public static EncryptedData ToEncryptedData(this Token token)
         {
             if (token == null) return null;
 
-            return new EncryptedDataResult
+            return new EncryptedData
             {
                 CipherText = Convert.ToString(token.Data),
                 ContentEncryptionKey = token.Encryption?.ContentEncryptionKey,

@@ -10,8 +10,8 @@ namespace BasisTheory.net.Encryption
 {
     public interface IEncryptionService
     {
-        Task<EncryptedDataResult> Encrypt(string plaintext, ProviderEncryptionKey key);
-        Task<string> Decrypt(EncryptedDataResult data, ProviderEncryptionKey key);
+        Task<EncryptedData> Encrypt(string plaintext, ProviderEncryptionKey key);
+        Task<string> Decrypt(EncryptedData data, ProviderEncryptionKey key);
     }
 
     public class EncryptionService : IEncryptionService
@@ -24,7 +24,7 @@ namespace BasisTheory.net.Encryption
                 .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Algorithm, y => y));
         }
 
-        public async Task<EncryptedDataResult> Encrypt(string plaintext, ProviderEncryptionKey key)
+        public async Task<EncryptedData> Encrypt(string plaintext, ProviderEncryptionKey key)
         {
             string encryptedContent;
             string cekPlaintext;
@@ -37,7 +37,7 @@ namespace BasisTheory.net.Encryption
             var dataEncryption = _encryptionFactories[key.Provider][key.Algorithm];
             var encryptedCek = await dataEncryption.Encrypt(key.ProviderKeyId, cekPlaintext);
 
-            return new EncryptedDataResult
+            return new EncryptedData
             {
                 CipherText = encryptedContent,
 
@@ -54,7 +54,7 @@ namespace BasisTheory.net.Encryption
             };
         }
 
-        public async Task<string> Decrypt(EncryptedDataResult data, ProviderEncryptionKey key)
+        public async Task<string> Decrypt(EncryptedData data, ProviderEncryptionKey key)
         {
             var dataEncryption = _encryptionFactories[key.Provider][key.Algorithm];
             var cekPlaintext = await dataEncryption.Decrypt(key.ProviderKeyId, data.ContentEncryptionKey.Key);

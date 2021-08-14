@@ -44,7 +44,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure
             var encryptResponse = await _client.PostAsJsonAsync("/encryption/azure/encrypt", request);
             Assert.Equal(HttpStatusCode.OK, encryptResponse.StatusCode);
 
-            var encryptedData = await JsonSerializer.DeserializeAsync<EncryptedDataResult>(await encryptResponse.Content.ReadAsStreamAsync());
+            var encryptedData = await JsonSerializer.DeserializeAsync<EncryptedData>(await encryptResponse.Content.ReadAsStreamAsync());
             Assert.NotNull(encryptedData);
 
             Assert.NotNull(encryptedData.CipherText);
@@ -78,7 +78,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure
             var encryptResponse = await _client.PostAsJsonAsync("/encryption/azure/encrypt", request);
             Assert.Equal(HttpStatusCode.OK, encryptResponse.StatusCode);
 
-            var encryptedData = await JsonSerializer.DeserializeAsync<EncryptedDataResult>(await encryptResponse.Content.ReadAsStreamAsync());
+            var encryptedData = await JsonSerializer.DeserializeAsync<EncryptedData>(await encryptResponse.Content.ReadAsStreamAsync());
             Assert.NotNull(encryptedData);
 
             Assert.NotNull(encryptedData.CipherText);
@@ -92,7 +92,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure
             var secretResponse = await secretClient.GetSecretAsync(secretId.Name, secretId.Version);
             Assert.NotNull(secretResponse.Value.Value);
 
-            var encryptedRSAKey = JsonSerializer.Deserialize<EncryptedDataResult>(secretResponse.Value.Value);
+            var encryptedRSAKey = JsonSerializer.Deserialize<EncryptedData>(secretResponse.Value.Value);
             Assert.NotNull(encryptedRSAKey);
 
             var keyId = new ObjectId("keys", encryptedRSAKey.KeyEncryptionKey.Key);
