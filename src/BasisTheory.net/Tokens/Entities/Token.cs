@@ -14,7 +14,7 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("encryption")]
         [JsonPropertyName("encryption")]
-        public EncryptionData Encryption { get; set; }
+        public EncryptionMetadata Encryption { get; set; }
 
         [JsonProperty("children")]
         [JsonPropertyName("children")]
@@ -22,12 +22,12 @@ namespace BasisTheory.net.Tokens.Entities
 
         public Token() {}
 
-        public Token(EncryptedDataResult encryptedData)
+        public Token(EncryptedData encryptedData)
         {
             if (encryptedData == null) return;
 
             Data = encryptedData.CipherText;
-            Encryption = new EncryptionData
+            Encryption = new EncryptionMetadata
             {
                 ContentEncryptionKey = encryptedData.ContentEncryptionKey,
                 KeyEncryptionKey = encryptedData.KeyEncryptionKey

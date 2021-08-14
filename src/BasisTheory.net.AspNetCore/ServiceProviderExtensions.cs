@@ -13,6 +13,8 @@ namespace BasisTheory.net.AspNetCore
             if (services.All(x => x.ServiceType != typeof(IProviderKeyRepository)))
                 throw new ArgumentException($"{typeof(IProviderKeyRepository)} must be registered");
 
+            services.AddLazyCache();
+
             services.TryAddScoped<IEncryptionService, EncryptionService>();
             services.TryAddScoped<IProviderKeyService, ProviderKeyService>();
 

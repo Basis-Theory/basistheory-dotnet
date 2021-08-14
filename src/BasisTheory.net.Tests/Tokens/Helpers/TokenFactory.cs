@@ -18,7 +18,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (_, _) => DateTimeOffset.UtcNow)
-            .RuleFor(a => a.Encryption, (_, _) => EncryptionDataModelFaker.Generate())
+            .RuleFor(a => a.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value));
@@ -27,7 +27,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
             .RuleFor(a => a.Key, (f, _) => f.Random.Word());
 
-        public static readonly Faker<EncryptionData> EncryptionDataModelFaker = new Faker<EncryptionData>()
+        public static readonly Faker<EncryptionMetadata> EncryptionMetadataModelFaker = new Faker<EncryptionMetadata>()
             .RuleFor(a => a.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
             .RuleFor(a => a.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
 
