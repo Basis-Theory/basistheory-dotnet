@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.0.1...v1.1.0) (2021-08-14)
+
+
+### Features
+
+* Rename encryption data ([e41db0f](https://github.com/Basis-Theory/basistheory-dotnet/commit/e41db0fa9a91f42c9d447613fc849016be73ea48))
+
 ## [1.0.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.0.0...v1.0.1) (2021-08-14)
 
 # 1.0.0 (2021-08-08)
