@@ -103,7 +103,7 @@ var providerEncryptionKey = new ProviderEncryptionKey {
   Provider = "AZURE"
 };
 
-// Encrypt string to get back a wrapped EncryptedDataResult with a reference to the ProvderEncryptionKey
+// Encrypt string to get back a wrapped EncryptedData with a reference to the ProvderEncryptionKey
 var encryptedData = encryptionService.Encrypt("My Super Secret", providerEncryptionKey);
 
 // Use Encrypted Data and Provider Encryption Key to decrypt the the value and get back the original plaintext

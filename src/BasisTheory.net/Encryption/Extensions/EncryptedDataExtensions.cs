@@ -5,14 +5,14 @@ namespace BasisTheory.net.Encryption.Extensions
 {
     public static class EncryptedDataExtensions
     {
-        public static EncryptionMetadata ToEncryptionMetadata(this EncryptedData encryptionData)
+        public static EncryptionMetadata ToEncryptionMetadata(this EncryptedData encryptedData)
         {
-            if (encryptionData == null) return null;
+            if (encryptedData == null) return null;
 
             return new EncryptionMetadata
             {
-                ContentEncryptionKey = encryptionData.ContentEncryptionKey,
-                KeyEncryptionKey = encryptionData.KeyEncryptionKey
+                ContentEncryptionKey = encryptedData.ContentEncryptionKey,
+                KeyEncryptionKey = encryptedData.KeyEncryptionKey
             };
         }
 
