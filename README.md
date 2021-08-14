@@ -61,7 +61,7 @@ var client = new TokenClient(apiKey, apiBaseUrl: "https://token-proxy.somedomain
 
 ### AspNetCore Setup
 
-See complete documentation in the [BasisTheory.net.AspNetCore project](src/BasisTheory.net.AspNetCore)
+See complete documentation in the [BasisTheory.net.AspNetCore project](https://github.com/Basis-Theory/basistheory-dotnet/tree/master/src/BasisTheory.net.AspNetCore)
 
 ## Encryption and Key Management
 
@@ -109,10 +109,6 @@ var encryptedData = encryptionService.Encrypt("My Super Secret", providerEncrypt
 // Use Encrypted Data and Provider Encryption Key to decrypt the the value and get back the original plaintext
 var plaintext = encryptionService.Decrypt(encryptedData, providerEncryptionKey);
 ```
-
-### AspNetCore Setup
-
-See complete documentation in the [BasisTheory.net.Encryption.Azure.AspNetCore project](src/BasisTheory.net.Encryption.Azure.AspNetCore)
 
 ## Development
 
