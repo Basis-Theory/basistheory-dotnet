@@ -9,11 +9,11 @@ namespace BasisTheory.net.Common.Responses
     {
         [JsonProperty("id")]
         [JsonPropertyName("id")]
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         [JsonProperty("tenant_id")]
         [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
+        public Guid? TenantId { get; set; }
 
         [JsonProperty("type")]
         [JsonPropertyName("type")]
@@ -25,10 +25,10 @@ namespace BasisTheory.net.Common.Responses
 
         [JsonProperty("created_by")]
         [JsonPropertyName("created_by")]
-        public Guid CreatedBy { get; set; }
+        public Guid? CreatedBy { get; set; }
 
         [JsonProperty("created_at")]
         [JsonPropertyName("created_at")]
-        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get; set; }
     }
 }

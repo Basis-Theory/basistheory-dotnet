@@ -8,6 +8,7 @@ namespace BasisTheory.net.Encryption
         string Provider { get; }
         string Algorithm { get; }
 
-        Task<ProviderEncryptionKey> Create(string name);
+        Task<ProviderEncryptionKey> GetOrCreateAsync(string name);
+        Task<ProviderEncryptionKey> GetByKeyIdAsync(string keyId);
     }
 }
