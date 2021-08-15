@@ -19,7 +19,7 @@ namespace BasisTheory.net.Encryption.Azure.Factories
         private readonly KeyVaultProviderKeyOptions _options;
         private readonly Lazy<IProviderKeyService> _providerKeyService;
         private readonly Lazy<IEncryptionService> _encryptionService;
-        private readonly Func<string, Task<ProviderEncryptionKey>> _getByById;
+        private readonly Func<string, Task<ProviderEncryptionKey>> _getKeyByKeyId;
         private readonly Func<string, string, string, Task<ProviderEncryptionKey>> _getKeyByName;
         private readonly Func<ProviderEncryptionKey, Task<ProviderEncryptionKey>> _saveKey;
 
@@ -36,25 +36,13 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             _providerKeyService = providerKeyService;
             _encryptionService = encryptionService;
 
-            _getKeyByName = (name, provier, algorithm) => GetByNameAsync(name);
-            _saveKey = providerKey =>
+            _getKeyByKeyId = options.GetKeyByKeyId;
+            _getKeyByName = options.GetKeyByName ?? ((name, provier, algorithm) => GetByNameAsync(name));
+            _saveKey = options.SaveKey ?? (providerKey =>
             {
                 providerKey.KeyId = providerKey.ProviderKeyId;
                 return Task.FromResult(providerKey);
-            };
-        }
-
-        public AesKeyVaultProviderKeyFactory(IAppCache cache, TokenCredential tokenCredential,
-            KeyVaultProviderKeyOptions options, Lazy<IProviderKeyService> providerKeyService,
-            Lazy<IEncryptionService> encryptionService,
-            Func<string, Task<ProviderEncryptionKey>> getByById,
-            Func<string, string, string, Task<ProviderEncryptionKey>> getKeyByName,
-            Func<ProviderEncryptionKey, Task<ProviderEncryptionKey>> saveKey)
-            : this(cache, tokenCredential, options, providerKeyService, encryptionService)
-        {
-            _getByById = getByById;
-            _getKeyByName = getKeyByName;
-            _saveKey = saveKey;
+            });
         }
 
         public async Task<ProviderEncryptionKey> GetOrCreateAsync(string name)
@@ -101,8 +89,8 @@ namespace BasisTheory.net.Encryption.Azure.Factories
 
         public async Task<ProviderEncryptionKey> GetByKeyIdAsync(string keyId)
         {
-            if (_getByById != null)
-                return await _getByById(keyId);
+            if (_getKeyByKeyId != null)
+                return await _getKeyByKeyId(keyId);
 
             var id = new ObjectId("secrets", keyId);
 
