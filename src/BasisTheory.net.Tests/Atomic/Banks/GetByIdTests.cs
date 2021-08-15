@@ -66,7 +66,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id.GetValueOrDefault(), null, null);
+            var response = await mut(_fixture.Client, content.Id, null, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
@@ -84,7 +84,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id.GetValueOrDefault(), new BankGetByIdRequest
+            var response = await mut(_fixture.Client, content.Id, new BankGetByIdRequest
             {
                 Decrypt = true
             }, null);
@@ -107,7 +107,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id.GetValueOrDefault(), null, new RequestOptions
+            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -130,7 +130,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id.GetValueOrDefault(), null, new RequestOptions
+            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
