@@ -1,12 +1,11 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
-using BasisTheory.net.Encryption;
 using BasisTheory.net.Encryption.Entities;
 
-namespace BasisTheory.net.AcceptanceTests.Encryption.Helpers
+namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
 {
-    public class InMemoryProviderKeyRepository : IProviderKeyRepository
+    public class InMemoryProviderKeyRepository
     {
         private readonly ConcurrentBag<ProviderEncryptionKey> EncryptionKeys = new ConcurrentBag<ProviderEncryptionKey>();
 

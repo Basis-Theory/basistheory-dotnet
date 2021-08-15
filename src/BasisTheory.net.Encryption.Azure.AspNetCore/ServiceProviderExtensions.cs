@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Azure.Core;
 using Azure.Identity;
 using BasisTheory.net.Encryption.Azure.Entities;
@@ -11,15 +12,13 @@ namespace BasisTheory.net.Encryption.Azure.AspNetCore
     public static class ServiceProviderExtensions
     {
         public static IServiceCollection AddBasisTheoryAzureEncryption(this IServiceCollection services,
-            KeyVaultProviderKeyOptions options, TokenCredential tokenCredential = null)
+            KeyVaultProviderKeyOptions options = null, TokenCredential tokenCredential = null)
         {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
+            if (options != null)
+                services.AddSingleton(options);
 
-            if (options.KeyVaultUri == null)
-                throw new ArgumentNullException(nameof(options.KeyVaultUri));
-
-            services.AddSingleton(options);
+            if (services.All(x => x.ServiceType != typeof(KeyVaultProviderKeyOptions)))
+                throw new ArgumentException($"{typeof(KeyVaultProviderKeyOptions)} must be registered");
 
             tokenCredential ??= new DefaultAzureCredential();
             services.TryAddSingleton(tokenCredential);

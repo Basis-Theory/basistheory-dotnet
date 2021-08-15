@@ -65,7 +65,8 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             var data = JsonConvert.DeserializeObject<EncryptedData>(response.Value.Value);
             if (data == null) return null;
 
-            var providerEncryptionKey = await _providerKeyService.Value.GetKeyByKeyIdAsync(data.KeyEncryptionKey.Key);
+            var providerEncryptionKey = await _providerKeyService.Value.GetKeyByKeyIdAsync(data.KeyEncryptionKey.Key,
+                Provider, data.KeyEncryptionKey.Algorithm);
             return await _encryptionService.Value.Decrypt(data, providerEncryptionKey);
         }
     }

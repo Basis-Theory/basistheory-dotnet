@@ -23,7 +23,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
         [HttpPost("encrypt")]
         public async Task<IActionResult> Encrypt([FromBody] EncryptRequest request)
         {
-            var providerEncryptionKey = await _providerKeyService.GetOrCreateAsync(request.KeyName,
+            var providerEncryptionKey = await _providerKeyService.GetOrCreateKeyAsync(request.KeyName,
                 Provider, request.Algorithm);
 
             var encryptedData = await _encryptionService.Encrypt(request.Plaintext, providerEncryptionKey);
@@ -34,7 +34,8 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
         [HttpPost("decrypt")]
         public async Task<IActionResult> Decrypt([FromBody] EncryptedData encryptedData)
         {
-            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(encryptedData.KeyEncryptionKey.Key);
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(encryptedData.KeyEncryptionKey.Key, Provider,
+                encryptedData.KeyEncryptionKey.Algorithm);
             if (providerKey == null)
                 return NotFound();
 
