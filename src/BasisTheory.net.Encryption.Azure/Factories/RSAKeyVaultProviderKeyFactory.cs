@@ -38,7 +38,7 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             });
         }
 
-        public async Task<ProviderEncryptionKey> GetOrCreateAsync(string name)
+        public async Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string name)
         {
             var existing = await _getKeyByName(name, Provider, Algorithm);
             if (existing != null) return existing;
@@ -71,7 +71,7 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             return await _saveKey(providerKey);
         }
 
-        public async Task<ProviderEncryptionKey> GetByKeyIdAsync(string keyId)
+        public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId)
         {
             if (_getKeyByKeyId != null)
                 return await _getKeyByKeyId(keyId);

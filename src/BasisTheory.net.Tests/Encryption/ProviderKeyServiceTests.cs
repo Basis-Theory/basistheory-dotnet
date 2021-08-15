@@ -39,9 +39,9 @@ namespace BasisTheory.net.Tests.Encryption
                 KeyId = keyId
             };
 
-            _providerKeyFactory.Setup(x => x.GetByKeyIdAsync(keyId)).ReturnsAsync(expectedProviderKey);
+            _providerKeyFactory.Setup(x => x.GetKeyByKeyIdAsync(keyId)).ReturnsAsync(expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetByKeyIdAsync(keyId, provider, algorithm);
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, provider, algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
@@ -61,13 +61,13 @@ namespace BasisTheory.net.Tests.Encryption
 
             _cache.Add(cacheKey, expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetByKeyIdAsync(keyId, provider, algorithm);
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, provider, algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyFactory.Verify(x => x.GetByKeyIdAsync(keyId), Times.Never);
+            _providerKeyFactory.Verify(x => x.GetKeyByKeyIdAsync(keyId), Times.Never);
         }
 
         [Fact]
@@ -86,13 +86,13 @@ namespace BasisTheory.net.Tests.Encryption
 
             _cache.Add(cacheKey, expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetOrCreateAsync(keyName, provider, algorithm);
+            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, provider, algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyFactory.Verify(x => x.GetOrCreateAsync(keyName), Times.Never);
+            _providerKeyFactory.Verify(x => x.GetOrCreateKeyAsync(keyName), Times.Never);
         }
 
         [Fact]
@@ -109,10 +109,10 @@ namespace BasisTheory.net.Tests.Encryption
                 Algorithm = algorithm
             };
 
-            _providerKeyFactory.Setup(x => x.GetOrCreateAsync(keyName))
+            _providerKeyFactory.Setup(x => x.GetOrCreateKeyAsync(keyName))
                 .ReturnsAsync(expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetOrCreateAsync(keyName, provider, algorithm);
+            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, provider, algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);

@@ -9,8 +9,8 @@ namespace BasisTheory.net.Encryption
 {
     public interface IProviderKeyService
     {
-        Task<ProviderEncryptionKey> GetByKeyIdAsync(string keyId, string provider, string algorithm);
-        Task<ProviderEncryptionKey> GetOrCreateAsync(string keyName, string provider, string algorithm);
+        Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId, string provider, string algorithm);
+        Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string keyName, string provider, string algorithm);
     }
 
     public class ProviderKeyService : IProviderKeyService
@@ -25,24 +25,24 @@ namespace BasisTheory.net.Encryption
                 .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Algorithm, y => y));
         }
 
-        public async Task<ProviderEncryptionKey> GetByKeyIdAsync(string keyId, string provider, string algorithm)
+        public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId, string provider, string algorithm)
         {
             return await _cache.GetOrAddAsync($"providerkeys_{keyId}",
                 async () =>
                 {
                     var providerKeyFactory = _providerKeyFactories[provider][algorithm];
-                    return await providerKeyFactory.GetByKeyIdAsync(keyId);
+                    return await providerKeyFactory.GetKeyByKeyIdAsync(keyId);
                 },
                 DateTimeOffset.UtcNow.AddHours(1));
         }
 
-        public async Task<ProviderEncryptionKey> GetOrCreateAsync(string keyName, string provider, string algorithm)
+        public async Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string keyName, string provider, string algorithm)
         {
             return await _cache.GetOrAddAsync($"providerkeys_{keyName}_{provider}_{algorithm}",
                 async () =>
                 {
                     var providerKeyFactory = _providerKeyFactories[provider][algorithm];
-                    return await providerKeyFactory.GetOrCreateAsync(keyName);
+                    return await providerKeyFactory.GetOrCreateKeyAsync(keyName);
                 }, DateTimeOffset.UtcNow.AddHours(1));
         }
     }
