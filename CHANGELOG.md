@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.0...v1.2.1) (2021-08-15)
+
+
+### Bug Fixes
+
+* make token id not nullable ([0c78ec7](https://github.com/Basis-Theory/basistheory-dotnet/commit/0c78ec7126da4ba974aa0edc20e3b462e6c3d00c))
+
 # [1.2.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.1.0...v1.2.0) (2021-08-15)
 
 
