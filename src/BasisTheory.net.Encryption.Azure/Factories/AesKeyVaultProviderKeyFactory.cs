@@ -37,7 +37,7 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             _encryptionService = encryptionService;
 
             _getKeyByKeyId = options.GetKeyByKeyId;
-            _getKeyByName = options.GetKeyByName ?? ((name, provier, algorithm) => GetByNameAsync(name));
+            _getKeyByName = options.GetKeyByName ?? ((name, provider, algorithm) => GetByNameAsync(name));
             _saveKey = options.SaveKey ?? (providerKey =>
             {
                 providerKey.KeyId = providerKey.ProviderKeyId;
