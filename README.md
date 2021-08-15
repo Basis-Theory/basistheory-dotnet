@@ -70,19 +70,16 @@ Encryption and Key Management is provided to enable you to manage your own data 
 ### Key Management
 
 ```csharp
-// Provider Key Repository implementation which must set the KeyId when saving the generated ProviderEncryptionKey
-var providerKeyRepository = new ProviderKeyRepositoryImpl();
 var rsaProviderKeyFactory = new RSAKeyVaultProviderKeyFactory();
 
-var providerKeyService = new ProviderKeyService(new CachingService(), providerKeyRepository, 
+var providerKeyService = new ProviderKeyService(new CachingService(), 
   new List<IProviderKeyFactory> { 
     rsaProviderKeyFactory 
   });
 
 // Retrieves or creates a key by name with a registered IProviderKeyFactory for the provided provider and algorithm
-var providerEncryptionKey = providerKeyService.GetOrCreateAsync("encryption-key", "AZURE", "RSA");
+var providerEncryptionKey = providerKeyService.GetOrCreateKeyAsync("encryption-key", "AZURE", "RSA");
 
-// Retrieves the provider encryption key from the registered IProviderKeyRepository by KeyId
 providerEncryptionKey = providerKeyService.GetKeyByKeyIdAsync(providerEncryptionKey.KeyId);
 ```
 
