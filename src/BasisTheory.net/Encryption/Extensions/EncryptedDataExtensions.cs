@@ -15,17 +15,5 @@ namespace BasisTheory.net.Encryption.Extensions
                 KeyEncryptionKey = encryptedData.KeyEncryptionKey
             };
         }
-
-        public static EncryptedData ToEncryptedData(this Token token)
-        {
-            if (token == null) return null;
-
-            return new EncryptedData
-            {
-                CipherText = token.Data,
-                ContentEncryptionKey = token.Encryption?.ContentEncryptionKey,
-                KeyEncryptionKey = token.Encryption?.KeyEncryptionKey
-            };
-        }
     }
 }
