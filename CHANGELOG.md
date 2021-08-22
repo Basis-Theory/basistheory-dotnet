@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.3.0...v1.4.0) (2021-08-22)
+
+
+### Features
+
+* Add provider to encryption key and handle it in the encryption service ([#58](https://github.com/Basis-Theory/basistheory-dotnet/issues/58)) ([5b4809e](https://github.com/Basis-Theory/basistheory-dotnet/commit/5b4809e189b587af793cad4d1d88e8e0dd595056))
+
 # [1.3.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.3...v1.3.0) (2021-08-22)
 
 
