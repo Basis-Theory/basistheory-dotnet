@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.3...v1.3.0) (2021-08-22)
+
+
+### Features
+
+* pass cancellationtoken to all encryption methods ([688c3ea](https://github.com/Basis-Theory/basistheory-dotnet/commit/688c3ea93668b5169322901be20fd48c41d6850c))
+
 ## [1.2.3](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.2...v1.2.3) (2021-08-22)
 
 
