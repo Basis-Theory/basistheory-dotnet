@@ -26,7 +26,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
             var providerEncryptionKey = await _providerKeyService.GetOrCreateKeyAsync(request.KeyName,
                 Provider, request.Algorithm);
 
-            var encryptedData = await _encryptionService.Encrypt(request.Plaintext, providerEncryptionKey);
+            var encryptedData = await _encryptionService.EncryptAsync(request.Plaintext, providerEncryptionKey);
 
             return Ok(encryptedData);
         }
@@ -39,7 +39,7 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
             if (providerKey == null)
                 return NotFound();
 
-            var plaintext = await _encryptionService.Decrypt(encryptedData, providerKey);
+            var plaintext = await _encryptionService.DecryptAsync(encryptedData, providerKey);
 
             return Ok(plaintext);
         }

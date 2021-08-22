@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
@@ -19,9 +20,9 @@ namespace BasisTheory.net.Encryption.Azure.Factories
         private readonly KeyVaultProviderKeyOptions _options;
         private readonly Lazy<IProviderKeyService> _providerKeyService;
         private readonly Lazy<IEncryptionService> _encryptionService;
-        private readonly Func<string, Task<ProviderEncryptionKey>> _getKeyByKeyId;
-        private readonly Func<string, string, string, Task<ProviderEncryptionKey>> _getKeyByName;
-        private readonly Func<ProviderEncryptionKey, Task<ProviderEncryptionKey>> _saveKey;
+        private readonly Func<string, CancellationToken, Task<ProviderEncryptionKey>> _getKeyByKeyId;
+        private readonly Func<string, string, string, CancellationToken, Task<ProviderEncryptionKey>> _getKeyByName;
+        private readonly Func<ProviderEncryptionKey, CancellationToken, Task<ProviderEncryptionKey>> _saveKey;
 
         public string Provider => "AZURE";
         public string Algorithm => EncryptionAlgorithm.AES.ToString();
@@ -37,26 +38,27 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             _encryptionService = encryptionService;
 
             _getKeyByKeyId = options.GetKeyByKeyId;
-            _getKeyByName = options.GetKeyByName ?? ((name, provider, algorithm) => GetByNameAsync(name));
-            _saveKey = options.SaveKey ?? (providerKey =>
+            _getKeyByName = options.GetKeyByName ?? ((name, provider, algorithm, cancellationToken) => GetByNameAsync(name, cancellationToken));
+            _saveKey = options.SaveKey ?? ((providerKey, cancellationToken) =>
             {
                 providerKey.KeyId = providerKey.ProviderKeyId;
                 return Task.FromResult(providerKey);
             });
         }
 
-        public async Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string name)
+        public async Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string name,
+            CancellationToken cancellationToken = default)
         {
-            var existing = await _getKeyByName(name, Provider, Algorithm);
+            var existing = await _getKeyByName(name, Provider, Algorithm, cancellationToken);
             if (existing != null) return existing;
 
             var rsaKey = await _providerKeyService.Value.GetOrCreateKeyAsync(name,
-                Provider, EncryptionAlgorithm.RSA.ToString());
+                Provider, EncryptionAlgorithm.RSA.ToString(), cancellationToken);
 
             using var aesKey = Aes.Create();
             var keyValue = aesKey.ToAesString();
 
-            var encryptionKey = await _encryptionService.Value.Encrypt(keyValue, rsaKey);
+            var encryptionKey = await _encryptionService.Value.EncryptAsync(keyValue, rsaKey, cancellationToken);
 
             var secretClient = new SecretClient(_options.KeyVaultUri, _tokenCredential);
 
@@ -68,7 +70,7 @@ namespace BasisTheory.net.Encryption.Azure.Factories
                     ExpiresOn = DateTimeOffset.UtcNow.AddDays(_options.KeyProviderExpirationInDays),
                     NotBefore = DateTimeOffset.UtcNow
                 }
-            });
+            }, cancellationToken);
 
             var expirationDate = key.Value.Properties.ExpiresOn ??
                                  throw new NullReferenceException(nameof(key.Value.Properties.ExpiresOn));
@@ -84,18 +86,19 @@ namespace BasisTheory.net.Encryption.Azure.Factories
                 ExpirationDate = expirationDate
             };
 
-            return await _saveKey(providerKey);
+            return await _saveKey(providerKey, cancellationToken);
         }
 
-        public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId)
+        public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId,
+            CancellationToken cancellationToken = default)
         {
             if (_getKeyByKeyId != null)
-                return await _getKeyByKeyId(keyId);
+                return await _getKeyByKeyId(keyId, cancellationToken);
 
             var id = new ObjectId("secrets", keyId);
 
             var secretClient = new SecretClient(_options.KeyVaultUri, _tokenCredential);
-            var secret = await secretClient.GetSecretAsync(id.Name, id.Version);
+            var secret = await secretClient.GetSecretAsync(id.Name, id.Version, cancellationToken);
             if (secret.Value == null)
                 throw new NullReferenceException(nameof(secret.Value));
 
@@ -111,13 +114,13 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             };
         }
 
-        private async Task<ProviderEncryptionKey> GetByNameAsync(string name)
+        private async Task<ProviderEncryptionKey> GetByNameAsync(string name, CancellationToken cancellationToken)
         {
             var secretClient = new SecretClient(_options.KeyVaultUri, _tokenCredential);
 
             try
             {
-                var secret = await secretClient.GetSecretAsync(name);
+                var secret = await secretClient.GetSecretAsync(name, cancellationToken: cancellationToken);
                 if (secret.Value == null || secret.Value.Properties.ExpiresOn < DateTimeOffset.UtcNow)
                     return null;
 

@@ -17,8 +17,8 @@ namespace BasisTheory.net.Tests.Encryption
 
             using var aesKey = Aes.Create();
 
-            var ciphertext = await AesEncryptionService.Encrypt(aesKey, expectedPlaintext);
-            var plaintext = await AesEncryptionService.Decrypt(aesKey, ciphertext);
+            var ciphertext = await AesEncryptionService.EncryptAsync(aesKey, expectedPlaintext);
+            var plaintext = await AesEncryptionService.DecryptAsync(aesKey, ciphertext);
 
             Assert.Equal(expectedPlaintext, plaintext);
         }

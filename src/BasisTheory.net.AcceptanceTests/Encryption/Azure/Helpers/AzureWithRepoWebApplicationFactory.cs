@@ -22,9 +22,9 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure.Helpers
                         return new KeyVaultProviderKeyOptions
                         {
                             KeyVaultUri = new Uri("https://localhost:10090/"),
-                            GetKeyByKeyId = (keyId) => repository.GetKeyByKeyIdAsync(keyId),
-                            GetKeyByName = (name, provider, algorithm) => repository.GetKeyByNameAsync(name, provider, algorithm),
-                            SaveKey = (providerKey) => repository.SaveAsync(providerKey)
+                            GetKeyByKeyId = (keyId, _) => repository.GetKeyByKeyIdAsync(keyId),
+                            GetKeyByName = (name, provider, algorithm, _) => repository.GetKeyByNameAsync(name, provider, algorithm),
+                            SaveKey = (providerKey, _) => repository.SaveAsync(providerKey)
                         };
                     })
                     .AddBasisTheoryAzureEncryption(tokenCredential: new LocalTokenCredential());

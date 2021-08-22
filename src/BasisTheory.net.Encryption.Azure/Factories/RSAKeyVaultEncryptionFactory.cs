@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using Azure.Core;
 using Azure.Security.KeyVault.Keys;
@@ -28,9 +29,10 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             _tokenCredential = tokenCredential;
         }
 
-        public async Task<string> Encrypt(string providerKeyId, string plaintext)
+        public async Task<string> EncryptAsync(string providerKeyId, string plaintext,
+            CancellationToken cancellationToken = default)
         {
-            var key = await GetKey(providerKeyId);
+            var key = await GetKey(providerKeyId, cancellationToken);
 
             using var rsaKey = key.FromRSAString();
 
@@ -39,29 +41,30 @@ namespace BasisTheory.net.Encryption.Azure.Factories
             return ciphertext.ToBase64String();
         }
 
-        public async Task<string> Decrypt(string providerKeyId, string ciphertext)
+        public async Task<string> DecryptAsync(string providerKeyId, string ciphertext,
+            CancellationToken cancellationToken = default)
         {
             var cryptoClient = new CryptographyClient(new Uri(providerKeyId), _tokenCredential);
 
             var cipherBytes = ciphertext.FromBase64String();
-            var decryptResult =
-                await cryptoClient.DecryptAsync(DefaultRsaEncryptionPadding.ToEncryptionAlgorithm(), cipherBytes);
+            var decryptResult = await cryptoClient.DecryptAsync(DefaultRsaEncryptionPadding.ToEncryptionAlgorithm(),
+                cipherBytes, cancellationToken);
 
             return decryptResult.Plaintext.ToUTF8String();
         }
 
-        private async Task<string> GetKey(string providerKeyId)
+        private async Task<string> GetKey(string providerKeyId, CancellationToken cancellationToken)
         {
             var id = new ObjectId("keys", providerKeyId);
 
             return await _cache.GetOrAddAsync(id.ToCacheKey(),
-                async () => await GetKey(id), DateTimeOffset.UtcNow.AddHours(1));
+                async () => await GetKey(id, cancellationToken), DateTimeOffset.UtcNow.AddHours(1));
         }
 
-        private async Task<string> GetKey(ObjectId id)
+        private async Task<string> GetKey(ObjectId id, CancellationToken cancellationToken)
         {
             var keyClient = new KeyClient(id.VaultUri, _tokenCredential);
-            var response = await keyClient.GetKeyAsync(id.Name, id.Version);
+            var response = await keyClient.GetKeyAsync(id.Name, id.Version, cancellationToken);
             return response.Value.Key.ToRSAString();
         }
     }

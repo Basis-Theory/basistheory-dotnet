@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Encryption;
 using BasisTheory.net.Encryption.Entities;
@@ -39,7 +40,7 @@ namespace BasisTheory.net.Tests.Encryption
                 KeyId = keyId
             };
 
-            _providerKeyFactory.Setup(x => x.GetKeyByKeyIdAsync(keyId)).ReturnsAsync(expectedProviderKey);
+            _providerKeyFactory.Setup(x => x.GetKeyByKeyIdAsync(keyId, It.IsAny<CancellationToken>())).ReturnsAsync(expectedProviderKey);
 
             var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, provider, algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
@@ -67,7 +68,7 @@ namespace BasisTheory.net.Tests.Encryption
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyFactory.Verify(x => x.GetKeyByKeyIdAsync(keyId), Times.Never);
+            _providerKeyFactory.Verify(x => x.GetKeyByKeyIdAsync(keyId, It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -92,7 +93,7 @@ namespace BasisTheory.net.Tests.Encryption
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
-            _providerKeyFactory.Verify(x => x.GetOrCreateKeyAsync(keyName), Times.Never);
+            _providerKeyFactory.Verify(x => x.GetOrCreateKeyAsync(keyName, It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -109,7 +110,7 @@ namespace BasisTheory.net.Tests.Encryption
                 Algorithm = algorithm
             };
 
-            _providerKeyFactory.Setup(x => x.GetOrCreateKeyAsync(keyName))
+            _providerKeyFactory.Setup(x => x.GetOrCreateKeyAsync(keyName, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expectedProviderKey);
 
             var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, provider, algorithm);

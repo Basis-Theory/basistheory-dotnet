@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Extensions;
 using BasisTheory.net.Encryption;
@@ -32,7 +33,7 @@ namespace BasisTheory.net.Tests.Encryption
                 ProviderKeyId = Guid.NewGuid().ToString()
             };
 
-            var encryptedData = await _encryptionService.Encrypt(expectedPlaintext, providerKey);
+            var encryptedData = await _encryptionService.EncryptAsync(expectedPlaintext, providerKey);
             Assert.NotNull(encryptedData.CipherText);
             Assert.NotEqual(expectedPlaintext, encryptedData.CipherText);
             Assert.Equal("AES", encryptedData.ContentEncryptionKey.Algorithm);
@@ -40,7 +41,7 @@ namespace BasisTheory.net.Tests.Encryption
             Assert.Equal("RSA", encryptedData.KeyEncryptionKey.Algorithm);
             Assert.Equal(providerKey.KeyId, encryptedData.KeyEncryptionKey.Key);
 
-            var plaintext = await _encryptionService.Decrypt(encryptedData, providerKey);
+            var plaintext = await _encryptionService.DecryptAsync(encryptedData, providerKey);
             Assert.Equal(expectedPlaintext, plaintext);
         }
 
@@ -51,12 +52,14 @@ namespace BasisTheory.net.Tests.Encryption
 
             private readonly RSA RSAKey = RSA.Create();
 
-            public Task<string> Encrypt(string providerKeyId, string plaintext)
+            public Task<string> EncryptAsync(string providerKeyId, string plaintext,
+                CancellationToken cancellationToken = default)
             {
                 return Task.FromResult(RSAKey.Encrypt(plaintext.ToBytes(), RSAEncryptionPadding.Pkcs1).ToBase64String());
             }
 
-            public Task<string> Decrypt(string providerKeyId, string ciphertext)
+            public Task<string> DecryptAsync(string providerKeyId, string ciphertext,
+                CancellationToken cancellationToken = default)
             {
                 return Task.FromResult(RSAKey.Decrypt(ciphertext.FromBase64String(), RSAEncryptionPadding.Pkcs1).ToUTF8String());
             }
