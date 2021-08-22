@@ -1,3 +1,11 @@
+## [1.2.3](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.2...v1.2.3) (2021-08-22)
+
+
+### Bug Fixes
+
+* ignore default values when serializing ([c745e76](https://github.com/Basis-Theory/basistheory-dotnet/commit/c745e76c60282e09a2bd1a73d6f06d5b988dd1af))
+* set serialization order ([33e2d3b](https://github.com/Basis-Theory/basistheory-dotnet/commit/33e2d3ba159e146c909244715a78b97f95c0f379))
+
 ## [1.2.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.2.1...v1.2.2) (2021-08-15)
 
 
