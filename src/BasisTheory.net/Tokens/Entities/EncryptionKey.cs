@@ -12,5 +12,9 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("alg")]
         [JsonPropertyName("alg")]
         public string Algorithm { get; set; }
+
+        [JsonProperty("prov")]
+        [JsonPropertyName("prov")]
+        public string Provider { get; set; }
     }
 }

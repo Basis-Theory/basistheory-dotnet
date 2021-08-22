@@ -48,8 +48,10 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure
             Assert.NotNull(encryptedData);
 
             Assert.NotNull(encryptedData.CipherText);
+            Assert.Null(encryptedData.ContentEncryptionKey.Provider);
             Assert.Equal("AES", encryptedData.ContentEncryptionKey.Algorithm);
             Assert.NotNull(encryptedData.ContentEncryptionKey.Key);
+            Assert.Equal("AZURE", encryptedData.KeyEncryptionKey.Provider);
             Assert.Equal("RSA", encryptedData.KeyEncryptionKey.Algorithm);
             Assert.NotNull(encryptedData.KeyEncryptionKey.Key);
 
@@ -82,8 +84,10 @@ namespace BasisTheory.net.AcceptanceTests.Encryption.Azure
             Assert.NotNull(encryptedData);
 
             Assert.NotNull(encryptedData.CipherText);
+            Assert.Null(encryptedData.ContentEncryptionKey.Provider);
             Assert.Equal("AES", encryptedData.ContentEncryptionKey.Algorithm);
             Assert.NotNull(encryptedData.ContentEncryptionKey.Key);
+            Assert.Equal("AZURE", encryptedData.KeyEncryptionKey.Provider);
             Assert.Equal("AES", encryptedData.KeyEncryptionKey.Algorithm);
             Assert.NotNull(encryptedData.KeyEncryptionKey.Key);
 

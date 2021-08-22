@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Encryption.Entities;
+using BasisTheory.net.Tokens.Entities;
 using LazyCache;
 
 namespace BasisTheory.net.Encryption
 {
     public interface IProviderKeyService
     {
+        Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(EncryptionKey encryptionKey,
+            CancellationToken cancellationToken = default);
         Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId, string provider, string algorithm,
             CancellationToken cancellationToken = default);
         Task<ProviderEncryptionKey> GetOrCreateKeyAsync(string keyName, string provider, string algorithm,
@@ -27,6 +30,10 @@ namespace BasisTheory.net.Encryption
             _providerKeyFactories = providerKeyFactories.GroupBy(x => x.Provider)
                 .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.Algorithm, y => y));
         }
+
+        public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(EncryptionKey encryptionKey,
+            CancellationToken cancellationToken = default) =>
+            await GetKeyByKeyIdAsync(encryptionKey.Key, encryptionKey.Provider, encryptionKey.Algorithm, cancellationToken);
 
         public async Task<ProviderEncryptionKey> GetKeyByKeyIdAsync(string keyId, string provider, string algorithm,
             CancellationToken cancellationToken = default)
