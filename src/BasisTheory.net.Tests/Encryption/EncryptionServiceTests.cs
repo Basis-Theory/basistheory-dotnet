@@ -36,8 +36,10 @@ namespace BasisTheory.net.Tests.Encryption
             var encryptedData = await _encryptionService.EncryptAsync(expectedPlaintext, providerKey);
             Assert.NotNull(encryptedData.CipherText);
             Assert.NotEqual(expectedPlaintext, encryptedData.CipherText);
+            Assert.Null(encryptedData.ContentEncryptionKey.Provider);
             Assert.Equal("AES", encryptedData.ContentEncryptionKey.Algorithm);
             Assert.NotNull(encryptedData.ContentEncryptionKey.Key);
+            Assert.Equal("INMEMORY", encryptedData.KeyEncryptionKey.Provider);
             Assert.Equal("RSA", encryptedData.KeyEncryptionKey.Algorithm);
             Assert.Equal(providerKey.KeyId, encryptedData.KeyEncryptionKey.Key);
 

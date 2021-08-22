@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Encryption;
 using BasisTheory.net.Encryption.Entities;
+using BasisTheory.net.Tokens.Entities;
 using LazyCache;
 using Moq;
 using Xunit;
@@ -69,6 +70,31 @@ namespace BasisTheory.net.Tests.Encryption
             Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
 
             _providerKeyFactory.Verify(x => x.GetKeyByKeyIdAsync(keyId, It.IsAny<CancellationToken>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task ShouldRetrieveKeyByIdWithEncryptionKey()
+        {
+            var keyId = Guid.NewGuid().ToString();
+            var cacheKey = $"providerkeys_{keyId}";
+
+            var expectedProviderKey = new ProviderEncryptionKey
+            {
+                KeyId = keyId
+            };
+
+            _providerKeyFactory.Setup(x => x.GetKeyByKeyIdAsync(keyId, It.IsAny<CancellationToken>())).ReturnsAsync(expectedProviderKey);
+
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(new EncryptionKey
+            {
+                Key = keyId,
+                Provider = provider,
+                Algorithm = algorithm
+            });
+            Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
+
+            var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
+            Assert.Equal(expectedProviderKey.KeyId, cachedProviderKey.KeyId);
         }
 
         [Fact]

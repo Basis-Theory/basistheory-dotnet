@@ -47,12 +47,13 @@ namespace BasisTheory.net.Encryption
 
                 ContentEncryptionKey = new EncryptionKey
                 {
-                    Algorithm = EncryptionAlgorithm.AES.ToString(),
-                    Key = encryptedCek
+                    Key = encryptedCek,
+                    Algorithm = EncryptionAlgorithm.AES.ToString()
                 },
                 KeyEncryptionKey = new EncryptionKey
                 {
                     Key = key.KeyId,
+                    Provider = key.Provider,
                     Algorithm = key.Algorithm
                 }
             };
