@@ -9,6 +9,7 @@ namespace BasisTheory.net.Common.Utilities
         {
             settings.DateParseHandling = DateParseHandling.None;
             settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.DefaultValueHandling = DefaultValueHandling.Ignore;
             settings.Converters.Add(new StringEnumConverter());
 
             return settings;
