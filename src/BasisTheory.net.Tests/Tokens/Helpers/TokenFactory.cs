@@ -16,6 +16,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.Type, _ => TokenTypes.Token)
             .RuleFor(a => a.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (_, _) => DateTimeOffset.UtcNow)
             .RuleFor(a => a.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
