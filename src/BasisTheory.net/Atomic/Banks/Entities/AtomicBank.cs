@@ -9,5 +9,9 @@ namespace BasisTheory.net.Atomic.Banks.Entities
         [JsonProperty("bank")]
         [JsonPropertyName("bank")]
         public Bank Bank { get; set; }
+
+        [JsonProperty("fingerprint")]
+        [JsonPropertyName("fingerprint")]
+        public string Fingerprint { get; set; }
     }
 }

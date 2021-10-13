@@ -13,5 +13,9 @@ namespace BasisTheory.net.Atomic.Cards.Entities
         [JsonProperty("billing_details")]
         [JsonPropertyName("billing_details")]
         public BillingDetails BillingDetails { get; set; }
+
+        [JsonProperty("fingerprint")]
+        [JsonPropertyName("fingerprint")]
+        public string Fingerprint { get; set; }
     }
 }

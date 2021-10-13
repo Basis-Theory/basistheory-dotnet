@@ -20,6 +20,10 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("children")]
         public List<Token> Children { get; set; }
 
+        [JsonProperty("fingerprint")]
+        [JsonPropertyName("fingerprint")]
+        public string Fingerprint { get; set; }
+
         public Token() {}
 
         public Token(EncryptedData encryptedData)
