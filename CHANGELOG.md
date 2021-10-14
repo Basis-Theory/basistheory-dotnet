@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.5.0...v1.6.0) (2021-10-14)
+
+
+### Features
+
+* adds fingerprint prop to token, cards, and bank response ([#69](https://github.com/Basis-Theory/basistheory-dotnet/issues/69)) ([92c0298](https://github.com/Basis-Theory/basistheory-dotnet/commit/92c0298a69f891912e9fad7ced877e79c3ed68fe))
+
 # [1.5.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.4.0...v1.5.0) (2021-10-14)
 
 
