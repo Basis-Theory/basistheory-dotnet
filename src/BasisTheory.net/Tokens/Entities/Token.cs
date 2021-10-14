@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Tokens.Entities
 {
-    public class Token : Response
+    public class Token : TokenResponse
     {
         [JsonProperty("data")]
         [JsonPropertyName("data")]

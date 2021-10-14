@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Common.Responses
 {
-    public class Response
+    public abstract class TokenResponse
     {
         [JsonProperty("id", Order = -3)]
         [JsonPropertyName("id")]
@@ -18,6 +18,10 @@ namespace BasisTheory.net.Common.Responses
         [JsonProperty("type", Order = -1)]
         [JsonPropertyName("type")]
         public string Type { get; set; }
+
+        [JsonProperty("fingerprint", Order = 0)]
+        [JsonPropertyName("fingerprint")]
+        public string Fingerprint { get; set; }
 
         [JsonProperty("metadata", Order = 1)]
         [JsonPropertyName("metadata")]

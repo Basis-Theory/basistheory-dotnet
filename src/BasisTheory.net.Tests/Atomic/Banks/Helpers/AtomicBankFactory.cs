@@ -16,6 +16,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.Bank, (_, _) => BankFaker.Generate())
+            .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value));
