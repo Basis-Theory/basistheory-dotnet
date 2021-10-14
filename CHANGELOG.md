@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.4.0...v1.5.0) (2021-10-14)
+
+
+### Features
+
+* Remove unsupported mask and billing_details Token Types ([#68](https://github.com/Basis-Theory/basistheory-dotnet/issues/68)) ([414af10](https://github.com/Basis-Theory/basistheory-dotnet/commit/414af1076333071eeaa48d8087509fbacf4627b7))
+
 # [1.4.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.3.0...v1.4.0) (2021-08-22)
 
 
