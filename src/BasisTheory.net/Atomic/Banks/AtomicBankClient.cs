@@ -38,8 +38,10 @@ namespace BasisTheory.net.Atomic.Banks
 
         Token React(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
         Token React(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
+        Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
 
         Token GetReactionById(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request,
             RequestOptions requestOptions = null);
@@ -137,14 +139,16 @@ namespace BasisTheory.net.Atomic.Banks
             return Post<Token>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
         }
 
-        public async Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
+        public async Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
         {
-            return await ReactAsync(atomicBankId.ToString(), request, requestOptions);
+            return await ReactAsync(atomicBankId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
+        public async Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
+            return await PostAsync<Token>($"{BasePath}/{atomicBankId}/react", request, requestOptions, cancellationToken);
         }
 
         public Token GetReactionById(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
