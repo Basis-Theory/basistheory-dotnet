@@ -38,8 +38,10 @@ namespace BasisTheory.net.Atomic.Cards
 
         Token React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
         Token React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
+        Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
 
         Token GetReactionById(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
             RequestOptions requestOptions = null);
@@ -137,14 +139,16 @@ namespace BasisTheory.net.Atomic.Cards
             return Post<Token>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
         }
 
-        public async Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public async Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
         {
-            return await ReactAsync(atomicCardId.ToString(), request, requestOptions);
+            return await ReactAsync(atomicCardId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public async Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
+            return await PostAsync<Token>($"{BasePath}/{atomicCardId}/react", request, requestOptions, cancellationToken);
         }
 
         public Token GetReactionById(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
