@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Tokens.Entities
 {
-    public class Token : Response
+    public class Token : TokenResponse
     {
         [JsonProperty("data")]
         [JsonPropertyName("data")]
@@ -19,10 +19,6 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("children")]
         [JsonPropertyName("children")]
         public List<Token> Children { get; set; }
-
-        [JsonProperty("fingerprint")]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }
 
         public Token() {}
 

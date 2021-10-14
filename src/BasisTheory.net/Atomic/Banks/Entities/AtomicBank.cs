@@ -4,14 +4,10 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Atomic.Banks.Entities
 {
-    public class AtomicBank : Response
+    public class AtomicBank : TokenResponse
     {
         [JsonProperty("bank")]
         [JsonPropertyName("bank")]
         public Bank Bank { get; set; }
-
-        [JsonProperty("fingerprint")]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }
     }
 }
