@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.6.0...v1.7.0) (2021-10-20)
+
+
+### Features
+
+* makes card expiration date fields optional ([#72](https://github.com/Basis-Theory/basistheory-dotnet/issues/72)) ([8fbda69](https://github.com/Basis-Theory/basistheory-dotnet/commit/8fbda6928f89768d91afc60f26477df74f14b735))
+
 # [1.6.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.5.0...v1.6.0) (2021-10-14)
 
 
