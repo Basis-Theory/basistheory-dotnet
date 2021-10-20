@@ -13,7 +13,7 @@ namespace BasisTheory.net.Common.Responses
 
         [JsonProperty("tenant_id", Order = -2)]
         [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
+        public Guid? TenantId { get; set; }
 
         [JsonProperty("type", Order = -1)]
         [JsonPropertyName("type")]
