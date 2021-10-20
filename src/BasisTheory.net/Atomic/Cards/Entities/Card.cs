@@ -11,11 +11,11 @@ namespace BasisTheory.net.Atomic.Cards.Entities
 
         [JsonProperty("expiration_month")]
         [JsonPropertyName("expiration_month")]
-        public int ExpirationMonth { get; set; }
+        public int? ExpirationMonth { get; set; }
 
         [JsonProperty("expiration_year")]
         [JsonPropertyName("expiration_year")]
-        public int ExpirationYear { get; set; }
+        public int? ExpirationYear { get; set; }
 
         [JsonProperty("cvc")]
         [JsonPropertyName("cvc")]
