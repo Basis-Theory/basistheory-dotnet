@@ -29,6 +29,10 @@ namespace BasisTheory.net.Atomic.Banks
         Task<AtomicBank> CreateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
+        AtomicBank Update(AtomicBank atomicBank, RequestOptions requestOptions = null);
+        Task<AtomicBank> UpdateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
         void Delete(Guid atomicBankId, RequestOptions requestOptions = null);
         void Delete(string atomicBankId, RequestOptions requestOptions = null);
         Task DeleteAsync(Guid atomicBankId, RequestOptions requestOptions = null,
@@ -107,6 +111,17 @@ namespace BasisTheory.net.Atomic.Banks
         public async Task<AtomicBank> CreateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await PostAsync<AtomicBank>(BasePath, atomicBank, requestOptions, cancellationToken);
+        }
+
+        public AtomicBank Update(AtomicBank atomicBank, RequestOptions requestOptions = null)
+        {
+            return Patch<AtomicBank>($"{BasePath}/{atomicBank.Id}", atomicBank, requestOptions);
+        }
+
+        public async Task<AtomicBank> UpdateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchAsync<AtomicBank>($"{BasePath}/{atomicBank.Id}", atomicBank, requestOptions, cancellationToken);
         }
 
         public void Delete(Guid atomicBankId, RequestOptions requestOptions = null)

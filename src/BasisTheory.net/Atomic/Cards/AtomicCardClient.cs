@@ -29,6 +29,10 @@ namespace BasisTheory.net.Atomic.Cards
         Task<AtomicCard> CreateAsync(AtomicCard atomicCard, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
+        AtomicCard Update(AtomicCard atomicCard, RequestOptions requestOptions = null);
+        Task<AtomicCard> UpdateAsync(AtomicCard atomicCard, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
         void Delete(Guid atomicCardId, RequestOptions requestOptions = null);
         void Delete(string atomicCardId, RequestOptions requestOptions = null);
         Task DeleteAsync(Guid atomicCardId, RequestOptions requestOptions = null,
@@ -107,6 +111,18 @@ namespace BasisTheory.net.Atomic.Cards
         public async Task<AtomicCard> CreateAsync(AtomicCard atomicCard, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await PostAsync<AtomicCard>(BasePath, atomicCard, requestOptions, cancellationToken);
+        }
+
+        public AtomicCard Update(AtomicCard atomicCard, RequestOptions requestOptions = null)
+        {
+            return Patch<AtomicCard>($"{BasePath}/{atomicCard.Id}", atomicCard, requestOptions);
+        }
+
+        public async Task<AtomicCard> UpdateAsync(AtomicCard atomicCard, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchAsync<AtomicCard>($"{BasePath}/{atomicCard.Id}", atomicCard, requestOptions,
+                cancellationToken);
         }
 
         public void Delete(Guid atomicCardId, RequestOptions requestOptions = null)
