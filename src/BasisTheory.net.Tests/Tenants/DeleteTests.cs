@@ -16,11 +16,11 @@ namespace BasisTheory.net.Tests.Tenants
 {
     public class DeleteTests : IClassFixture<TenantFixture>
     {
-        readonly TenantFixture fixture;
+        private readonly TenantFixture _fixture;
 
         public DeleteTests(TenantFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
         }
 
         public static IEnumerable<object[]> Methods
@@ -47,13 +47,13 @@ namespace BasisTheory.net.Tests.Tenants
         public async Task ShouldDelete(Func<ITenantClient, RequestOptions, Task> mut)
         {
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, null);
+            await mut(_fixture.Client, null);
 
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -63,9 +63,9 @@ namespace BasisTheory.net.Tests.Tenants
             var expectedApiKey = Guid.NewGuid().ToString();
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, new RequestOptions
+            await mut(_fixture.Client, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -82,16 +82,16 @@ namespace BasisTheory.net.Tests.Tenants
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, new RequestOptions
+            await mut(_fixture.Client, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
@@ -102,9 +102,9 @@ namespace BasisTheory.net.Tests.Tenants
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -114,9 +114,9 @@ namespace BasisTheory.net.Tests.Tenants
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleEmptyErrorResponse(Func<ITenantClient, RequestOptions, Task> mut)
         {
-            fixture.SetupHandler(HttpStatusCode.Forbidden);
+            _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -129,9 +129,9 @@ namespace BasisTheory.net.Tests.Tenants
         {
             var error = Guid.NewGuid().ToString();
 
-            fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
