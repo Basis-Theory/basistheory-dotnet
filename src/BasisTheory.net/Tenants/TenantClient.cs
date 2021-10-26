@@ -17,6 +17,9 @@ namespace BasisTheory.net.Tenants
 
         void Delete(RequestOptions requestOptions = null);
         Task DeleteAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
+
+        TenantUsageReport GetTenantUsageReport(RequestOptions requestOptions = null);
+        Task<TenantUsageReport> GetTenantUsageReportAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
     }
 
     public class TenantClient : BaseClient, ITenantClient
@@ -56,6 +59,16 @@ namespace BasisTheory.net.Tenants
         public async Task DeleteAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             await DeleteAsync($"{BasePath}/self", requestOptions, cancellationToken);
+        }
+
+        public TenantUsageReport GetTenantUsageReport(RequestOptions requestOptions = null)
+        {
+            return Get<TenantUsageReport>($"{BasePath}/self/reports/usage", null, requestOptions);
+        }
+
+        public async Task<TenantUsageReport> GetTenantUsageReportAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await GetAsync<TenantUsageReport>($"{BasePath}/self/reports/usage", null, requestOptions, cancellationToken);
         }
     }
 }
