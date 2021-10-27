@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.8.0...v1.9.0) (2021-10-27)
+
+
+### Features
+
+* Add modified_by and modified_at to base TokenResponse model ([#76](https://github.com/Basis-Theory/basistheory-dotnet/issues/76)) ([a5a5f2f](https://github.com/Basis-Theory/basistheory-dotnet/commit/a5a5f2f4d4d0442057fe0576b766fad1ddc2ae68))
+
 # [1.8.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.7.0...v1.8.0) (2021-10-26)
 
 
