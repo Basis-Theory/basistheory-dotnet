@@ -34,5 +34,13 @@ namespace BasisTheory.net.Common.Responses
         [JsonProperty("created_at", Order = 3)]
         [JsonPropertyName("created_at")]
         public DateTimeOffset? CreatedDate { get; set; }
+
+        [JsonProperty("modified_by", Order = 4)]
+        [JsonPropertyName("modified_by")]
+        public Guid? ModifiedBy { get; set; }
+
+        [JsonProperty("modified_at", Order = 5)]
+        [JsonPropertyName("modified_at")]
+        public DateTimeOffset? ModifiedDate { get; set; }
     }
 }
