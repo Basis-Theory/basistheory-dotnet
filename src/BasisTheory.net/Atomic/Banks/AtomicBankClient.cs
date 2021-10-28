@@ -29,8 +29,11 @@ namespace BasisTheory.net.Atomic.Banks
         Task<AtomicBank> CreateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        AtomicBank Update(AtomicBank atomicBank, RequestOptions requestOptions = null);
-        Task<AtomicBank> UpdateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
+        AtomicBank Update(Guid atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null);
+        AtomicBank Update(string atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null);
+        Task<AtomicBank> UpdateAsync(Guid atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        Task<AtomicBank> UpdateAsync(string atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid atomicBankId, RequestOptions requestOptions = null);
@@ -113,15 +116,26 @@ namespace BasisTheory.net.Atomic.Banks
             return await PostAsync<AtomicBank>(BasePath, atomicBank, requestOptions, cancellationToken);
         }
 
-        public AtomicBank Update(AtomicBank atomicBank, RequestOptions requestOptions = null)
+        public AtomicBank Update(Guid atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null)
         {
-            return Patch<AtomicBank>($"{BasePath}/{atomicBank.Id}", atomicBank, requestOptions);
+            return Update(atomicBankId.ToString(), atomicBank, requestOptions);
         }
 
-        public async Task<AtomicBank> UpdateAsync(AtomicBank atomicBank, RequestOptions requestOptions = null,
+        public AtomicBank Update(string atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null)
+        {
+            return Patch<AtomicBank>($"{BasePath}/{atomicBankId}", atomicBank, requestOptions);
+        }
+
+        public async Task<AtomicBank> UpdateAsync(Guid atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PatchAsync<AtomicBank>($"{BasePath}/{atomicBank.Id}", atomicBank, requestOptions, cancellationToken);
+            return await UpdateAsync(atomicBankId.ToString(), atomicBank, requestOptions, cancellationToken);
+        }
+
+        public async Task<AtomicBank> UpdateAsync(string atomicBankId, AtomicBank atomicBank, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchAsync<AtomicBank>($"{BasePath}/{atomicBankId}", atomicBank, requestOptions, cancellationToken);
         }
 
         public void Delete(Guid atomicBankId, RequestOptions requestOptions = null)
