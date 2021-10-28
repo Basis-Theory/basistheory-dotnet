@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.9.0...v1.10.0) (2021-10-28)
+
+
+### Features
+
+* add AtomicCard and AtomicBank Update methods ([#73](https://github.com/Basis-Theory/basistheory-dotnet/issues/73)) ([4c00b3d](https://github.com/Basis-Theory/basistheory-dotnet/commit/4c00b3d89f2041d0c45cf17f38997e7877c35d22))
+
 # [1.9.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.8.0...v1.9.0) (2021-10-27)
 
 
