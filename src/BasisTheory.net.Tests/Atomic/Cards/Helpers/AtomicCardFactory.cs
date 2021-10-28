@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BasisTheory.net.Atomic.Cards.Entities;
+using BasisTheory.net.Atomic.Cards.Requests;
 using BasisTheory.net.Common.Responses;
 using Bogus;
 
@@ -53,6 +54,19 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
             applyOverrides?.Invoke(list);
 
             return list;
+        }
+
+        public static UpdateAtomicCardRequest UpdateAtomicCardRequest(Action<UpdateAtomicCardRequest> applyOverrides = null)
+        {
+            var request = new UpdateAtomicCardRequest
+            {
+                Card = CardFaker.Generate(),
+                BillingDetails = new BillingDetails()
+            };
+
+            applyOverrides?.Invoke(request);
+
+            return request;
         }
     }
 }

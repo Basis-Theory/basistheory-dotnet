@@ -6,22 +6,29 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Atomic.Cards;
 using BasisTheory.net.Atomic.Cards.Entities;
+using BasisTheory.net.Atomic.Cards.Requests;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
+using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tests.Atomic.Cards.Helpers;
 using BasisTheory.net.Tests.Helpers;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace BasisTheory.net.Tests.Atomic.Cards
 {
     public class UpdateTests : IClassFixture<AtomicCardFixture>
     {
-        readonly AtomicCardFixture _fixture;
+        private readonly AtomicCardFixture _fixture;
+        private readonly UpdateAtomicCardRequest _expectedRequest;
+        private readonly string _expectedResponseJson;
+        private readonly Guid _expectedAtomicCardId;
 
         public UpdateTests(AtomicCardFixture fixture)
         {
             _fixture = fixture;
+            _expectedRequest = AtomicCardFactory.UpdateAtomicCardRequest();
+            _expectedResponseJson = JsonUtility.SerializeObject(AtomicCardFactory.AtomicCard());
+            _expectedAtomicCardId = Guid.NewGuid();
         }
 
         public static IEnumerable<object[]> Methods
@@ -30,30 +37,30 @@ namespace BasisTheory.net.Tests.Atomic.Cards
             {
                 yield return new object[]
                 {
-                    (Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>>)(
-                        async (client, atomicCard, options) =>
-                            await client.UpdateAsync(atomicCard.Id, atomicCard, options)
+                    (Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>>)(
+                        async (client, id, request, options) =>
+                            await client.UpdateAsync(id, request, options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>>)(
-                        async (client, atomicCard, options) =>
-                            await client.UpdateAsync(atomicCard.Id.ToString(), atomicCard, options)
+                    (Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>>)(
+                        async (client, id, request, options) =>
+                            await client.UpdateAsync(id.ToString(), request, options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>>)(
-                        (client, atomicCard, options) =>
-                            Task.FromResult(client.Update(atomicCard.Id, atomicCard, options))
+                    (Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>>)(
+                        (client, id, request, options) =>
+                            Task.FromResult(client.Update(id, request, options))
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>>)(
-                        (client, atomicCard, options) =>
-                            Task.FromResult(client.Update(atomicCard.Id.ToString(), atomicCard, options))
+                    (Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>>)(
+                        (client, id, request, options) =>
+                            Task.FromResult(client.Update(id.ToString(), request, options))
                     )
                 };
             }
@@ -61,67 +68,60 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdate(Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldUpdate(
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
-            var content = AtomicCardFactory.AtomicCard();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
             HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, _expectedResponseJson, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, null);
+            var response = await mut(_fixture.Client, _expectedAtomicCardId, _expectedRequest, null);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+            Assert.Equal(_expectedResponseJson, JsonUtility.SerializeObject(response));
+            Assert.Equal(JsonUtility.SerializeObject(_expectedRequest), await requestMessage?.Content?.ReadAsStringAsync()!);
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
-            Assert.Equal($"/atomic/cards/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/atomic/cards/{_expectedAtomicCardId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldUpdateWithPerRequestApiKey(
-            Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = AtomicCardFactory.AtomicCard();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
             HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, _expectedResponseJson, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, new RequestOptions
+            var response = await mut(_fixture.Client, _expectedAtomicCardId, _expectedRequest, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+            Assert.Equal(_expectedResponseJson, JsonUtility.SerializeObject(response));
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
-            Assert.Equal($"/atomic/cards/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/atomic/cards/{_expectedAtomicCardId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldUpdateWithCorrelationId(
-            Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = AtomicCardFactory.AtomicCard();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
             HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, _expectedResponseJson, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, new RequestOptions
+            var response = await mut(_fixture.Client, _expectedAtomicCardId, _expectedRequest, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+            Assert.Equal(_expectedResponseJson, JsonUtility.SerializeObject(response));
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
-            Assert.Equal($"/atomic/cards/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/atomic/cards/{_expectedAtomicCardId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
@@ -129,16 +129,17 @@ namespace BasisTheory.net.Tests.Atomic.Cards
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldBubbleUpBasisTheoryErrors(
-            Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
-            var expectedSerializedError = JsonConvert.SerializeObject(error);
+            var expectedSerializedError = JsonUtility.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new AtomicCard(), null));
-            var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
+                await Assert.ThrowsAsync<BasisTheoryException>(() =>
+                    mut(_fixture.Client, _expectedAtomicCardId, new UpdateAtomicCardRequest(), null));
+            var actualSerializedError = JsonUtility.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
         }
@@ -146,12 +147,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleEmptyErrorResponse(
-            Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new AtomicCard(), null));
+                await Assert.ThrowsAsync<BasisTheoryException>(() =>
+                    mut(_fixture.Client, _expectedAtomicCardId, new UpdateAtomicCardRequest(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -161,14 +163,15 @@ namespace BasisTheory.net.Tests.Atomic.Cards
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleNonBasisTheoryErrorResponse(
-            Func<IAtomicCardClient, AtomicCard, RequestOptions, Task<AtomicCard>> mut)
+            Func<IAtomicCardClient, Guid, UpdateAtomicCardRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new AtomicCard(), null));
+                await Assert.ThrowsAsync<BasisTheoryException>(() =>
+                    mut(_fixture.Client, _expectedAtomicCardId, new UpdateAtomicCardRequest(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
