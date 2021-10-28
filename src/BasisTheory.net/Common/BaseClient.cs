@@ -93,6 +93,18 @@ namespace BasisTheory.net.Common
             return JsonUtility.DeserializeObject<T>(content);
         }
 
+        protected T Patch<T>(string path, object body, RequestOptions requestOptions)
+        {
+            return this.PatchAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        protected async Task<T> PatchAsync<T>(string path, object body, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
+        {
+            var content = await RequestAsync(HttpMethod.Patch, path, body, requestOptions, cancellationToken);
+            return JsonUtility.DeserializeObject<T>(content);
+        }
+
         protected void Delete(string path, RequestOptions requestOptions)
         {
             this.DeleteAsync(path, requestOptions)

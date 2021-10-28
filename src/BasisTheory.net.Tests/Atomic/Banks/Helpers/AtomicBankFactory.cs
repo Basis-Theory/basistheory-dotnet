@@ -54,5 +54,14 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
 
             return list;
         }
+
+        public static Bank Bank(Action<Bank> applyOverrides = null)
+        {
+            var bank = BankFaker.Generate();
+
+            applyOverrides?.Invoke(bank);
+
+            return bank;
+        }
     }
 }
