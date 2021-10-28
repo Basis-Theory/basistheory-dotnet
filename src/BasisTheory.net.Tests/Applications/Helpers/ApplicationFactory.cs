@@ -14,7 +14,9 @@ namespace BasisTheory.net.Tests.Applications.Helpers
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Key, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
+            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()));
 
