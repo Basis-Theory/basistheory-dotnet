@@ -16,7 +16,9 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ReactorFormula, (_, _) => ReactorFormulaFactory.ReactorFormula())
+            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Configuration, (f, model) =>
                 model.ReactorFormula.Configuration.Select(x => KeyValuePair.Create(x.Name, f.Lorem.Word()))

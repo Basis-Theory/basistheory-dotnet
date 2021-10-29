@@ -43,9 +43,17 @@ namespace BasisTheory.net.ReactorFormulas.Entities
         [JsonPropertyName("request_parameters")]
         public List<ReactorFormulaRequestParameter> RequestParameters { get; set; }
 
+        [JsonProperty("created_by")]
+        [JsonPropertyName("created_by")]
+        public Guid? CreatedBy { get; set; }
+
         [JsonProperty("created_at")]
         [JsonPropertyName("created_at")]
-        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get; set; }
+
+        [JsonProperty("modified_by")]
+        [JsonPropertyName("modified_by")]
+        public Guid? ModifiedBy { get; set; }
 
         [JsonProperty("modified_at")]
         [JsonPropertyName("modified_at")]

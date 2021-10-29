@@ -16,6 +16,8 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.Card, (_, _) => CardFaker.Generate())
             .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.Metadata, (f, _) =>
