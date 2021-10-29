@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.10.0...v1.11.0) (2021-10-29)
+
+
+### Features
+
+* Standardizing audit fields across entities ([#77](https://github.com/Basis-Theory/basistheory-dotnet/issues/77)) ([a8634d3](https://github.com/Basis-Theory/basistheory-dotnet/commit/a8634d309049be767286d3e53d685b80b560daa5))
+
 # [1.10.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.9.0...v1.10.0) (2021-10-28)
 
 
