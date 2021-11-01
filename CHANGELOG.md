@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.11.0...v1.12.0) (2021-11-01)
+
+
+### Features
+
+* add monthly_active_tokens to TenantUsageReport ([#78](https://github.com/Basis-Theory/basistheory-dotnet/issues/78)) ([46b6b70](https://github.com/Basis-Theory/basistheory-dotnet/commit/46b6b709942de8cb8ce8f7c1ed3fc405c8b3e8ae))
+
 # [1.11.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.10.0...v1.11.0) (2021-10-29)
 
 
