@@ -33,6 +33,10 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonProperty("metrics_by_type")]
         [JsonPropertyName("metrics_by_type")]
         public Dictionary<string, TokenTypeMetrics> TokenTypeMetrics { get; set; }
+
+        [JsonProperty("monthly_active_tokens")]
+        [JsonPropertyName("monthly_active_tokens")]
+        public long MonthlyActiveTokens { get; set; }
     }
 
     public class TokenTypeMetrics
