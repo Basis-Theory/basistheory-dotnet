@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.12.0...v1.13.0) (2021-11-01)
+
+
+### Features
+
+* remove enrichment properties from tenant usage report ([#79](https://github.com/Basis-Theory/basistheory-dotnet/issues/79)) ([cf4258f](https://github.com/Basis-Theory/basistheory-dotnet/commit/cf4258f99ff35d87472d85e083e98ec89383861b))
+
 # [1.12.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.11.0...v1.12.0) (2021-11-01)
 
 
