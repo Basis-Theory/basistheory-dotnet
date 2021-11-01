@@ -15,6 +15,7 @@ namespace BasisTheory.net.Tests.Tenants.Helpers
             .RuleFor(x => x.NumberOfEnrichments, f => f.Random.Long())
             .RuleFor(x => x.FreeEnrichedTokenLimit, f => f.Random.Long())
             .RuleFor(x => x.NumberOfEnrichedTokens, f => f.Random.Long())
+            .RuleFor(x => x.MonthlyActiveTokens, f => f.Random.Long())
             .RuleFor(x => x.TokenTypeMetrics, f => new Dictionary<string, TokenTypeMetrics>
             {
                 {
