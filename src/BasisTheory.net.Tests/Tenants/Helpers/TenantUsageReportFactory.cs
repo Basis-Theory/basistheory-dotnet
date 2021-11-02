@@ -11,6 +11,7 @@ namespace BasisTheory.net.Tests.Tenants.Helpers
             .RuleFor(x => x.TokenReport, _ => TokenReportFaker.Generate());
 
         public static readonly Faker<TokenReport> TokenReportFaker = new Faker<TokenReport>()
+            .RuleFor(x => x.IncludedMonthlyActiveTokens, f => f.Random.Long())
             .RuleFor(x => x.MonthlyActiveTokens, f => f.Random.Long())
             .RuleFor(x => x.TokenTypeMetrics, f => new Dictionary<string, TokenTypeMetrics>
             {
