@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.13.0...v1.14.0) (2021-11-02)
+
+
+### Features
+
+* add included monthly active tokens field to tenant usage report ([#81](https://github.com/Basis-Theory/basistheory-dotnet/issues/81)) ([2a76e11](https://github.com/Basis-Theory/basistheory-dotnet/commit/2a76e11f1dec676cc49f29ce96900276eaef315d))
+
 # [1.13.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.12.0...v1.13.0) (2021-11-01)
 
 
