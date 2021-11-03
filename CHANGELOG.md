@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.14.0...v1.15.0) (2021-11-03)
+
+
+### Features
+
+* add actor_id and actor_type to Log response model ([#82](https://github.com/Basis-Theory/basistheory-dotnet/issues/82)) ([537067a](https://github.com/Basis-Theory/basistheory-dotnet/commit/537067a5e8cfd597c91057cb9518fa1ecd813c72))
+
 # [1.14.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.13.0...v1.14.0) (2021-11-02)
 
 
