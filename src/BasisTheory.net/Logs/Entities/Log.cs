@@ -10,9 +10,13 @@ namespace BasisTheory.net.Logs.Entities
         [JsonPropertyName("tenant_id")]
         public Guid TenantId { get; set; }
 
-        [JsonProperty("application_id")]
-        [JsonPropertyName("application_id")]
-        public Guid? ApplicationId { get; set; }
+        [JsonProperty("actor_id")]
+        [JsonPropertyName("actor_id")]
+        public Guid? ActorId { get; set; }
+
+        [JsonProperty("actor_type")]
+        [JsonPropertyName("actor_type")]
+        public string ActorType { get; set; }
 
         [JsonProperty("entity_type")]
         [JsonPropertyName("entity_type")]
