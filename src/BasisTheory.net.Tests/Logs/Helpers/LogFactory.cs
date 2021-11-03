@@ -10,7 +10,8 @@ namespace BasisTheory.net.Tests.Logs.Helpers
     {
         public static readonly Faker<Log> LogFaker = new Faker<Log>()
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
-            .RuleFor(a => a.ApplicationId, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.ActorId, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.ActorType, f => f.Random.Word())
             .RuleFor(a => a.EntityType, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.EntityId, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Operation, (f, _) => f.Lorem.Word())
