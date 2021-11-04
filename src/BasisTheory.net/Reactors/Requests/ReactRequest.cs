@@ -14,9 +14,5 @@ namespace BasisTheory.net.Reactors.Requests
         [JsonProperty("request_parameters")]
         [JsonPropertyName("request_parameters")]
         public Dictionary<string, object> RequestParameters { get; set; }
-
-        [JsonProperty("metadata")]
-        [JsonPropertyName("metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
     }
 }

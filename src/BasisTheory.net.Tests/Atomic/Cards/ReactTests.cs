@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using BasisTheory.net.Atomic.Cards;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
+using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
 using BasisTheory.net.Tests.Atomic.Cards.Helpers;
 using BasisTheory.net.Tests.Helpers;
 using BasisTheory.net.Tests.Reactors.Helpers;
-using BasisTheory.net.Tests.Tokens.Helpers;
-using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -33,25 +32,25 @@ namespace BasisTheory.net.Tests.Atomic.Cards
             {
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicCardId, request, options) => await client.ReactAsync(atomicCardId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicCardId, request, options) => await client.ReactAsync(atomicCardId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.React(atomicCardId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.React(atomicCardId.ToString(), request, options))
                     )
                 };
@@ -60,12 +59,12 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldReact(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldReact(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var atomicCardId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -81,13 +80,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
             var atomicCardId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -106,13 +105,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var atomicCardId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -132,7 +131,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -147,7 +146,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -160,7 +159,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
