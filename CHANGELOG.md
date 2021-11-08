@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.15.0...v1.16.0) (2021-11-08)
+
+
+### Features
+
+* use react response schema and remove get reaction by id ([#83](https://github.com/Basis-Theory/basistheory-dotnet/issues/83)) ([ce665cb](https://github.com/Basis-Theory/basistheory-dotnet/commit/ce665cb6bcaa77ca26a1c01f10c33b92de44f174))
+
 # [1.15.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.14.0...v1.15.0) (2021-11-03)
 
 
