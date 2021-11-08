@@ -5,6 +5,7 @@ using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
 using BasisTheory.net.Tests.ReactorFormulas.Helpers;
+using BasisTheory.net.Tests.Tokens.Helpers;
 using Bogus;
 
 namespace BasisTheory.net.Tests.Reactors.Helpers
@@ -34,14 +35,15 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => ReactorFaker.Generate()).ToList());
 
+        public static readonly Faker<ReactResponse> ReactResponseFaker = new Faker<ReactResponse>()
+            .RuleFor(a => a.Tokens, (_, _) => TokenFactory.Token())
+            .RuleFor(t => t.Raw, (_, _) => TokenFactory.Token());
+
         public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
             .RuleFor(a => a.ReactorId, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.RequestParameters, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
-                    .ToDictionary(x => x.Key, x => (object) x.Value))
-            .RuleFor(t => t.Metadata, (f, _) =>
-                f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
-                    .ToDictionary(x => x.Key, x => x.Value));
+                    .ToDictionary(x => x.Key, x => (object) x.Value));
 
         public static Reactor Reactor(Action<Reactor> applyOverrides = null)
         {
@@ -59,6 +61,15 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             applyOverrides?.Invoke(list);
 
             return list;
+        }
+
+        public static ReactResponse ReactResponse(Action<ReactResponse> applyOverrides = null)
+        {
+            var response = ReactResponseFaker.Generate();
+
+            applyOverrides?.Invoke(response);
+
+            return response;
         }
 
         public static ReactRequest ReactRequest(Action<ReactRequest> applyOverrides = null)

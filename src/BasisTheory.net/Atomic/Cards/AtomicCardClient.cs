@@ -7,8 +7,8 @@ using BasisTheory.net.Atomic.Cards.Requests;
 using BasisTheory.net.Common;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
+using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
-using BasisTheory.net.Tokens.Entities;
 
 namespace BasisTheory.net.Atomic.Cards
 {
@@ -43,21 +43,12 @@ namespace BasisTheory.net.Atomic.Cards
         Task DeleteAsync(string atomicCardId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Token React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        Token React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        ReactResponse React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
+        ReactResponse React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
+        Task<ReactResponse> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        Task<ReactResponse> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-
-        Token GetReactionById(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null);
-        Token GetReactionById(string atomicCardId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null);
-        Task<Token> GetReactionByIdAsync(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
-        Task<Token> GetReactionByIdAsync(string atomicCardId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
     }
 
     public class AtomicCardClient : BaseClient, IAtomicCardClient
@@ -159,51 +150,26 @@ namespace BasisTheory.net.Atomic.Cards
             await base.DeleteAsync($"{BasePath}/{atomicCardId}", requestOptions, cancellationToken);
         }
 
-        public Token React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
         {
             return React(atomicCardId.ToString(), request, requestOptions);
         }
 
-        public Token React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
         {
-            return Post<Token>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
+            return Post<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
         }
 
-        public async Task<Token> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await ReactAsync(atomicCardId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<Token> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>($"{BasePath}/{atomicCardId}/react", request, requestOptions, cancellationToken);
-        }
-
-        public Token GetReactionById(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null)
-        {
-            return GetReactionById(atomicCardId.ToString(), reactionTokenId.ToString(), request, requestOptions);
-        }
-
-        public Token GetReactionById(string atomicCardId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null)
-        {
-            return Get<Token>($"{BasePath}/{atomicCardId}/reactions/{reactionTokenId}", request, requestOptions);
-        }
-
-        public async Task<Token> GetReactionByIdAsync(Guid atomicCardId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return await GetReactionByIdAsync(atomicCardId.ToString(), reactionTokenId.ToString(), request, requestOptions, cancellationToken);
-        }
-
-        public async Task<Token> GetReactionByIdAsync(string atomicCardId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return await GetAsync<Token>($"{BasePath}/{atomicCardId}/reactions/{reactionTokenId}", request, requestOptions,
-                cancellationToken);
+            return await PostAsync<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions, cancellationToken);
         }
     }
 }

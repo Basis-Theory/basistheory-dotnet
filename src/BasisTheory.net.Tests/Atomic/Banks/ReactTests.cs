@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using BasisTheory.net.Atomic.Banks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
+using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
 using BasisTheory.net.Tests.Atomic.Banks.Helpers;
 using BasisTheory.net.Tests.Helpers;
 using BasisTheory.net.Tests.Reactors.Helpers;
-using BasisTheory.net.Tests.Tokens.Helpers;
-using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -33,25 +32,25 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             {
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicBankId, request, options) => await client.ReactAsync(atomicBankId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicBankId, request, options) => await client.ReactAsync(atomicBankId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicBankId, request, options) => Task.FromResult(client.React(atomicBankId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>>)(
+                    (Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicBankId, request, options) => Task.FromResult(client.React(atomicBankId.ToString(), request, options))
                     )
                 };
@@ -60,12 +59,12 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldReact(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldReact(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var atomicBankId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -81,13 +80,13 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
             var atomicBankId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -106,13 +105,13 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var atomicBankId = Guid.NewGuid();
             var request = ReactorFactory.ReactRequest();
 
-            var content = TokenFactory.Token();
+            var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -132,7 +131,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -147,7 +146,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -160,7 +159,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicBankClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = Guid.NewGuid().ToString();
 

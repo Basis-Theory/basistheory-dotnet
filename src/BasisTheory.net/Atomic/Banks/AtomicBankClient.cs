@@ -7,8 +7,8 @@ using BasisTheory.net.Atomic.Banks.Requests;
 using BasisTheory.net.Common;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
+using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
-using BasisTheory.net.Tokens.Entities;
 
 namespace BasisTheory.net.Atomic.Banks
 {
@@ -43,21 +43,12 @@ namespace BasisTheory.net.Atomic.Banks
         Task DeleteAsync(string atomicBankId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Token React(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
-        Token React(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+        ReactResponse React(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
+        ReactResponse React(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null);
+        Task<ReactResponse> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+        Task<ReactResponse> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-
-        Token GetReactionById(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request,
-            RequestOptions requestOptions = null);
-        Token GetReactionById(string atomicBankId, string reactionTokenId, ReactionGetByIdRequest request,
-            RequestOptions requestOptions = null);
-        Task<Token> GetReactionByIdAsync(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
-        Task<Token> GetReactionByIdAsync(string atomicBankId, string reactionTokenId, ReactionGetByIdRequest request,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
     }
 
     public class AtomicBankClient : BaseClient, IAtomicBankClient
@@ -158,51 +149,26 @@ namespace BasisTheory.net.Atomic.Banks
             await base.DeleteAsync($"{BasePath}/{atomicBankId}", requestOptions, cancellationToken);
         }
 
-        public Token React(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
         {
             return React(atomicBankId.ToString(), request, requestOptions);
         }
 
-        public Token React(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null)
         {
-            return Post<Token>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
+            return Post<ReactResponse>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
         }
 
-        public async Task<Token> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(Guid atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await ReactAsync(atomicBankId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<Token> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(string atomicBankId, ReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Token>($"{BasePath}/{atomicBankId}/react", request, requestOptions, cancellationToken);
-        }
-
-        public Token GetReactionById(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null)
-        {
-            return GetReactionById(atomicBankId.ToString(), reactionTokenId.ToString(), request, requestOptions);
-        }
-
-        public Token GetReactionById(string atomicBankId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null)
-        {
-            return Get<Token>($"{BasePath}/{atomicBankId}/reactions/{reactionTokenId}", request, requestOptions);
-        }
-
-        public async Task<Token> GetReactionByIdAsync(Guid atomicBankId, Guid reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return await GetReactionByIdAsync(atomicBankId.ToString(), reactionTokenId.ToString(), request, requestOptions, cancellationToken);
-        }
-
-        public async Task<Token> GetReactionByIdAsync(string atomicBankId, string reactionTokenId, ReactionGetByIdRequest request = null,
-            RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return await GetAsync<Token>($"{BasePath}/{atomicBankId}/reactions/{reactionTokenId}", request, requestOptions,
-                cancellationToken);
+            return await PostAsync<ReactResponse>($"{BasePath}/{atomicBankId}/react", request, requestOptions, cancellationToken);
         }
     }
 }
