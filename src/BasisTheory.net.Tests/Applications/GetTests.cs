@@ -19,11 +19,11 @@ namespace BasisTheory.net.Tests.Applications
 {
     public class GetTests : IClassFixture<ApplicationFixture>
     {
-        readonly ApplicationFixture fixture;
+        private readonly ApplicationFixture _fixture;
 
         public GetTests(ApplicationFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
         }
 
         public static IEnumerable<object[]> Methods
@@ -54,14 +54,14 @@ namespace BasisTheory.net.Tests.Applications
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, null);
+            var response = await mut(_fixture.Client, null, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -76,9 +76,9 @@ namespace BasisTheory.net.Tests.Applications
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ApplicationGetRequest
+            var response = await mut(_fixture.Client, new ApplicationGetRequest
             {
                 ApplicationIds = new List<Guid> { applicationId1, applicationId2 }
             }, null);
@@ -86,7 +86,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/applications?id={applicationId1}&id={applicationId2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -94,16 +94,16 @@ namespace BasisTheory.net.Tests.Applications
         public async Task ShouldGetWithPagination(
             Func<IApplicationClient, ApplicationGetRequest, RequestOptions, Task<PaginatedList<Application>>> mut)
         {
-            var size = fixture.Faker.Random.Int(1, 20);
-            var page = fixture.Faker.Random.Int(1, 20);
+            var size = _fixture.Faker.Random.Int(1, 20);
+            var page = _fixture.Faker.Random.Int(1, 20);
 
             var content = ApplicationFactory.PaginatedApplications();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ApplicationGetRequest
+            var response = await mut(_fixture.Client, new ApplicationGetRequest
             {
                 PageSize = size,
                 Page = page
@@ -112,7 +112,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/applications?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -121,16 +121,16 @@ namespace BasisTheory.net.Tests.Applications
             Func<IApplicationClient, ApplicationGetRequest, RequestOptions, Task<PaginatedList<Application>>> mut)
         {
             var applicationId = Guid.NewGuid();
-            var size = fixture.Faker.Random.Int(1, 20);
-            var page = fixture.Faker.Random.Int(1, 20);
+            var size = _fixture.Faker.Random.Int(1, 20);
+            var page = _fixture.Faker.Random.Int(1, 20);
 
             var content = ApplicationFactory.PaginatedApplications();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ApplicationGetRequest
+            var response = await mut(_fixture.Client, new ApplicationGetRequest
             {
                 ApplicationIds = new List<Guid> { applicationId },
                 PageSize = size,
@@ -141,7 +141,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/applications?page={page}&size={size}&id={applicationId}",
                 requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -155,9 +155,9 @@ namespace BasisTheory.net.Tests.Applications
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(_fixture.Client, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -179,9 +179,9 @@ namespace BasisTheory.net.Tests.Applications
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(_fixture.Client, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -189,7 +189,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
@@ -201,9 +201,9 @@ namespace BasisTheory.net.Tests.Applications
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -214,9 +214,9 @@ namespace BasisTheory.net.Tests.Applications
         public async Task ShouldHandleEmptyErrorResponse(
             Func<IApplicationClient, ApplicationGetRequest, RequestOptions, Task<PaginatedList<Application>>> mut)
         {
-            fixture.SetupHandler(HttpStatusCode.Forbidden);
+            _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -230,9 +230,9 @@ namespace BasisTheory.net.Tests.Applications
         {
             var error = Guid.NewGuid().ToString();
 
-            fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

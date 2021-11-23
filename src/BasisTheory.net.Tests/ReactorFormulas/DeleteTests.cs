@@ -16,11 +16,11 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 {
     public class DeleteTests : IClassFixture<ReactorFormulaFixture>
     {
-        readonly ReactorFormulaFixture fixture;
+        private readonly ReactorFormulaFixture _fixture;
 
         public DeleteTests(ReactorFormulaFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
         }
 
         public static IEnumerable<object[]> Methods
@@ -61,13 +61,13 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var reactorFormulaId = Guid.NewGuid();
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, reactorFormulaId, null);
+            await mut(_fixture.Client, reactorFormulaId, null);
 
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal($"/reactor-formulas/{reactorFormulaId}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -79,9 +79,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var reactorFormulaId = Guid.NewGuid();
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, reactorFormulaId, new RequestOptions
+            await mut(_fixture.Client, reactorFormulaId, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -100,16 +100,16 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var reactorFormulaId = Guid.NewGuid();
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.NoContent, null, (message, _) => requestMessage = message);
 
-            await mut(fixture.Client, reactorFormulaId, new RequestOptions
+            await mut(_fixture.Client, reactorFormulaId, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal($"/reactor-formulas/{reactorFormulaId}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
@@ -120,9 +120,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -132,9 +132,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleEmptyErrorResponse(Func<IReactorFormulaClient, Guid, RequestOptions, Task> mut)
         {
-            fixture.SetupHandler(HttpStatusCode.Forbidden);
+            _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -147,9 +147,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             var error = Guid.NewGuid().ToString();
 
-            fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

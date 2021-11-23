@@ -14,6 +14,10 @@ namespace BasisTheory.net.Tokens
 {
     public interface ITokenClient
     {
+        dynamic Tokenize(dynamic tokens, RequestOptions requestOptions = null);
+        Task<dynamic> TokenizeAsync(dynamic tokens, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
         Token GetById(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null);
         Token GetById(string tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null);
         Task<Token> GetByIdAsync(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null,
@@ -83,6 +87,17 @@ namespace BasisTheory.net.Tokens
         public TokenClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
             base(apiKey, httpClient, apiBase)
         {
+        }
+
+        public dynamic Tokenize(dynamic tokens, RequestOptions requestOptions = null)
+        {
+            return Post<dynamic>("tokenize", tokens, requestOptions);
+        }
+
+        public async Task<dynamic> TokenizeAsync(dynamic tokens, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PostAsync<dynamic>("tokenize", tokens, requestOptions, cancellationToken);
         }
 
         public Token GetById(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null)

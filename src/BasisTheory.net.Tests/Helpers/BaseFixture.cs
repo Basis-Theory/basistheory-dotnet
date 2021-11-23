@@ -13,15 +13,15 @@ namespace BasisTheory.net.Tests.Helpers
     {
         public readonly Faker Faker;
         public readonly string ApiKey;
-        public readonly Mock<HttpMessageHandler> MessageHandler;
-        public readonly HttpClient HttpClient;
+        private readonly Mock<HttpMessageHandler> _messageHandler;
+        protected readonly HttpClient HttpClient;
 
-        public BaseFixture()
+        protected BaseFixture()
         {
             Faker = new Faker();
             ApiKey = Guid.NewGuid().ToString();
-            MessageHandler = new Mock<HttpMessageHandler>();
-            HttpClient = new HttpClient(MessageHandler.Object)
+            _messageHandler = new Mock<HttpMessageHandler>();
+            HttpClient = new HttpClient(_messageHandler.Object)
             {
                 BaseAddress = new Uri("http://localhost/")
             };
@@ -43,7 +43,7 @@ namespace BasisTheory.net.Tests.Helpers
                     Content = new StringContent(content)
                 };
 
-            var returnResult = MessageHandler.Protected()
+            var returnResult = _messageHandler.Protected()
                 .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(httpResponseMessage);

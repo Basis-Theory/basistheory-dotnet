@@ -52,18 +52,18 @@ namespace BasisTheory.net.Tests.Encryption
             public string Provider => "INMEMORY";
             public string Algorithm => "RSA";
 
-            private readonly RSA RSAKey = RSA.Create();
+            private readonly RSA _rsaKey = RSA.Create();
 
             public Task<string> EncryptAsync(string providerKeyId, string plaintext,
                 CancellationToken cancellationToken = default)
             {
-                return Task.FromResult(RSAKey.Encrypt(plaintext.ToBytes(), RSAEncryptionPadding.Pkcs1).ToBase64String());
+                return Task.FromResult(_rsaKey.Encrypt(plaintext.ToBytes(), RSAEncryptionPadding.Pkcs1).ToBase64String());
             }
 
             public Task<string> DecryptAsync(string providerKeyId, string ciphertext,
                 CancellationToken cancellationToken = default)
             {
-                return Task.FromResult(RSAKey.Decrypt(ciphertext.FromBase64String(), RSAEncryptionPadding.Pkcs1).ToUTF8String());
+                return Task.FromResult(_rsaKey.Decrypt(ciphertext.FromBase64String(), RSAEncryptionPadding.Pkcs1).ToUTF8String());
             }
         }
     }

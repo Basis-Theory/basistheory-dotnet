@@ -14,13 +14,13 @@ namespace BasisTheory.net.Tests.Applications.Helpers
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Key, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
-            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()));
 
-        public static readonly Faker<PaginatedList<Application>> PagintedListFaker = new Faker<PaginatedList<Application>>()
+        public static readonly Faker<PaginatedList<Application>> PaginatedListFaker = new Faker<PaginatedList<Application>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
@@ -41,7 +41,7 @@ namespace BasisTheory.net.Tests.Applications.Helpers
 
         public static PaginatedList<Application> PaginatedApplications(Action<PaginatedList<Application>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 

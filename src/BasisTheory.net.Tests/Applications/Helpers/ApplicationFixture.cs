@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Applications.Helpers
 
         public ApplicationFixture()
         {
-            Client = new ApplicationClient(apiKey: ApiKey, httpClient: HttpClient);
+            Client = new ApplicationClient(ApiKey, HttpClient);
         }
     }
 }

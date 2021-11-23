@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Logs.Helpers
 
         public LogFixture()
         {
-            Client = new LogClient(apiKey: ApiKey, httpClient: HttpClient);
+            Client = new LogClient(ApiKey, HttpClient);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.Bank, (_, _) => BankFaker.Generate())
             .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
@@ -27,7 +27,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
             .RuleFor(a => a.RoutingNumber, (f, _) => f.Finance.RoutingNumber())
             .RuleFor(a => a.AccountNumber, (f, _) => f.Finance.Account());
 
-        public static readonly Faker<PaginatedList<AtomicBank>> PagintedListFaker = new Faker<PaginatedList<AtomicBank>>()
+        public static readonly Faker<PaginatedList<AtomicBank>> PaginatedListFaker = new Faker<PaginatedList<AtomicBank>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
@@ -48,7 +48,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
 
         public static PaginatedList<AtomicBank> PaginatedBanks(Action<PaginatedList<AtomicBank>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 

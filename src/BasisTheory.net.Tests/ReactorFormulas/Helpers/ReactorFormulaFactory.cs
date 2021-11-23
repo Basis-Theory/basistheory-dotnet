@@ -17,9 +17,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas.Helpers
             .RuleFor(a => a.SourceTokenType, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Icon, (f, _) => f.Random.Hash())
             .RuleFor(a => a.Code, (f, _) => f.Lorem.Paragraph())
-            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Configuration, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => ReactorFormulaConfigurationFaker.Generate()))

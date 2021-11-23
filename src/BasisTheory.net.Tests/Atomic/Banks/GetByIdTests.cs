@@ -18,7 +18,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 {
     public class GetByIdTests : IClassFixture<AtomicBankFixture>
     {
-        readonly AtomicBankFixture _fixture;
+        private readonly AtomicBankFixture _fixture;
 
         public GetByIdTests(AtomicBankFixture fixture)
         {

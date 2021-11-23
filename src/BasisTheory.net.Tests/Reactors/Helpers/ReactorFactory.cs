@@ -17,15 +17,15 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ReactorFormula, (_, _) => ReactorFormulaFactory.ReactorFormula())
-            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Configuration, (f, model) =>
                 model.ReactorFormula.Configuration.Select(x => KeyValuePair.Create(x.Name, f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value));
 
-        public static readonly Faker<PaginatedList<Reactor>> PagintedListFaker = new Faker<PaginatedList<Reactor>>()
+        public static readonly Faker<PaginatedList<Reactor>> PaginatedListFaker = new Faker<PaginatedList<Reactor>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
@@ -56,7 +56,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
 
         public static PaginatedList<Reactor> PaginatedReactors(Action<PaginatedList<Reactor>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 

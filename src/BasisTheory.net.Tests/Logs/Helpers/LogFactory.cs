@@ -18,7 +18,7 @@ namespace BasisTheory.net.Tests.Logs.Helpers
             .RuleFor(a => a.Message, (f, _) => f.Lorem.Sentence())
             .RuleFor(a => a.CreatedDate, (_, _) => DateTimeOffset.UtcNow);
 
-        public static readonly Faker<PaginatedList<Log>> PagintedListFaker = new Faker<PaginatedList<Log>>()
+        public static readonly Faker<PaginatedList<Log>> PaginatedListFaker = new Faker<PaginatedList<Log>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
@@ -28,18 +28,9 @@ namespace BasisTheory.net.Tests.Logs.Helpers
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => LogFaker.Generate()).ToList());
 
-        public static Log Log(Action<Log> applyOverrides = null)
-        {
-            var log = LogFaker.Generate();
-
-            applyOverrides?.Invoke(log);
-
-            return log;
-        }
-
         public static PaginatedList<Log> PaginatedLogs(Action<PaginatedList<Log>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 

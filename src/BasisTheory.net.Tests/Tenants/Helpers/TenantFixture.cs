@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Tenants.Helpers
 
         public TenantFixture()
         {
-            Client = new TenantClient(apiKey: ApiKey, httpClient: HttpClient);
+            Client = new TenantClient(ApiKey, HttpClient);
         }
     }
 }

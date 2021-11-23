@@ -16,7 +16,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 {
     public class DeleteTests : IClassFixture<AtomicCardFixture>
     {
-        readonly AtomicCardFixture _fixture;
+        private readonly AtomicCardFixture _fixture;
 
         public DeleteTests(AtomicCardFixture fixture)
         {
