@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Encryption.Entities;
