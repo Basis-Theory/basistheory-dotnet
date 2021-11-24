@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.17.0...v1.18.0) (2021-11-24)
+
+
+### Features
+
+* break tokenize endpoint out to separate client ([#85](https://github.com/Basis-Theory/basistheory-dotnet/issues/85)) ([32d015c](https://github.com/Basis-Theory/basistheory-dotnet/commit/32d015c458bb240b402a91e14ea3181869a32be0))
+
 # [1.17.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.16.0...v1.17.0) (2021-11-24)
 
 
