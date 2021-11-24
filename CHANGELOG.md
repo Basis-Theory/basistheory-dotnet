@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.16.0...v1.17.0) (2021-11-24)
+
+
+### Features
+
+* add tokenize method and remove billing details ([#84](https://github.com/Basis-Theory/basistheory-dotnet/issues/84)) ([4a15f50](https://github.com/Basis-Theory/basistheory-dotnet/commit/4a15f503a021a24ddf92de4a465adab384668780))
+
 # [1.16.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.15.0...v1.16.0) (2021-11-08)
 
 
