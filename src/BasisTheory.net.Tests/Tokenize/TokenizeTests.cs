@@ -8,13 +8,14 @@ using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Tests.Helpers;
 using BasisTheory.net.Tests.Tokens.Helpers;
+using BasisTheory.net.Tokenize;
 using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Tokens;
+namespace BasisTheory.net.Tests.Tokenize;
 
 public class TokenizeTests : IClassFixture<TokenFixture>
 {
@@ -31,13 +32,13 @@ public class TokenizeTests : IClassFixture<TokenFixture>
         {
             yield return new object []
             {
-                (Func<ITokenClient, dynamic, RequestOptions, Task<JToken>>)(
+                (Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>>)(
                     async (client, tokens, options) => await client.TokenizeAsync(tokens, options)
                 )
             };
             yield return new object []
             {
-                (Func<ITokenClient, dynamic, RequestOptions, Task<JToken>>)(
+                (Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>>)(
                     (client, tokens, options) => Task.FromResult((JToken) client.Tokenize(tokens, options))
                 )
             };

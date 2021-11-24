@@ -48,7 +48,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Checks", "Checks", "{FD793053-73FF-411D-9AE1-78CB1EA11AE3}"
 ProjectSection(SolutionItems) = preProject
 	..\scripts\checks\dockercheck.sh = ..\scripts\checks\dockercheck.sh
-	..\scripts\checks\dockercomposecheck.sh = ..\scripts\checks\dockercomposecheck.sh
 	..\scripts\checks\dotnetcheck.sh = ..\scripts\checks\dotnetcheck.sh
 EndProjectSection
 EndProject
