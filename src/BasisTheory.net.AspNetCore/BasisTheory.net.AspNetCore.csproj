@@ -16,7 +16,7 @@
     <ItemGroup>
       <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>

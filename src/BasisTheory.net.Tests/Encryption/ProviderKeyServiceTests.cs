@@ -12,8 +12,8 @@ namespace BasisTheory.net.Tests.Encryption
 {
     public class ProviderKeyServiceTests
     {
-        private const string provider = "INMEMORY";
-        private const string algorithm = "RSA";
+        private const string Provider = "INMEMORY";
+        private const string Algorithm = "RSA";
 
         private readonly IAppCache _cache;
         private readonly Mock<IProviderKeyFactory> _providerKeyFactory;
@@ -24,8 +24,8 @@ namespace BasisTheory.net.Tests.Encryption
             _cache = new CachingService();
 
             _providerKeyFactory = new Mock<IProviderKeyFactory>();
-            _providerKeyFactory.Setup(x => x.Algorithm).Returns(algorithm);
-            _providerKeyFactory.Setup(x => x.Provider).Returns(provider);
+            _providerKeyFactory.Setup(x => x.Algorithm).Returns(Algorithm);
+            _providerKeyFactory.Setup(x => x.Provider).Returns(Provider);
 
             _providerKeyService = new ProviderKeyService(_cache, new [] { _providerKeyFactory.Object });
         }
@@ -43,7 +43,7 @@ namespace BasisTheory.net.Tests.Encryption
 
             _providerKeyFactory.Setup(x => x.GetKeyByKeyIdAsync(keyId, It.IsAny<CancellationToken>())).ReturnsAsync(expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, provider, algorithm);
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, Provider, Algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
@@ -63,7 +63,7 @@ namespace BasisTheory.net.Tests.Encryption
 
             _cache.Add(cacheKey, expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, provider, algorithm);
+            var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(keyId, Provider, Algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
@@ -88,8 +88,8 @@ namespace BasisTheory.net.Tests.Encryption
             var providerKey = await _providerKeyService.GetKeyByKeyIdAsync(new EncryptionKey
             {
                 Key = keyId,
-                Provider = provider,
-                Algorithm = algorithm
+                Provider = Provider,
+                Algorithm = Algorithm
             });
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
@@ -101,19 +101,19 @@ namespace BasisTheory.net.Tests.Encryption
         public async Task ShouldRetrieveKeyByNameFromCache()
         {
             var keyName = Guid.NewGuid().ToString();
-            var cacheKey = $"providerkeys_{keyName}_{provider}_{algorithm}";
+            var cacheKey = $"providerkeys_{keyName}_{Provider}_{Algorithm}";
 
             var expectedProviderKey = new ProviderEncryptionKey
             {
                 KeyId = Guid.NewGuid().ToString(),
                 Name = keyName,
-                Provider = provider,
-                Algorithm = algorithm
+                Provider = Provider,
+                Algorithm = Algorithm
             };
 
             _cache.Add(cacheKey, expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, provider, algorithm);
+            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, Provider, Algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);
@@ -126,20 +126,20 @@ namespace BasisTheory.net.Tests.Encryption
         public async Task ShouldCreateAndSaveKeyIfNotExists()
         {
             var keyName = Guid.NewGuid().ToString();
-            var cacheKey = $"providerkeys_{keyName}_{provider}_{algorithm}";
+            var cacheKey = $"providerkeys_{keyName}_{Provider}_{Algorithm}";
 
             var expectedProviderKey = new ProviderEncryptionKey
             {
                 KeyId = Guid.NewGuid().ToString(),
                 Name = keyName,
-                Provider = provider,
-                Algorithm = algorithm
+                Provider = Provider,
+                Algorithm = Algorithm
             };
 
             _providerKeyFactory.Setup(x => x.GetOrCreateKeyAsync(keyName, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expectedProviderKey);
 
-            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, provider, algorithm);
+            var providerKey = await _providerKeyService.GetOrCreateKeyAsync(keyName, Provider, Algorithm);
             Assert.Equal(expectedProviderKey.KeyId, providerKey.KeyId);
 
             var cachedProviderKey = await _cache.GetAsync<ProviderEncryptionKey>(cacheKey);

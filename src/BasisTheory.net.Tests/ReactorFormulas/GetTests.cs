@@ -19,11 +19,11 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 {
     public class GetTests : IClassFixture<ReactorFormulaFixture>
     {
-        readonly ReactorFormulaFixture fixture;
+        private readonly ReactorFormulaFixture _fixture;
 
         public GetTests(ReactorFormulaFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
         }
 
         public static IEnumerable<object[]> Methods
@@ -54,14 +54,14 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, null);
+            var response = await mut(_fixture.Client, null, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -69,15 +69,15 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         public async Task ShouldGetByName(
             Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
         {
-            var name = fixture.Faker.Lorem.Word();
+            var name = _fixture.Faker.Lorem.Word();
 
             var content = ReactorFormulaFactory.PaginatedReactorFormulas();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ReactorFormulaGetRequest
+            var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
             {
                 Name = name
             }, null);
@@ -85,7 +85,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?name={name}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -93,15 +93,15 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         public async Task ShouldGetBySourceTokenType(
             Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
         {
-            var sourceTokenType = fixture.Faker.Lorem.Word();
+            var sourceTokenType = _fixture.Faker.Lorem.Word();
 
             var content = ReactorFormulaFactory.PaginatedReactorFormulas();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ReactorFormulaGetRequest
+            var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
             {
                 SourceTokenType = sourceTokenType
             }, null);
@@ -109,7 +109,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -117,16 +117,16 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         public async Task ShouldGetWithPagination(
             Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
         {
-            var size = fixture.Faker.Random.Int(1, 20);
-            var page = fixture.Faker.Random.Int(1, 20);
+            var size = _fixture.Faker.Random.Int(1, 20);
+            var page = _fixture.Faker.Random.Int(1, 20);
 
             var content = ReactorFormulaFactory.PaginatedReactorFormulas();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ReactorFormulaGetRequest
+            var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
             {
                 PageSize = size,
                 Page = page
@@ -135,7 +135,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -143,18 +143,18 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         public async Task ShouldGetWithAllParameters(
             Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
         {
-            var name = fixture.Faker.Lorem.Word();
-            var sourceTokenType = fixture.Faker.Lorem.Word();
-            var size = fixture.Faker.Random.Int(1, 20);
-            var page = fixture.Faker.Random.Int(1, 20);
+            var name = _fixture.Faker.Lorem.Word();
+            var sourceTokenType = _fixture.Faker.Lorem.Word();
+            var size = _fixture.Faker.Random.Int(1, 20);
+            var page = _fixture.Faker.Random.Int(1, 20);
 
             var content = ReactorFormulaFactory.PaginatedReactorFormulas();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, new ReactorFormulaGetRequest
+            var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
             {
                 Name = name,
                 SourceTokenType = sourceTokenType,
@@ -166,7 +166,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?page={page}&size={size}&name={name}&source_token_type={sourceTokenType}",
                 requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 
         [Theory]
@@ -180,9 +180,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(_fixture.Client, null, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -204,9 +204,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
-            fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(fixture.Client, null, new RequestOptions
+            var response = await mut(_fixture.Client, null, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -214,7 +214,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
         }
 
@@ -226,9 +226,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -239,9 +239,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         public async Task ShouldHandleEmptyErrorResponse(
             Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
         {
-            fixture.SetupHandler(HttpStatusCode.Forbidden);
+            _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -255,9 +255,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             var error = Guid.NewGuid().ToString();
 
-            fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(fixture.Client, null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

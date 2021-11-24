@@ -16,7 +16,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 {
     public class DeleteTests : IClassFixture<AtomicBankFixture>
     {
-        readonly AtomicBankFixture _fixture;
+        private readonly AtomicBankFixture _fixture;
 
         public DeleteTests(AtomicBankFixture fixture)
         {

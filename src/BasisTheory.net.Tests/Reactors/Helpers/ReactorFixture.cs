@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
 
         public ReactorFixture()
         {
-            Client = new ReactorClient(apiKey: ApiKey, httpClient: HttpClient);
+            Client = new ReactorClient(ApiKey, HttpClient);
         }
     }
 }

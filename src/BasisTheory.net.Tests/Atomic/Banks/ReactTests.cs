@@ -19,7 +19,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 {
     public class ReactTests : IClassFixture<AtomicBankFixture>
     {
-        readonly AtomicBankFixture _fixture;
+        private readonly AtomicBankFixture _fixture;
 
         public ReactTests(AtomicBankFixture fixture)
         {

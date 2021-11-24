@@ -18,7 +18,7 @@ namespace BasisTheory.net.Tests.Tokens
 {
     public class GetByIdTests : IClassFixture<TokenFixture>
     {
-        readonly TokenFixture _fixture;
+        private readonly TokenFixture _fixture;
 
         public GetByIdTests(TokenFixture fixture)
         {
@@ -76,51 +76,6 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithChildren(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new TokenGetByIdRequest
-            {
-                Children = true
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}?children=true", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithChildrenByType(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var childType1 = Guid.NewGuid().ToString();
-            var childType2 = Guid.NewGuid().ToString();
-
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new TokenGetByIdRequest
-            {
-                ChildrenTypes = new List<string> { childType1, childType2 }
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}?children_type={childType1}&children_type={childType2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetByIdDecrypted(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var content = TokenFactory.Token();
@@ -160,33 +115,6 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{content.Id}/decrypt?decrypt_type={decryptType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdDecryptedWithAllParameters(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var childType = _fixture.Faker.Lorem.Word();
-            var decryptType = _fixture.Faker.Lorem.Word();
-
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new TokenGetByIdRequest
-            {
-                DecryptTypes = new List<string> { decryptType },
-                Children = true,
-                ChildrenTypes = new List<string> { childType },
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}/decrypt?decrypt_type={decryptType}&children=true&children_type={childType}",
-                requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
 

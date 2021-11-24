@@ -19,11 +19,11 @@ namespace BasisTheory.net.Tests.Tokens
 {
     public class GetChildrenTests : IClassFixture<TokenFixture>
     {
-        readonly TokenFixture _fixture;
+        private readonly TokenFixture _fixture;
 
         public GetChildrenTests(TokenFixture fixture)
         {
-            this._fixture = fixture;
+            _fixture = fixture;
         }
 
         public static IEnumerable<object[]> Methods
@@ -103,53 +103,6 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithChildren(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            var parentTokenId = Guid.NewGuid();
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, parentTokenId, new TokenGetRequest
-            {
-                Children = true
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{parentTokenId}/children?children=true", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithChildrenByType(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            var childType1 = Guid.NewGuid().ToString();
-            var childType2 = Guid.NewGuid().ToString();
-
-            var parentTokenId = Guid.NewGuid();
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, parentTokenId, new TokenGetRequest
-            {
-                ChildrenTypes = new List<string> { childType1, childType2 }
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{parentTokenId}/children?children_type={childType1}&children_type={childType2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetByIds(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var tokenId1 = Guid.NewGuid();
@@ -204,7 +157,6 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type = _fixture.Faker.Lorem.Word();
-            var childType = _fixture.Faker.Lorem.Word();
             var tokenId = Guid.NewGuid();
             var size = _fixture.Faker.Random.Int(1, 20);
             var page = _fixture.Faker.Random.Int(1, 20);
@@ -219,8 +171,6 @@ namespace BasisTheory.net.Tests.Tokens
             var response = await mut(_fixture.Client, parentTokenId, new TokenGetRequest
             {
                 Types = new List<string> { type },
-                Children = true,
-                ChildrenTypes = new List<string> { childType },
                 TokenIds = new List<Guid> { tokenId },
                 PageSize = size,
                 Page = page
@@ -228,7 +178,7 @@ namespace BasisTheory.net.Tests.Tokens
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{parentTokenId}/children?page={page}&size={size}&type={type}&id={tokenId}&children=true&children_type={childType}",
+            Assert.Equal($"/tokens/{parentTokenId}/children?page={page}&size={size}&type={type}&id={tokenId}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
@@ -284,7 +234,6 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetDecryptedWithAllParameters(Func<ITokenClient, Guid, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type = _fixture.Faker.Lorem.Word();
-            var childType = _fixture.Faker.Lorem.Word();
             var tokenId = Guid.NewGuid();
             var decryptType = _fixture.Faker.Lorem.Word();
             var size = _fixture.Faker.Random.Int(1, 20);
@@ -301,8 +250,6 @@ namespace BasisTheory.net.Tests.Tokens
             {
                 Types = new List<string> { type },
                 DecryptTypes = new List<string> { decryptType },
-                Children = true,
-                ChildrenTypes = new List<string> { childType },
                 TokenIds = new List<Guid> { tokenId },
                 PageSize = size,
                 Page = page
@@ -310,11 +257,10 @@ namespace BasisTheory.net.Tests.Tokens
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{parentTokenId}/children/decrypt?page={page}&size={size}&type={type}&id={tokenId}&decrypt_type={decryptType}&children=true&children_type={childType}",
+            Assert.Equal($"/tokens/{parentTokenId}/children/decrypt?page={page}&size={size}&type={type}&id={tokenId}&decrypt_type={decryptType}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
         }
-
 
         [Theory]
         [MemberData(nameof(Methods))]

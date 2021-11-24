@@ -9,11 +9,16 @@ using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Tokens.Entities;
 using BasisTheory.net.Tokens.Requests;
+using Newtonsoft.Json.Linq;
 
 namespace BasisTheory.net.Tokens
 {
     public interface ITokenClient
     {
+        JToken Tokenize(dynamic tokens, RequestOptions requestOptions = null);
+        Task<JToken> TokenizeAsync(dynamic tokens, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
         Token GetById(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null);
         Token GetById(string tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null);
         Task<Token> GetByIdAsync(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null,
@@ -83,6 +88,17 @@ namespace BasisTheory.net.Tokens
         public TokenClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
             base(apiKey, httpClient, apiBase)
         {
+        }
+
+        public JToken Tokenize(dynamic tokens, RequestOptions requestOptions = null)
+        {
+            return Post<JToken>("tokenize", tokens, requestOptions);
+        }
+
+        public async Task<JToken> TokenizeAsync(dynamic tokens, RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PostAsync<JToken>("tokenize", tokens, requestOptions, cancellationToken);
         }
 
         public Token GetById(Guid tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null)

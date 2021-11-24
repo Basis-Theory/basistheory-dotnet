@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BasisTheory.net.Permissions.Entities;
@@ -12,15 +11,6 @@ namespace BasisTheory.net.Tests.Permissions.Helpers
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Description, (f, _) => f.Lorem.Sentence())
             .RuleFor(a => a.ApplicationTypes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Lorem.Word()));
-
-        public static Permission Permission(Action<Permission> applyOverrides = null)
-        {
-            var permission = PermissionFaker.Generate();
-
-            applyOverrides?.Invoke(permission);
-
-            return permission;
-        }
 
         public static List<Permission> PermissionList()
         {

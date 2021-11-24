@@ -16,7 +16,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.Card, (_, _) => CardFaker.Generate())
             .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
@@ -30,13 +30,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
             .RuleFor(a => a.ExpirationYear, (f, _) => f.Random.Int(1000, 9999))
             .RuleFor(a => a.CardVerificationCode, (f, _) => f.Finance.CreditCardCvv());
 
-        public static readonly Faker<PaginatedList<AtomicCard>> PagintedListFaker = new Faker<PaginatedList<AtomicCard>>()
+        public static readonly Faker<PaginatedList<AtomicCard>> PaginatedListFaker = new Faker<PaginatedList<AtomicCard>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
                 TotalPages = f.Random.Number(1, 10),
                 PageNumber = f.Random.Number(1, 10),
-                PageSize = f.Random.Number(1, 10),
+                PageSize = f.Random.Number(1, 10)
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => AtomicCardFaker.Generate()).ToList());
 
@@ -51,7 +51,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
 
         public static PaginatedList<AtomicCard> PaginatedCards(Action<PaginatedList<AtomicCard>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 
@@ -62,8 +62,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
         {
             var request = new UpdateAtomicCardRequest
             {
-                Card = CardFaker.Generate(),
-                BillingDetails = new BillingDetails()
+                Card = CardFaker.Generate()
             };
 
             applyOverrides?.Invoke(request);

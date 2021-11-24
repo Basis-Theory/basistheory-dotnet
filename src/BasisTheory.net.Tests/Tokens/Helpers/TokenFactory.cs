@@ -17,9 +17,9 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.Type, _ => TokenTypes.Token)
             .RuleFor(a => a.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
-            .RuleFor(a => a.CreatedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (f, _) => Guid.NewGuid())
+            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
@@ -34,7 +34,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
             .RuleFor(a => a.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
 
-        public static readonly Faker<PaginatedList<Token>> PagintedListFaker = new Faker<PaginatedList<Token>>()
+        public static readonly Faker<PaginatedList<Token>> PaginatedListFaker = new Faker<PaginatedList<Token>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
@@ -55,7 +55,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
 
         public static PaginatedList<Token> PaginatedTokens(Action<PaginatedList<Token>> applyOverrides = null)
         {
-            var list = PagintedListFaker.Generate();
+            var list = PaginatedListFaker.Generate();
 
             applyOverrides?.Invoke(list);
 

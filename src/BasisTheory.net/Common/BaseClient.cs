@@ -42,7 +42,7 @@ namespace BasisTheory.net.Common
 
         protected T Get<T>(string path, GetRequest request = null, RequestOptions requestOptions = null)
         {
-            return this.GetAsync<T>(path, request, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetAsync<T>(path, request, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         protected async Task<T> GetAsync<T>(string path, GetRequest request = null,
@@ -60,7 +60,7 @@ namespace BasisTheory.net.Common
 
         protected T Post<T>(string path, object body, RequestOptions requestOptions)
         {
-            return this.PostAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return PostAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         protected async Task<T> PostAsync<T>(string path, object body, RequestOptions requestOptions,
@@ -72,7 +72,7 @@ namespace BasisTheory.net.Common
 
         protected void Post(string path, object body, RequestOptions requestOptions)
         {
-            this.PostAsync(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            PostAsync(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         protected async Task PostAsync(string path, object body, RequestOptions requestOptions,
@@ -83,7 +83,7 @@ namespace BasisTheory.net.Common
 
         protected T Put<T>(string path, object body, RequestOptions requestOptions)
         {
-            return this.PutAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return PutAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         protected async Task<T> PutAsync<T>(string path, object body, RequestOptions requestOptions,
@@ -95,7 +95,7 @@ namespace BasisTheory.net.Common
 
         protected T Patch<T>(string path, object body, RequestOptions requestOptions)
         {
-            return this.PatchAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return PatchAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         protected async Task<T> PatchAsync<T>(string path, object body, RequestOptions requestOptions,
@@ -107,7 +107,7 @@ namespace BasisTheory.net.Common
 
         protected void Delete(string path, RequestOptions requestOptions)
         {
-            this.DeleteAsync(path, requestOptions)
+            DeleteAsync(path, requestOptions)
                 .ConfigureAwait(false).GetAwaiter().GetResult();
         }
 

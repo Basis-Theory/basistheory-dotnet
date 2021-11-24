@@ -19,7 +19,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 {
     public class GetTests : IClassFixture<AtomicCardFixture>
     {
-        readonly AtomicCardFixture _fixture;
+        private readonly AtomicCardFixture _fixture;
 
         public GetTests(AtomicCardFixture fixture)
         {

@@ -19,7 +19,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 {
     public class GetTests : IClassFixture<AtomicBankFixture>
     {
-        readonly AtomicBankFixture _fixture;
+        private readonly AtomicBankFixture _fixture;
 
         public GetTests(AtomicBankFixture fixture)
         {
