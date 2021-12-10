@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Tests.Helpers;
+using BasisTheory.net.Tests.Tokenize.Helpers;
 using BasisTheory.net.Tests.Tokens.Helpers;
 using BasisTheory.net.Tokenize;
-using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -17,11 +17,11 @@ using Xunit;
 
 namespace BasisTheory.net.Tests.Tokenize;
 
-public class TokenizeTests : IClassFixture<TokenFixture>
+public class TokenizeTests : IClassFixture<TokenizeFixture>
 {
-    private readonly TokenFixture _fixture;
+    private readonly TokenizeFixture _fixture;
 
-    public TokenizeTests(TokenFixture fixture)
+    public TokenizeTests(TokenizeFixture fixture)
     {
         _fixture = fixture;
     }
@@ -47,7 +47,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldTokenize(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldTokenize(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
     {
         var content = TokenFactory.Token();
         var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -65,7 +65,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
     [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -88,7 +88,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -112,7 +112,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -127,7 +127,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -140,7 +140,7 @@ public class TokenizeTests : IClassFixture<TokenFixture>
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, dynamic, RequestOptions, Task<JToken>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
