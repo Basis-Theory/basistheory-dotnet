@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tokens.Constants;
@@ -24,7 +25,8 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(a => a.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
-                    .ToDictionary(x => x.Key, x => x.Value));
+                    .ToDictionary(x => x.Key, x => x.Value))
+            .RuleFor(x => x.Privacy, _ => DataPrivacyFaker.Generate());
 
         public static readonly Faker<EncryptionKey> EncryptionKeyModelFaker = new Faker<EncryptionKey>()
             .RuleFor(a => a.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
@@ -43,6 +45,23 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                 PageSize = f.Random.Number(1, 10),
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => TokenFaker.Generate()).ToList());
+
+        public static readonly Faker<DataPrivacy> DataPrivacyFaker = new Faker<DataPrivacy>()
+            .RuleFor(x => x.Classification,
+                f => f.PickRandom(
+                    DataClassification.GENERAL,
+                    DataClassification.BANK,
+                    DataClassification.PCI,
+                    DataClassification.PII))
+            .RuleFor(x => x.ImpactLevel,
+                f => f.PickRandom(
+                    DataImpactLevel.LOW,
+                    DataImpactLevel.MODERATE,
+                    DataImpactLevel.HIGH))
+            .RuleFor(x => x.RestrictionPolicy,
+                f => f.PickRandom(
+                    DataRestrictionPolicy.MASK,
+                    DataRestrictionPolicy.REDACT));
 
         public static Token Token(Action<Token> applyOverrides = null)
         {
