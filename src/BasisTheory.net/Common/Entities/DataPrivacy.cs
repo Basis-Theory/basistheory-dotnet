@@ -7,14 +7,14 @@ namespace BasisTheory.net.Common.Entities
     {
         [JsonProperty("classification", Order = 0)]
         [JsonPropertyName("classification")]
-        public DataClassification Classification { get; set; }
+        public string Classification { get; set; }
 
         [JsonProperty("impact_level", Order = 1)]
         [JsonPropertyName("impact_level")]
-        public DataImpactLevel ImpactLevel { get; set; }
+        public string ImpactLevel { get; set; }
 
         [JsonProperty("restriction_policy", Order = 2)]
         [JsonPropertyName("restriction_policy")]
-        public DataRestrictionPolicy RestrictionPolicy { get; set; }
+        public string RestrictionPolicy { get; set; }
     }
 }
