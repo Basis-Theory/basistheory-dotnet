@@ -16,10 +16,6 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("encryption")]
         public EncryptionMetadata Encryption { get; set; }
 
-        [JsonProperty("mask")]
-        [JsonPropertyName("mask")]
-        public dynamic Mask { get; set; }
-
         [JsonProperty("privacy")]
         [JsonPropertyName("privacy")]
         public DataPrivacy Privacy { get; set; }
