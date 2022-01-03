@@ -67,9 +67,7 @@ namespace BasisTheory.net.Atomic.Banks
 
         public AtomicBank GetById(string atomicBankId, BankGetByIdRequest request = null, RequestOptions requestOptions = null)
         {
-            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
-
-            return Get<AtomicBank>($"{BasePath}/{atomicBankId}{decryptPath}", request, requestOptions);
+            return Get<AtomicBank>($"{BasePath}/{atomicBankId}", request, requestOptions);
         }
 
         public async Task<AtomicBank> GetByIdAsync(Guid atomicBankId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
@@ -81,9 +79,7 @@ namespace BasisTheory.net.Atomic.Banks
         public async Task<AtomicBank> GetByIdAsync(string atomicBankId, BankGetByIdRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
-
-            return await GetAsync<AtomicBank>($"{BasePath}/{atomicBankId}{decryptPath}", request, requestOptions, cancellationToken);
+            return await GetAsync<AtomicBank>($"{BasePath}/{atomicBankId}", request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<AtomicBank> Get(BankGetRequest request = null, RequestOptions requestOptions = null)
