@@ -1,7 +1,9 @@
+using System;
+
 namespace BasisTheory.net.Common.Requests
 {
     public abstract class GetRequest
     {
-        public abstract string BuildQuery();
+        public virtual string BuildQuery() => string.Empty;
     }
 }

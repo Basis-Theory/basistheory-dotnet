@@ -67,9 +67,7 @@ namespace BasisTheory.net.Atomic.Cards
 
         public AtomicCard GetById(string atomicCardId, CardGetByIdRequest request = null, RequestOptions requestOptions = null)
         {
-            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
-
-            return Get<AtomicCard>($"{BasePath}/{atomicCardId}{decryptPath}", request, requestOptions);
+            return Get<AtomicCard>($"{BasePath}/{atomicCardId}", request, requestOptions);
         }
 
         public async Task<AtomicCard> GetByIdAsync(Guid atomicCardId, CardGetByIdRequest request = null, RequestOptions requestOptions = null,
@@ -81,9 +79,7 @@ namespace BasisTheory.net.Atomic.Cards
         public async Task<AtomicCard> GetByIdAsync(string atomicCardId, CardGetByIdRequest request = null, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            var decryptPath = request?.Decrypt ?? false ? "/decrypt" : string.Empty;
-
-            return await GetAsync<AtomicCard>($"{BasePath}/{atomicCardId}{decryptPath}", request, requestOptions, cancellationToken);
+            return await GetAsync<AtomicCard>($"{BasePath}/{atomicCardId}", request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<AtomicCard> Get(CardGetRequest request = null, RequestOptions requestOptions = null)

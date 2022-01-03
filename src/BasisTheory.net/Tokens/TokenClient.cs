@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -92,9 +91,7 @@ namespace BasisTheory.net.Tokens
 
         public Token GetById(string tokenId, TokenGetByIdRequest request = null, RequestOptions requestOptions = null)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return Get<Token>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions);
+            return Get<Token>($"{BasePath}/{tokenId}", request, requestOptions);
         }
 
         public async Task<Token> GetByIdAsync(Guid tokenId, TokenGetByIdRequest request = null,
@@ -106,24 +103,18 @@ namespace BasisTheory.net.Tokens
         public async Task<Token> GetByIdAsync(string tokenId, TokenGetByIdRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return await GetAsync<Token>($"{BasePath}/{tokenId}{decryptPath}", request, requestOptions, cancellationToken);
+            return await GetAsync<Token>($"{BasePath}/{tokenId}", request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<Token> Get(TokenGetRequest request = null, RequestOptions requestOptions = null)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return Get<PaginatedList<Token>>($"{BasePath}{decryptPath}", request, requestOptions);
+            return Get<PaginatedList<Token>>(BasePath, request, requestOptions);
         }
 
         public async Task<PaginatedList<Token>> GetAsync(TokenGetRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return await GetAsync<PaginatedList<Token>>($"{BasePath}{decryptPath}", request, requestOptions, cancellationToken);
+            return await GetAsync<PaginatedList<Token>>(BasePath, request, requestOptions, cancellationToken);
         }
 
         public PaginatedList<Token> GetChildren(Guid parentTokenId, TokenGetRequest request = null,
@@ -135,9 +126,7 @@ namespace BasisTheory.net.Tokens
         public PaginatedList<Token> GetChildren(string parentTokenId, TokenGetRequest request = null,
             RequestOptions requestOptions = null)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return Get<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children{decryptPath}", request, requestOptions);
+            return Get<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children", request, requestOptions);
         }
 
         public async Task<PaginatedList<Token>> GetChildrenAsync(Guid parentTokenId, TokenGetRequest request = null,
@@ -150,20 +139,8 @@ namespace BasisTheory.net.Tokens
         public async Task<PaginatedList<Token>> GetChildrenAsync(string parentTokenId, TokenGetRequest request = null,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            var decryptPath = GetDecryptPath(request);
-
-            return await GetAsync<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children{decryptPath}", request, requestOptions,
+            return await GetAsync<PaginatedList<Token>>($"{BasePath}/{parentTokenId}/children", request, requestOptions,
                 cancellationToken);
-        }
-
-        private static string GetDecryptPath(TokenGetRequest request) => GetDecryptPath(request?.Decrypt, request?.DecryptTypes);
-        private static string GetDecryptPath(TokenGetByIdRequest request) => GetDecryptPath(request?.Decrypt, request?.DecryptTypes);
-        private static string GetDecryptPath(bool? decrypt, List<string> decryptTypes)
-        {
-            var shouldDecrypt = decrypt ?? false;
-            decryptTypes ??= new List<string>();
-
-            return shouldDecrypt || decryptTypes.Any() ? "/decrypt" : string.Empty;
         }
 
         public Token Create(Token token, RequestOptions requestOptions = null)

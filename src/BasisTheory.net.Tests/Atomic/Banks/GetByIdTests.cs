@@ -76,27 +76,6 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdDecrypted(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
-        {
-            var content = AtomicBankFactory.AtomicBank();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new BankGetByIdRequest
-            {
-                Decrypt = true
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/atomic/banks/{content.Id}/decrypt", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();

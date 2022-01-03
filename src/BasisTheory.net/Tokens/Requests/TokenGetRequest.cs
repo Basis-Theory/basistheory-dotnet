@@ -7,8 +7,6 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetRequest : PaginatedGetRequest
     {
-        public bool Decrypt { get; set; }
-        public List<string> DecryptTypes { get; set; } = new List<string>();
         public List<Guid> TokenIds { get; set; } = new List<Guid>();
         public List<string> Types { get; set; } = new List<string>();
 
@@ -26,9 +24,6 @@ namespace BasisTheory.net.Tokens.Requests
 
             if (TokenIds?.Any() ?? false)
                 queryParts.AddRange(TokenIds.Select(tokenId => $"id={tokenId}"));
-
-            if (DecryptTypes.Any())
-                queryParts.AddRange(DecryptTypes.Select(decryptType => $"decrypt_type={decryptType}"));
 
             return string.Join("&", queryParts);
         }

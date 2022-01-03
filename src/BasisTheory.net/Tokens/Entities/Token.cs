@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Encryption.Entities;
 using Newtonsoft.Json;
@@ -15,9 +16,9 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("encryption")]
         public EncryptionMetadata Encryption { get; set; }
 
-        [JsonProperty("mask")]
-        [JsonPropertyName("mask")]
-        public dynamic Mask { get; set; }
+        [JsonProperty("privacy")]
+        [JsonPropertyName("privacy")]
+        public DataPrivacy Privacy { get; set; }
 
         public Token() {}
 

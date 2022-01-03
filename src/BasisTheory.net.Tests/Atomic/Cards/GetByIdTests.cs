@@ -76,27 +76,6 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdDecrypted(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
-        {
-            var content = AtomicCardFactory.AtomicCard();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new CardGetByIdRequest
-            {
-                Decrypt = true
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/atomic/cards/{content.Id}/decrypt", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();

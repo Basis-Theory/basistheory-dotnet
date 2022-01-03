@@ -76,50 +76,6 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdDecrypted(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new TokenGetByIdRequest
-            {
-                Decrypt = true
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}/decrypt", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdDecryptedWithDecryptTypes(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var decryptType = _fixture.Faker.Lorem.Word();
-
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, new TokenGetByIdRequest
-            {
-                DecryptTypes = new List<string> { decryptType },
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}/decrypt?decrypt_type={decryptType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
