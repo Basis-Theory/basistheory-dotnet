@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.18.0...v1.19.0) (2022-01-03)
+
+
+### Features
+
+* add Privacy settings to Token model ([#87](https://github.com/Basis-Theory/basistheory-dotnet/issues/87)) ([5389436](https://github.com/Basis-Theory/basistheory-dotnet/commit/5389436ae124663aa8fe95b95167ed5d14f9f99f))
+
 # [1.18.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.17.0...v1.18.0) (2021-11-24)
 
 
