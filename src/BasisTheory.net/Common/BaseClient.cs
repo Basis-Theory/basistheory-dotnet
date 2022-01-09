@@ -166,7 +166,7 @@ namespace BasisTheory.net.Common
         {
             var apiKey = requestOptions?.ApiKey ?? ApiKey;
             if (!string.IsNullOrEmpty(apiKey))
-                message.Headers.Add("X-API-KEY", apiKey);
+                message.Headers.Add("BT-API-KEY", apiKey);
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("bt-trace-id", requestOptions.CorrelationId);

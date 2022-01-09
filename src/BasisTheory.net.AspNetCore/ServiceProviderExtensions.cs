@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using BasisTheory.net.Encryption;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

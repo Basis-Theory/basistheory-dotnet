@@ -34,7 +34,7 @@ For a complete list of endpoints and examples, please refer to our [API docs](ht
 ### Per-request configuration
 
 All of the service methods accept an optional `RequestOptions` object. This is
-used if you want to set a [correlation ID](https://docs.basistheory.com/api-reference/?csharp#request-correlation) or if you want to set a per-request [`X-API-KEY`](https://docs.basistheory.com/api-reference/?csharp#authentication)
+used if you want to set a [correlation ID](https://docs.basistheory.com/api-reference/?csharp#request-correlation) or if you want to set a per-request [`BT-API-KEY`](https://docs.basistheory.com/api-reference/?csharp#authentication)
 
 ```csharp
 var requestOptions = new RequestOptions();
