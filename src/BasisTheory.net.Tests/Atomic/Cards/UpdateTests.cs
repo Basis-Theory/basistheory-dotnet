@@ -123,7 +123,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
             Assert.Equal($"/atomic/cards/{_expectedAtomicCardId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

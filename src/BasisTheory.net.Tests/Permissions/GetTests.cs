@@ -129,7 +129,7 @@ namespace BasisTheory.net.Tests.Permissions
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

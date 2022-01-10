@@ -258,7 +258,7 @@ namespace BasisTheory.net.Tests.Logs
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/logs", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

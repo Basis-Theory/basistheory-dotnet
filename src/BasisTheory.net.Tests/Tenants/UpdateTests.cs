@@ -105,7 +105,7 @@ namespace BasisTheory.net.Tests.Tenants
             Assert.Equal(HttpMethod.Put, requestMessage.Method);
             Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

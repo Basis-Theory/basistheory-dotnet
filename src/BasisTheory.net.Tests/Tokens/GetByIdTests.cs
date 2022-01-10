@@ -118,7 +118,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

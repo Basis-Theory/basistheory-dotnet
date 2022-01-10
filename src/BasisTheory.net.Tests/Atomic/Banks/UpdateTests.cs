@@ -124,7 +124,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
             Assert.Equal($"/atomic/banks/{_expectedAtomicBankId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

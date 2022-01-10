@@ -169,7 +169,7 @@ namespace BasisTheory.net.Common
                 message.Headers.Add("BT-API-KEY", apiKey);
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
-                message.Headers.Add("bt-trace-id", requestOptions.CorrelationId);
+                message.Headers.Add("BT-TRACE-ID", requestOptions.CorrelationId);
         }
 
         private HttpClient BuildDefaultHttpClient()
