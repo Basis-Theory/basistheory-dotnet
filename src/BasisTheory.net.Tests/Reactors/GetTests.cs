@@ -61,7 +61,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactors", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -86,7 +86,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactors?id={reactorId1}&id={reactorId2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -110,7 +110,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactors?name={name}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -134,7 +134,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactors?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -160,7 +160,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactors?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -193,7 +193,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactors?page={page}&size={size}&id={reactorId}&name={name}&source_token_type={sourceTokenType}",
                 requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -217,7 +217,7 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactors", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -241,8 +241,8 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactors", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

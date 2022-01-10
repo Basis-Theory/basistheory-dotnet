@@ -61,7 +61,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -85,7 +85,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?name={name}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -109,7 +109,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -135,7 +135,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -166,7 +166,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?page={page}&size={size}&name={name}&source_token_type={sourceTokenType}",
                 requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -190,7 +190,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -214,8 +214,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]

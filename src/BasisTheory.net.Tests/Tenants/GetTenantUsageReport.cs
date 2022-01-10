@@ -58,7 +58,7 @@ namespace BasisTheory.net.Tests.Tenants
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/tenants/self/reports/usage", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -81,7 +81,7 @@ namespace BasisTheory.net.Tests.Tenants
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/tenants/self/reports/usage", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
+            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
 
         [Theory]
@@ -104,8 +104,8 @@ namespace BasisTheory.net.Tests.Tenants
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/tenants/self/reports/usage", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("X-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("bt-trace-id").First());
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         }
 
         [Theory]
