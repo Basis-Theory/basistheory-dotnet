@@ -9,6 +9,7 @@ namespace BasisTheory.net.Tokens.Requests
     {
         public List<Guid> TokenIds { get; set; } = new List<Guid>();
         public List<string> Types { get; set; } = new List<string>();
+        public Dictionary<string, string> MetadataQuery { get; set; } = new Dictionary<string, string>();
 
         public override string BuildQuery()
         {
@@ -24,6 +25,8 @@ namespace BasisTheory.net.Tokens.Requests
 
             if (TokenIds?.Any() ?? false)
                 queryParts.AddRange(TokenIds.Select(tokenId => $"id={tokenId}"));
+
+            queryParts.AddRange(MetadataQuery.Select(kv => $"metadata.{kv.Key}={kv.Value}"));
 
             return string.Join("&", queryParts);
         }
