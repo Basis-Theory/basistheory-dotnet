@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.19.0...v1.20.0) (2022-01-10)
+
+
+### Features
+
+* convert to use BT-API-KEY auth header ([#91](https://github.com/Basis-Theory/basistheory-dotnet/issues/91)) ([dc9d46c](https://github.com/Basis-Theory/basistheory-dotnet/commit/dc9d46c0c3c4a54a6f6fa85c2111f5809b451ac8))
+
 # [1.19.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.18.0...v1.19.0) (2022-01-03)
 
 
