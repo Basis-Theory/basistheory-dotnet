@@ -113,6 +113,32 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
+        public async Task ShouldGetWithMetadataQuery(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        {
+            var metadata1 = new KeyValuePair<string ,string>(
+                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
+            var metadata2 = new KeyValuePair<string ,string>(
+                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
+
+            var content = TokenFactory.PaginatedTokens();
+            var expectedSerialized = JsonConvert.SerializeObject(content);
+
+            HttpRequestMessage requestMessage = null;
+            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+            var response = await mut(_fixture.Client, new TokenGetRequest
+            {
+                MetadataQuery = new Dictionary<string, string>(new[] { metadata1, metadata2 })
+            }, null);
+
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+            Assert.Equal(HttpMethod.Get, requestMessage.Method);
+            Assert.Equal($"/tokens?metadata.{metadata1.Key}={metadata1.Value}&metadata.{metadata2.Key}={metadata2.Value}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        }
+
+        [Theory]
+        [MemberData(nameof(Methods))]
         public async Task ShouldGetWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var size = _fixture.Faker.Random.Int(1, 20);
@@ -142,6 +168,8 @@ namespace BasisTheory.net.Tests.Tokens
         {
             var type = _fixture.Faker.Lorem.Word();
             var tokenId = Guid.NewGuid();
+            var metadataQuery = new KeyValuePair<string, string>(
+                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
             var size = _fixture.Faker.Random.Int(1, 20);
             var page = _fixture.Faker.Random.Int(1, 20);
 
@@ -155,13 +183,14 @@ namespace BasisTheory.net.Tests.Tokens
             {
                 Types = new List<string> { type },
                 TokenIds = new List<Guid> { tokenId },
+                MetadataQuery = new Dictionary<string, string>(new[] { metadataQuery }),
                 PageSize = size,
                 Page = page
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?page={page}&size={size}&type={type}&id={tokenId}",
+            Assert.Equal($"/tokens?page={page}&size={size}&type={type}&id={tokenId}&metadata.{metadataQuery.Key}={metadataQuery.Value}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         }
