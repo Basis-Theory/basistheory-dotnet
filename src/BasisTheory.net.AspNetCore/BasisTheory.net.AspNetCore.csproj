@@ -11,6 +11,7 @@
         <PackageTags>BasisTheory,SDK,AspNetCore</PackageTags>
         <NuspecProperties>version=$(Version)</NuspecProperties>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>

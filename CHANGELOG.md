@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.20.0...v1.21.0) (2022-01-11)
+
+
+### Features
+
+* publish assembly info ([#93](https://github.com/Basis-Theory/basistheory-dotnet/issues/93)) ([e74b5dd](https://github.com/Basis-Theory/basistheory-dotnet/commit/e74b5dd7e8f1d9b74f619881cc04ba04ecf3891e))
+
 # [1.20.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.19.0...v1.20.0) (2022-01-10)
 
 
