@@ -10,6 +10,7 @@
         <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
         <PackageTags>BasisTheory,SDK,Azure</PackageTags>
         <NuspecProperties>version=$(Version)</NuspecProperties>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
