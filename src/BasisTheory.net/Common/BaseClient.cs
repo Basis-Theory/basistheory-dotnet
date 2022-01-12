@@ -26,7 +26,7 @@ namespace BasisTheory.net.Common
         private Uri BaseApiUrl { get; set; }
 
         protected abstract string BasePath { get; }
-        
+
         private ApplicationInfo AppInfo { get; }
 
         internal BaseClient(string apiKey = null,
@@ -43,6 +43,14 @@ namespace BasisTheory.net.Common
                 throw new ArgumentException("Invalid URI format", nameof(apiBaseUrl));
 
             HttpClient = httpClient ?? BuildDefaultHttpClient();
+
+            var btClientUserAgentString = UserAgentUtility.BuildBtClientUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty(btClientUserAgentString))
+                HttpClient.DefaultRequestHeaders.Add("BT-CLIENT-USER-AGENT", btClientUserAgentString);
+
+            var userAgentString = UserAgentUtility.BuildUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty((userAgentString)))
+                HttpClient.DefaultRequestHeaders.Add("User-Agent", userAgentString);
         }
 
         protected T Get<T>(string path, GetRequest request = null, RequestOptions requestOptions = null)
@@ -175,14 +183,6 @@ namespace BasisTheory.net.Common
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("BT-TRACE-ID", requestOptions.CorrelationId);
-            
-            var btClientUserAgentString = UserAgentUtility.BuildBtClientUserAgentString(AppInfo);
-            if (!string.IsNullOrEmpty(btClientUserAgentString))
-                message.Headers.Add("BT-CLIENT-USER-AGENT", btClientUserAgentString);
-
-            var userAgentString = UserAgentUtility.BuildUserAgentString(AppInfo);
-            if (!string.IsNullOrEmpty((userAgentString)))
-                message.Headers.Add("User-Agent", userAgentString);
         }
 
         private HttpClient BuildDefaultHttpClient()

@@ -12,7 +12,7 @@ namespace BasisTheory.net.Common.Utilities
         static UserAgentUtility()
         {
             Client = "BasisTheory.net";
-            ClientVersion = Assembly.GetAssembly(typeof(UserAgentUtility)).GetName().Version.ToString();
+            ClientVersion = Assembly.GetAssembly(typeof(UserAgentUtility)).GetName().Version.ToString(3);
         }
 
         public static string Client { get; }
