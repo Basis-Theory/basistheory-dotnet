@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
 
         public AtomicCardFixture()
         {
-            Client = new AtomicCardClient(ApiKey, HttpClient);
+            Client = new AtomicCardClient(ApiKey, HttpClient, appInfo: AppInfo);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BasisTheory.net.Atomic.Cards.Entities;
 using BasisTheory.net.Atomic.Cards.Requests;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Reactors.Entities;
@@ -55,8 +56,8 @@ namespace BasisTheory.net.Atomic.Cards
     {
         protected override string BasePath => "atomic/cards";
 
-        public AtomicCardClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+        public AtomicCardClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

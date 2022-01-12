@@ -8,6 +8,7 @@ using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Applications;
 using BasisTheory.net.Applications.Entities;
+using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tests.Applications.Helpers;
 using BasisTheory.net.Tests.Helpers;
 using Newtonsoft.Json;
@@ -59,6 +60,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(HttpMethod.Post, requestMessage.Method);
             Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -82,6 +84,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(HttpMethod.Post, requestMessage.Method);
             Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -106,6 +109,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]

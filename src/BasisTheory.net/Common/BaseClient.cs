@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Utilities;
@@ -25,12 +26,16 @@ namespace BasisTheory.net.Common
         private Uri BaseApiUrl { get; set; }
 
         protected abstract string BasePath { get; }
+        
+        private ApplicationInfo AppInfo { get; }
 
         internal BaseClient(string apiKey = null,
             HttpClient httpClient = null,
-            string apiBaseUrl = DefaultBaseUrl)
+            string apiBaseUrl = DefaultBaseUrl,
+            ApplicationInfo appInfo = null)
         {
             ApiKey = apiKey;
+            AppInfo = appInfo;
 
             if (Uri.TryCreate(apiBaseUrl, UriKind.Absolute, out var baseUri))
                 BaseApiUrl = baseUri;
@@ -170,6 +175,14 @@ namespace BasisTheory.net.Common
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("BT-TRACE-ID", requestOptions.CorrelationId);
+            
+            var btClientUserAgentString = UserAgentUtility.BuildBtClientUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty(btClientUserAgentString))
+                message.Headers.Add("BT-CLIENT-USER-AGENT", btClientUserAgentString);
+
+            var userAgentString = UserAgentUtility.BuildUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty((userAgentString)))
+                message.Headers.Add("User-Agent", userAgentString);
         }
 
         private HttpClient BuildDefaultHttpClient()

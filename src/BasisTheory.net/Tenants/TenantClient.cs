@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Tenants.Entities;
 
@@ -26,8 +27,8 @@ namespace BasisTheory.net.Tenants
     {
         protected override string BasePath => "tenants";
 
-        public TenantClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+        public TenantClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
 
         public TokenFixture()
         {
-            Client = new TokenClient(ApiKey, HttpClient);
+            Client = new TokenClient(ApiKey, HttpClient, appInfo: AppInfo);
         }
     }
 }

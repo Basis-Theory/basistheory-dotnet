@@ -1,11 +1,15 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using BasisTheory.net.Common.Entities;
+using BasisTheory.net.Common.Utilities;
 using Bogus;
 using Moq;
 using Moq.Protected;
+using Xunit;
 
 namespace BasisTheory.net.Tests.Helpers
 {
@@ -15,6 +19,7 @@ namespace BasisTheory.net.Tests.Helpers
         public readonly string ApiKey;
         private readonly Mock<HttpMessageHandler> _messageHandler;
         protected readonly HttpClient HttpClient;
+        protected readonly ApplicationInfo AppInfo;
 
         protected BaseFixture()
         {
@@ -24,6 +29,12 @@ namespace BasisTheory.net.Tests.Helpers
             HttpClient = new HttpClient(_messageHandler.Object)
             {
                 BaseAddress = new Uri("http://localhost/")
+            };
+            AppInfo = new ApplicationInfo()
+            {
+                Name = "Test",
+                Version = "1.0",
+                Url = "http://test/"
             };
         }
 
@@ -50,6 +61,12 @@ namespace BasisTheory.net.Tests.Helpers
 
             if (messageHandler != null)
                 returnResult.Callback(messageHandler);
+        }
+
+        public void AssertUserAgent(HttpRequestMessage requestMessage)
+        {
+            Assert.Equal(UserAgentUtility.BuildUserAgentString(AppInfo), string.Join(" ", requestMessage.Headers.GetValues("User-Agent")));
+            Assert.Equal(UserAgentUtility.BuildBtClientUserAgentString(AppInfo), requestMessage.Headers.GetValues("BT-CLIENT-USER-AGENT").First());
         }
     }
 }

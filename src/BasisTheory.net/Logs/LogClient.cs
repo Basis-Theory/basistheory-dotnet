@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Logs.Entities;
@@ -23,8 +24,8 @@ namespace BasisTheory.net.Logs
         protected override string BasePath => "logs";
 
         public LogClient(string apiKey = null, HttpClient httpClient = null,
-            string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+            string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

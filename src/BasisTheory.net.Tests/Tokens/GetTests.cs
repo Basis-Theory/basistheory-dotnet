@@ -61,6 +61,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -85,6 +86,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens?type={type1}&type={type2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -109,6 +111,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens?id={tokenId1}&id={tokenId2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -135,6 +138,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens?metadata.{metadata1.Key}={metadata1.Value}&metadata.{metadata2.Key}={metadata2.Value}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -160,6 +164,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -193,6 +198,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal($"/tokens?page={page}&size={size}&type={type}&id={tokenId}&metadata.{metadataQuery.Key}={metadataQuery.Value}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -216,6 +222,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -240,6 +247,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]

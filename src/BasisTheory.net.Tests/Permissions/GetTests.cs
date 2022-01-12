@@ -60,6 +60,7 @@ namespace BasisTheory.net.Tests.Permissions
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -83,6 +84,7 @@ namespace BasisTheory.net.Tests.Permissions
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/permissions?application_type={applicationType}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -106,6 +108,7 @@ namespace BasisTheory.net.Tests.Permissions
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -130,6 +133,7 @@ namespace BasisTheory.net.Tests.Permissions
             Assert.Equal("/permissions", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
