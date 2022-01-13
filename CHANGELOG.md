@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.22.0...v1.23.0) (2022-01-13)
+
+
+### Features
+
+* add user agent headers to all client requests ([#95](https://github.com/Basis-Theory/basistheory-dotnet/issues/95)) ([3893cae](https://github.com/Basis-Theory/basistheory-dotnet/commit/3893cae3e869c1d2c69e42a7d48ea6870eeed2aa))
+
 # [1.22.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.21.0...v1.22.0) (2022-01-11)
 
 
