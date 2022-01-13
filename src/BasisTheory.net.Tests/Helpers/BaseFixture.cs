@@ -1,15 +1,12 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Entities;
-using BasisTheory.net.Common.Utilities;
 using Bogus;
 using Moq;
 using Moq.Protected;
-using Xunit;
 
 namespace BasisTheory.net.Tests.Helpers
 {
@@ -61,12 +58,6 @@ namespace BasisTheory.net.Tests.Helpers
 
             if (messageHandler != null)
                 returnResult.Callback(messageHandler);
-        }
-
-        public void AssertUserAgent(HttpRequestMessage requestMessage)
-        {
-            Assert.Equal(UserAgentUtility.BuildUserAgentString(AppInfo), string.Join(" ", requestMessage.Headers.GetValues("User-Agent")));
-            Assert.Equal(UserAgentUtility.BuildBtClientUserAgentString(AppInfo), requestMessage.Headers.GetValues("BT-CLIENT-USER-AGENT").First());
         }
     }
 }

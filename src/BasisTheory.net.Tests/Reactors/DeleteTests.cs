@@ -68,7 +68,6 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal($"/reactors/{reactorId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -90,7 +89,6 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal(HttpMethod.Delete, requestMessage.Method);
             Assert.Equal($"/reactors/{reactorId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -113,7 +111,6 @@ namespace BasisTheory.net.Tests.Reactors
             Assert.Equal($"/reactors/{reactorId}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]

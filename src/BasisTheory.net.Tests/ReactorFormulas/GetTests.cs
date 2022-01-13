@@ -62,7 +62,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -87,7 +86,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?name={name}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -112,7 +110,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/reactor-formulas?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -170,7 +167,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal($"/reactor-formulas?page={page}&size={size}&name={name}&source_token_type={sourceTokenType}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -195,7 +191,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -221,7 +216,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal("/reactor-formulas", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
