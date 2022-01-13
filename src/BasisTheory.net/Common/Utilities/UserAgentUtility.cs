@@ -1,10 +1,6 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-<<<<<<< HEAD
-=======
-using System.Linq;
->>>>>>> origin
 using BasisTheory.net.Common.Entities;
 using static System.Runtime.InteropServices.RuntimeInformation;
 
@@ -64,12 +60,5 @@ namespace BasisTheory.net.Common.Utilities
 
             return JsonUtility.SerializeObject(values);
         }
-<<<<<<< HEAD
-
     }
 }
-=======
-        
-    }
-}
->>>>>>> origin
