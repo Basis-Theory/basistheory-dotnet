@@ -1,3 +1,4 @@
+using System;
 using BasisTheory.net.Applications;
 using BasisTheory.net.Tests.Helpers;
 
@@ -9,7 +10,7 @@ namespace BasisTheory.net.Tests.Applications.Helpers
 
         public ApplicationFixture()
         {
-            Client = new ApplicationClient(ApiKey, HttpClient);
+            Client = new ApplicationClient(ApiKey, HttpClient, appInfo: AppInfo);
         }
     }
 }

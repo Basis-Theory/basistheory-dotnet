@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Permissions.Helpers
 
         public PermissionFixture()
         {
-            Client = new PermissionClient(ApiKey, HttpClient);
+            Client = new PermissionClient(ApiKey, HttpClient, appInfo: AppInfo);
         }
     }
 }

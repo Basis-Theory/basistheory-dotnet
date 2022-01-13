@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Utilities;
@@ -26,11 +27,15 @@ namespace BasisTheory.net.Common
 
         protected abstract string BasePath { get; }
 
+        private ApplicationInfo AppInfo { get; }
+
         internal BaseClient(string apiKey = null,
             HttpClient httpClient = null,
-            string apiBaseUrl = DefaultBaseUrl)
+            string apiBaseUrl = DefaultBaseUrl,
+            ApplicationInfo appInfo = null)
         {
             ApiKey = apiKey;
+            AppInfo = appInfo;
 
             if (Uri.TryCreate(apiBaseUrl, UriKind.Absolute, out var baseUri))
                 BaseApiUrl = baseUri;
@@ -38,6 +43,14 @@ namespace BasisTheory.net.Common
                 throw new ArgumentException("Invalid URI format", nameof(apiBaseUrl));
 
             HttpClient = httpClient ?? BuildDefaultHttpClient();
+
+            var btClientUserAgentString = UserAgentUtility.BuildBtClientUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty(btClientUserAgentString))
+                HttpClient.DefaultRequestHeaders.Add("BT-CLIENT-USER-AGENT", btClientUserAgentString);
+
+            var userAgentString = UserAgentUtility.BuildUserAgentString(AppInfo);
+            if (!string.IsNullOrEmpty((userAgentString)))
+                HttpClient.DefaultRequestHeaders.Add("User-Agent", userAgentString);
         }
 
         protected T Get<T>(string path, GetRequest request = null, RequestOptions requestOptions = null)

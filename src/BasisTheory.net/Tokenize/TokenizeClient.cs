@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using Newtonsoft.Json.Linq;
 
@@ -18,8 +19,8 @@ namespace BasisTheory.net.Tokenize
     {
         protected override string BasePath => "tokenize";
 
-        public TokenizeClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+        public TokenizeClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

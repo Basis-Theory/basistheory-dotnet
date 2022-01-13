@@ -9,6 +9,6 @@ public class TokenizeFixture : BaseFixture
 
     public TokenizeFixture()
     {
-        Client = new TokenizeClient(ApiKey, HttpClient);
+        Client = new TokenizeClient(ApiKey, HttpClient, appInfo: AppInfo);
     }
 }

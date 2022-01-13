@@ -74,6 +74,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{parentTokenId}/children", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -99,6 +100,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{parentTokenId}/children?type={type1}&type={type2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -124,6 +126,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{parentTokenId}/children?id={tokenId1}&id={tokenId2}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -150,6 +153,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{parentTokenId}/children?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -181,6 +185,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal($"/tokens/{parentTokenId}/children?page={page}&size={size}&type={type}&id={tokenId}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -205,6 +210,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
             Assert.Equal($"/tokens/{parentTokenId}/children", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -230,6 +236,7 @@ namespace BasisTheory.net.Tests.Tokens
             Assert.Equal($"/tokens/{parentTokenId}/children", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]

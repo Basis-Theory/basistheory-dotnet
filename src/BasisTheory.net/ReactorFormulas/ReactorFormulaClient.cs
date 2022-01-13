@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.ReactorFormulas.Entities;
@@ -51,8 +52,8 @@ namespace BasisTheory.net.ReactorFormulas
         protected override string BasePath => "reactor-formulas";
 
         public ReactorFormulaClient(string apiKey = null, HttpClient httpClient = null,
-            string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+            string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

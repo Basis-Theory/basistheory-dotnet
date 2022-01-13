@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Tokens.Entities;
@@ -79,8 +80,8 @@ namespace BasisTheory.net.Tokens
     {
         protected override string BasePath => "tokens";
 
-        public TokenClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+        public TokenClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 

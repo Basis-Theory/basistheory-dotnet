@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
 
         public AtomicBankFixture()
         {
-            Client = new AtomicBankClient(ApiKey, HttpClient);
+            Client = new AtomicBankClient(ApiKey, HttpClient, appInfo: AppInfo);
         }
     }
 }

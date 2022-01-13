@@ -61,6 +61,7 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
         Assert.Equal(HttpMethod.Post, requestMessage.Method);
         Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
     }
 
     [Theory]
@@ -84,6 +85,7 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
             Assert.Equal(HttpMethod.Post, requestMessage.Method);
             Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
@@ -108,6 +110,7 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
             Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]

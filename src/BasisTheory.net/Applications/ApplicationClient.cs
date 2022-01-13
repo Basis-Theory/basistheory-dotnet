@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BasisTheory.net.Applications.Entities;
 using BasisTheory.net.Applications.Requests;
 using BasisTheory.net.Common;
+using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
 
@@ -60,8 +61,8 @@ namespace BasisTheory.net.Applications
     {
         protected override string BasePath => "applications";
 
-        public ApplicationClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl) :
-            base(apiKey, httpClient, apiBase)
+        public ApplicationClient(string apiKey = null, HttpClient httpClient = null, string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+            base(apiKey, httpClient, apiBase, appInfo)
         {
         }
 
