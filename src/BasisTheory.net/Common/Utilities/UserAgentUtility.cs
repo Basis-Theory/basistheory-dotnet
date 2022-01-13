@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
 using BasisTheory.net.Common.Entities;
 using static System.Runtime.InteropServices.RuntimeInformation;
 
@@ -61,6 +60,6 @@ namespace BasisTheory.net.Common.Utilities
 
             return JsonUtility.SerializeObject(values);
         }
-        
+
     }
 }

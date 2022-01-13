@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using Newtonsoft.Json;
 using Polly;
 using Polly.Extensions.Http;
 
+[assembly:InternalsVisibleTo("BasisTheory.net.Tests")]
 namespace BasisTheory.net.Common
 {
     public abstract class BaseClient
@@ -21,7 +23,7 @@ namespace BasisTheory.net.Common
         protected const string DefaultBaseUrl = "https://api.basistheory.com";
 
         private string ApiKey { get; }
-        private HttpClient HttpClient { get; }
+        protected HttpClient HttpClient { get; }
 
         private Uri BaseApiUrl { get; set; }
 
@@ -49,7 +51,7 @@ namespace BasisTheory.net.Common
                 HttpClient.DefaultRequestHeaders.Add("BT-CLIENT-USER-AGENT", btClientUserAgentString);
 
             var userAgentString = UserAgentUtility.BuildUserAgentString(AppInfo);
-            if (!string.IsNullOrEmpty((userAgentString)))
+            if (!string.IsNullOrEmpty(userAgentString))
                 HttpClient.DefaultRequestHeaders.Add("User-Agent", userAgentString);
         }
 
