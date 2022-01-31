@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.23.0...v1.24.0) (2022-01-31)
+
+
+### Features
+
+* expose token search ([#96](https://github.com/Basis-Theory/basistheory-dotnet/issues/96)) ([56ffd8d](https://github.com/Basis-Theory/basistheory-dotnet/commit/56ffd8d976cfd033bff8fe6513c0fc88f13c4623))
+
 # [1.23.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.22.0...v1.23.0) (2022-01-13)
 
 
