@@ -39,11 +39,23 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             .RuleFor(a => a.Tokens, (_, _) => TokenFactory.Token())
             .RuleFor(t => t.Raw, (_, _) => TokenFactory.Token());
 
-        public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
+        public static readonly Faker<AtomicReactRequest> AtomicReactRequestFaker = new Faker<AtomicReactRequest>()
             .RuleFor(a => a.ReactorId, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.RequestParameters, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => (object) x.Value));
+
+        public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
+            .RuleFor(rr => rr.Args, (f, _) => new
+            {
+                firstArg = f.Random.Word(),
+                nested = new
+                {
+                    firstNested = f.Random.Word(),
+                    secondNested = f.Random.Int(0, 1000),
+                    thirdNested = f.Random.Bool(),
+                }
+            });
 
         public static Reactor Reactor(Action<Reactor> applyOverrides = null)
         {
@@ -72,10 +84,19 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             return response;
         }
 
+        public static AtomicReactRequest AtomicReactRequest(Action<AtomicReactRequest> applyOverrides = null)
+        {
+            var request = AtomicReactRequestFaker.Generate();
+
+            applyOverrides?.Invoke(request);
+
+            return request;
+        }
+
         public static ReactRequest ReactRequest(Action<ReactRequest> applyOverrides = null)
         {
             var request = ReactRequestFaker.Generate();
-
+            
             applyOverrides?.Invoke(request);
 
             return request;

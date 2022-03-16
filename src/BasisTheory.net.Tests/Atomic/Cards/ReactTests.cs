@@ -32,25 +32,25 @@ namespace BasisTheory.net.Tests.Atomic.Cards
             {
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
+                    (Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicCardId, request, options) => await client.ReactAsync(atomicCardId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
+                    (Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>>)(
                         async (client, atomicCardId, request, options) => await client.ReactAsync(atomicCardId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
+                    (Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.React(atomicCardId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>>)(
+                    (Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.React(atomicCardId.ToString(), request, options))
                     )
                 };
@@ -59,10 +59,10 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldReact(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldReact(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var atomicCardId = Guid.NewGuid();
-            var request = ReactorFactory.ReactRequest();
+            var request = ReactorFactory.AtomicReactRequest();
 
             var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -81,11 +81,11 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
             var atomicCardId = Guid.NewGuid();
-            var request = ReactorFactory.ReactRequest();
+            var request = ReactorFactory.AtomicReactRequest();
 
             var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -107,11 +107,11 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var atomicCardId = Guid.NewGuid();
-            var request = ReactorFactory.ReactRequest();
+            var request = ReactorFactory.AtomicReactRequest();
 
             var content = ReactorFactory.ReactResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -134,14 +134,14 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new ReactRequest(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new AtomicReactRequest(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -149,11 +149,11 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new ReactRequest(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new AtomicReactRequest(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -162,13 +162,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, Guid, AtomicReactRequest, RequestOptions, Task<ReactResponse>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new ReactRequest(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new AtomicReactRequest(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

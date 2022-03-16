@@ -44,11 +44,11 @@ namespace BasisTheory.net.Atomic.Cards
         Task DeleteAsync(string atomicCardId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        ReactResponse React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        ReactResponse React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null);
-        Task<ReactResponse> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        ReactResponse React(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null);
+        ReactResponse React(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null);
+        Task<ReactResponse> ReactAsync(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        Task<ReactResponse> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        Task<ReactResponse> ReactAsync(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
 
@@ -147,23 +147,23 @@ namespace BasisTheory.net.Atomic.Cards
             await base.DeleteAsync($"{BasePath}/{atomicCardId}", requestOptions, cancellationToken);
         }
 
-        public ReactResponse React(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null)
         {
             return React(atomicCardId.ToString(), request, requestOptions);
         }
 
-        public ReactResponse React(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null)
+        public ReactResponse React(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null)
         {
             return Post<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
         }
 
-        public async Task<ReactResponse> ReactAsync(Guid atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await ReactAsync(atomicCardId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<ReactResponse> ReactAsync(string atomicCardId, ReactRequest request, RequestOptions requestOptions = null,
+        public async Task<ReactResponse> ReactAsync(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await PostAsync<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions, cancellationToken);
