@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.24.0...v1.25.0) (2022-03-17)
+
+
+### Features
+
+* exposing new react endpoint ([#106](https://github.com/Basis-Theory/basistheory-dotnet/issues/106)) ([0abd74f](https://github.com/Basis-Theory/basistheory-dotnet/commit/0abd74f7217b080b1dbb4c9a9f38de88981699a1))
+
 # [1.24.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.23.0...v1.24.0) (2022-01-31)
 
 
