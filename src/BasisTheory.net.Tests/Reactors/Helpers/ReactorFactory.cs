@@ -46,7 +46,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
                     .ToDictionary(x => x.Key, x => (object) x.Value));
 
         public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
-            .RuleFor(rr => rr.Args, (f, _) => new
+            .RuleFor(rr => rr.Arguments, (f, _) => new
             {
                 firstArg = f.Random.Word(),
                 nested = new
@@ -96,7 +96,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
         public static ReactRequest ReactRequest(Action<ReactRequest> applyOverrides = null)
         {
             var request = ReactRequestFaker.Generate();
-            
+
             applyOverrides?.Invoke(request);
 
             return request;
