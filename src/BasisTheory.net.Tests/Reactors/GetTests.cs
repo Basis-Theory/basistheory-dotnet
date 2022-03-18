@@ -118,31 +118,6 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetBySourceTokenType(
-            Func<IReactorClient, ReactorGetRequest, RequestOptions, Task<PaginatedList<Reactor>>> mut)
-        {
-            var sourceTokenType = _fixture.Faker.Lorem.Word();
-
-            var content = ReactorFactory.PaginatedReactors();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, new ReactorGetRequest
-            {
-                SourceTokenType = sourceTokenType
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetWithPagination(
             Func<IReactorClient, ReactorGetRequest, RequestOptions, Task<PaginatedList<Reactor>>> mut)
         {
@@ -175,7 +150,6 @@ namespace BasisTheory.net.Tests.Reactors
         {
             var reactorId = Guid.NewGuid();
             var name = _fixture.Faker.Lorem.Word();
-            var sourceTokenType = _fixture.Faker.Lorem.Word();
             var size = _fixture.Faker.Random.Int(1, 20);
             var page = _fixture.Faker.Random.Int(1, 20);
 
@@ -189,14 +163,13 @@ namespace BasisTheory.net.Tests.Reactors
             {
                 ReactorIds = new List<Guid> { reactorId },
                 Name = name,
-                SourceTokenType = sourceTokenType,
                 PageSize = size,
                 Page = page
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors?page={page}&size={size}&id={reactorId}&name={name}&source_token_type={sourceTokenType}",
+            Assert.Equal($"/reactors?page={page}&size={size}&id={reactorId}&name={name}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);

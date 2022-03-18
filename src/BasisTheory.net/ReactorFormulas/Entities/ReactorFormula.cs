@@ -23,10 +23,6 @@ namespace BasisTheory.net.ReactorFormulas.Entities
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("source_token_type")]
-        [JsonPropertyName("source_token_type")]
-        public string SourceTokenType { get; set; }
-
         [JsonProperty("icon")]
         [JsonPropertyName("icon")]
         public string Icon { get; set; }
