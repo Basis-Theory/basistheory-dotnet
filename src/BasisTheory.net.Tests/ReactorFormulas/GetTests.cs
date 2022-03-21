@@ -30,16 +30,18 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>)(
+                    (Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions,
+                        Task<PaginatedList<ReactorFormula>>>) (
                         async (client, request, options) => await client.GetAsync(request, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>)(
-                        (client, request, options) =>  Task.FromResult(client.Get(request, options))
+                    (Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions,
+                        Task<PaginatedList<ReactorFormula>>>) (
+                        (client, request, options) => Task.FromResult(client.Get(request, options))
                     )
                 };
             }
@@ -48,7 +50,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetAll(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var content = ReactorFormulaFactory.PaginatedReactorFormulas();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -68,7 +71,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetByName(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var name = _fixture.Faker.Lorem.Word();
 
@@ -92,33 +96,9 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetBySourceTokenType(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
-        {
-            var sourceTokenType = _fixture.Faker.Lorem.Word();
-
-            var content = ReactorFormulaFactory.PaginatedReactorFormulas();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
-            {
-                SourceTokenType = sourceTokenType
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactor-formulas?source_token_type={sourceTokenType}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
         public async Task ShouldGetWithPagination(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var size = _fixture.Faker.Random.Int(1, 20);
             var page = _fixture.Faker.Random.Int(1, 20);
@@ -144,10 +124,10 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetWithAllParameters(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var name = _fixture.Faker.Lorem.Word();
-            var sourceTokenType = _fixture.Faker.Lorem.Word();
             var size = _fixture.Faker.Random.Int(1, 20);
             var page = _fixture.Faker.Random.Int(1, 20);
 
@@ -160,14 +140,13 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             var response = await mut(_fixture.Client, new ReactorFormulaGetRequest
             {
                 Name = name,
-                SourceTokenType = sourceTokenType,
                 PageSize = size,
                 Page = page
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactor-formulas?page={page}&size={size}&name={name}&source_token_type={sourceTokenType}",
+            Assert.Equal($"/reactor-formulas?page={page}&size={size}&name={name}",
                 requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
@@ -176,7 +155,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetWithPerRequestApiKey(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -201,7 +181,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetWithCorrelationId(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -227,7 +208,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldBubbleUpBasisTheoryErrors(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -243,7 +225,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleEmptyErrorResponse(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -257,7 +240,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleNonBasisTheoryErrorResponse(
-            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>> mut)
+            Func<IReactorFormulaClient, ReactorFormulaGetRequest, RequestOptions, Task<PaginatedList<ReactorFormula>>>
+                mut)
         {
             var error = Guid.NewGuid().ToString();
 

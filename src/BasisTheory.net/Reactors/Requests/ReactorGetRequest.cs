@@ -11,8 +11,6 @@ namespace BasisTheory.net.Reactors.Requests
 
         public string Name { get; set; }
 
-        public string SourceTokenType { get; set; }
-
         public override string BuildQuery()
         {
             var queryParts = new List<string>();
@@ -28,9 +26,6 @@ namespace BasisTheory.net.Reactors.Requests
 
             if(!string.IsNullOrWhiteSpace(Name))
                 queryParts.Add($"name={Name}");
-
-            if(!string.IsNullOrWhiteSpace(SourceTokenType))
-                queryParts.Add($"source_token_type={SourceTokenType}");
 
             return string.Join("&", queryParts);
         }

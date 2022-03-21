@@ -14,7 +14,6 @@ namespace BasisTheory.net.Tests.ReactorFormulas.Helpers
             .RuleFor(a => a.Type, _ => TokenTypes.Token)
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Description, (f, _) => f.Lorem.Sentence())
-            .RuleFor(a => a.SourceTokenType, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.Icon, (f, _) => f.Random.Hash())
             .RuleFor(a => a.Code, (f, _) => f.Lorem.Paragraph())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
