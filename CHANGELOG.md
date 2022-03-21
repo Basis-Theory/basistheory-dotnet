@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.25.0...v1.26.0) (2022-03-21)
+
+
+### Features
+
+* removing source token type ([#110](https://github.com/Basis-Theory/basistheory-dotnet/issues/110)) ([b55ae0f](https://github.com/Basis-Theory/basistheory-dotnet/commit/b55ae0f9426c07b502edccbe1ee748c9ee29817d))
+
 # [1.25.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.24.0...v1.25.0) (2022-03-17)
 
 
