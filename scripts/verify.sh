@@ -13,6 +13,7 @@ time {
     ./stopdocker.sh
     ./build.sh
     ./startdocker.sh
+    ./unittest.sh
     ./acceptancetest.sh
 }
 

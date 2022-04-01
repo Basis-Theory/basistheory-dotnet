@@ -9,9 +9,6 @@ dotnet restore
 
 dotnet build BasisTheory.net.sln --no-restore -c Release
 
-# Run unit tests
-find . -name '*.Tests.csproj' -print0 | xargs -I {} -n 1 dotnet test {} --no-build --no-restore -v=normal -c Release
-
 result=$?
 
 cd "$current_directory"

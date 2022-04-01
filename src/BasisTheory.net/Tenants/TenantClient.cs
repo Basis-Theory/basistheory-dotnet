@@ -85,6 +85,7 @@ namespace BasisTheory.net.Tenants
                 cancellationToken);
         }
 
+        // TODO: needs tests
         public TenantInvitation CreateInvitation(TenantInvitation tenantInvitation,
             RequestOptions requestOptions = null)
         {
@@ -97,7 +98,14 @@ namespace BasisTheory.net.Tenants
             return await PostAsync<TenantInvitation>($"{BasePath}/self/invitations", tenantInvitation, requestOptions);
         }
 
+        // TODO: needs tests
         public TenantInvitation ResendInvitation(Guid tenantInvitationId,
+            RequestOptions requestOptions = null)
+        {
+            return ResendInvitation(tenantInvitationId.ToString(), requestOptions);
+        }
+
+        public TenantInvitation ResendInvitation(string tenantInvitationId,
             RequestOptions requestOptions = null)
         {
             return Post<TenantInvitation>($"{BasePath}/self/invitations/{tenantInvitationId}/resend", null,
@@ -107,10 +115,17 @@ namespace BasisTheory.net.Tenants
         public async Task<TenantInvitation> ResendInvitationAsync(Guid tenantInvitationId,
             RequestOptions requestOptions = null)
         {
+            return await ResendInvitationAsync(tenantInvitationId.ToString(), requestOptions);
+        }
+
+        public async Task<TenantInvitation> ResendInvitationAsync(string tenantInvitationId,
+            RequestOptions requestOptions = null)
+        {
             return await PostAsync<TenantInvitation>($"{BasePath}/self/invitations/{tenantInvitationId}/resend", null,
                 requestOptions);
         }
 
+        // TODO: needs tests
         public PaginatedList<TenantInvitation> GetInvitations(TenantInvitationsGetRequest tenantInvitationsGetRequest,
             RequestOptions requestOptions = null)
         {
@@ -127,6 +142,7 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
+        // TODO: needs tests
         public TenantInvitation GetInvitationById(Guid tenantInvitationId, TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null)
         {
@@ -141,16 +157,16 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
-        public async Task<TenantInvitation> GetInvitationsAsync(
+        public async Task<TenantInvitation> GetInvitationByIdAsync(
             Guid tenantInvitationId, TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null)
         {
-            return await GetInvitationsAsync(tenantInvitationId.ToString(),
+            return await GetInvitationByIdAsync(tenantInvitationId.ToString(),
                 tenantsGetByIdRequest,
                 requestOptions);
         }
 
-        public async Task<TenantInvitation> GetInvitationsAsync(
+        public async Task<TenantInvitation> GetInvitationByIdAsync(
             string tenantInvitationId, TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null)
         {
@@ -159,6 +175,7 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
+        // TODO: needs tests
         public void DeleteInvitation(Guid tenantInvitationId,
             RequestOptions requestOptions = null)
         {
@@ -187,6 +204,7 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
+        // TODO: needs tests
         public PaginatedList<TenantMember> GetMembers(TenantMemberGetRequest tenantMembersGetRequest,
             RequestOptions requestOptions = null)
         {
@@ -202,7 +220,8 @@ namespace BasisTheory.net.Tenants
                 tenantMembersGetRequest,
                 requestOptions);
         }
-        
+
+        // TODO: needs tests
         public void DeleteMember(Guid tenantMemberId,
             RequestOptions requestOptions = null)
         {
