@@ -26,7 +26,7 @@ namespace BasisTheory.net.Tests.Applications.Helpers
                 TotalItems = f.Random.Number(1, 10),
                 TotalPages = f.Random.Number(1, 10),
                 PageNumber = f.Random.Number(1, 10),
-                PageSize = f.Random.Number(1, 10),
+                PageSize = f.Random.Number(1, 10)
             })
             .RuleFor(t => t.Data, (f, _) => f.Make(f.Random.Int(5, 10), () => ApplicationFaker.Generate()).ToList());
 

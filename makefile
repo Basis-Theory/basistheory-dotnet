@@ -6,6 +6,9 @@ verify:
 build:
 	./scripts/build.sh
 
+unit-test:
+	./scripts/unittest.sh
+
 acceptance-test:
 	./scripts/acceptancetest.sh
 
