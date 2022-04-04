@@ -1,3 +1,10 @@
+## [1.27.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.27.0...v1.27.1) (2022-04-04)
+
+
+### Bug Fixes
+
+* makes args optional on get members and invitations fns ([#114](https://github.com/Basis-Theory/basistheory-dotnet/issues/114)) ([5c749b0](https://github.com/Basis-Theory/basistheory-dotnet/commit/5c749b04cf3c83a40665a5b711d5f08ae2ab94a1))
+
 # [1.27.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.26.0...v1.27.0) (2022-04-04)
 
 
