@@ -15,9 +15,9 @@ public class TenantInvitationFactory
         .RuleFor(i => i.Status, (_, _) => TenantInvitationStatus.PENDING)
         .RuleFor(i => i.ExpirationDate, (f, _) => f.Date.PastOffset())
         .RuleFor(i => i.CreatedBy, (_, _) => Guid.NewGuid())
-        .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-        .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
-        .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset());
+        .RuleFor(i => i.CreatedDate, (f, _) => f.Date.PastOffset())
+        .RuleFor(i => i.ModifiedBy, (_, _) => Guid.NewGuid())
+        .RuleFor(i => i.ModifiedDate, (f, _) => f.Date.PastOffset());
 
     public static readonly Faker<PaginatedList<TenantInvitation>> PaginatedListFaker =
         new Faker<PaginatedList<TenantInvitation>>()

@@ -20,7 +20,7 @@ namespace BasisTheory.net.Tenants.Requests
                 queryParts.Add($"size={PageSize}");
 
             if (MemberUserIds?.Any() ?? false)
-                queryParts.AddRange(MemberUserIds.Select(reactorId => $"user_id={reactorId}"));
+                queryParts.AddRange(MemberUserIds.Select(memberUserId => $"user_id={memberUserId}"));
 
             return string.Join("&", queryParts);
         }

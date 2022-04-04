@@ -15,9 +15,9 @@ public class TenantMemberFactory
         .RuleFor(i => i.User, (_, _) => UserModelFaker.Generate())
         .RuleFor(i => i.ExpirationDate, (f, _) => f.Date.PastOffset())
         .RuleFor(i => i.CreatedBy, (_, _) => Guid.NewGuid())
-        .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-        .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
-        .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset());
+        .RuleFor(i => i.CreatedDate, (f, _) => f.Date.PastOffset())
+        .RuleFor(i => i.ModifiedBy, (_, _) => Guid.NewGuid())
+        .RuleFor(i => i.ModifiedDate, (f, _) => f.Date.PastOffset());
 
     public static readonly Faker<UserModel> UserModelFaker =
         new Faker<UserModel>()
