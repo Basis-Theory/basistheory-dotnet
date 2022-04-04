@@ -47,11 +47,11 @@ namespace BasisTheory.net.Tenants
         Task<TenantInvitation> ResendInvitationAsync(string tenantInvitationId,
             RequestOptions requestOptions = null);
 
-        PaginatedList<TenantInvitation> GetInvitations(TenantInvitationsGetRequest tenantInvitationsGetRequest,
+        PaginatedList<TenantInvitation> GetInvitations(TenantInvitationsGetRequest tenantInvitationsGetRequest = null,
             RequestOptions requestOptions = null);
 
         Task<PaginatedList<TenantInvitation>> GetInvitationsAsync(
-            TenantInvitationsGetRequest tenantInvitationsGetRequest,
+            TenantInvitationsGetRequest tenantInvitationsGetRequest = null,
             RequestOptions requestOptions = null);
 
         TenantInvitation GetInvitationById(Guid tenantInvitationId,
@@ -80,11 +80,11 @@ namespace BasisTheory.net.Tenants
             string tenantInvitationId,
             RequestOptions requestOptions = null);
 
-        PaginatedList<TenantMember> GetMembers(TenantMemberGetRequest tenantMembersGetRequest,
+        PaginatedList<TenantMember> GetMembers(TenantMemberGetRequest tenantMembersGetRequest = null,
             RequestOptions requestOptions = null);
 
         Task<PaginatedList<TenantMember>> GetMembersAsync(
-            TenantMemberGetRequest tenantMembersGetRequest,
+            TenantMemberGetRequest tenantMembersGetRequest = null,
             RequestOptions requestOptions = null);
 
         void DeleteMember(Guid tenantMemberId,
@@ -195,7 +195,8 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
-        public PaginatedList<TenantInvitation> GetInvitations(TenantInvitationsGetRequest tenantInvitationsGetRequest,
+        public PaginatedList<TenantInvitation> GetInvitations(
+            TenantInvitationsGetRequest tenantInvitationsGetRequest = null,
             RequestOptions requestOptions = null)
         {
             return Get<PaginatedList<TenantInvitation>>($"{BasePath}/self/invitations", tenantInvitationsGetRequest,
@@ -203,7 +204,7 @@ namespace BasisTheory.net.Tenants
         }
 
         public async Task<PaginatedList<TenantInvitation>> GetInvitationsAsync(
-            TenantInvitationsGetRequest tenantInvitationsGetRequest,
+            TenantInvitationsGetRequest tenantInvitationsGetRequest = null,
             RequestOptions requestOptions = null)
         {
             return await GetAsync<PaginatedList<TenantInvitation>>($"{BasePath}/self/invitations",
@@ -269,7 +270,7 @@ namespace BasisTheory.net.Tenants
                 requestOptions);
         }
 
-        public PaginatedList<TenantMember> GetMembers(TenantMemberGetRequest tenantMembersGetRequest,
+        public PaginatedList<TenantMember> GetMembers(TenantMemberGetRequest tenantMembersGetRequest = null,
             RequestOptions requestOptions = null)
         {
             return Get<PaginatedList<TenantMember>>($"{BasePath}/self/members", tenantMembersGetRequest,
@@ -277,7 +278,7 @@ namespace BasisTheory.net.Tenants
         }
 
         public async Task<PaginatedList<TenantMember>> GetMembersAsync(
-            TenantMemberGetRequest tenantMembersGetRequest,
+            TenantMemberGetRequest tenantMembersGetRequest = null,
             RequestOptions requestOptions = null)
         {
             return await GetAsync<PaginatedList<TenantMember>>($"{BasePath}/self/members",
