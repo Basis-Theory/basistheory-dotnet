@@ -55,19 +55,15 @@ namespace BasisTheory.net.Tenants
             RequestOptions requestOptions = null);
 
         TenantInvitation GetInvitationById(Guid tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null);
 
         TenantInvitation GetInvitationById(string tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null);
 
         Task<TenantInvitation> GetInvitationByIdAsync(Guid tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null);
 
         Task<TenantInvitation> GetInvitationByIdAsync(string tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest,
             RequestOptions requestOptions = null);
 
         void DeleteInvitation(Guid tenantInvitationId,
@@ -216,35 +212,32 @@ namespace BasisTheory.net.Tenants
         }
 
         public TenantInvitation GetInvitationById(Guid tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest = null,
             RequestOptions requestOptions = null)
         {
-            return GetInvitationById(tenantInvitationId.ToString(), tenantsGetByIdRequest, requestOptions);
+            return GetInvitationById(tenantInvitationId.ToString(), requestOptions);
         }
 
         public TenantInvitation GetInvitationById(string tenantInvitationId,
-            TenantsGetByIdRequest tenantsGetByIdRequest = null,
             RequestOptions requestOptions = null)
         {
-            return Get<TenantInvitation>($"{BasePath}/self/invitations/{tenantInvitationId}", tenantsGetByIdRequest,
+            return Get<TenantInvitation>($"{BasePath}/self/invitations/{tenantInvitationId}", null,
                 requestOptions);
         }
 
         public async Task<TenantInvitation> GetInvitationByIdAsync(
-            Guid tenantInvitationId, TenantsGetByIdRequest tenantsGetByIdRequest = null,
+            Guid tenantInvitationId,
             RequestOptions requestOptions = null)
         {
             return await GetInvitationByIdAsync(tenantInvitationId.ToString(),
-                tenantsGetByIdRequest,
                 requestOptions);
         }
 
         public async Task<TenantInvitation> GetInvitationByIdAsync(
-            string tenantInvitationId, TenantsGetByIdRequest tenantsGetByIdRequest = null,
+            string tenantInvitationId,
             RequestOptions requestOptions = null)
         {
             return await GetAsync<TenantInvitation>($"{BasePath}/self/invitations/{tenantInvitationId}",
-                tenantsGetByIdRequest,
+                null,
                 requestOptions);
         }
 
