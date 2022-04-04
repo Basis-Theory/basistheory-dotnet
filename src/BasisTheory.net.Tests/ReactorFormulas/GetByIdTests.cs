@@ -29,32 +29,32 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>>)(
-                        async (client, reactorFormulaId, request, options) =>
-                            await client.GetByIdAsync(reactorFormulaId, request, options)
+                    (Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>>)(
+                        async (client, reactorFormulaId, options) =>
+                            await client.GetByIdAsync(reactorFormulaId, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>>)(
-                        async (client, reactorFormulaId, request, options) =>
-                            await client.GetByIdAsync(reactorFormulaId.ToString(), request, options)
+                    (Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>>)(
+                        async (client, reactorFormulaId, options) =>
+                            await client.GetByIdAsync(reactorFormulaId.ToString(), options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>>)(
-                        (client, reactorFormulaId, request, options) =>
-                            Task.FromResult(client.GetById(reactorFormulaId, request, options))
+                    (Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>>)(
+                        (client, reactorFormulaId, options) =>
+                            Task.FromResult(client.GetById(reactorFormulaId, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
-                    (Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>>)(
-                        (client, reactorFormulaId, request, options) =>
-                            Task.FromResult(client.GetById(reactorFormulaId.ToString(), request, options))
+                    (Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>>)(
+                        (client, reactorFormulaId, options) =>
+                            Task.FromResult(client.GetById(reactorFormulaId.ToString(), options))
                     )
                 };
             }
@@ -62,7 +62,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldGetById(Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             var content = ReactorFormulaFactory.ReactorFormula();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -70,7 +70,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, null, null);
+            var response = await mut(_fixture.Client, content.Id, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
@@ -81,7 +81,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldGetByIdWithPerRequestApiKey(
+            Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -91,7 +92,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
+            var response = await mut(_fixture.Client, content.Id, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -105,7 +106,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(
+            Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -115,7 +117,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
+            var response = await mut(_fixture.Client, content.Id, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -130,14 +132,16 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(
+            Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception =
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -145,11 +149,13 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(
+            Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception =
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -158,13 +164,15 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IReactorFormulaClient, Guid, ReactorFormulaGetByIdRequest, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(
+            Func<IReactorFormulaClient, Guid, RequestOptions, Task<ReactorFormula>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception =
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

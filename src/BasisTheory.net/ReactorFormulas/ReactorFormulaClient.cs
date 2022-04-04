@@ -13,36 +13,50 @@ namespace BasisTheory.net.ReactorFormulas
 {
     public interface IReactorFormulaClient
     {
-        ReactorFormula GetById(Guid reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+        ReactorFormula GetById(Guid reactorFormulaId,
             RequestOptions requestOptions = null);
-        ReactorFormula GetById(string reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+
+        ReactorFormula GetById(string reactorFormulaId,
             RequestOptions requestOptions = null);
-        Task<ReactorFormula> GetByIdAsync(Guid reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+
+        Task<ReactorFormula> GetByIdAsync(Guid reactorFormulaId,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
-        Task<ReactorFormula> GetByIdAsync(string reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+
+        Task<ReactorFormula> GetByIdAsync(string reactorFormulaId,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
         PaginatedList<ReactorFormula> Get(ReactorFormulaGetRequest request = null,
             RequestOptions requestOptions = null);
+
         Task<PaginatedList<ReactorFormula>> GetAsync(ReactorFormulaGetRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         ReactorFormula Create(ReactorFormula reactorFormula, RequestOptions requestOptions = null);
+
         Task<ReactorFormula> CreateAsync(ReactorFormula reactorFormula, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        ReactorFormula Update(Guid reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null);
-        ReactorFormula Update(string reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null);
-        Task<ReactorFormula> UpdateAsync(Guid reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null,
+        ReactorFormula Update(Guid reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null);
+
+        ReactorFormula Update(string reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null);
+
+        Task<ReactorFormula> UpdateAsync(Guid reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        Task<ReactorFormula> UpdateAsync(string reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null,
+
+        Task<ReactorFormula> UpdateAsync(string reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid reactorFormulaId, RequestOptions requestOptions = null);
         void Delete(string reactorFormulaId, RequestOptions requestOptions = null);
+
         Task DeleteAsync(Guid reactorFormulaId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
+
         Task DeleteAsync(string reactorFormulaId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
@@ -57,28 +71,28 @@ namespace BasisTheory.net.ReactorFormulas
         {
         }
 
-        public ReactorFormula GetById(Guid reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+        public ReactorFormula GetById(Guid reactorFormulaId,
             RequestOptions requestOptions = null)
         {
-            return GetById(reactorFormulaId.ToString(), request, requestOptions);
+            return GetById(reactorFormulaId.ToString(), requestOptions);
         }
 
-        public ReactorFormula GetById(string reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+        public ReactorFormula GetById(string reactorFormulaId,
             RequestOptions requestOptions = null)
         {
-            return Get<ReactorFormula>($"{BasePath}/{reactorFormulaId}", request, requestOptions);
+            return Get<ReactorFormula>($"{BasePath}/{reactorFormulaId}", null, requestOptions);
         }
 
-        public async Task<ReactorFormula> GetByIdAsync(Guid reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+        public async Task<ReactorFormula> GetByIdAsync(Guid reactorFormulaId,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await GetByIdAsync(reactorFormulaId.ToString(), request, requestOptions, cancellationToken);
+            return await GetByIdAsync(reactorFormulaId.ToString(), requestOptions, cancellationToken);
         }
 
-        public async Task<ReactorFormula> GetByIdAsync(string reactorFormulaId, ReactorFormulaGetByIdRequest request = null,
+        public async Task<ReactorFormula> GetByIdAsync(string reactorFormulaId,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await GetAsync<ReactorFormula>($"{BasePath}/{reactorFormulaId}", request, requestOptions,
+            return await GetAsync<ReactorFormula>($"{BasePath}/{reactorFormulaId}", null, requestOptions,
                 cancellationToken);
         }
 
@@ -101,18 +115,21 @@ namespace BasisTheory.net.ReactorFormulas
             return Post<ReactorFormula>(BasePath, reactorFormula, requestOptions);
         }
 
-        public async Task<ReactorFormula> CreateAsync(ReactorFormula reactorFormula, RequestOptions requestOptions = null,
+        public async Task<ReactorFormula> CreateAsync(ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await PostAsync<ReactorFormula>(BasePath, reactorFormula, requestOptions, cancellationToken);
         }
 
-        public ReactorFormula Update(Guid reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null)
+        public ReactorFormula Update(Guid reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null)
         {
             return Update(reactorFormulaId.ToString(), reactorFormula, requestOptions);
         }
 
-        public ReactorFormula Update(string reactorFormulaId, ReactorFormula reactorFormula, RequestOptions requestOptions = null)
+        public ReactorFormula Update(string reactorFormulaId, ReactorFormula reactorFormula,
+            RequestOptions requestOptions = null)
         {
             return Put<ReactorFormula>($"{BasePath}/{reactorFormulaId}", reactorFormula, requestOptions);
         }

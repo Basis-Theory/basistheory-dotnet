@@ -15,23 +15,19 @@ namespace BasisTheory.net.Reactors
     {
         Reactor GetById(
             Guid reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null);
 
         Reactor GetById(
             string reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null);
 
         Task<Reactor> GetByIdAsync(
             Guid reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         Task<Reactor> GetByIdAsync(
             string reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
@@ -109,36 +105,32 @@ namespace BasisTheory.net.Reactors
 
         public Reactor GetById(
             Guid reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null)
         {
-            return GetById(reactorId.ToString(), request, requestOptions);
+            return GetById(reactorId.ToString(), requestOptions);
         }
 
         public Reactor GetById(
             string reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null)
         {
-            return Get<Reactor>($"{BasePath}/{reactorId}", request, requestOptions);
+            return Get<Reactor>($"{BasePath}/{reactorId}", null, requestOptions);
         }
 
         public async Task<Reactor> GetByIdAsync(
             Guid reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await GetByIdAsync(reactorId.ToString(), request, requestOptions, cancellationToken);
+            return await GetByIdAsync(reactorId.ToString(), requestOptions, cancellationToken);
         }
 
         public async Task<Reactor> GetByIdAsync(
             string reactorId,
-            ReactorGetByIdRequest request = null,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await GetAsync<Reactor>($"{BasePath}/{reactorId}", request, requestOptions, cancellationToken);
+            return await GetAsync<Reactor>($"{BasePath}/{reactorId}", null, requestOptions, cancellationToken);
         }
 
         public PaginatedList<Reactor> Get(ReactorGetRequest request = null, RequestOptions requestOptions = null)
