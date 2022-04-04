@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.26.0...v1.27.0) (2022-04-04)
+
+
+### Features
+
+* adds tenant members and invitations functions ([#113](https://github.com/Basis-Theory/basistheory-dotnet/issues/113)) ([ed901d1](https://github.com/Basis-Theory/basistheory-dotnet/commit/ed901d16a0a29028e39df340bea5fdaf09fe8db7))
+
 # [1.26.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.25.0...v1.26.0) (2022-03-21)
 
 
