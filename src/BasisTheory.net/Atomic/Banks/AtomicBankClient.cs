@@ -13,6 +13,7 @@ using BasisTheory.net.Reactors.Requests;
 
 namespace BasisTheory.net.Atomic.Banks
 {
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.ITokenClient")]
     public interface IAtomicBankClient
     {
         AtomicBank GetById(Guid atomicBankId, BankGetByIdRequest request = null, RequestOptions requestOptions = null);
@@ -52,6 +53,7 @@ namespace BasisTheory.net.Atomic.Banks
             CancellationToken cancellationToken = default);
     }
 
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.TokenClient")]
     public class AtomicBankClient : BaseClient, IAtomicBankClient
     {
         protected override string BasePath => "atomic/banks";
@@ -146,22 +148,26 @@ namespace BasisTheory.net.Atomic.Banks
             await base.DeleteAsync($"{BasePath}/{atomicBankId}", requestOptions, cancellationToken);
         }
 
+        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
         public ReactResponse React(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null)
         {
             return React(atomicBankId.ToString(), request, requestOptions);
         }
 
+        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
         public ReactResponse React(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null)
         {
             return Post<ReactResponse>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
         }
 
+        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
         public async Task<ReactResponse> ReactAsync(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await ReactAsync(atomicBankId.ToString(), request, requestOptions, cancellationToken);
         }
 
+        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
         public async Task<ReactResponse> ReactAsync(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
