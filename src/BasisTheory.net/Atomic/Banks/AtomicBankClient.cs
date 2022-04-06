@@ -13,6 +13,7 @@ using BasisTheory.net.Reactors.Requests;
 
 namespace BasisTheory.net.Atomic.Banks
 {
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.ITokenClient")]
     public interface IAtomicBankClient
     {
         AtomicBank GetById(Guid atomicBankId, BankGetByIdRequest request = null, RequestOptions requestOptions = null);
@@ -52,6 +53,7 @@ namespace BasisTheory.net.Atomic.Banks
             CancellationToken cancellationToken = default);
     }
 
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.TokenClient")]
     public class AtomicBankClient : BaseClient, IAtomicBankClient
     {
         protected override string BasePath => "atomic/banks";

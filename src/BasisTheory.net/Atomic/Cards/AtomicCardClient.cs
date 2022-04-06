@@ -13,6 +13,7 @@ using BasisTheory.net.Reactors.Requests;
 
 namespace BasisTheory.net.Atomic.Cards
 {
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.ITokenClient")]
     public interface IAtomicCardClient
     {
         AtomicCard GetById(Guid atomicCardId, CardGetByIdRequest request = null, RequestOptions requestOptions = null);
@@ -52,6 +53,7 @@ namespace BasisTheory.net.Atomic.Cards
             CancellationToken cancellationToken = default);
     }
 
+    [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.TokenClient")]
     public class AtomicCardClient : BaseClient, IAtomicCardClient
     {
         protected override string BasePath => "atomic/cards";
