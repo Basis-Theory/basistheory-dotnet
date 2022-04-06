@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.27.1...v1.28.0) (2022-04-06)
+
+
+### Features
+
+* Deprecate atomic clients ([#115](https://github.com/Basis-Theory/basistheory-dotnet/issues/115)) ([6fedf55](https://github.com/Basis-Theory/basistheory-dotnet/commit/6fedf5587548b56d9d6e820249c0b29e5e7f2407))
+
 ## [1.27.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.27.0...v1.27.1) (2022-04-04)
 
 
