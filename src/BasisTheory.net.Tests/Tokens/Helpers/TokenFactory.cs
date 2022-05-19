@@ -28,7 +28,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value))
             .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
-            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String(10)));
+            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
 
         public static readonly Faker<EncryptionKey> EncryptionKeyModelFaker = new Faker<EncryptionKey>()
             .RuleFor(t => t.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
