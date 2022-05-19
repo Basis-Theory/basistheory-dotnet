@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Responses;
@@ -19,6 +20,10 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("privacy")]
         [JsonPropertyName("privacy")]
         public DataPrivacy Privacy { get; set; }
+        
+        [JsonProperty("search_indexes")]
+        [JsonPropertyName("search_indexes")]
+        public List<string> SearchIndexes { get; set; }
 
         public Token() {}
 
