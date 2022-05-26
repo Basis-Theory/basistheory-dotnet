@@ -14,31 +14,32 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
     public static class TokenFactory
     {
         public static readonly Faker<Token> TokenFaker = new Faker<Token>()
-            .RuleFor(a => a.Id, (_, _) => Guid.NewGuid())
-            .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
-            .RuleFor(a => a.Type, _ => TokenTypes.Token)
-            .RuleFor(a => a.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
-            .RuleFor(a => a.Fingerprint, (f, _) => f.Lorem.Word())
-            .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
-            .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
-            .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
-            .RuleFor(a => a.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
+            .RuleFor(t => t.Id, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.TenantId, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.Type, _ => TokenTypes.Token)
+            .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.Fingerprint, (f, _) => f.Lorem.Word())
+            .RuleFor(t => t.CreatedBy, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.CreatedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(t => t.ModifiedBy, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.ModifiedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value))
-            .RuleFor(x => x.Privacy, _ => DataPrivacyFaker.Generate());
+            .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
+            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
 
         public static readonly Faker<EncryptionKey> EncryptionKeyModelFaker = new Faker<EncryptionKey>()
-            .RuleFor(a => a.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
-            .RuleFor(a => a.Key, (f, _) => f.Random.Word());
+            .RuleFor(t => t.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
+            .RuleFor(t => t.Key, (f, _) => f.Random.Word());
 
         public static readonly Faker<EncryptionMetadata> EncryptionMetadataModelFaker = new Faker<EncryptionMetadata>()
-            .RuleFor(a => a.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
-            .RuleFor(a => a.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
+            .RuleFor(t => t.ContentEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate())
+            .RuleFor(t => t.KeyEncryptionKey, (_, _) => EncryptionKeyModelFaker.Generate());
 
         public static readonly Faker<PaginatedList<Token>> PaginatedListFaker = new Faker<PaginatedList<Token>>()
-            .RuleFor(a => a.Pagination, (f, _) => new Pagination
+            .RuleFor(t => t.Pagination, (f, _) => new Pagination
             {
                 TotalItems = f.Random.Number(1, 10),
                 TotalPages = f.Random.Number(1, 10),
