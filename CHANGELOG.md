@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.28.0...v1.29.0) (2022-05-26)
+
+
+### Features
+
+* eng 2886 add search indexes ([#120](https://github.com/Basis-Theory/basistheory-dotnet/issues/120)) ([9ad8674](https://github.com/Basis-Theory/basistheory-dotnet/commit/9ad867478678ef6180c05def782d06498b4f13c3))
+
 # [1.28.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.27.1...v1.28.0) (2022-04-06)
 
 
