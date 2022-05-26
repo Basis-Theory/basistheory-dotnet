@@ -19,6 +19,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(t => t.Type, _ => TokenTypes.Token)
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(t => t.Fingerprint, (f, _) => f.Lorem.Word())
+            .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.CreatedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.ModifiedBy, (_, _) => Guid.NewGuid())

@@ -20,12 +20,18 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("privacy")]
         [JsonPropertyName("privacy")]
         public DataPrivacy Privacy { get; set; }
-        
+
         [JsonProperty("search_indexes")]
         [JsonPropertyName("search_indexes")]
         public List<string> SearchIndexes { get; set; }
 
-        public Token() {}
+        [JsonProperty("fingerprint_expression")]
+        [JsonPropertyName("fingerprint_expression")]
+        public string FingerprintExpression { get; set; }
+
+        public Token()
+        {
+        }
 
         public Token(EncryptedData encryptedData)
         {
