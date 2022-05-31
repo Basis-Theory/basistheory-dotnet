@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.29.0...v1.30.0) (2022-05-31)
+
+
+### Features
+
+* adds fingerprint_expression prop on Token ([#124](https://github.com/Basis-Theory/basistheory-dotnet/issues/124)) ([7ceff11](https://github.com/Basis-Theory/basistheory-dotnet/commit/7ceff110e73d279a4d5b6a09fcaa35d292508c21))
+
 # [1.29.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.28.0...v1.29.0) (2022-05-26)
 
 
