@@ -22,7 +22,7 @@ namespace BasisTheory.net.Proxies.Requests
                 queryParts.Add($"size={PageSize}");
 
             if (ProxyIds?.Any() ?? false)
-                queryParts.AddRange(ProxyIds.Select(reactorId => $"id={reactorId}"));
+                queryParts.AddRange(ProxyIds.Select(proxyId => $"id={proxyId}"));
 
             if (!string.IsNullOrWhiteSpace(Name))
                 queryParts.Add($"name={Name}");

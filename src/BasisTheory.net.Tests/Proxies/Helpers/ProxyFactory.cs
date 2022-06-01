@@ -32,11 +32,11 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
 
         public static Proxy Proxy(Action<Proxy> applyOverrides = null)
         {
-            var reactor = ProxyFaker.Generate();
+            var proxy = ProxyFaker.Generate();
 
-            applyOverrides?.Invoke(reactor);
+            applyOverrides?.Invoke(proxy);
 
-            return reactor;
+            return proxy;
         }
 
         public static PaginatedList<Proxy> PaginatedProxies(Action<PaginatedList<Proxy>> applyOverrides = null)
