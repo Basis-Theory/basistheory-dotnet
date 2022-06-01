@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
-using BasisTheory.net.Reactors;
-using BasisTheory.net.Reactors.Entities;
+using BasisTheory.net.Proxies;
+using BasisTheory.net.Proxies.Entities;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Reactors.Helpers;
+using BasisTheory.net.Tests.Proxies.Helpers;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Reactors
+namespace BasisTheory.net.Tests.Proxies
 {
-    public class GetByIdTests : IClassFixture<ReactorFixture>
+    public class UpdateTests : IClassFixture<ProxyFixture>
     {
-        private readonly ReactorFixture _fixture;
+        private readonly ProxyFixture _fixture;
 
-        public GetByIdTests(ReactorFixture fixture)
+        public UpdateTests(ProxyFixture fixture)
         {
             _fixture = fixture;
         }
@@ -28,32 +28,28 @@ namespace BasisTheory.net.Tests.Reactors
         {
             get
             {
-                yield return new object[]
+                yield return new object []
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        async (client, reactorId, options) =>
-                            await client.GetByIdAsync(reactorId, options)
+                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                        async (client, proxy, options) => await client.UpdateAsync(proxy.Id, proxy, options)
                     )
                 };
-                yield return new object[]
+                yield return new object []
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        async (client, reactorId, options) =>
-                            await client.GetByIdAsync(reactorId.ToString(), options)
+                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                        async (client, proxy, options) => await client.UpdateAsync(proxy.Id.ToString(), proxy, options)
                     )
                 };
-                yield return new object[]
+                yield return new object []
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        (client, reactorId, options) =>
-                            Task.FromResult(client.GetById(reactorId, options))
+                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                        (client, proxy, options) => Task.FromResult(client.Update(proxy.Id, proxy, options))
                     )
                 };
-                yield return new object[]
+                yield return new object []
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        (client, reactorId, options) =>
-                            Task.FromResult(client.GetById(reactorId.ToString(), options))
+                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                        (client, proxy, options) => Task.FromResult(client.Update(proxy.Id.ToString(), proxy, options))
                     )
                 };
             }
@@ -61,68 +57,67 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldUpdate(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, null);
+            var response = await mut(_fixture.Client, content, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(
-            Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldUpdateWithPerRequestApiKey(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, new RequestOptions
+            var response = await mut(_fixture.Client, content, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldUpdateWithCorrelationId(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content.Id, new RequestOptions
+            var response = await mut(_fixture.Client, content, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(HttpMethod.Put, requestMessage.Method);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
             _fixture.AssertUserAgent(requestMessage);
@@ -130,15 +125,14 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -146,12 +140,11 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -160,15 +153,13 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(
-            Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
