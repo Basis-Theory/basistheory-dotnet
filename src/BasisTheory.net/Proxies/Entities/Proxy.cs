@@ -1,17 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using BasisTheory.net.Applications.Entities;
-using BasisTheory.net.ReactorFormulas.Entities;
 using Newtonsoft.Json;
 
-namespace BasisTheory.net.Reactors.Entities
+namespace BasisTheory.net.Proxies.Entities
 {
-    public class Reactor
+    public class Proxy
     {
         [JsonProperty("id")]
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
+
+        [JsonProperty("key")]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
         [JsonProperty("tenant_id")]
         [JsonPropertyName("tenant_id")]
@@ -21,17 +22,13 @@ namespace BasisTheory.net.Reactors.Entities
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("formula")]
-        [JsonPropertyName("formula")]
-        public ReactorFormula ReactorFormula { get; set; }
+        [JsonProperty("destination_url")]
+        [JsonPropertyName("destination_url")]
+        public string DestinationUrl { get; set; }
 
-        [JsonProperty("application")]
-        [JsonPropertyName("application")]
-        public Application Application { get; set; }
-
-        [JsonProperty("configuration")]
-        [JsonPropertyName("configuration")]
-        public Dictionary<string, string> Configuration { get; set; }
+        [JsonProperty("request_reactor_id")]
+        [JsonPropertyName("request_reactor_id")]
+        public Guid RequestReactorId { get; set; }
 
         [JsonProperty("created_by")]
         [JsonPropertyName("created_by")]
@@ -48,6 +45,5 @@ namespace BasisTheory.net.Reactors.Entities
         [JsonProperty("modified_at")]
         [JsonPropertyName("modified_at")]
         public DateTimeOffset? ModifiedDate { get; set; }
-
     }
 }

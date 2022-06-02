@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BasisTheory.net.Applications.Entities;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Reactors.Requests;
@@ -21,6 +22,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(a => a.Application, (f, _) => f.Random.Bool() ? new Application(){ Id = Guid.NewGuid() } : null)
             .RuleFor(t => t.Configuration, (f, model) =>
                 model.ReactorFormula.Configuration.Select(x => KeyValuePair.Create(x.Name, f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value));
@@ -43,7 +45,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
             .RuleFor(a => a.ReactorId, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.RequestParameters, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
-                    .ToDictionary(x => x.Key, x => (object) x.Value));
+                    .ToDictionary(x => x.Key, x => (object)x.Value));
 
         public static readonly Faker<ReactRequest> ReactRequestFaker = new Faker<ReactRequest>()
             .RuleFor(rr => rr.Arguments, (f, _) => new

@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
-using BasisTheory.net.Reactors;
-using BasisTheory.net.Reactors.Entities;
+using BasisTheory.net.Proxies;
+using BasisTheory.net.Proxies.Entities;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Reactors.Helpers;
+using BasisTheory.net.Tests.Proxies.Helpers;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Reactors
+namespace BasisTheory.net.Tests.Proxies
 {
-    public class GetByIdTests : IClassFixture<ReactorFixture>
+    public class GetByIdTests : IClassFixture<ProxyFixture>
     {
-        private readonly ReactorFixture _fixture;
+        private readonly ProxyFixture _fixture;
 
-        public GetByIdTests(ReactorFixture fixture)
+        public GetByIdTests(ProxyFixture fixture)
         {
             _fixture = fixture;
         }
@@ -30,30 +30,30 @@ namespace BasisTheory.net.Tests.Reactors
             {
                 yield return new object[]
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        async (client, reactorId, options) =>
-                            await client.GetByIdAsync(reactorId, options)
+                    (Func<IProxyClient, Guid, RequestOptions, Task<Proxy>>)(
+                        async (client, proxyId, options) =>
+                            await client.GetByIdAsync(proxyId, options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        async (client, reactorId, options) =>
-                            await client.GetByIdAsync(reactorId.ToString(), options)
+                    (Func<IProxyClient, Guid, RequestOptions, Task<Proxy>>)(
+                        async (client, proxyId, options) =>
+                            await client.GetByIdAsync(proxyId.ToString(), options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        (client, reactorId, options) =>
-                            Task.FromResult(client.GetById(reactorId, options))
+                    (Func<IProxyClient, Guid, RequestOptions, Task<Proxy>>)(
+                        (client, proxyId, options) =>
+                            Task.FromResult(client.GetById(proxyId, options))
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IReactorClient, Guid, RequestOptions, Task<Reactor>>)(
-                        (client, reactorId, options) =>
-                            Task.FromResult(client.GetById(reactorId.ToString(), options))
+                    (Func<IProxyClient, Guid, RequestOptions, Task<Proxy>>)(
+                        (client, proxyId, options) =>
+                            Task.FromResult(client.GetById(proxyId.ToString(), options))
                     )
                 };
             }
@@ -61,9 +61,9 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldGetById(Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -73,7 +73,7 @@ namespace BasisTheory.net.Tests.Reactors
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
@@ -81,11 +81,11 @@ namespace BasisTheory.net.Tests.Reactors
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldGetByIdWithPerRequestApiKey(
-            Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+            Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -98,18 +98,18 @@ namespace BasisTheory.net.Tests.Reactors
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var content = ReactorFactory.Reactor();
+            var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
             HttpRequestMessage requestMessage = null;
@@ -122,7 +122,7 @@ namespace BasisTheory.net.Tests.Reactors
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
             _fixture.AssertUserAgent(requestMessage);
@@ -130,7 +130,7 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
@@ -146,7 +146,7 @@ namespace BasisTheory.net.Tests.Reactors
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
@@ -161,7 +161,7 @@ namespace BasisTheory.net.Tests.Reactors
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleNonBasisTheoryErrorResponse(
-            Func<IReactorClient, Guid, RequestOptions, Task<Reactor>> mut)
+            Func<IProxyClient, Guid, RequestOptions, Task<Proxy>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
