@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.30.0...v1.31.0) (2022-06-02)
+
+
+### Features
+
+* add proxies and reactor application ([#125](https://github.com/Basis-Theory/basistheory-dotnet/issues/125)) ([020edd2](https://github.com/Basis-Theory/basistheory-dotnet/commit/020edd25917a5007f09ee41647f8bf9298489e1e))
+
 # [1.30.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.29.0...v1.30.0) (2022-05-31)
 
 
