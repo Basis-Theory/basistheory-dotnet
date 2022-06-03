@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.31.0...v1.32.0) (2022-06-03)
+
+
+### Features
+
+* add require auth to proxy entity ([#127](https://github.com/Basis-Theory/basistheory-dotnet/issues/127)) ([ef02688](https://github.com/Basis-Theory/basistheory-dotnet/commit/ef026887122dc36a7f2a2e7ce9a4de70022f97ee))
+
 # [1.31.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.30.0...v1.31.0) (2022-06-02)
 
 
