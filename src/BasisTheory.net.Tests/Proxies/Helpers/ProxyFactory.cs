@@ -13,6 +13,7 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.DestinationUrl, (f, _) => f.Internet.Url())
             .RuleFor(a => a.RequestReactorId, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.RequireAuthentication, (f, _) => f.Random.Bool())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())

@@ -32,7 +32,7 @@ namespace BasisTheory.net.Proxies.Entities
 
         [JsonProperty("require_auth")]
         [JsonPropertyName("require_auth")]
-        public bool RequireAuthentication { get; set; }
+        public bool? RequireAuthentication { get; set; } = true;
 
         [JsonProperty("created_by")]
         [JsonPropertyName("created_by")]
