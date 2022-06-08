@@ -28,7 +28,11 @@ namespace BasisTheory.net.Proxies.Entities
 
         [JsonProperty("request_reactor_id")]
         [JsonPropertyName("request_reactor_id")]
-        public Guid RequestReactorId { get; set; }
+        public Guid? RequestReactorId { get; set; }
+
+        [JsonProperty("response_reactor_id")]
+        [JsonPropertyName("response_reactor_id")]
+        public Guid? ResponseReactorId { get; set; }
 
         [JsonProperty("require_auth")]
         [JsonPropertyName("require_auth")]
