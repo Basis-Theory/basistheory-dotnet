@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.32.0...v1.33.0) (2022-06-08)
+
+
+### Features
+
+* add response reactor to proxy ([#129](https://github.com/Basis-Theory/basistheory-dotnet/issues/129)) ([de2214b](https://github.com/Basis-Theory/basistheory-dotnet/commit/de2214b8b04b2978f89067003f4be35f4ceddfd1))
+
 # [1.32.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.31.0...v1.32.0) (2022-06-03)
 
 
