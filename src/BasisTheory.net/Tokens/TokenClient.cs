@@ -65,10 +65,10 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Token Create(Token token, RequestOptions requestOptions = null);
+        Token Create(TokenCreateRequest token, RequestOptions requestOptions = null);
 
         Task<Token> CreateAsync(
-            Token token,
+            TokenCreateRequest token,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
@@ -80,8 +80,8 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Token CreateChild(Guid parentTokenId, Token child, RequestOptions requestOptions = null);
-        Token CreateChild(string parentTokenId, Token child, RequestOptions requestOptions = null);
+        Token CreateChild(Guid parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null);
+        Token CreateChild(string parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null);
 
         Token CreateChild(
             Guid parentTokenId,
@@ -97,13 +97,13 @@ namespace BasisTheory.net.Tokens
 
         Task<Token> CreateChildAsync(
             Guid parentTokenId,
-            Token child,
+            TokenCreateRequest child,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         Task<Token> CreateChildAsync(
             string parentTokenId,
-            Token child,
+            TokenCreateRequest child,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
@@ -268,13 +268,13 @@ namespace BasisTheory.net.Tokens
                 cancellationToken);
         }
 
-        public Token Create(Token token, RequestOptions requestOptions = null)
+        public Token Create(TokenCreateRequest token, RequestOptions requestOptions = null)
         {
             return Post<Token>(BasePath, token, requestOptions);
         }
 
         public async Task<Token> CreateAsync(
-            Token token,
+            TokenCreateRequest token,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
@@ -286,7 +286,7 @@ namespace BasisTheory.net.Tokens
             Dictionary<string, string> metadata = null,
             RequestOptions requestOptions = null)
         {
-            var token = new Token
+            var token = new TokenCreateRequest
             {
                 Data = data,
                 Metadata = metadata
@@ -301,7 +301,7 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            var token = new Token
+            var token = new TokenCreateRequest
             {
                 Data = data,
                 Metadata = metadata
@@ -310,12 +310,12 @@ namespace BasisTheory.net.Tokens
             return await PostAsync<Token>(BasePath, token, requestOptions, cancellationToken);
         }
 
-        public Token CreateChild(Guid parentTokenId, Token child, RequestOptions requestOptions = null)
+        public Token CreateChild(Guid parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null)
         {
             return CreateChild(parentTokenId.ToString(), child, requestOptions);
         }
 
-        public Token CreateChild(string parentTokenId, Token child, RequestOptions requestOptions = null)
+        public Token CreateChild(string parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null)
         {
             return Post<Token>($"{BasePath}/{parentTokenId}/children", child, requestOptions);
         }
@@ -335,7 +335,7 @@ namespace BasisTheory.net.Tokens
             Dictionary<string, string> metadata = null,
             RequestOptions requestOptions = null)
         {
-            var child = new Token
+            var child = new TokenCreateRequest
             {
                 Data = data,
                 Metadata = metadata
@@ -346,7 +346,7 @@ namespace BasisTheory.net.Tokens
 
         public async Task<Token> CreateChildAsync(
             Guid parentTokenId,
-            Token child,
+            TokenCreateRequest child,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
@@ -356,7 +356,7 @@ namespace BasisTheory.net.Tokens
 
         public async Task<Token> CreateChildAsync(
             string parentTokenId,
-            Token child,
+            TokenCreateRequest child,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
@@ -381,7 +381,7 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            var child = new Token
+            var child = new TokenCreateRequest
             {
                 Data = data,
                 Metadata = metadata

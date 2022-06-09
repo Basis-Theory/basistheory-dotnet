@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Atomic.Cards.Requests
 {
-    public class UpdateAtomicCardRequest
+    public class AtomicCardUpdateRequest
     {
         [JsonProperty("card")]
         [JsonPropertyName("card")]

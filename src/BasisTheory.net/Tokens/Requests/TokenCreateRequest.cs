@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BasisTheory.net.Common.Entities;
-using BasisTheory.net.Encryption.Entities;
+using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 
-namespace BasisTheory.net.Tokens.Entities
+namespace BasisTheory.net.Tokens.Requests
 {
-    public class Token : TokenResponse
+    public class TokenCreateRequest
     {
+        [JsonProperty("type", Order = -1)]
+        [JsonPropertyName("type"), JsonPropertyOrder(-1)]
+        public string Type { get; set; }
+
         [JsonProperty("data")]
         [JsonPropertyName("data")]
         public dynamic Data { get; set; }
@@ -28,20 +32,12 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("fingerprint_expression")]
         public string FingerprintExpression { get; set; }
 
-        public Token()
-        {
-        }
+        [JsonProperty("metadata", Order = 1)]
+        [JsonPropertyName("metadata"), JsonPropertyOrder(1)]
+        public Dictionary<string, string> Metadata { get; set; }
 
-        public Token(EncryptedData encryptedData)
-        {
-            if (encryptedData == null) return;
-
-            Data = encryptedData.CipherText;
-            Encryption = new EncryptionMetadata
-            {
-                ContentEncryptionKey = encryptedData.ContentEncryptionKey,
-                KeyEncryptionKey = encryptedData.KeyEncryptionKey
-            };
-        }
+        [JsonProperty("deduplicate_token")]
+        [JsonPropertyName("deduplicate_token")]
+        public bool? DuplicateToken { get; set; }
     }
 }

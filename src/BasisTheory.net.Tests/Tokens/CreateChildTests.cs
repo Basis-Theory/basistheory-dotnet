@@ -10,6 +10,7 @@ using BasisTheory.net.Tests.Helpers;
 using BasisTheory.net.Tests.Tokens.Helpers;
 using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
+using BasisTheory.net.Tokens.Requests;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -30,49 +31,49 @@ namespace BasisTheory.net.Tests.Tokens
             {
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         async (client, parentTokenId, token, options) => await client.CreateChildAsync(parentTokenId, token, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         async (client, parentTokenId, child, options) => await client.CreateChildAsync(parentTokenId.ToString(), child, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         async (client, parentTokenId, child, options) => await client.CreateChildAsync(parentTokenId, child.Data, child.Metadata, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         async (client, parentTokenId, child, options) => await client.CreateChildAsync(parentTokenId.ToString(), child.Data, child.Metadata, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         (client, parentTokenId, child, options) => Task.FromResult(client.CreateChild(parentTokenId, child, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         (client, parentTokenId, child, options) => Task.FromResult(client.CreateChild(parentTokenId.ToString(), child, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         (client, parentTokenId, child, options) => Task.FromResult(client.CreateChild(parentTokenId, child.Data, child.Metadata, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>>)(
                         (client, parentTokenId, child, options) => Task.FromResult(client.CreateChild(parentTokenId.ToString(), child.Data, child.Metadata, options))
                     )
                 };
@@ -81,16 +82,17 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreate(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreate(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.Token();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = TokenFactory.TokenCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, parentTokenId, content, null);
+            var response = await mut(_fixture.Client, parentTokenId, request, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Post, requestMessage.Method);
@@ -101,18 +103,19 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.Token();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = TokenFactory.TokenCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, parentTokenId, content, new RequestOptions
+            var response = await mut(_fixture.Client, parentTokenId, request, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -126,18 +129,19 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
             var parentTokenId = Guid.NewGuid();
             var content = TokenFactory.Token();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = TokenFactory.TokenCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, parentTokenId, content, new RequestOptions
+            var response = await mut(_fixture.Client, parentTokenId, request, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -152,14 +156,14 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new Token(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TokenCreateRequest(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -167,11 +171,11 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new Token(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TokenCreateRequest(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -180,13 +184,13 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, Token, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenCreateRequest, RequestOptions, Task<Token>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new Token(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TokenCreateRequest(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

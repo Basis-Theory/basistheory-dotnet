@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using BasisTheory.net.Common.Responses;
+using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
 
 namespace BasisTheory.net.Atomic.Banks.Entities
