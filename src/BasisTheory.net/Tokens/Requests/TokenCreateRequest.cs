@@ -38,6 +38,6 @@ namespace BasisTheory.net.Tokens.Requests
 
         [JsonProperty("deduplicate_token")]
         [JsonPropertyName("deduplicate_token")]
-        public bool? DuplicateToken { get; set; }
+        public bool? DeduplicateToken { get; set; }
     }
 }
