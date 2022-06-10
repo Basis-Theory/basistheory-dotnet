@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.33.0...v1.34.0) (2022-06-10)
+
+
+### Features
+
+* add deduplication option to token and settings to tenant ([#130](https://github.com/Basis-Theory/basistheory-dotnet/issues/130)) ([d93d733](https://github.com/Basis-Theory/basistheory-dotnet/commit/d93d73398b822b9cb303842febcc554b41a8e906))
+
 # [1.33.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.32.0...v1.33.0) (2022-06-08)
 
 
