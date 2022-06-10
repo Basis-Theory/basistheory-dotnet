@@ -16,9 +16,9 @@ namespace BasisTheory.net.Tenants
         Tenant GetSelf(RequestOptions requestOptions = null);
         Task<Tenant> GetSelfAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default);
 
-        Tenant Update(Tenant tenant, RequestOptions requestOptions = null);
+        Tenant Update(TenantUpdateRequest tenant, RequestOptions requestOptions = null);
 
-        Task<Tenant> UpdateAsync(Tenant tenant, RequestOptions requestOptions = null,
+        Task<Tenant> UpdateAsync(TenantUpdateRequest tenant, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(RequestOptions requestOptions = null);
@@ -123,12 +123,12 @@ namespace BasisTheory.net.Tenants
             return await GetAsync<Tenant>($"{BasePath}/self", null, requestOptions, cancellationToken);
         }
 
-        public Tenant Update(Tenant tenant, RequestOptions requestOptions = null)
+        public Tenant Update(TenantUpdateRequest tenant, RequestOptions requestOptions = null)
         {
             return Put<Tenant>($"{BasePath}/self", tenant, requestOptions);
         }
 
-        public async Task<Tenant> UpdateAsync(Tenant tenant, RequestOptions requestOptions = null,
+        public async Task<Tenant> UpdateAsync(TenantUpdateRequest tenant, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await PutAsync<Tenant>($"{BasePath}/self", tenant, requestOptions, cancellationToken);

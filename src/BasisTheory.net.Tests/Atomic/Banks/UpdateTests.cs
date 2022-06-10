@@ -19,14 +19,14 @@ namespace BasisTheory.net.Tests.Atomic.Banks
     public class UpdateTests : IClassFixture<AtomicBankFixture>
     {
         private readonly AtomicBankFixture _fixture;
-        private readonly UpdateAtomicBankRequest _expectedRequest;
+        private readonly AtomicBankUpdateRequest _expectedRequest;
         private readonly string _expectedResponseJson;
         private readonly Guid _expectedAtomicBankId;
 
         public UpdateTests(AtomicBankFixture fixture)
         {
             _fixture = fixture;
-            _expectedRequest = new UpdateAtomicBankRequest { Bank = AtomicBankFactory.Bank() };
+            _expectedRequest = new AtomicBankUpdateRequest { Bank = AtomicBankFactory.Bank() };
             _expectedResponseJson = JsonUtility.SerializeObject(AtomicBankFactory.AtomicBank());
             _expectedAtomicBankId = Guid.NewGuid();
         }
@@ -37,28 +37,28 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             {
                 yield return new object[]
                 {
-                    (Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>>)(
                         async (client, id, request, options) =>
                             await client.UpdateAsync(id, request, options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>>)(
                         async (client, id, request, options) =>
                             await client.UpdateAsync(id.ToString(), request, options)
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>>)(
                         (client, id, request, options) =>
                             Task.FromResult(client.Update(id, request, options))
                     )
                 };
                 yield return new object[]
                 {
-                    (Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>>)(
                         (client, id, request, options) =>
                             Task.FromResult(client.Update(id.ToString(), request, options))
                     )
@@ -68,7 +68,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdate(Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldUpdate(Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, _expectedResponseJson, (message, _) => requestMessage = message);
@@ -86,7 +86,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldUpdateWithPerRequestApiKey(
-            Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+            Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -109,7 +109,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldUpdateWithCorrelationId(
-            Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+            Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -133,7 +133,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldBubbleUpBasisTheoryErrors(
-            Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+            Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonUtility.SerializeObject(error);
@@ -141,7 +141,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new UpdateAtomicBankRequest(), null));
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new AtomicBankUpdateRequest(), null));
             var actualSerializedError = JsonUtility.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -150,12 +150,12 @@ namespace BasisTheory.net.Tests.Atomic.Banks
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleEmptyErrorResponse(
-            Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+            Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new UpdateAtomicBankRequest(), null));
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new AtomicBankUpdateRequest(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -165,14 +165,14 @@ namespace BasisTheory.net.Tests.Atomic.Banks
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldHandleNonBasisTheoryErrorResponse(
-            Func<IAtomicBankClient, Guid, UpdateAtomicBankRequest, RequestOptions, Task<AtomicBank>> mut)
+            Func<IAtomicBankClient, Guid, AtomicBankUpdateRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
             var exception =
-                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new UpdateAtomicBankRequest(), null));
+                await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, _expectedAtomicBankId, new AtomicBankUpdateRequest(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

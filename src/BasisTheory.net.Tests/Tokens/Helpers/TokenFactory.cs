@@ -7,6 +7,7 @@ using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tokens.Constants;
 using BasisTheory.net.Tokens.Entities;
+using BasisTheory.net.Tokens.Requests;
 using Bogus;
 
 namespace BasisTheory.net.Tests.Tokens.Helpers
@@ -24,6 +25,17 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(t => t.CreatedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.ModifiedDate, (f, _) => f.Date.PastOffset())
+            .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
+            .RuleFor(t => t.Metadata, (f, _) =>
+                f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
+                    .ToDictionary(x => x.Key, x => x.Value))
+            .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
+            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
+
+        public static readonly Faker<TokenCreateRequest> TokenCreateRequestFaker = new Faker<TokenCreateRequest>()
+            .RuleFor(t => t.Type, _ => TokenTypes.Token)
+            .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
@@ -73,6 +85,15 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             applyOverrides?.Invoke(token);
 
             return token;
+        }
+
+        public static TokenCreateRequest TokenCreateRequest(Action<TokenCreateRequest> applyOverrides = null)
+        {
+            var request = TokenCreateRequestFaker.Generate();
+
+            applyOverrides?.Invoke(request);
+
+            return request;
         }
 
         public static PaginatedList<Token> PaginatedTokens(Action<PaginatedList<Token>> applyOverrides = null)

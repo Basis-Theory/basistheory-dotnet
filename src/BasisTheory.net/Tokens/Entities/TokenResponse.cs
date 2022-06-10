@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace BasisTheory.net.Common.Responses
+namespace BasisTheory.net.Tokens.Entities
 {
     public abstract class TokenResponse
     {

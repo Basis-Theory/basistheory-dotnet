@@ -31,11 +31,11 @@ namespace BasisTheory.net.Atomic.Cards
         Task<AtomicCard> CreateAsync(AtomicCard atomicCard, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        AtomicCard Update(Guid atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null);
-        AtomicCard Update(string atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null);
-        Task<AtomicCard> UpdateAsync(Guid atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null,
+        AtomicCard Update(Guid atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null);
+        AtomicCard Update(string atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null);
+        Task<AtomicCard> UpdateAsync(Guid atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        Task<AtomicCard> UpdateAsync(string atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null,
+        Task<AtomicCard> UpdateAsync(string atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         void Delete(Guid atomicCardId, RequestOptions requestOptions = null);
@@ -106,23 +106,23 @@ namespace BasisTheory.net.Atomic.Cards
             return await PostAsync<AtomicCard>(BasePath, atomicCard, requestOptions, cancellationToken);
         }
 
-        public AtomicCard Update(Guid atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null)
+        public AtomicCard Update(Guid atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null)
         {
             return Update(atomicCardId.ToString(), request, requestOptions);
         }
 
-        public AtomicCard Update(string atomicCardId, UpdateAtomicCardRequest request, RequestOptions requestOptions = null)
+        public AtomicCard Update(string atomicCardId, AtomicCardUpdateRequest request, RequestOptions requestOptions = null)
         {
             return Patch<AtomicCard>($"{BasePath}/{atomicCardId}", request, requestOptions);
         }
 
-        public async Task<AtomicCard> UpdateAsync(Guid atomicCardId, UpdateAtomicCardRequest request,
+        public async Task<AtomicCard> UpdateAsync(Guid atomicCardId, AtomicCardUpdateRequest request,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await UpdateAsync(atomicCardId.ToString(), request, requestOptions, cancellationToken);
         }
 
-        public async Task<AtomicCard> UpdateAsync(string atomicCardId, UpdateAtomicCardRequest request,
+        public async Task<AtomicCard> UpdateAsync(string atomicCardId, AtomicCardUpdateRequest request,
             RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await PatchAsync<AtomicCard>($"{BasePath}/{atomicCardId}", request, requestOptions,

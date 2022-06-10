@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.Atomic.Banks.Requests
 {
-    public class UpdateAtomicBankRequest
+    public class AtomicBankUpdateRequest
     {
         [JsonProperty("bank")]
         [JsonPropertyName("bank")]

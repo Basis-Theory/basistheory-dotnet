@@ -58,9 +58,9 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
             return list;
         }
 
-        public static UpdateAtomicCardRequest UpdateAtomicCardRequest(Action<UpdateAtomicCardRequest> applyOverrides = null)
+        public static AtomicCardUpdateRequest UpdateAtomicCardRequest(Action<AtomicCardUpdateRequest> applyOverrides = null)
         {
-            var request = new UpdateAtomicCardRequest
+            var request = new AtomicCardUpdateRequest
             {
                 Card = CardFaker.Generate()
             };
