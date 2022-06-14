@@ -41,8 +41,19 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value))
             .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
-            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
+            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
+            .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
 
+        public static readonly Faker<TokenUpdateRequest> TokenUpdateRequestFaker = new Faker<TokenUpdateRequest>()
+            .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
+            .RuleFor(t => t.Metadata, (f, _) =>
+                f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
+                    .ToDictionary(x => x.Key, x => x.Value))
+            .RuleFor(t => t.Privacy, _ => UpdateDataPrivacyFaker.Generate())
+            .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
+            .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
+        
         public static readonly Faker<EncryptionKey> EncryptionKeyModelFaker = new Faker<EncryptionKey>()
             .RuleFor(t => t.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
             .RuleFor(t => t.Key, (f, _) => f.Random.Word());
@@ -77,6 +88,17 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                 f => f.PickRandom(
                     DataRestrictionPolicy.MASK,
                     DataRestrictionPolicy.REDACT));
+        
+        public static readonly Faker<UpdateDataPrivacy> UpdateDataPrivacyFaker = new Faker<UpdateDataPrivacy>()
+            .RuleFor(x => x.ImpactLevel,
+                f => f.PickRandom(
+                    DataImpactLevel.LOW,
+                    DataImpactLevel.MODERATE,
+                    DataImpactLevel.HIGH))
+            .RuleFor(x => x.RestrictionPolicy,
+                f => f.PickRandom(
+                    DataRestrictionPolicy.MASK,
+                    DataRestrictionPolicy.REDACT));
 
         public static Token Token(Action<Token> applyOverrides = null)
         {
@@ -90,6 +112,15 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
         public static TokenCreateRequest TokenCreateRequest(Action<TokenCreateRequest> applyOverrides = null)
         {
             var request = TokenCreateRequestFaker.Generate();
+
+            applyOverrides?.Invoke(request);
+
+            return request;
+        }
+        
+        public static TokenUpdateRequest TokenUpdateRequest(Action<TokenUpdateRequest> applyOverrides = null)
+        {
+            var request = TokenUpdateRequestFaker.Generate();
 
             applyOverrides?.Invoke(request);
 
