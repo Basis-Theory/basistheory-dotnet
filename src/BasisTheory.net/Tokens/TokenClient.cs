@@ -329,12 +329,12 @@ namespace BasisTheory.net.Tokens
         
         public Token Update(Guid tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null)
         {
-            return Patch<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
+            return PatchWithMerge<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
         }
         
         public Token Update(string tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null)
         {
-            return Patch<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
+            return PatchWithMerge<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
         }
         
         public async Task<Token> UpdateAsync(
@@ -343,7 +343,7 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PatchAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
+            return await PatchWithMergeAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
         }
 
         public async Task<Token> UpdateAsync(
@@ -352,7 +352,7 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PatchAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
+            return await PatchWithMergeAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
         }
         
         public Token CreateChild(Guid parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null)

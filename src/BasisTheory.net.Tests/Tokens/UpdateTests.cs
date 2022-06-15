@@ -73,6 +73,7 @@ namespace BasisTheory.net.Tests.Tokens
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+            Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
             Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
@@ -99,6 +100,7 @@ namespace BasisTheory.net.Tests.Tokens
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+            Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
             Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
@@ -125,6 +127,7 @@ namespace BasisTheory.net.Tests.Tokens
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+            Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
             Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
