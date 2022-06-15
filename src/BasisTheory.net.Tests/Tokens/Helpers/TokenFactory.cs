@@ -50,6 +50,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                     .ToDictionary(x => x.Key, x => x.Value))
+            .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Privacy, _ => UpdateDataPrivacyFaker.Generate())
             .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
             .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
@@ -89,7 +90,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                     DataRestrictionPolicy.MASK,
                     DataRestrictionPolicy.REDACT));
         
-        public static readonly Faker<UpdateDataPrivacy> UpdateDataPrivacyFaker = new Faker<UpdateDataPrivacy>()
+        public static readonly Faker<UpdatePrivacyModel> UpdateDataPrivacyFaker = new Faker<UpdatePrivacyModel>()
             .RuleFor(x => x.ImpactLevel,
                 f => f.PickRandom(
                     DataImpactLevel.LOW,
