@@ -17,7 +17,7 @@ namespace BasisTheory.net.Tokens.Requests
 
         [JsonProperty("privacy")]
         [JsonPropertyName("privacy")]
-        public UpdatePrivacyModel Privacy { get; set; }
+        public PrivacyUpdateModel Privacy { get; set; }
 
         [JsonProperty("search_indexes")]
         [JsonPropertyName("search_indexes")]
@@ -36,7 +36,7 @@ namespace BasisTheory.net.Tokens.Requests
         public bool? DeduplicateToken { get; set; }
     }
     
-    public class UpdatePrivacyModel
+    public class PrivacyUpdateModel
     {
         [JsonProperty("impact_level")]
         [JsonPropertyName("impact_level")]

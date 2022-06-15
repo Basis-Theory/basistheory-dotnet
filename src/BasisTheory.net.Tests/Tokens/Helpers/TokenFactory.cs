@@ -90,7 +90,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
                     DataRestrictionPolicy.MASK,
                     DataRestrictionPolicy.REDACT));
         
-        public static readonly Faker<UpdatePrivacyModel> UpdateDataPrivacyFaker = new Faker<UpdatePrivacyModel>()
+        public static readonly Faker<PrivacyUpdateModel> UpdateDataPrivacyFaker = new Faker<PrivacyUpdateModel>()
             .RuleFor(x => x.ImpactLevel,
                 f => f.PickRandom(
                     DataImpactLevel.LOW,
