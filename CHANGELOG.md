@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.34.0...v1.35.0) (2022-06-16)
+
+
+### Features
+
+* add token update ([#132](https://github.com/Basis-Theory/basistheory-dotnet/issues/132)) ([842ca97](https://github.com/Basis-Theory/basistheory-dotnet/commit/842ca9730370754e705a6ad6c8225604a8b79e3b))
+
 # [1.34.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.33.0...v1.34.0) (2022-06-10)
 
 
