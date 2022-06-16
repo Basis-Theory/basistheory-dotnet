@@ -11,6 +11,10 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonPropertyName("data")]
         public dynamic Data { get; set; }
         
+        [JsonProperty("mask")]
+        [JsonPropertyName("mask")]
+        public dynamic Mask { get; set; }
+        
         [JsonProperty("encryption")]
         [JsonPropertyName("encryption")]
         public EncryptionMetadata Encryption { get; set; }

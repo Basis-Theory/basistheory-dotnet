@@ -19,6 +19,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(t => t.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.Type, _ => TokenTypes.Token)
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.Mask, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(t => t.Fingerprint, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.CreatedBy, (_, _) => Guid.NewGuid())
@@ -35,6 +36,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
         public static readonly Faker<TokenCreateRequest> TokenCreateRequestFaker = new Faker<TokenCreateRequest>()
             .RuleFor(t => t.Type, _ => TokenTypes.Token)
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.Mask, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
             .RuleFor(t => t.Metadata, (f, _) =>
@@ -46,6 +48,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
 
         public static readonly Faker<TokenUpdateRequest> TokenUpdateRequestFaker = new Faker<TokenUpdateRequest>()
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
+            .RuleFor(t => t.Mask, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(t => t.FingerprintExpression, (f, _) => f.Lorem.Word())
             .RuleFor(t => t.Metadata, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
