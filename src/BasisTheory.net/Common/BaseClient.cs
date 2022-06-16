@@ -118,6 +118,19 @@ namespace BasisTheory.net.Common
             return JsonUtility.DeserializeObject<T>(content);
         }
 
+        protected T PatchWithMerge<T>(string path, object body, RequestOptions requestOptions)
+        {
+            return PatchWithMergeAsync<T>(path, body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        protected async Task<T> PatchWithMergeAsync<T>(string path, object body, RequestOptions requestOptions,
+            CancellationToken cancellationToken = default)
+        {
+            var content = await RequestAsync(HttpMethod.Patch, path, body, requestOptions, cancellationToken,
+                "application/merge-patch+json");
+            return JsonUtility.DeserializeObject<T>(content);
+        }
+
         protected void Delete(string path, RequestOptions requestOptions)
         {
             DeleteAsync(path, requestOptions)
@@ -132,13 +145,16 @@ namespace BasisTheory.net.Common
 
         private async Task<string> RequestAsync(HttpMethod method, string path, object body,
             RequestOptions requestOptions,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default,
+            string contentType = MediaTypeNames.Application.Json)
         {
             var message = new HttpRequestMessage(method, path);
             SetRequestHeaders(message, requestOptions);
 
             if (body != null)
-                message.Content = new StringContent(JsonUtility.SerializeObject(body), Encoding.UTF8, MediaTypeNames.Application.Json);
+                message.Content = new StringContent(JsonUtility.SerializeObject(body), Encoding.UTF8,
+                    contentType);
+
 
             var response = await HttpClient.SendAsync(message, cancellationToken).ConfigureAwait(false);
 

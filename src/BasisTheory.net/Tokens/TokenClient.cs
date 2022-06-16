@@ -80,6 +80,22 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
+        Token Update(Guid tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null);
+
+        Token Update(string tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null);
+
+        Task<Token> UpdateAsync(
+            Guid tokenId,
+            TokenUpdateRequest updateRequest,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
+        Task<Token> UpdateAsync(
+            string tokenId,
+            TokenUpdateRequest updateRequest,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+        
         Token CreateChild(Guid parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null);
         Token CreateChild(string parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null);
 
@@ -229,7 +245,8 @@ namespace BasisTheory.net.Tokens
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<PaginatedList<Token>>($"{BasePath}/search", request, requestOptions, cancellationToken);
+            return await PostAsync<PaginatedList<Token>>($"{BasePath}/search", request, requestOptions,
+                cancellationToken);
         }
 
         public PaginatedList<Token> GetChildren(
@@ -309,7 +326,35 @@ namespace BasisTheory.net.Tokens
 
             return await PostAsync<Token>(BasePath, token, requestOptions, cancellationToken);
         }
+        
+        public Token Update(Guid tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null)
+        {
+            return PatchWithMerge<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
+        }
+        
+        public Token Update(string tokenId, TokenUpdateRequest updateRequest, RequestOptions requestOptions = null)
+        {
+            return PatchWithMerge<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions);
+        }
+        
+        public async Task<Token> UpdateAsync(
+            Guid tokenId,
+            TokenUpdateRequest updateRequest,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchWithMergeAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
+        }
 
+        public async Task<Token> UpdateAsync(
+            string tokenId,
+            TokenUpdateRequest updateRequest,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchWithMergeAsync<Token>($"{BasePath}/{tokenId}", updateRequest, requestOptions, cancellationToken);
+        }
+        
         public Token CreateChild(Guid parentTokenId, TokenCreateRequest child, RequestOptions requestOptions = null)
         {
             return CreateChild(parentTokenId.ToString(), child, requestOptions);
