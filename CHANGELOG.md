@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.35.0...v1.36.0) (2022-06-18)
+
+
+### Features
+
+* add mask to create/update token requests and response ([#133](https://github.com/Basis-Theory/basistheory-dotnet/issues/133)) ([c01d3be](https://github.com/Basis-Theory/basistheory-dotnet/commit/c01d3bef119004a5c168419c43c578b27d5816af))
+
 # [1.35.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.34.0...v1.35.0) (2022-06-16)
 
 
