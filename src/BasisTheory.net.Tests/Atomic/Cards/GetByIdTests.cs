@@ -31,25 +31,25 @@ namespace BasisTheory.net.Tests.Atomic.Cards
             {
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
+                    (Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
                         async (client, atomicCardId, request, options) => await client.GetByIdAsync(atomicCardId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
+                    (Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
                         async (client, atomicCardId, request, options) => await client.GetByIdAsync(atomicCardId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
+                    (Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.GetById(atomicCardId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
+                    (Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>>)(
                         (client, atomicCardId, request, options) => Task.FromResult(client.GetById(atomicCardId.ToString(), request, options))
                     )
                 };
@@ -58,7 +58,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldGetById(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var content = AtomicCardFactory.AtomicCard();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -77,7 +77,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -101,7 +101,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -126,14 +126,14 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -141,11 +141,11 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -154,13 +154,13 @@ namespace BasisTheory.net.Tests.Atomic.Cards
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, Guid, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicCardClient, string, CardGetByIdRequest, RequestOptions, Task<AtomicCard>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

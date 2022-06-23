@@ -15,7 +15,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
     public static class TokenFactory
     {
         public static readonly Faker<Token> TokenFaker = new Faker<Token>()
-            .RuleFor(t => t.Id, (_, _) => Guid.NewGuid())
+            .RuleFor(t => t.Id, (_, _) => Guid.NewGuid().ToString())
             .RuleFor(t => t.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(t => t.Type, _ => TokenTypes.Token)
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
@@ -34,6 +34,7 @@ namespace BasisTheory.net.Tests.Tokens.Helpers
             .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
 
         public static readonly Faker<TokenCreateRequest> TokenCreateRequestFaker = new Faker<TokenCreateRequest>()
+            .RuleFor(t => t.Id, _ => Guid.NewGuid().ToString())
             .RuleFor(t => t.Type, _ => TokenTypes.Token)
             .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
             .RuleFor(t => t.Mask, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))

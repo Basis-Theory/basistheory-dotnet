@@ -8,6 +8,10 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenCreateRequest
     {
+        [JsonProperty("id")]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+        
         [JsonProperty("type", Order = -1)]
         [JsonPropertyName("type"), JsonPropertyOrder(-1)]
         public string Type { get; set; }

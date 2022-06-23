@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BasisTheory.net.Common.Requests;
@@ -7,7 +6,7 @@ namespace BasisTheory.net.Tokens.Requests
 {
     public class TokenGetRequest : PaginatedGetRequest
     {
-        public List<Guid> TokenIds { get; set; } = new List<Guid>();
+        public List<string> TokenIds { get; set; } = new List<string>();
         public List<string> Types { get; set; } = new List<string>();
         public Dictionary<string, string> MetadataQuery { get; set; } = new Dictionary<string, string>();
 

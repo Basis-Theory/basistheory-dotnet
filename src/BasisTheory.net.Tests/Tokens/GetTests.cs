@@ -93,8 +93,8 @@ namespace BasisTheory.net.Tests.Tokens
         [MemberData(nameof(Methods))]
         public async Task ShouldGetByIds(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
-            var tokenId1 = Guid.NewGuid();
-            var tokenId2 = Guid.NewGuid();
+            var tokenId1 = Guid.NewGuid().ToString();
+            var tokenId2 = Guid.NewGuid().ToString();
 
             var content = TokenFactory.PaginatedTokens();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -104,7 +104,7 @@ namespace BasisTheory.net.Tests.Tokens
 
             var response = await mut(_fixture.Client, new TokenGetRequest
             {
-                TokenIds = new List<Guid> { tokenId1, tokenId2 }
+                TokenIds = new List<string> { tokenId1, tokenId2 }
             }, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -172,7 +172,7 @@ namespace BasisTheory.net.Tests.Tokens
         public async Task ShouldGetWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
         {
             var type = _fixture.Faker.Lorem.Word();
-            var tokenId = Guid.NewGuid();
+            var tokenId = Guid.NewGuid().ToString();
             var metadataQuery = new KeyValuePair<string, string>(
                 _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
             var size = _fixture.Faker.Random.Int(1, 20);
@@ -187,7 +187,7 @@ namespace BasisTheory.net.Tests.Tokens
             var response = await mut(_fixture.Client, new TokenGetRequest
             {
                 Types = new List<string> { type },
-                TokenIds = new List<Guid> { tokenId },
+                TokenIds = new List<string> { tokenId },
                 MetadataQuery = new Dictionary<string, string>(new[] { metadataQuery }),
                 PageSize = size,
                 Page = page

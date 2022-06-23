@@ -31,25 +31,25 @@ namespace BasisTheory.net.Tests.Atomic.Banks
             {
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
                         async (client, atomicBankId, request, options) => await client.GetByIdAsync(atomicBankId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
                         async (client, atomicBankId, request, options) => await client.GetByIdAsync(atomicBankId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
                         (client, atomicBankId, request, options) => Task.FromResult(client.GetById(atomicBankId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
+                    (Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>>)(
                         (client, atomicBankId, request, options) => Task.FromResult(client.GetById(atomicBankId.ToString(), request, options))
                     )
                 };
@@ -58,7 +58,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldGetById(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var content = AtomicBankFactory.AtomicBank();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -77,7 +77,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldGetByIdWithPerRequestApiKey(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -101,7 +101,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -126,14 +126,14 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -141,11 +141,11 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -154,13 +154,13 @@ namespace BasisTheory.net.Tests.Atomic.Banks
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicBankClient, Guid, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IAtomicBankClient, string, BankGetByIdRequest, RequestOptions, Task<AtomicBank>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

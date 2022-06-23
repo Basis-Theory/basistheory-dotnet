@@ -31,25 +31,25 @@ namespace BasisTheory.net.Tests.Tokens
             {
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
                         async (client, tokenId, request, options) => await client.GetByIdAsync(tokenId, request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
                         async (client, tokenId, request, options) => await client.GetByIdAsync(tokenId.ToString(), request, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
                         (client, tokenId, request, options) => Task.FromResult(client.GetById(tokenId, request, options))
                     )
                 };
                 yield return new object []
                 {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
+                    (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
                         (client, tokenId, request, options) => Task.FromResult(client.GetById(tokenId.ToString(), request, options))
                     )
                 };
@@ -58,7 +58,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldGetById(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var content = TokenFactory.Token();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -77,7 +77,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldGetByIdWithPerRequestApiKey(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
@@ -101,7 +101,7 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldGetByIdWithCorrelationId(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
@@ -126,14 +126,14 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -141,11 +141,11 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -154,13 +154,13 @@ namespace BasisTheory.net.Tests.Tokens
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);
