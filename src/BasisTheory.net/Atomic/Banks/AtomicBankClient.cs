@@ -8,8 +8,6 @@ using BasisTheory.net.Common;
 using BasisTheory.net.Common.Entities;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Common.Responses;
-using BasisTheory.net.Reactors.Entities;
-using BasisTheory.net.Reactors.Requests;
 
 namespace BasisTheory.net.Atomic.Banks
 {
@@ -43,13 +41,6 @@ namespace BasisTheory.net.Atomic.Banks
         Task DeleteAsync(Guid atomicBankId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
         Task DeleteAsync(string atomicBankId, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default);
-
-        ReactResponse React(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null);
-        ReactResponse React(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null);
-        Task<ReactResponse> ReactAsync(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default);
-        Task<ReactResponse> ReactAsync(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
 
@@ -146,32 +137,6 @@ namespace BasisTheory.net.Atomic.Banks
         public new async Task DeleteAsync(string atomicBankId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             await base.DeleteAsync($"{BasePath}/{atomicBankId}", requestOptions, cancellationToken);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
-        public ReactResponse React(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null)
-        {
-            return React(atomicBankId.ToString(), request, requestOptions);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
-        public ReactResponse React(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null)
-        {
-            return Post<ReactResponse>($"{BasePath}/{atomicBankId}/react", request, requestOptions);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
-        public async Task<ReactResponse> ReactAsync(Guid atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default)
-        {
-            return await ReactAsync(atomicBankId.ToString(), request, requestOptions, cancellationToken);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
-        public async Task<ReactResponse> ReactAsync(string atomicBankId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default)
-        {
-            return await PostAsync<ReactResponse>($"{BasePath}/{atomicBankId}/react", request, requestOptions, cancellationToken);
         }
     }
 }
