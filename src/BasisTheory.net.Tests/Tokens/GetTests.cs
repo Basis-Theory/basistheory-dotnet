@@ -15,282 +15,281 @@ using BasisTheory.net.Tokens.Requests;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Tokens
+namespace BasisTheory.net.Tests.Tokens;
+
+public class GetTests : IClassFixture<TokenFixture>
 {
-    public class GetTests : IClassFixture<TokenFixture>
+    private readonly TokenFixture _fixture;
+
+    public GetTests(TokenFixture fixture)
     {
-        private readonly TokenFixture _fixture;
+        _fixture = fixture;
+    }
 
-        public GetTests(TokenFixture fixture)
+    public static IEnumerable<object[]> Methods
+    {
+        get
         {
-            _fixture = fixture;
-        }
-
-        public static IEnumerable<object[]> Methods
-        {
-            get
+            yield return new object []
             {
-                yield return new object []
-                {
-                    (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
-                        async (client, request, options) => await client.GetAsync(request, options)
-                    )
-                };
-                yield return new object []
-                {
-                    (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
-                        (client, request, options) => Task.FromResult(client.Get(request, options))
-                    )
-                };
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetAll(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, null, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            var type1 = Guid.NewGuid().ToString();
-            var type2 = Guid.NewGuid().ToString();
-
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, new TokenGetRequest
+                (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
+                    async (client, request, options) => await client.GetAsync(request, options)
+                )
+            };
+            yield return new object []
             {
-                Types = new List<string> { type1, type2 }
-            }, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?type={type1}&type={type2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
+                (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
+                    (client, request, options) => Task.FromResult(client.Get(request, options))
+                )
+            };
         }
+    }
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIds(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetAll(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+        var response = await mut(_fixture.Client, null, null);
+
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
+
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetByType(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var type1 = Guid.NewGuid().ToString();
+        var type2 = Guid.NewGuid().ToString();
+
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+        var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            var tokenId1 = Guid.NewGuid().ToString();
-            var tokenId2 = Guid.NewGuid().ToString();
+            Types = new List<string> { type1, type2 }
+        }, null);
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens?type={type1}&type={type2}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetByIds(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var tokenId1 = Guid.NewGuid().ToString();
+        var tokenId2 = Guid.NewGuid().ToString();
 
-            var response = await mut(_fixture.Client, new TokenGetRequest
-            {
-                TokenIds = new List<string> { tokenId1, tokenId2 }
-            }, null);
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?id={tokenId1}&id={tokenId2}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithMetadataQuery(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            var metadata1 = new KeyValuePair<string ,string>(
-                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
-            var metadata2 = new KeyValuePair<string ,string>(
-                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
+            TokenIds = new List<string> { tokenId1, tokenId2 }
+        }, null);
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens?id={tokenId1}&id={tokenId2}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetWithMetadataQuery(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var metadata1 = new KeyValuePair<string ,string>(
+            _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
+        var metadata2 = new KeyValuePair<string ,string>(
+            _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
 
-            var response = await mut(_fixture.Client, new TokenGetRequest
-            {
-                MetadataQuery = new Dictionary<string, string>(new[] { metadata1, metadata2 })
-            }, null);
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?metadata.{metadata1.Key}={metadata1.Value}&metadata.{metadata2.Key}={metadata2.Value}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            var size = _fixture.Faker.Random.Int(1, 20);
-            var page = _fixture.Faker.Random.Int(1, 20);
+            MetadataQuery = new Dictionary<string, string>(new[] { metadata1, metadata2 })
+        }, null);
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens?metadata.{metadata1.Key}={metadata1.Value}&metadata.{metadata2.Key}={metadata2.Value}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetWithPagination(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var size = _fixture.Faker.Random.Int(1, 20);
+        var page = _fixture.Faker.Random.Int(1, 20);
 
-            var response = await mut(_fixture.Client, new TokenGetRequest
-            {
-                PageSize = size,
-                Page = page
-            }, null);
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            var type = _fixture.Faker.Lorem.Word();
-            var tokenId = Guid.NewGuid().ToString();
-            var metadataQuery = new KeyValuePair<string, string>(
-                _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
-            var size = _fixture.Faker.Random.Int(1, 20);
-            var page = _fixture.Faker.Random.Int(1, 20);
+            PageSize = size,
+            Page = page
+        }, null);
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens?page={page}&size={size}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetWithAllParameters(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var type = _fixture.Faker.Lorem.Word();
+        var tokenId = Guid.NewGuid().ToString();
+        var metadataQuery = new KeyValuePair<string, string>(
+            _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
+        var size = _fixture.Faker.Random.Int(1, 20);
+        var page = _fixture.Faker.Random.Int(1, 20);
 
-            var response = await mut(_fixture.Client, new TokenGetRequest
-            {
-                Types = new List<string> { type },
-                TokenIds = new List<string> { tokenId },
-                MetadataQuery = new Dictionary<string, string>(new[] { metadataQuery }),
-                PageSize = size,
-                Page = page
-            }, null);
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens?page={page}&size={size}&type={type}&id={tokenId}&metadata.{metadataQuery.Key}={metadataQuery.Value}",
-                requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithPerRequestApiKey(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            var expectedApiKey = Guid.NewGuid().ToString();
+            Types = new List<string> { type },
+            TokenIds = new List<string> { tokenId },
+            MetadataQuery = new Dictionary<string, string>(new[] { metadataQuery }),
+            PageSize = size,
+            Page = page
+        }, null);
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens?page={page}&size={size}&type={type}&id={tokenId}&metadata.{metadataQuery.Key}={metadataQuery.Value}",
+            requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetWithPerRequestApiKey(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var expectedApiKey = Guid.NewGuid().ToString();
 
-            var response = await mut(_fixture.Client, null, new RequestOptions
-            {
-                ApiKey = expectedApiKey
-            });
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetWithCorrelationId(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, null, new RequestOptions
         {
-            var expectedCorrelationId = Guid.NewGuid().ToString();
+            ApiKey = expectedApiKey
+        });
 
-            var content = TokenFactory.PaginatedTokens();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetWithCorrelationId(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            var response = await mut(_fixture.Client, null, new RequestOptions
-            {
-                CorrelationId = expectedCorrelationId
-            });
+        var content = TokenFactory.PaginatedTokens();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+        var response = await mut(_fixture.Client, null, new RequestOptions
         {
-            var error = BasisTheoryErrorFactory.BasisTheoryError();
-            var expectedSerializedError = JsonConvert.SerializeObject(error);
+            CorrelationId = expectedCorrelationId
+        });
 
-            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal("/tokens", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
-            var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var error = BasisTheoryErrorFactory.BasisTheoryError();
+        var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-            Assert.Equal(expectedSerializedError, actualSerializedError);
-        }
+        _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            _fixture.SetupHandler(HttpStatusCode.Forbidden);
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
+        var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
+        Assert.Equal(expectedSerializedError, actualSerializedError);
+    }
 
-            Assert.Equal(403, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
-        {
-            var error = Guid.NewGuid().ToString();
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
 
-            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+        Assert.Equal(403, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
+    }
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
+    {
+        var error = Guid.NewGuid().ToString();
 
-            Assert.Equal(500, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+        _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, null, null));
+
+        Assert.Equal(500, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
     }
 }
