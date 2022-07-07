@@ -1,3 +1,10 @@
+# [1.37.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.1...v1.37.0) (2022-07-07)
+
+
+### Features
+
+* adding id to create token request and returning string id on re… ([#134](https://github.com/Basis-Theory/basistheory-dotnet/issues/134)) ([b86a697](https://github.com/Basis-Theory/basistheory-dotnet/commit/b86a697e4a81debfb205f521d019a713be35b155))
+
 ## [1.36.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.0...v1.36.1) (2022-06-30)
 
 
