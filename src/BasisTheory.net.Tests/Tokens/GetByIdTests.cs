@@ -14,157 +14,168 @@ using BasisTheory.net.Tokens.Requests;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Tokens
+namespace BasisTheory.net.Tests.Tokens;
+
+public class GetByIdTests : IClassFixture<TokenFixture>
 {
-    public class GetByIdTests : IClassFixture<TokenFixture>
+    private readonly TokenFixture _fixture;
+
+    public GetByIdTests(TokenFixture fixture)
     {
-        private readonly TokenFixture _fixture;
+        _fixture = fixture;
+    }
 
-        public GetByIdTests(TokenFixture fixture)
+    public static IEnumerable<object[]> Methods
+    {
+        get
         {
-            _fixture = fixture;
-        }
-
-        public static IEnumerable<object[]> Methods
-        {
-            get
+            yield return new object[]
             {
-                yield return new object []
-                {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
-                        async (client, tokenId, request, options) => await client.GetByIdAsync(tokenId, request, options)
-                    )
-                };
-                yield return new object []
-                {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
-                        async (client, tokenId, request, options) => await client.GetByIdAsync(tokenId.ToString(), request, options)
-                    )
-                };
-                yield return new object []
-                {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
-                        (client, tokenId, request, options) => Task.FromResult(client.GetById(tokenId, request, options))
-                    )
-                };
-                yield return new object []
-                {
-                    (Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>>)(
-                        (client, tokenId, request, options) => Task.FromResult(client.GetById(tokenId.ToString(), request, options))
-                    )
-                };
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetById(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, null, null);
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithPerRequestApiKey(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var expectedApiKey = Guid.NewGuid().ToString();
-
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
+                (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>) (
+                    async (client, tokenId, request, options) =>
+                        await client.GetByIdAsync(tokenId, request, options)
+                )
+            };
+            yield return new object[]
             {
-                ApiKey = expectedApiKey
-            });
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldGetByIdWithCorrelationId(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var expectedCorrelationId = Guid.NewGuid().ToString();
-
-            var content = TokenFactory.Token();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
+                (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>) (
+                    async (client, tokenId, request, options) =>
+                        await client.GetByIdAsync(tokenId.ToString(), request, options)
+                )
+            };
+            yield return new object[]
             {
-                CorrelationId = expectedCorrelationId
-            });
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Get, requestMessage.Method);
-            Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-            _fixture.AssertUserAgent(requestMessage);
+                (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>) (
+                    (client, tokenId, request, options) =>
+                        Task.FromResult(client.GetById(tokenId, request, options))
+                )
+            };
+            yield return new object[]
+            {
+                (Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>>) (
+                    (client, tokenId, request, options) =>
+                        Task.FromResult(client.GetById(tokenId.ToString(), request, options))
+                )
+            };
         }
+    }
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetById(Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        var content = TokenFactory.Token();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+        var response = await mut(_fixture.Client, content.Id, null, null);
+
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
+
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetByIdWithPerRequestApiKey(
+        Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        var expectedApiKey = Guid.NewGuid().ToString();
+
+        var content = TokenFactory.Token();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+        var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
         {
-            var error = BasisTheoryErrorFactory.BasisTheoryError();
-            var expectedSerializedError = JsonConvert.SerializeObject(error);
+            ApiKey = expectedApiKey
+        });
 
-            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
-            var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldGetByIdWithCorrelationId(
+        Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        var expectedCorrelationId = Guid.NewGuid().ToString();
 
-            Assert.Equal(expectedSerializedError, actualSerializedError);
-        }
+        var content = TokenFactory.Token();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+
+        var response = await mut(_fixture.Client, content.Id, null, new RequestOptions
         {
-            _fixture.SetupHandler(HttpStatusCode.Forbidden);
+            CorrelationId = expectedCorrelationId
+        });
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Get, requestMessage.Method);
+        Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            Assert.Equal(403, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldBubbleUpBasisTheoryErrors(
+        Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        var error = BasisTheoryErrorFactory.BasisTheoryError();
+        var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITokenClient, Guid, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
-        {
-            var error = Guid.NewGuid().ToString();
+        _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+        var exception =
+            await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
+        var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), null, null));
+        Assert.Equal(expectedSerializedError, actualSerializedError);
+    }
 
-            Assert.Equal(500, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleEmptyErrorResponse(
+        Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        _fixture.SetupHandler(HttpStatusCode.Forbidden);
+
+        var exception =
+            await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
+
+        Assert.Equal(403, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
+    }
+
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleNonBasisTheoryErrorResponse(
+        Func<ITokenClient, string, TokenGetByIdRequest, RequestOptions, Task<Token>> mut)
+    {
+        var error = Guid.NewGuid().ToString();
+
+        _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+
+        var exception =
+            await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid().ToString(), null, null));
+
+        Assert.Equal(500, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
     }
 }

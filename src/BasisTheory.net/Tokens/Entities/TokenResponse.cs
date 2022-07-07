@@ -9,7 +9,7 @@ namespace BasisTheory.net.Tokens.Entities
     {
         [JsonProperty("id", Order = -3)]
         [JsonPropertyName("id"), JsonPropertyOrder(-3)]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("tenant_id", Order = -2)]
         [JsonPropertyName("tenant_id"), JsonPropertyOrder(-2)]

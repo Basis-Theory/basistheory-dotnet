@@ -11,7 +11,7 @@ namespace BasisTheory.net.Tests.Atomic.Cards.Helpers
     public static class AtomicCardFactory
     {
         public static readonly Faker<AtomicCard> AtomicCardFaker = new Faker<AtomicCard>()
-            .RuleFor(a => a.Id, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.Id, (_, _) => Guid.NewGuid().ToString())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())

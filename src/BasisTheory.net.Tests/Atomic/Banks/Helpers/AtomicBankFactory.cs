@@ -10,7 +10,7 @@ namespace BasisTheory.net.Tests.Atomic.Banks.Helpers
     public static class AtomicBankFactory
     {
         public static readonly Faker<AtomicBank> AtomicBankFaker = new Faker<AtomicBank>()
-            .RuleFor(a => a.Id, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.Id, (_, _) => Guid.NewGuid().ToString())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
