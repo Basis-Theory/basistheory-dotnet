@@ -1,3 +1,15 @@
+## [1.36.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.0...v1.36.1) (2022-06-30)
+
+
+### Code Refactoring
+
+* remove atomic react methods ([#135](https://github.com/Basis-Theory/basistheory-dotnet/issues/135)) ([0fd46ee](https://github.com/Basis-Theory/basistheory-dotnet/commit/0fd46eeef764b6b70e57f38327dd40f8641c129f))
+
+
+### BREAKING CHANGES
+
+* Removes react method from atomic banks and cards clients.
+
 # [1.36.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.35.0...v1.36.0) (2022-06-18)
 
 

@@ -44,13 +44,6 @@ namespace BasisTheory.net.Atomic.Cards
             CancellationToken cancellationToken = default);
         Task DeleteAsync(string atomicCardId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-
-        ReactResponse React(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null);
-        ReactResponse React(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null);
-        Task<ReactResponse> ReactAsync(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default);
-        Task<ReactResponse> ReactAsync(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default);
     }
 
     [Obsolete("Deprecated in favor of BasisTheory.net.Tokens.TokenClient")]
@@ -147,32 +140,6 @@ namespace BasisTheory.net.Atomic.Cards
         public new async Task DeleteAsync(string atomicCardId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             await base.DeleteAsync($"{BasePath}/{atomicCardId}", requestOptions, cancellationToken);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
-        public ReactResponse React(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null)
-        {
-            return React(atomicCardId.ToString(), request, requestOptions);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.React")]
-        public ReactResponse React(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null)
-        {
-            return Post<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
-        public async Task<ReactResponse> ReactAsync(Guid atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default)
-        {
-            return await ReactAsync(atomicCardId.ToString(), request, requestOptions, cancellationToken);
-        }
-
-        [Obsolete("Deprecated in favor of BasisTheory.net.Reactors.ReactorClient.ReactAsync")]
-        public async Task<ReactResponse> ReactAsync(string atomicCardId, AtomicReactRequest request, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default)
-        {
-            return await PostAsync<ReactResponse>($"{BasePath}/{atomicCardId}/react", request, requestOptions, cancellationToken);
         }
     }
 }
