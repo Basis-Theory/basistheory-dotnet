@@ -13,6 +13,7 @@ using BasisTheory.net.Tokens;
 using BasisTheory.net.Tokens.Entities;
 using BasisTheory.net.Tokens.Requests;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace BasisTheory.net.Tests.Tokens;
@@ -52,17 +53,33 @@ public class SearchTests : IClassFixture<TokenFixture>
     {
         var content = TokenFactory.PaginatedTokens();
         var expectedSerialized = JsonConvert.SerializeObject(content);
+        var expectedRequestBody = new
+        {
+            query = _fixture.Faker.Random.Words(),
+            page = _fixture.Faker.Random.Int(),
+            size = _fixture.Faker.Random.Int(),
+        };
 
         HttpRequestMessage requestMessage = null;
         _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-        var response = await mut(_fixture.Client, null, null);
+        var response = await mut(_fixture.Client, new TokenSearchRequest
+        {
+            Query = expectedRequestBody.query,
+            Page = expectedRequestBody.page,
+            PageSize = expectedRequestBody.size
+        }, null);
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
         Assert.Equal(HttpMethod.Post, requestMessage.Method);
         Assert.Equal("/tokens/search", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
+
+        var actualRequestBody = JsonConvert.DeserializeObject<JObject>(await requestMessage.Content!.ReadAsStringAsync());
+        Assert.Equal(expectedRequestBody.query, actualRequestBody!["query"]);
+        Assert.Equal(expectedRequestBody.page, actualRequestBody!["page"]);
+        Assert.Equal(expectedRequestBody.size, actualRequestBody!["size"]);
     }
 
     [Theory]
