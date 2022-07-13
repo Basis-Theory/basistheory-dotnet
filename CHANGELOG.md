@@ -1,3 +1,10 @@
+## [1.37.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.37.0...v1.37.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* add json attributes to TokenSearchRequest ([#140](https://github.com/Basis-Theory/basistheory-dotnet/issues/140)) ([49fa90f](https://github.com/Basis-Theory/basistheory-dotnet/commit/49fa90f35e5038f11474b9d301279789ff778763))
+
 # [1.37.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.1...v1.37.0) (2022-07-07)
 
 
