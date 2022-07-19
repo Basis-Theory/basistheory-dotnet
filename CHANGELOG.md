@@ -1,3 +1,29 @@
+## [1.37.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.37.0...v1.37.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* add json attributes to TokenSearchRequest ([#140](https://github.com/Basis-Theory/basistheory-dotnet/issues/140)) ([49fa90f](https://github.com/Basis-Theory/basistheory-dotnet/commit/49fa90f35e5038f11474b9d301279789ff778763))
+
+# [1.37.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.1...v1.37.0) (2022-07-07)
+
+
+### Features
+
+* adding id to create token request and returning string id on re… ([#134](https://github.com/Basis-Theory/basistheory-dotnet/issues/134)) ([b86a697](https://github.com/Basis-Theory/basistheory-dotnet/commit/b86a697e4a81debfb205f521d019a713be35b155))
+
+## [1.36.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.36.0...v1.36.1) (2022-06-30)
+
+
+### Code Refactoring
+
+* remove atomic react methods ([#135](https://github.com/Basis-Theory/basistheory-dotnet/issues/135)) ([0fd46ee](https://github.com/Basis-Theory/basistheory-dotnet/commit/0fd46eeef764b6b70e57f38327dd40f8641c129f))
+
+
+### BREAKING CHANGES
+
+* Removes react method from atomic banks and cards clients.
+
 # [1.36.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.35.0...v1.36.0) (2022-06-18)
 
 
