@@ -1,3 +1,10 @@
+# [1.38.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.37.1...v1.38.0) (2022-07-20)
+
+
+### Features
+
+* remove atomic methods ([#139](https://github.com/Basis-Theory/basistheory-dotnet/issues/139)) ([1072e5d](https://github.com/Basis-Theory/basistheory-dotnet/commit/1072e5d5e63fdaff03c85e833030beb118e53b30))
+
 ## [1.37.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.37.0...v1.37.1) (2022-07-13)
 
 
