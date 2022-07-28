@@ -47,5 +47,9 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("deduplicate_token")]
         [JsonPropertyName("deduplicate_token")]
         public bool? DeduplicateToken { get; set; }
+        
+        [JsonProperty("expires_at")]
+        [JsonPropertyName("expires_at")]
+        public string ExpiresAt { get; set; }
     }
 }
