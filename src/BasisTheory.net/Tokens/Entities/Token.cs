@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BasisTheory.net.Common.Entities;
@@ -34,7 +35,7 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("expires_at")]
         [JsonPropertyName("expires_at")]
-        public string ExpiresAt { get; set; }
+        public DateTimeOffset? ExpiresAt { get; set; }
         
         public Token()
         {

@@ -32,7 +32,7 @@ public static class TokenFactory
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
-        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1).ToString());
+        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1));
 
     public static readonly Faker<TokenCreateRequest> TokenCreateRequestFaker = new Faker<TokenCreateRequest>()
         .RuleFor(t => t.Id, _ => Guid.NewGuid().ToString())
