@@ -32,6 +32,10 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("fingerprint_expression")]
         public string FingerprintExpression { get; set; }
 
+        [JsonProperty("expires_at")]
+        [JsonPropertyName("expires_at")]
+        public string ExpiresAt { get; set; }
+        
         public Token()
         {
         }

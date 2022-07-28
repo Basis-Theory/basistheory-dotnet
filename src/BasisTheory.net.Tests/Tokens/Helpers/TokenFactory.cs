@@ -31,7 +31,8 @@ public static class TokenFactory
             f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
-        .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)));
+        .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
+        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1).ToString());
 
     public static readonly Faker<TokenCreateRequest> TokenCreateRequestFaker = new Faker<TokenCreateRequest>()
         .RuleFor(t => t.Id, _ => Guid.NewGuid().ToString())
@@ -45,7 +46,8 @@ public static class TokenFactory
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
-        .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
+        .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool())
+        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1).ToString());
 
     public static readonly Faker<TokenUpdateRequest> TokenUpdateRequestFaker = new Faker<TokenUpdateRequest>()
         .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
