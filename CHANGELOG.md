@@ -1,3 +1,10 @@
+# [1.39.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.38.0...v1.39.0) (2022-07-28)
+
+
+### Features
+
+* add token expires_at ([#143](https://github.com/Basis-Theory/basistheory-dotnet/issues/143)) ([d7110cf](https://github.com/Basis-Theory/basistheory-dotnet/commit/d7110cf20167c2084ebcbadbb4a97c9a889378ca))
+
 # [1.38.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.37.1...v1.38.0) (2022-07-20)
 
 
