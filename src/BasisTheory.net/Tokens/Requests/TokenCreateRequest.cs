@@ -32,6 +32,10 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonPropertyName("privacy")]
         public DataPrivacy Privacy { get; set; }
 
+        [JsonProperty("container")]
+        [JsonPropertyName("container")]
+        public string Container { get; set; }
+
         [JsonProperty("search_indexes")]
         [JsonPropertyName("search_indexes")]
         public List<string> SearchIndexes { get; set; }

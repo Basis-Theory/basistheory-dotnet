@@ -31,6 +31,7 @@ public static class TokenFactory
             f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
+        .RuleFor(t => t.Container, f => $"/{f.Lorem.Word()}/{f.Lorem.Word()}/")
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
         .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1));
 
@@ -45,6 +46,7 @@ public static class TokenFactory
             f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Word()))
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Privacy, _ => DataPrivacyFaker.Generate())
+        .RuleFor(t => t.Container, f => $"/{f.Lorem.Word()}/{f.Lorem.Word()}/")
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
         .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool())
         .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1).ToString());
@@ -58,6 +60,7 @@ public static class TokenFactory
                 .ToDictionary(x => x.Key, x => x.Value))
         .RuleFor(t => t.Encryption, (_, _) => EncryptionMetadataModelFaker.Generate())
         .RuleFor(t => t.Privacy, _ => UpdateDataPrivacyFaker.Generate())
+        .RuleFor(t => t.Container, f => $"/{f.Lorem.Word()}/{f.Lorem.Word()}/")
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
         .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
 
