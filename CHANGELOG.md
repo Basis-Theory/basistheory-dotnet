@@ -1,3 +1,10 @@
+# [1.40.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.39.0...v1.40.0) (2022-08-11)
+
+
+### Features
+
+* adds container property to tokens ([#148](https://github.com/Basis-Theory/basistheory-dotnet/issues/148)) ([d28a708](https://github.com/Basis-Theory/basistheory-dotnet/commit/d28a708d11dac93e88931b3faa3326e89def728d))
+
 # [1.39.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.38.0...v1.39.0) (2022-07-28)
 
 
