@@ -1,3 +1,10 @@
+# [1.41.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.40.0...v1.41.0) (2022-09-15)
+
+
+### Features
+
+* add monthly_active_token_history to Token Report ([#153](https://github.com/Basis-Theory/basistheory-dotnet/issues/153)) ([2305d55](https://github.com/Basis-Theory/basistheory-dotnet/commit/2305d5520748cc2290ebd41ef252a0913d79cac2))
+
 # [1.40.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.39.0...v1.40.0) (2022-08-11)
 
 
