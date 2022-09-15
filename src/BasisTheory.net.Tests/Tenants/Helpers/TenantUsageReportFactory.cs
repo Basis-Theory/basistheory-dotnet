@@ -19,7 +19,13 @@ namespace BasisTheory.net.Tests.Tenants.Helpers
                     f.Random.Words(),
                     new TokenTypeMetrics { Count = f.Random.Long(), LastCreatedDate = f.Date.PastOffset() }
                 }
-            });
+            }).RuleFor(x => x.MonthlyActiveTokenHistory, f => MonthlyActiveTokenHistoryFaker.Generate(f.Random.Int(1, 10)));
+
+        public static readonly Faker<MonthlyActiveTokenHistory> MonthlyActiveTokenHistoryFaker =
+            new Faker<MonthlyActiveTokenHistory>()
+                .RuleFor(x => x.Count, f => f.Random.Long(0))
+                .RuleFor(x => x.Year, f => f.Random.Int(1000, 9999))
+                .RuleFor(x => x.Month, f => f.Random.Int(1, 12));
 
         public static TenantUsageReport TenantUsageReport(Action<TenantUsageReport> applyOverrides = null)
         {

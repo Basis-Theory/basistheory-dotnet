@@ -25,6 +25,10 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonProperty("monthly_active_tokens")]
         [JsonPropertyName("monthly_active_tokens")]
         public long MonthlyActiveTokens { get; set; }
+
+        [JsonProperty("monthly_active_token_history")]
+        [JsonPropertyName("monthly_active_token_history")]
+        public List<MonthlyActiveTokenHistory> MonthlyActiveTokenHistory { get; set; }
     }
 
     public class TokenTypeMetrics
@@ -36,5 +40,20 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonProperty("last_created_at")]
         [JsonPropertyName("last_created_at")]
         public DateTimeOffset? LastCreatedDate { get; set; }
+    }
+
+    public class MonthlyActiveTokenHistory
+    {
+        [JsonProperty("count")]
+        [JsonPropertyName("count")]
+        public long Count { get; set; }
+
+        [JsonProperty("year")]
+        [JsonPropertyName("year")]
+        public int Year { get; set; }
+
+        [JsonProperty("month")]
+        [JsonPropertyName("month")]
+        public int Month { get; set; }
     }
 }
