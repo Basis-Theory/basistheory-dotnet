@@ -25,9 +25,9 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonPropertyName("privacy")]
         public DataPrivacy Privacy { get; set; }
 
-        [JsonProperty("container")]
-        [JsonPropertyName("container")]
-        public string Container { get; set; }
+        [JsonProperty("containers")]
+        [JsonPropertyName("containers")]
+        public List<string> Containers { get; set; }
 
         [JsonProperty("search_indexes")]
         [JsonPropertyName("search_indexes")]
