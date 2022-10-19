@@ -12,7 +12,7 @@ namespace BasisTheory.net.Applications.Entities
 
         [JsonProperty("priority")]
         [JsonPropertyName("priority")]
-        public int? Priority { get; set; }
+        public int Priority { get; set; }
 
         [JsonProperty("container")]
         [JsonPropertyName("container")]
