@@ -46,5 +46,9 @@ namespace BasisTheory.net.Applications.Entities
         [JsonProperty("permissions")]
         [JsonPropertyName("permissions")]
         public List<string> Permissions { get; set; }
+
+        [JsonProperty("rules")]
+        [JsonPropertyName("rules")]
+        public List<AccessRule> Rules { get; set; }
     }
 }

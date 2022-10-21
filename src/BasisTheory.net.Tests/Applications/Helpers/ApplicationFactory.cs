@@ -20,6 +20,13 @@ namespace BasisTheory.net.Tests.Applications.Helpers
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()));
 
+        public static readonly Faker<AccessRule> AccessRuleFaker = new Faker<AccessRule>() 
+            .RuleFor(a => a.Description, (f, _) => f.Lorem.Sentence())
+            .RuleFor(a => a.Priority, (f, _) => f.Random.Int())
+            .RuleFor(a => a.Container, (f, _) => $"/{f.Lorem.Word()}/")
+            .RuleFor(a => a.Transform, (f, _) => f.PickRandom("mask", "redact", "reveal"))
+            .RuleFor(a => a.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()));
+
         public static readonly Faker<PaginatedList<Application>> PaginatedListFaker = new Faker<PaginatedList<Application>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
             {
@@ -37,6 +44,15 @@ namespace BasisTheory.net.Tests.Applications.Helpers
             applyOverrides?.Invoke(application);
 
             return application;
+        }
+        
+        public static AccessRule AccessRule(Action<AccessRule> applyOverrides = null)
+        {
+            var accessRule = AccessRuleFaker.Generate();
+
+            applyOverrides?.Invoke(accessRule);
+
+            return accessRule;
         }
 
         public static PaginatedList<Application> PaginatedApplications(Action<PaginatedList<Application>> applyOverrides = null)
