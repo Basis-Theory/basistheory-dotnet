@@ -1,3 +1,10 @@
+# [1.42.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.41.0...v1.42.0) (2022-10-21)
+
+
+### Features
+
+* adds support for access rules and containers ([#159](https://github.com/Basis-Theory/basistheory-dotnet/issues/159)) ([0db9968](https://github.com/Basis-Theory/basistheory-dotnet/commit/0db9968cdbb15275006e119fc53376c941fc51f9))
+
 # [1.41.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.40.0...v1.41.0) (2022-09-15)
 
 
