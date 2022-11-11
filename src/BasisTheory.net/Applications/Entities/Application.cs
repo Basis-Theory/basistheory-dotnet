@@ -42,6 +42,14 @@ namespace BasisTheory.net.Applications.Entities
         [JsonProperty("modified_at")]
         [JsonPropertyName("modified_at")]
         public DateTimeOffset? ModifiedDate { get; set; }
+        
+        [JsonProperty("can_create_expiring_applications")]
+        [JsonPropertyName("can_create_expiring_applications")]
+        public bool? CanCreateExpiringApplications { get; set; }
+        
+        [JsonProperty("expires_at")]
+        [JsonPropertyName("expires_at")]
+        public DateTimeOffset? ExpiresAt { get; set; }
 
         [JsonProperty("permissions")]
         [JsonPropertyName("permissions")]
