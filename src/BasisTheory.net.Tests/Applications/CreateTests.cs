@@ -62,6 +62,25 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
+        
+        [Theory]
+        [MemberData(nameof(Methods))]
+        public async Task ShouldCreateWithoutName(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)
+        {
+            var content = ApplicationFactory.Application(a => a.Name = null);
+            var expectedSerialized = JsonConvert.SerializeObject(content);
+
+            HttpRequestMessage requestMessage = null;
+            _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
+
+            var response = await mut(_fixture.Client, content, null);
+
+            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+            Assert.Equal(HttpMethod.Post, requestMessage.Method);
+            Assert.Equal("/applications", requestMessage.RequestUri?.PathAndQuery);
+            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+            _fixture.AssertUserAgent(requestMessage);
+        }
 
         [Theory]
         [MemberData(nameof(Methods))]

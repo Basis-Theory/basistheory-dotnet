@@ -49,7 +49,7 @@ public static class TokenFactory
         .RuleFor(t => t.Container, f => $"/{f.Lorem.Word()}/{f.Lorem.Word()}/")
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
         .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool())
-        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1).ToString());
+        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1));
 
     public static readonly Faker<TokenUpdateRequest> TokenUpdateRequestFaker = new Faker<TokenUpdateRequest>()
         .RuleFor(t => t.Data, (f, _) => JsonUtility.SerializeObject(f.Random.Word()))
@@ -62,7 +62,8 @@ public static class TokenFactory
         .RuleFor(t => t.Privacy, _ => UpdateDataPrivacyFaker.Generate())
         .RuleFor(t => t.Container, f => $"/{f.Lorem.Word()}/{f.Lorem.Word()}/")
         .RuleFor(t => t.SearchIndexes, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.String2(10)))
-        .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool());
+        .RuleFor(t => t.DeduplicateToken, (f, _) => f.Random.Bool())
+        .RuleFor(t => t.ExpiresAt, _ => DateTimeOffset.Now.AddDays(1));
 
     public static readonly Faker<EncryptionKey> EncryptionKeyModelFaker = new Faker<EncryptionKey>()
         .RuleFor(t => t.Algorithm, (f, _) => f.PickRandom("AES", "RSA"))
