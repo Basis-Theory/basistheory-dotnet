@@ -1,3 +1,10 @@
+# [1.43.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.42.0...v1.43.0) (2022-11-17)
+
+
+### Features
+
+* support expiring applications ([#163](https://github.com/Basis-Theory/basistheory-dotnet/issues/163)) ([a6c9560](https://github.com/Basis-Theory/basistheory-dotnet/commit/a6c95605e954b91798a993768bfa64efed29c3d5))
+
 # [1.42.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.41.0...v1.42.0) (2022-10-21)
 
 
