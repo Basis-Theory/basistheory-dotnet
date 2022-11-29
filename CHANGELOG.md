@@ -1,3 +1,10 @@
+# [1.44.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.43.0...v1.44.0) (2022-11-29)
+
+
+### Features
+
+* add new proxy attributes and remove encryption libraries ([#166](https://github.com/Basis-Theory/basistheory-dotnet/issues/166)) ([42430fd](https://github.com/Basis-Theory/basistheory-dotnet/commit/42430fdae9d043775ddeaaa9874e0f01b2351ff7))
+
 # [1.43.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.42.0...v1.43.0) (2022-11-17)
 
 
