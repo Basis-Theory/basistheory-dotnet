@@ -23,10 +23,6 @@ ProjectSection(SolutionItems) = preProject
 	..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure", "BasisTheory.net.Encryption.Azure\BasisTheory.net.Encryption.Azure.csproj", "{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Encryption.Azure.AspNetCore", "BasisTheory.net.Encryption.Azure.AspNetCore\BasisTheory.net.Encryption.Azure.AspNetCore.csproj", "{1F61590A-716D-4504-8E92-C9B4F8817D42}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.AspNetCore", "BasisTheory.net.AspNetCore\BasisTheory.net.AspNetCore.csproj", "{98C8822E-8FE3-4542-8378-CF6D95673C30}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{42CEC05B-16F1-4AE6-BC38-5C235A7AA971}"
@@ -35,7 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.Tests", "Ba
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{91D3F183-B710-43B5-8590-CC3F9182DA6C}"
 ProjectSection(SolutionItems) = preProject
-	..\scripts\acceptancetest.sh = ..\scripts\acceptancetest.sh
 	..\scripts\build.sh = ..\scripts\build.sh
 	..\scripts\dependencycheck.sh = ..\scripts\dependencycheck.sh
 	..\scripts\importcert.sh = ..\scripts\importcert.sh
@@ -52,8 +47,6 @@ ProjectSection(SolutionItems) = preProject
 	..\scripts\checks\dotnetcheck.sh = ..\scripts\checks\dotnetcheck.sh
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasisTheory.net.AcceptanceTests", "BasisTheory.net.AcceptanceTests\BasisTheory.net.AcceptanceTests.csproj", "{4D84E20A-6773-42DC-8A46-40E1C287E391}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,14 +57,6 @@ Global
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86961741-7427-45D7-8D52-A2DA8BE54436}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CF31FFC-2E1F-424A-8947-F40EE1F968D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F61590A-716D-4504-8E92-C9B4F8817D42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C8822E-8FE3-4542-8378-CF6D95673C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,14 +65,9 @@ Global
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{094EF019-8B3E-4879-8141-0435D78C8679}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D84E20A-6773-42DC-8A46-40E1C287E391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{094EF019-8B3E-4879-8141-0435D78C8679} = {42CEC05B-16F1-4AE6-BC38-5C235A7AA971}
 		{FD793053-73FF-411D-9AE1-78CB1EA11AE3} = {91D3F183-B710-43B5-8590-CC3F9182DA6C}
-		{4D84E20A-6773-42DC-8A46-40E1C287E391} = {42CEC05B-16F1-4AE6-BC38-5C235A7AA971}
 	EndGlobalSection
 EndGlobal

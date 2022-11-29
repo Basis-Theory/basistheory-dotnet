@@ -14,7 +14,6 @@ time {
     ./build.sh
     ./startdocker.sh
     ./unittest.sh
-    ./acceptancetest.sh
 }
 
 cd "$current_directory"
