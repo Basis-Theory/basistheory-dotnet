@@ -8,6 +8,7 @@ using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Proxies;
 using BasisTheory.net.Proxies.Entities;
+using BasisTheory.net.Proxies.Requests;
 using BasisTheory.net.Tests.Helpers;
 using BasisTheory.net.Tests.Proxies.Helpers;
 using Newtonsoft.Json;
@@ -30,13 +31,13 @@ namespace BasisTheory.net.Tests.Proxies
             {
                 yield return new object []
                 {
-                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                    (Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>>)(
                         async (client, proxy, options) => await client.CreateAsync(proxy, options)
                     )
                 };
                 yield return new object []
                 {
-                    (Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>>)(
+                    (Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>>)(
                         (client, proxy, options) => Task.FromResult(client.Create(proxy, options))
                     )
                 };
@@ -45,15 +46,16 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreate(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldCreate(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = ProxyFactory.ProxyCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, null);
+            var response = await mut(_fixture.Client, request, null);
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
             Assert.Equal(HttpMethod.Post, requestMessage.Method);
@@ -64,17 +66,18 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithPerRequestApiKey(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldCreateWithPerRequestApiKey(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var expectedApiKey = Guid.NewGuid().ToString();
 
             var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = ProxyFactory.ProxyCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, new RequestOptions
+            var response = await mut(_fixture.Client, request, new RequestOptions
             {
                 ApiKey = expectedApiKey
             });
@@ -88,17 +91,18 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldCreateWithCorrelationId(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
 
             var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
+            var request = ProxyFactory.ProxyCreateRequest();
 
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 
-            var response = await mut(_fixture.Client, content, new RequestOptions
+            var response = await mut(_fixture.Client, request, new RequestOptions
             {
                 CorrelationId = expectedCorrelationId
             });
@@ -113,14 +117,14 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldBubbleUpBasisTheoryErrors(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var error = BasisTheoryErrorFactory.BasisTheoryError();
             var expectedSerializedError = JsonConvert.SerializeObject(error);
 
             _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new ProxyCreateRequest(), null));
             var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
             Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -128,11 +132,11 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldHandleEmptyErrorResponse(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new ProxyCreateRequest(), null));
 
             Assert.Equal(403, exception.Error.Status);
             Assert.Null(exception.Error.Title);
@@ -141,13 +145,13 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IProxyClient, Proxy, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var error = Guid.NewGuid().ToString();
 
             _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Proxy(), null));
+            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new ProxyCreateRequest(), null));
 
             Assert.Equal(500, exception.Error.Status);
             Assert.Null(exception.Error.Title);

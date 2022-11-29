@@ -1,24 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BasisTheory.net.Applications.Entities;
+using BasisTheory.net.Proxies.Entities;
 using Newtonsoft.Json;
 
-namespace BasisTheory.net.Proxies.Entities
+namespace BasisTheory.net.Proxies.Requests
 {
-    public class Proxy
+    public class ProxyCreateRequest
     {
-        [JsonProperty("id")]
-        [JsonPropertyName("id")]
-        public Guid Id { get; set; }
-
-        [JsonProperty("key")]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [JsonProperty("tenant_id")]
-        [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
-
         [JsonProperty("name")]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -45,32 +35,16 @@ namespace BasisTheory.net.Proxies.Entities
         [JsonPropertyName("response_transform")]
         public ProxyTransform ResponseTransform { get; set; }
 
-        [JsonProperty("require_auth")]
-        [JsonPropertyName("require_auth")]
-        public bool? RequireAuthentication { get; set; } = true;
-
-        [JsonProperty("application_id")]
-        [JsonPropertyName("application_id")]
-        public Guid? ApplicationId { get; set; }
+        [JsonProperty("application")]
+        [JsonPropertyName("application")]
+        public Application Application { get; set; }
 
         [JsonProperty("configuration")]
         [JsonPropertyName("configuration")]
         public Dictionary<string, string> Configuration { get; set; }
 
-        [JsonProperty("created_by")]
-        [JsonPropertyName("created_by")]
-        public Guid? CreatedBy { get; set; }
-
-        [JsonProperty("created_at")]
-        [JsonPropertyName("created_at")]
-        public DateTimeOffset? CreatedDate { get; set; }
-
-        [JsonProperty("modified_by")]
-        [JsonPropertyName("modified_by")]
-        public Guid? ModifiedBy { get; set; }
-
-        [JsonProperty("modified_at")]
-        [JsonPropertyName("modified_at")]
-        public DateTimeOffset? ModifiedDate { get; set; }
+        [JsonProperty("require_auth")]
+        [JsonPropertyName("require_auth")]
+        public bool? RequireAuthentication { get; set; } = true;
     }
 }

@@ -38,25 +38,25 @@ namespace BasisTheory.net.Proxies
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Proxy Create(Proxy proxy, RequestOptions requestOptions = null);
+        Proxy Create(ProxyCreateRequest request, RequestOptions requestOptions = null);
 
         Task<Proxy> CreateAsync(
-            Proxy proxy,
+            ProxyCreateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Proxy Update(Guid proxyId, Proxy proxy, RequestOptions requestOptions = null);
-        Proxy Update(string proxyId, Proxy proxy, RequestOptions requestOptions = null);
+        Proxy Update(Guid proxyId, ProxyUpdateRequest request, RequestOptions requestOptions = null);
+        Proxy Update(string proxyId, ProxyUpdateRequest request, RequestOptions requestOptions = null);
 
         Task<Proxy> UpdateAsync(
             Guid proxyId,
-            Proxy proxy,
+            ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         Task<Proxy> UpdateAsync(
             string proxyId,
-            Proxy proxy,
+            ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
@@ -130,45 +130,45 @@ namespace BasisTheory.net.Proxies
             return await GetAsync<PaginatedList<Proxy>>(BasePath, request, requestOptions, cancellationToken);
         }
 
-        public Proxy Create(Proxy proxy, RequestOptions requestOptions = null)
+        public Proxy Create(ProxyCreateRequest request, RequestOptions requestOptions = null)
         {
-            return Post<Proxy>(BasePath, proxy, requestOptions);
+            return Post<Proxy>(BasePath, request, requestOptions);
         }
 
         public async Task<Proxy> CreateAsync(
-            Proxy proxy,
+            ProxyCreateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PostAsync<Proxy>(BasePath, proxy, requestOptions, cancellationToken);
+            return await PostAsync<Proxy>(BasePath, request, requestOptions, cancellationToken);
         }
 
-        public Proxy Update(Guid proxyId, Proxy proxy, RequestOptions requestOptions = null)
+        public Proxy Update(Guid proxyId, ProxyUpdateRequest request, RequestOptions requestOptions = null)
         {
-            return Update(proxyId.ToString(), proxy, requestOptions);
+            return Update(proxyId.ToString(), request, requestOptions);
         }
 
-        public Proxy Update(string proxyId, Proxy proxy, RequestOptions requestOptions = null)
+        public Proxy Update(string proxyId, ProxyUpdateRequest request, RequestOptions requestOptions = null)
         {
-            return Put<Proxy>($"{BasePath}/{proxyId}", proxy, requestOptions);
+            return Put<Proxy>($"{BasePath}/{proxyId}", request, requestOptions);
         }
 
         public async Task<Proxy> UpdateAsync(
             Guid proxyId,
-            Proxy proxy,
+            ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await UpdateAsync(proxyId.ToString(), proxy, requestOptions, cancellationToken);
+            return await UpdateAsync(proxyId.ToString(), request, requestOptions, cancellationToken);
         }
 
         public async Task<Proxy> UpdateAsync(
             string proxyId,
-            Proxy proxy,
+            ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
-            return await PutAsync<Proxy>($"{BasePath}/{proxyId}", proxy, requestOptions,
+            return await PutAsync<Proxy>($"{BasePath}/{proxyId}", request, requestOptions,
                 cancellationToken);
         }
 
