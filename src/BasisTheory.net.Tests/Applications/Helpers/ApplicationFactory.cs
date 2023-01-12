@@ -19,7 +19,6 @@ namespace BasisTheory.net.Tests.Applications.Helpers
             .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()))
-            .RuleFor(a => a.CanCreateExpiringApplications, (f, _) => f.Random.Bool())
             .RuleFor(a => a.ExpiresAt, (f, _) => f.Date.FutureOffset());
 
         public static readonly Faker<AccessRule> AccessRuleFaker = new Faker<AccessRule>() 
