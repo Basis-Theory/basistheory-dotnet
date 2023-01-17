@@ -1,3 +1,10 @@
+# [1.45.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.44.0...v1.45.0) (2023-01-17)
+
+
+### Features
+
+* support sessions & remove expiring app property ([#175](https://github.com/Basis-Theory/basistheory-dotnet/issues/175)) ([cbc25db](https://github.com/Basis-Theory/basistheory-dotnet/commit/cbc25db84e77258dc6d4bd46779ffba26a80d744))
+
 # [1.44.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.43.0...v1.44.0) (2022-11-29)
 
 
