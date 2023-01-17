@@ -13,7 +13,7 @@ public class AuthorizeSessionRequest
     [JsonProperty("expires_at")]
     [JsonPropertyName("expires_at")]
     public DateTimeOffset? ExpiresAt { get; set; }
-        
+#nullable enable
     [JsonProperty("permissions")]
     [JsonPropertyName("permissions")]
     public List<string>? Permissions { get; set; }
@@ -21,4 +21,5 @@ public class AuthorizeSessionRequest
     [JsonProperty("rules")]
     [JsonPropertyName("rules")]
     public List<AccessRule>? Rules { get; set; }
+#nullable disable
 }

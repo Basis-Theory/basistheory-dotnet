@@ -9,6 +9,7 @@
         <PackageProjectUrl>https://github.com/Basis-Theory/basistheory-dotnet</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
         <PackageTags>BasisTheory,SDK</PackageTags>
+        <Nullable>enable</Nullable>
         <NuspecProperties>version=$(Version)</NuspecProperties>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <AssemblyVersion>1.0.0</AssemblyVersion>
