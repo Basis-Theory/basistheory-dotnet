@@ -1,3 +1,10 @@
+## [1.45.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.45.0...v1.45.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* fix namespace in AuthorizeSessionRequest.cs ([#177](https://github.com/Basis-Theory/basistheory-dotnet/issues/177)) ([accb33c](https://github.com/Basis-Theory/basistheory-dotnet/commit/accb33c5e8aef410925f243bafcc4c1aa5751857))
+
 # [1.45.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.44.0...v1.45.0) (2023-01-17)
 
 
