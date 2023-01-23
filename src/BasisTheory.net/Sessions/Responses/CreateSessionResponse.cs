@@ -2,7 +2,7 @@ using System;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace BasisTheory.net.Sessions.Entities
+namespace BasisTheory.net.Sessions.Responses
 {
     public class CreateSessionResponse
     {
