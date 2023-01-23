@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Sessions;
+using BasisTheory.net.Sessions.Entities;
 using BasisTheory.net.Tests.Sessions.Helpers;
 using BasisTheory.net.Tokens.Entities;
 using Newtonsoft.Json;
