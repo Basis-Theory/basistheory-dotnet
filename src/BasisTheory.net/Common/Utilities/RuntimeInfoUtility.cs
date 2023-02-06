@@ -122,7 +122,7 @@ namespace BasisTheory.net.Common.Utilities
 
             // it's OK to use this method only after checking the previous ones
             // because we might have a benchmark app build for .NET Core X but executed using CoreRun Y
-            // example: -f netcoreapp3.1 --corerun $omittedForBrevity\Microsoft.NETCore.App\6.0.0\CoreRun.exe - built as 3.1, run as 6.0 (#1576)
+            // example: -f netcoreapp3.1 --corerun $omittedForBrevity\Microsoft.NETCore.App\7.0.0\CoreRun.exe - built as 3.1, run as 7.0 (#1576)
             var frameworkName = Assembly.GetEntryAssembly()?.GetCustomAttribute<TargetFrameworkAttribute>()
                 ?.FrameworkName;
             if (TryGetVersionFromFrameworkName(frameworkName, out version))
