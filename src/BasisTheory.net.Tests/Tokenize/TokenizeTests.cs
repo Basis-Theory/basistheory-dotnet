@@ -90,7 +90,7 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldCreateWithCorrelationId(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldCreateWithCustomHeaders(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
 

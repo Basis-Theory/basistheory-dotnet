@@ -108,10 +108,11 @@ public class UpdateTests : IClassFixture<TokenFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldUpdateWithCorrelationId(
+    public async Task ShouldUpdateWithCustomHeaders(
         Func<ITokenClient, string, TokenUpdateRequest, RequestOptions, Task<Token>> mut)
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
+        var expectedIdempotencyKey = Guid.NewGuid().ToString();
 
         var content = TokenFactory.Token();
         var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -122,7 +123,8 @@ public class UpdateTests : IClassFixture<TokenFixture>
 
         var response = await mut(_fixture.Client, content.Id, request, new RequestOptions
         {
-            CorrelationId = expectedCorrelationId
+            CorrelationId = expectedCorrelationId,
+            IdempotencyKey = expectedIdempotencyKey
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -131,6 +133,7 @@ public class UpdateTests : IClassFixture<TokenFixture>
         Assert.Equal($"/tokens/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+        Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
 

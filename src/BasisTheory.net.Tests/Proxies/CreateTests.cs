@@ -91,9 +91,10 @@ namespace BasisTheory.net.Tests.Proxies
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldCreateWithCorrelationId(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
+        public async Task ShouldCreateWithCustomHeaders(Func<IProxyClient, ProxyCreateRequest, RequestOptions, Task<Proxy>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
+            var expectedIdempotencyKey = Guid.NewGuid().ToString();
 
             var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
@@ -104,7 +105,8 @@ namespace BasisTheory.net.Tests.Proxies
 
             var response = await mut(_fixture.Client, request, new RequestOptions
             {
-                CorrelationId = expectedCorrelationId
+                CorrelationId = expectedCorrelationId,
+                IdempotencyKey = expectedIdempotencyKey
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -112,6 +114,7 @@ namespace BasisTheory.net.Tests.Proxies
             Assert.Equal("/proxies", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
 
