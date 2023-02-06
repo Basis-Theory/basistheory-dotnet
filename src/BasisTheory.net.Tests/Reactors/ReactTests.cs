@@ -136,7 +136,7 @@ public class ReactTests : IClassFixture<ReactorFixture>
         Assert.Equal($"/reactors/{reactorId}/react", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-        Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
+        Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
 
