@@ -22,7 +22,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "dotnet pack src/BasisTheory.net.sln -c Release -p:PackageVersion=${nextRelease.version} /p:AssemblyVersion=${nextRelease.version}"
+        "prepareCmd": "dotnet pack src/BasisTheory.net.sln -p:PackageOutputPath=output -c Release -p:PackageVersion=${nextRelease.version} /p:AssemblyVersion=${nextRelease.version}"
       }
     ],
     [
