@@ -1,3 +1,10 @@
+# [1.46.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.45.1...v1.46.0) (2023-02-16)
+
+
+### Features
+
+* add itempotency header ([#180](https://github.com/Basis-Theory/basistheory-dotnet/issues/180)) ([5ced6d3](https://github.com/Basis-Theory/basistheory-dotnet/commit/5ced6d312293f380ed48fef56f3de892c3d300dd))
+
 ## [1.45.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.45.0...v1.45.1) (2023-01-23)
 
 
