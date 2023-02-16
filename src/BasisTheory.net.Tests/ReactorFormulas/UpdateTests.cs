@@ -100,10 +100,11 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
         [Theory]
         [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateWithCorrelationId(Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>> mut)
+        public async Task ShouldUpdateWithCustomHeaders(Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>> mut)
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
-
+            var expectedIdempotencyKey = Guid.NewGuid().ToString();
+            
             var content = ReactorFormulaFactory.ReactorFormula();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 
@@ -112,7 +113,8 @@ namespace BasisTheory.net.Tests.ReactorFormulas
 
             var response = await mut(_fixture.Client, content, new RequestOptions
             {
-                CorrelationId = expectedCorrelationId
+                CorrelationId = expectedCorrelationId,
+                IdempotencyKey = expectedIdempotencyKey
             });
 
             Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -120,6 +122,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
             Assert.Equal($"/reactor-formulas/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+            Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
 

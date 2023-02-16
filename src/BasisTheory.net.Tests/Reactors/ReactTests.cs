@@ -111,10 +111,11 @@ public class ReactTests : IClassFixture<ReactorFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldCreateWithCorrelationId(
+    public async Task ShouldCreateWithCustomHeaders(
         Func<IReactorClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
+        var expectedIdempotencyKey = Guid.NewGuid().ToString();
         var reactorId = Guid.NewGuid();
         var request = ReactorFactory.ReactRequest();
 
@@ -126,7 +127,8 @@ public class ReactTests : IClassFixture<ReactorFixture>
 
         var response = await mut(_fixture.Client, reactorId, request, new RequestOptions
         {
-            CorrelationId = expectedCorrelationId
+            CorrelationId = expectedCorrelationId,
+            IdempotencyKey = expectedIdempotencyKey
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -134,6 +136,7 @@ public class ReactTests : IClassFixture<ReactorFixture>
         Assert.Equal($"/reactors/{reactorId}/react", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+        Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
 

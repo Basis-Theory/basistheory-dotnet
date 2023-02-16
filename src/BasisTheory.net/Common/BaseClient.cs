@@ -199,6 +199,9 @@ namespace BasisTheory.net.Common
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("BT-TRACE-ID", requestOptions.CorrelationId);
+            
+            if (!string.IsNullOrEmpty(requestOptions?.IdempotencyKey))
+                message.Headers.Add("BT-IDEMPOTENCY-KEY", requestOptions.IdempotencyKey);
         }
 
         private HttpClient BuildDefaultHttpClient()
