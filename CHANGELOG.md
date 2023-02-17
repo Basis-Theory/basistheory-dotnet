@@ -1,3 +1,10 @@
+# [1.47.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.46.0...v1.47.0) (2023-02-17)
+
+
+### Features
+
+* adding async reactor params ([#185](https://github.com/Basis-Theory/basistheory-dotnet/issues/185)) ([6bc8710](https://github.com/Basis-Theory/basistheory-dotnet/commit/6bc8710c02d4e71592e28c8c653be7aaa753cd6e))
+
 # [1.46.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.45.1...v1.46.0) (2023-02-16)
 
 
