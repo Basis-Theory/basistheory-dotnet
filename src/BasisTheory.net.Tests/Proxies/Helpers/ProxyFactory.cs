@@ -33,6 +33,7 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
                     new KeyValuePair<string, string>(
                         f.Random.String2(10, 20, AlphanumericUnderscoreChars), f.Random.Word()))
                 .ToDictionary(x => x.Key, x => x.Value))
+            .RuleFor(a => a.ProxyHost, (f, _) => f.Internet.Url())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
