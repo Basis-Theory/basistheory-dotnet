@@ -1,3 +1,10 @@
+# [1.48.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.47.0...v1.48.0) (2023-05-08)
+
+
+### Features
+
+* adds ProxyHost property on Proxy model ([#190](https://github.com/Basis-Theory/basistheory-dotnet/issues/190)) ([127bcd2](https://github.com/Basis-Theory/basistheory-dotnet/commit/127bcd2175c6fbc70c1cc162a184cdc4410366d5))
+
 # [1.47.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.46.0...v1.47.0) (2023-02-17)
 
 
