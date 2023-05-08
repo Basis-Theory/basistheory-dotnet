@@ -52,6 +52,10 @@ namespace BasisTheory.net.Proxies.Entities
         [JsonProperty("application_id")]
         [JsonPropertyName("application_id")]
         public Guid? ApplicationId { get; set; }
+        
+        [JsonProperty("proxy_host")]
+        [JsonPropertyName("proxy_host")]
+        public string ProxyHost { get; set; }
 
         [JsonProperty("configuration")]
         [JsonPropertyName("configuration")]
