@@ -16,12 +16,5 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Test
-        run: |
-          pwd
-          ls -la
-          dotnet pack src/BasisTheory.net.sln -p:PackageOutputPath=../../output -c Release -p:PackageVersion=0.0.0 /p:AssemblyVersion=0.0.0
-          ls -la
-
-#      - name: Verify
-#        run: make verify
+      - name: Verify
+        run: make verify
