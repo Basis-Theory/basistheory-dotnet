@@ -1,3 +1,11 @@
+## [1.48.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.0...v1.48.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* updating node version to fix build ([#194](https://github.com/Basis-Theory/basistheory-dotnet/issues/194)) ([f8cfe74](https://github.com/Basis-Theory/basistheory-dotnet/commit/f8cfe74a69c79ba91e6fbf0af32bed0d7ba6d5d5))
+* upgrading semantic release dependencies ([#192](https://github.com/Basis-Theory/basistheory-dotnet/issues/192)) ([f9dc0c9](https://github.com/Basis-Theory/basistheory-dotnet/commit/f9dc0c904a98f0e8edaa359a4e57628a44abd793))
+
 # [1.48.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.47.0...v1.48.0) (2023-05-08)
 
 
