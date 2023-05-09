@@ -1,3 +1,10 @@
+## [1.48.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.1...v1.48.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* fix build ([#195](https://github.com/Basis-Theory/basistheory-dotnet/issues/195)) ([8d4fd51](https://github.com/Basis-Theory/basistheory-dotnet/commit/8d4fd51a6e19a9e13bf2b62e84a3607f9c581adc))
+
 ## [1.48.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.0...v1.48.1) (2023-05-09)
 
 
