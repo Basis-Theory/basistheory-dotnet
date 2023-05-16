@@ -44,7 +44,7 @@ namespace BasisTheory.net.Tests.Sessions
         [MemberData(nameof(Methods))]
         public async Task ShouldAuthorize(Func<ISessionClient, AuthorizeSessionRequest, RequestOptions, Task> mut)
         {
-            var request = new AuthorizeSessionRequest();
+            var request = SessionFactory.AuthorizeSessionRequest();
             
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.OK, null, (message, _) => requestMessage = message);

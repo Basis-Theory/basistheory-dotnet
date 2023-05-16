@@ -8,7 +8,6 @@ using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
 using BasisTheory.net.Applications;
 using BasisTheory.net.Applications.Entities;
-using BasisTheory.net.Common.Utilities;
 using BasisTheory.net.Tests.Applications.Helpers;
 using BasisTheory.net.Tests.Helpers;
 using Newtonsoft.Json;
