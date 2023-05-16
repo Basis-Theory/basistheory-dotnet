@@ -1,3 +1,10 @@
+# [1.49.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.2...v1.49.0) (2023-05-16)
+
+
+### Features
+
+* supporting conditions in access rules ([#197](https://github.com/Basis-Theory/basistheory-dotnet/issues/197)) ([d27cff6](https://github.com/Basis-Theory/basistheory-dotnet/commit/d27cff6ecbbc02a1998998d1074d427c55cd3fbb))
+
 ## [1.48.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.1...v1.48.2) (2023-05-09)
 
 
