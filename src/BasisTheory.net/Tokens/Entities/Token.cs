@@ -40,6 +40,10 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("expires_at")]
         [JsonPropertyName("expires_at")]
         public DateTimeOffset? ExpiresAt { get; set; }
+
+        [JsonProperty("enrichments")]
+        [JsonPropertyName("enrichments")]
+        public TokenEnrichments Enrichments { get; set; }
         
         public Token()
         {
