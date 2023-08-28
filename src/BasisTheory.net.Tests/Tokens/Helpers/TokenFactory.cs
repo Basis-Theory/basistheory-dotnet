@@ -116,20 +116,20 @@ public static class TokenFactory
         .RuleFor(t => t.BinDetails, (_, _) => BinDetailsFaker.Generate());
 
     public static readonly Faker<BinDetails> BinDetailsFaker = new Faker<BinDetails>()
-        .RuleFor(r => r.Bank, (f, _) => new BinDetails.BankModel
+        .RuleFor(r => r.Bank, (f, _) => new BinDetails.BinDetailsBank
         {
             Name = f.Company.CompanyName(),
             Phone = f.Phone.PhoneNumber(),
             Url = f.Internet.Url(),
             CleanName = f.Company.CompanyName()
         })
-        .RuleFor(r => r.Country, (f, _) => new BinDetails.CountryModel
+        .RuleFor(r => r.Country, (f, _) => new BinDetails.BinDetailsCountry
         {
             Name = f.Address.Country(),
             Alpha2 = f.Address.CountryCode(),
             Numeric = f.Random.Int(1, 999).ToString().PadLeft(3, '0')
         })
-        .RuleFor(r => r.Product, (f, _) => new BinDetails.ProductModel
+        .RuleFor(r => r.Product, (f, _) => new BinDetails.BinDetailsProduct
         {
             Name = Guid.NewGuid().ToString(),
             Code = f.PickRandom(null, "F", "G", "A")

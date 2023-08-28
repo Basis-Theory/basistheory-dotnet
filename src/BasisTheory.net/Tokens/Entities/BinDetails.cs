@@ -7,11 +7,11 @@ namespace BasisTheory.net.Tokens.Entities
     {
         [JsonProperty("card_brand")] 
         [JsonPropertyName("card_brand")] 
-        public string CardBrand { get; set; }
+        public string? CardBrand { get; set; }
 
         [JsonProperty("type")]
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [JsonProperty("prepaid")]
         [JsonPropertyName("prepaid")]
@@ -19,63 +19,63 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("card_segment_type")]
         [JsonPropertyName("card_segment_type")]
-        public string CardSegmentType { get; set; }
+        public string? CardSegmentType { get; set; }
 
         [JsonProperty("bank")]
         [JsonPropertyName("bank")]
-        public BankModel Bank { get; set; }
+        public BinDetailsBank? Bank { get; set; }
 
         [JsonProperty("product")]
         [JsonPropertyName("product")]
-        public ProductModel Product { get; set; }
+        public BinDetailsProduct? Product { get; set; }
 
         [JsonProperty("country")]
         [JsonPropertyName("country")]
-        public CountryModel Country { get; set; }
+        public BinDetailsCountry? Country { get; set; }
 
-        public class BankModel
+        public class BinDetailsBank
         {
             [JsonProperty("name")]
             [JsonPropertyName("name")]
-            public string Name { get; set; }
+            public string? Name { get; set; }
 
             [JsonProperty("phone")]
             [JsonPropertyName("phone")]
-            public string Phone { get; set; }
+            public string? Phone { get; set; }
 
             [JsonProperty("url")]
             [JsonPropertyName("url")]
-            public string Url { get; set; }
+            public string? Url { get; set; }
 
             [JsonProperty("clean_name")]
             [JsonPropertyName("clean_name")]
-            public string CleanName { get; set; }
+            public string? CleanName { get; set; }
         }
 
-        public class ProductModel
+        public class BinDetailsProduct
         {
             [JsonProperty("code")]
             [JsonPropertyName("code")]
-            public string Code { get; set; }
+            public string? Code { get; set; }
 
             [JsonProperty("name")]
             [JsonPropertyName("name")]
-            public string Name { get; set; }
+            public string? Name { get; set; }
         }
 
-        public class CountryModel
+        public class BinDetailsCountry
         {
             [JsonProperty("alpha2")]
             [JsonPropertyName("alpha2")]
-            public string Alpha2 { get; set; }
+            public string? Alpha2 { get; set; }
 
             [JsonProperty("name")]
             [JsonPropertyName("name")]
-            public string Name { get; set; }
+            public string? Name { get; set; }
 
             [JsonProperty("numeric")]
             [JsonPropertyName("numeric")]
-            public string Numeric { get; set; }
+            public string? Numeric { get; set; }
         }
 
         #region Enhanced Properties
@@ -86,7 +86,7 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("pan_or_token")]
         [JsonPropertyName("pan_or_token")]
-        public string PanOrToken { get; set; }
+        public string? PanOrToken { get; set; }
 
         [JsonProperty("account_updater")]
         [JsonPropertyName("account_updater")]
@@ -114,11 +114,11 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("issuer_currency")]
         [JsonPropertyName("issuer_currency")]
-        public string IssuerCurrency { get; set; }
+        public string? IssuerCurrency { get; set; }
 
         [JsonProperty("combo_card")]
         [JsonPropertyName("combo_card")]
-        public string ComboCard { get; set; }
+        public string? ComboCard { get; set; }
 
         [JsonProperty("bin_length")]
         [JsonPropertyName("bin_length")]
@@ -126,11 +126,11 @@ namespace BasisTheory.net.Tokens.Entities
 
         [JsonProperty("authentication")]
         [JsonPropertyName("authentication")]
-        public dynamic Authentication { get; set; }
+        public dynamic? Authentication { get; set; }
 
         [JsonProperty("cost")]
         [JsonPropertyName("cost")]
-        public dynamic Cost { get; set; }
+        public dynamic? Cost { get; set; }
 
         #endregion
     }
