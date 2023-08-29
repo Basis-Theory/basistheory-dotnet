@@ -1,3 +1,10 @@
+# [1.50.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.49.0...v1.50.0) (2023-08-29)
+
+
+### Features
+
+* Adds support for bin details enrichment data ([#208](https://github.com/Basis-Theory/basistheory-dotnet/issues/208)) ([32ccc66](https://github.com/Basis-Theory/basistheory-dotnet/commit/32ccc66f9c05bf54ecc2fae5d8b28da2ee317a60))
+
 # [1.49.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.48.2...v1.49.0) (2023-05-16)
 
 
