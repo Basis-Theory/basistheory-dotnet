@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace BasisTheory.net.ReactorFormulas.Entities
 {
+    [Obsolete("Reactor Formulas are deprecated and will be removed in a future release. Please visit https://developers.basistheory.com/docs/api/reactors#create-reactor for more information.")]
     public class ReactorFormula
     {
         [JsonProperty("id")]

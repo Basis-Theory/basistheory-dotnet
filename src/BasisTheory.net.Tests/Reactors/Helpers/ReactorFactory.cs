@@ -16,6 +16,7 @@ namespace BasisTheory.net.Tests.Reactors.Helpers
         public static readonly Faker<Reactor> ReactorFaker = new Faker<Reactor>()
             .RuleFor(a => a.Id, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
+            .RuleFor(a => a.Code, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.TenantId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.ReactorFormula, (_, _) => ReactorFormulaFactory.ReactorFormula())
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
