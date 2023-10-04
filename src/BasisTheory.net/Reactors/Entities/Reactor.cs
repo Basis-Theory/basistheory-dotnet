@@ -29,7 +29,7 @@ namespace BasisTheory.net.Reactors.Entities
         [JsonPropertyName("formula")]
         [Obsolete("Reactor Formulas are deprecated and will be removed in a future release. Please visit https://developers.basistheory.com/docs/api/reactors#create-reactor for more information.")]
 
-        public ReactorFormula ReactorFormula { get; set; }
+        public ReactorFormula? ReactorFormula { get; set; }
 
         [JsonProperty("application")]
         [JsonPropertyName("application")]
