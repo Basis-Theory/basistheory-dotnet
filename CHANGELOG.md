@@ -1,3 +1,10 @@
+# [1.51.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.50.0...v1.51.0) (2023-10-06)
+
+
+### Features
+
+* adds code to reactor and deprecates ReactorFormula ([#214](https://github.com/Basis-Theory/basistheory-dotnet/issues/214)) ([cc1db60](https://github.com/Basis-Theory/basistheory-dotnet/commit/cc1db602e4d18e44aedf56ad3a9a6315c4671b52))
+
 # [1.50.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.49.0...v1.50.0) (2023-08-29)
 
 
