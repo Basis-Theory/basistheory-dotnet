@@ -20,10 +20,15 @@ namespace BasisTheory.net.Reactors.Entities
         [JsonProperty("name")]
         [JsonPropertyName("name")]
         public string Name { get; set; }
+        
+        [JsonProperty("code")]
+        [JsonPropertyName("code")]
+        public string? Code { get; set; }
 
         [JsonProperty("formula")]
         [JsonPropertyName("formula")]
-        public ReactorFormula ReactorFormula { get; set; }
+        [Obsolete("Reactor Formulas are now deprecated and will be removed in a future release. We have introduced a `code` property for Reactors to replace Formula's code. For more details, visit https://developers.basistheory.com/docs/api/reactors#create-reactor")]
+        public ReactorFormula? ReactorFormula { get; set; }
 
         [JsonProperty("application")]
         [JsonPropertyName("application")]
