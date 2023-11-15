@@ -59,6 +59,21 @@ namespace BasisTheory.net.Proxies
             ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
+        
+        Proxy Patch(Guid proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null);
+        Proxy Patch(string proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null);
+
+        Task<Proxy> PatchAsync(
+            Guid proxyId,
+            ProxyPatchRequest request,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
+        Task<Proxy> PatchAsync(
+            string proxyId,
+            ProxyPatchRequest request,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
 
         void Delete(Guid proxyId, RequestOptions requestOptions = null);
         void Delete(string proxyId, RequestOptions requestOptions = null);
@@ -169,6 +184,35 @@ namespace BasisTheory.net.Proxies
             CancellationToken cancellationToken = default)
         {
             return await PutAsync<Proxy>($"{BasePath}/{proxyId}", request, requestOptions,
+                cancellationToken);
+        }
+        
+        public Proxy Patch(Guid proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null)
+        {
+            return Patch(proxyId.ToString(), request, requestOptions);
+        }
+
+        public Proxy Patch(string proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null)
+        {
+            return PatchWithMerge<Proxy>($"{BasePath}/{proxyId}", request, requestOptions);
+        }
+
+        public async Task<Proxy> PatchAsync(
+            Guid proxyId,
+            ProxyPatchRequest request,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchAsync(proxyId.ToString(), request, requestOptions, cancellationToken);
+        }
+
+        public async Task<Proxy> PatchAsync(
+            string proxyId,
+            ProxyPatchRequest request,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchWithMergeAsync<Proxy>($"{BasePath}/{proxyId}", request, requestOptions,
                 cancellationToken);
         }
 

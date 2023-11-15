@@ -13,7 +13,7 @@ namespace BasisTheory.net.Common.Errors
 
         [JsonProperty("title")]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [JsonProperty("status")]
         [JsonPropertyName("status")]
