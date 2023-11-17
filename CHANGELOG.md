@@ -1,3 +1,10 @@
+# [1.52.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.51.0...v1.52.0) (2023-11-17)
+
+
+### Features
+
+* support patch proxies and reactors and some fixes ([#221](https://github.com/Basis-Theory/basistheory-dotnet/issues/221)) ([b8fd507](https://github.com/Basis-Theory/basistheory-dotnet/commit/b8fd5076a4348588c83cf5daba58ff7e45c5edd5))
+
 # [1.51.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.50.0...v1.51.0) (2023-10-06)
 
 
