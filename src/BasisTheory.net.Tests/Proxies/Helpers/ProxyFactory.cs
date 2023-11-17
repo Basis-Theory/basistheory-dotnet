@@ -79,6 +79,26 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
                     new KeyValuePair<string, string>(
                         f.Random.String2(10, 20, AlphanumericUnderscoreChars), f.Random.Word()))
                 .ToDictionary(x => x.Key, x => x.Value));
+        
+        public static readonly Faker<ProxyPatchRequest> ProxyPatchRequestFaker = new Faker<ProxyPatchRequest>()
+            .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
+            .RuleFor(a => a.DestinationUrl, (f, _) => f.Internet.Url())
+            .RuleFor(a => a.RequestReactorId, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.ResponseReactorId, (_, _) => Guid.NewGuid())
+            .RuleFor(a => a.RequestTransform, (f, _) => new ProxyTransform
+            {
+                Code = f.Random.Word()
+            })
+            .RuleFor(a => a.ResponseTransform, (f, _) => new ProxyTransform
+            {
+                Code = f.Random.Word()
+            })
+            .RuleFor(a => a.RequireAuthentication, (f, _) => f.Random.Bool())
+            .RuleFor(a => a.Application, (_, _) => ApplicationFactory.Application())
+            .RuleFor(t => t.Configuration, (f, _) => f.Make(f.Random.Int(1, 5), () =>
+                    new KeyValuePair<string, string>(
+                        f.Random.String2(10, 20, AlphanumericUnderscoreChars), f.Random.Word()))
+                .ToDictionary(x => x.Key, x => x.Value));
 
         public static readonly Faker<PaginatedList<Proxy>> PaginatedListFaker = new Faker<PaginatedList<Proxy>>()
             .RuleFor(a => a.Pagination, (f, _) => new Pagination
@@ -112,6 +132,15 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
         public static ProxyUpdateRequest ProxyUpdateRequest(Action<ProxyUpdateRequest> applyOverrides = null)
         {
             var request = ProxyUpdateRequestFaker.Generate();
+
+            applyOverrides?.Invoke(request);
+
+            return request;
+        }
+        
+        public static ProxyPatchRequest ProxyPatchRequest(Action<ProxyPatchRequest> applyOverrides = null)
+        {
+            var request = ProxyPatchRequestFaker.Generate();
 
             applyOverrides?.Invoke(request);
 

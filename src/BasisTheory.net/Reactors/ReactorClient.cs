@@ -59,6 +59,21 @@ namespace BasisTheory.net.Reactors
             Reactor reactor,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
+        
+        Reactor Patch(Guid reactorId, Reactor reactor, RequestOptions requestOptions = null);
+        Reactor Patch(string reactorId, Reactor reactor, RequestOptions requestOptions = null);
+
+        Task<Reactor> PatchAsync(
+            Guid reactorId,
+            Reactor reactor,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
+
+        Task<Reactor> PatchAsync(
+            string reactorId,
+            Reactor reactor,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default);
 
         void Delete(Guid reactorId, RequestOptions requestOptions = null);
         void Delete(string reactorId, RequestOptions requestOptions = null);
@@ -185,6 +200,35 @@ namespace BasisTheory.net.Reactors
             CancellationToken cancellationToken = default)
         {
             return await PutAsync<Reactor>($"{BasePath}/{reactorId}", reactor, requestOptions,
+                cancellationToken);
+        }
+        
+        public Reactor Patch(Guid reactorId, Reactor reactor, RequestOptions requestOptions = null)
+        {
+            return Patch(reactorId.ToString(), reactor, requestOptions);
+        }
+
+        public Reactor Patch(string reactorId, Reactor reactor, RequestOptions requestOptions = null)
+        {
+            return PatchWithMerge<Reactor>($"{BasePath}/{reactorId}", reactor, requestOptions);
+        }
+
+        public async Task<Reactor> PatchAsync(
+            Guid reactorId,
+            Reactor reactor,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchAsync(reactorId.ToString(), reactor, requestOptions, cancellationToken);
+        }
+
+        public async Task<Reactor> PatchAsync(
+            string reactorId,
+            Reactor reactor,
+            RequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default)
+        {
+            return await PatchWithMergeAsync<Reactor>($"{BasePath}/{reactorId}", reactor, requestOptions,
                 cancellationToken);
         }
 

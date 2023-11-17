@@ -6,22 +6,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BasisTheory.net.Common.Errors;
 using BasisTheory.net.Common.Requests;
+using BasisTheory.net.Reactors;
+using BasisTheory.net.Reactors.Entities;
 using BasisTheory.net.Tests.Helpers;
-using BasisTheory.net.Tests.Tokenize.Helpers;
-using BasisTheory.net.Tests.Tokens.Helpers;
-using BasisTheory.net.Tokenize;
-using BasisTheory.net.Tokens.Entities;
+using BasisTheory.net.Tests.Reactors.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
-namespace BasisTheory.net.Tests.Tokenize;
+namespace BasisTheory.net.Tests.Reactors;
 
-public class TokenizeTests : IClassFixture<TokenizeFixture>
+public class PatchTests : IClassFixture<ReactorFixture>
 {
-    private readonly TokenizeFixture _fixture;
+    private readonly ReactorFixture _fixture;
 
-    public TokenizeTests(TokenizeFixture fixture)
+    public PatchTests(ReactorFixture fixture)
     {
         _fixture = fixture;
     }
@@ -30,16 +28,28 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
     {
         get
         {
-            yield return new object[]
+            yield return new object []
             {
-                (Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>>) (
-                    async (client, tokens, options) => await client.TokenizeAsync(tokens, options)
+                (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
+                    async (client, reactor, options) => await client.PatchAsync(reactor.Id, reactor, options)
                 )
             };
-            yield return new object[]
+            yield return new object []
             {
-                (Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>>) (
-                    (client, tokens, options) => Task.FromResult((JToken) client.Tokenize(tokens, options))
+                (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
+                    async (client, reactor, options) => await client.PatchAsync(reactor.Id.ToString(), reactor, options)
+                )
+            };
+            yield return new object []
+            {
+                (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
+                    (client, reactor, options) => Task.FromResult(client.Patch(reactor.Id, reactor, options))
+                )
+            };
+            yield return new object []
+            {
+                (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
+                    (client, reactor, options) => Task.FromResult(client.Patch(reactor.Id.ToString(), reactor, options))
                 )
             };
         }
@@ -47,9 +57,9 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldTokenize(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldPatch(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
-        var content = TokenFactory.Token();
+        var content = ReactorFactory.Reactor();
         var expectedSerialized = JsonConvert.SerializeObject(content);
 
         HttpRequestMessage requestMessage = null;
@@ -58,23 +68,24 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
         var response = await mut(_fixture.Client, content, null);
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Post, requestMessage.Method);
-        Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
+        Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldCreateWithPerRequestApiKey(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldPatchWithPerRequestApiKey(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
         var expectedApiKey = Guid.NewGuid().ToString();
 
-        var content = TokenFactory.Token();
+        var content = ReactorFactory.Reactor();
         var expectedSerialized = JsonConvert.SerializeObject(content);
 
         HttpRequestMessage requestMessage = null;
-        _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
         var response = await mut(_fixture.Client, content, new RequestOptions
         {
@@ -82,24 +93,25 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Post, requestMessage.Method);
-        Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
+        Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldCreateWithCustomHeaders(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldPatchWithCustomHeaders(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
         var expectedIdempotencyKey = Guid.NewGuid().ToString();
 
-        var content = TokenFactory.Token();
+        var content = ReactorFactory.Reactor();
         var expectedSerialized = JsonConvert.SerializeObject(content);
 
         HttpRequestMessage requestMessage = null;
-        _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
         var response = await mut(_fixture.Client, content, new RequestOptions
         {
@@ -108,8 +120,9 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Post, requestMessage.Method);
-        Assert.Equal("/tokenize", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
+        Assert.Equal($"/reactors/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
         Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
@@ -118,14 +131,14 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldBubbleUpBasisTheoryErrors(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
         var error = BasisTheoryErrorFactory.BasisTheoryError();
         var expectedSerializedError = JsonConvert.SerializeObject(error);
 
         _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Token(), null));
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Reactor(), null));
         var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
         Assert.Equal(expectedSerializedError, actualSerializedError);
@@ -133,11 +146,11 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldHandleEmptyErrorResponse(Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldHandleEmptyErrorResponse(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
         _fixture.SetupHandler(HttpStatusCode.Forbidden);
 
-        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Token(), null));
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Reactor(), null));
 
         Assert.Equal(403, exception.Error.Status);
         Assert.Null(exception.Error.Title);
@@ -146,14 +159,13 @@ public class TokenizeTests : IClassFixture<TokenizeFixture>
 
     [Theory]
     [MemberData(nameof(Methods))]
-    public async Task ShouldHandleNonBasisTheoryErrorResponse(
-        Func<ITokenizeClient, dynamic, RequestOptions, Task<JToken>> mut)
+    public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>> mut)
     {
         var error = Guid.NewGuid().ToString();
 
         _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
 
-        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Token(), null));
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new Reactor(), null));
 
         Assert.Equal(500, exception.Error.Status);
         Assert.Null(exception.Error.Title);
