@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/basistheory.net.svg)](https://www.nuget.org/packages/BasisTheory.net/)
 [![Verify](https://github.com/Basis-Theory/basistheory-dotnet/actions/workflows/verify.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-dotnet/actions/workflows/verify.yml)
 
-The [Basis Theory](https://basistheory.com/) .NET SDK for .NET Core 2.1+, .NET Standard 2.1+, and .NET Framework 4.6.1+.
+The [Basis Theory](https://basistheory.com/) .NET SDK for .NET Standard 2.0 and .NET Standard 2.1, supporting .Net 5.0 +, .NET Core 2.1 +, and .NET Framework 4.6.2 +.
 
 ## Installation
 

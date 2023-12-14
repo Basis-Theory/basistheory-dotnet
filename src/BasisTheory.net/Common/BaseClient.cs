@@ -114,7 +114,7 @@ namespace BasisTheory.net.Common
         protected async Task<T> PatchAsync<T>(string path, object body, RequestOptions requestOptions,
             CancellationToken cancellationToken = default)
         {
-            var content = await RequestAsync(HttpMethod.Patch, path, body, requestOptions, cancellationToken);
+            var content = await RequestAsync(HttpMethodPolyfill.Patch, path, body, requestOptions, cancellationToken);
             return JsonUtility.DeserializeObject<T>(content);
         }
 
@@ -126,7 +126,7 @@ namespace BasisTheory.net.Common
         protected async Task<T> PatchWithMergeAsync<T>(string path, object body, RequestOptions requestOptions,
             CancellationToken cancellationToken = default)
         {
-            var content = await RequestAsync(HttpMethod.Patch, path, body, requestOptions, cancellationToken,
+            var content = await RequestAsync(HttpMethodPolyfill.Patch, path, body, requestOptions, cancellationToken,
                 "application/merge-patch+json");
             return JsonUtility.DeserializeObject<T>(content);
         }
@@ -146,7 +146,7 @@ namespace BasisTheory.net.Common
         private async Task<string> RequestAsync(HttpMethod method, string path, object body,
             RequestOptions requestOptions,
             CancellationToken cancellationToken = default,
-            string contentType = MediaTypeNames.Application.Json)
+            string contentType = MediaTypeNamesPolyfill.Application.Json)
         {
             var message = new HttpRequestMessage(method, path);
             SetRequestHeaders(message, requestOptions);
@@ -158,8 +158,11 @@ namespace BasisTheory.net.Common
 
             var response = await HttpClient.SendAsync(message, cancellationToken).ConfigureAwait(false);
 
-            var responseStream = new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false));
-            var content = await responseStream.ReadToEndAsync().ConfigureAwait(false);
+            var responseStream = response.Content is not null
+                ? await response.Content.ReadAsStreamAsync().ConfigureAwait(false)
+                : Stream.Null;
+            var responseStreamReader = new StreamReader(responseStream);
+            var content = await responseStreamReader.ReadToEndAsync().ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 throw ProcessErrorResponse(response, content);
