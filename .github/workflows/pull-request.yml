@@ -17,4 +17,4 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: Verify
-        run: make verify
+        run: bash scripts/verify.sh
