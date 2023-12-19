@@ -131,7 +131,7 @@ public class GetTests : IClassFixture<TokenFixture>
 
         var response = await mut(_fixture.Client, new TokenGetRequest
         {
-            MetadataQuery = new Dictionary<string, string>(new[] { metadata1, metadata2 })
+            MetadataQuery = new Dictionary<string, string>() { metadata1, metadata2 }
         }, null);
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
@@ -188,7 +188,7 @@ public class GetTests : IClassFixture<TokenFixture>
         {
             Types = new List<string> { type },
             TokenIds = new List<string> { tokenId },
-            MetadataQuery = new Dictionary<string, string>(new[] { metadataQuery }),
+            MetadataQuery = new Dictionary<string, string>() { metadataQuery },
             PageSize = size,
             Page = page
         }, null);

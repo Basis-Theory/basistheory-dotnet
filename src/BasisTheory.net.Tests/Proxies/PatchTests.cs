@@ -70,7 +70,7 @@ public class PatchTests : IClassFixture<ProxyFixture>
         var response = await mut(_fixture.Client, content.Id, request, null);
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal(HttpMethodPolyfill.Patch, requestMessage.Method);
         Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
         Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
@@ -96,7 +96,7 @@ public class PatchTests : IClassFixture<ProxyFixture>
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal(HttpMethodPolyfill.Patch, requestMessage.Method);
         Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
         Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
@@ -124,7 +124,7 @@ public class PatchTests : IClassFixture<ProxyFixture>
         });
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-        Assert.Equal(HttpMethod.Patch, requestMessage.Method);
+        Assert.Equal(HttpMethodPolyfill.Patch, requestMessage.Method);
         Assert.Equal("application/merge-patch+json", requestMessage?.Content?.Headers.ContentType?.MediaType);
         Assert.Equal($"/proxies/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
