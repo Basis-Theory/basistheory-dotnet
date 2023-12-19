@@ -1,3 +1,10 @@
+# [1.53.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.52.0...v1.53.0) (2023-12-19)
+
+
+### Features
+
+* Adds netstandard2.0 and .NET Framework support ([#226](https://github.com/Basis-Theory/basistheory-dotnet/issues/226)) ([9eb9be9](https://github.com/Basis-Theory/basistheory-dotnet/commit/9eb9be9b9d552eb2d1258227853db623f24d0efa))
+
 # [1.52.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.51.0...v1.52.0) (2023-11-17)
 
 
