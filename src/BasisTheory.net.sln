@@ -33,17 +33,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{91D3
 ProjectSection(SolutionItems) = preProject
 	..\scripts\build.sh = ..\scripts\build.sh
 	..\scripts\dependencycheck.sh = ..\scripts\dependencycheck.sh
-	..\scripts\importcert.sh = ..\scripts\importcert.sh
 	..\scripts\release.sh = ..\scripts\release.sh
-	..\scripts\startdocker.sh = ..\scripts\startdocker.sh
-	..\scripts\stopdocker.sh = ..\scripts\stopdocker.sh
 	..\scripts\verify.sh = ..\scripts\verify.sh
 	..\scripts\unittest.sh = ..\scripts\unittest.sh
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Checks", "Checks", "{FD793053-73FF-411D-9AE1-78CB1EA11AE3}"
 ProjectSection(SolutionItems) = preProject
-	..\scripts\checks\dockercheck.sh = ..\scripts\checks\dockercheck.sh
 	..\scripts\checks\dotnetcheck.sh = ..\scripts\checks\dotnetcheck.sh
 EndProjectSection
 EndProject
