@@ -1,8 +1,6 @@
 name: Release
 
 on:
-  pull_request:
-    branches: [master]
   push:
     branches: [master]
 
@@ -33,7 +31,7 @@ jobs:
         run: bash scripts/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
-#          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Slack Release Alert
         uses: 8398a7/action-slack@v3
