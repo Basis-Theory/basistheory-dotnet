@@ -1,3 +1,10 @@
+## [1.53.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.53.1...v1.53.2) (2023-12-20)
+
+
+### Bug Fixes
+
+* **ci:** fixing release workflow ([#228](https://github.com/Basis-Theory/basistheory-dotnet/issues/228)) ([5f3355e](https://github.com/Basis-Theory/basistheory-dotnet/commit/5f3355e8b9a460b6c5c9bc52fe0f3ccc930c7b6f))
+
 ## [1.53.1](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.53.0...v1.53.1) (2023-12-20)
 
 
