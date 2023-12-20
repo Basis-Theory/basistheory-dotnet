@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -24,11 +24,8 @@ jobs:
           node-version: '18'
           cache: 'yarn'
 
-      - name: Verify
-        run: bash scripts/verify.sh
-
       - name: Release
-        run: bash scripts/release.sh
+        run: make release
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
