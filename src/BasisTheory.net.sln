@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{DC
 ProjectSection(SolutionItems) = preProject
 	..\.github\dependabot.yml = ..\.github\dependabot.yml
 	..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
-	..\.github\workflows\verify.yml = ..\.github\workflows\verify.yml
+	..\.github\workflows\release.yml = ..\.github\workflows\release.yml
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A61B503-F25D-4C83-B6CD-B03F70B18AD7}"
