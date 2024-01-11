@@ -8,36 +8,34 @@ using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Logs.Entities;
 using BasisTheory.net.Logs.Requests;
 
-namespace BasisTheory.net.Logs
+namespace BasisTheory.net.Logs;
+
+public interface ILogClient
 {
-    public interface ILogClient
+    PaginatedList<Log> Get(LogGetRequest request = null, RequestOptions requestOptions = null);
+    Task<PaginatedList<Log>> GetAsync(LogGetRequest request = null,
+        RequestOptions requestOptions = null,
+        CancellationToken cancellationToken = default);
+}
+
+public class LogClient : BaseClient, ILogClient
+{
+    protected override string BasePath => "logs";
+
+    public LogClient(string apiKey = null, HttpClient httpClient = null,
+        string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
+        base(apiKey, httpClient, apiBase, appInfo)
     {
-        PaginatedList<Log> Get(LogGetRequest request = null,
-            RequestOptions requestOptions = null);
-        Task<PaginatedList<Log>> GetAsync(LogGetRequest request = null,
-            RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default);
     }
 
-    public class LogClient : BaseClient, ILogClient
+    public PaginatedList<Log> Get(LogGetRequest request = null, RequestOptions requestOptions = null)
     {
-        protected override string BasePath => "logs";
+        return Get<PaginatedList<Log>>(BasePath, request, requestOptions);
+    }
 
-        public LogClient(string apiKey = null, HttpClient httpClient = null,
-            string apiBase = DefaultBaseUrl, ApplicationInfo appInfo = null) :
-            base(apiKey, httpClient, apiBase, appInfo)
-        {
-        }
-
-        public PaginatedList<Log> Get(LogGetRequest request = null, RequestOptions requestOptions = null)
-        {
-            return Get<PaginatedList<Log>>(BasePath, request, requestOptions);
-        }
-
-        public async Task<PaginatedList<Log>> GetAsync(LogGetRequest request = null, RequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default)
-        {
-            return await GetAsync<PaginatedList<Log>>(BasePath, request, requestOptions, cancellationToken);
-        }
+    public async Task<PaginatedList<Log>> GetAsync(LogGetRequest request = null, RequestOptions requestOptions = null,
+        CancellationToken cancellationToken = default)
+    {
+        return await GetAsync<PaginatedList<Log>>(BasePath, request, requestOptions, cancellationToken);
     }
 }
