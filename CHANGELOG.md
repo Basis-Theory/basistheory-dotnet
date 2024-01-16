@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.53.2...v2.0.0) (2024-01-16)
+
+
+* feat!: support logs cursor pagination (#234) ([71f8179](https://github.com/Basis-Theory/basistheory-dotnet/commit/71f81796d353dd8577d8746eb245f5f95e27cd26)), closes [#234](https://github.com/Basis-Theory/basistheory-dotnet/issues/234)
+
+
+### BREAKING CHANGES
+
+* logs API now uses cursor pagination instead of offset pagination
+
 ## [1.53.2](https://github.com/Basis-Theory/basistheory-dotnet/compare/v1.53.1...v1.53.2) (2023-12-20)
 
 
