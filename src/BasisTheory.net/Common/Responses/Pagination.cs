@@ -7,11 +7,11 @@ public class Pagination
 {
     [JsonProperty("total_items")]
     [JsonPropertyName("total_items")]
-    public int TotalItems { get; set; }
+    public int? TotalItems { get; set; }
 
     [JsonProperty("page_number")]
     [JsonPropertyName("page_number")]
-    public int PageNumber { get; set; }
+    public int? PageNumber { get; set; }
 
     [JsonProperty("page_size")]
     [JsonPropertyName("page_size")]
@@ -19,7 +19,7 @@ public class Pagination
 
     [JsonProperty("total_pages")]
     [JsonPropertyName("total_pages")]
-    public int TotalPages { get; set; }
+    public int? TotalPages { get; set; }
         
     [JsonProperty("after")]
     [JsonPropertyName("after")]
