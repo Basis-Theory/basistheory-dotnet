@@ -15,7 +15,7 @@ namespace BasisTheory.net.ThreeDS.Entities
 
     [JsonProperty("critical")]
     [JsonPropertyName("critical")]
-    public string Critical { get; set; }
+    public bool? Critical { get; set; }
 
     [JsonProperty("data")]
     [JsonPropertyName("data")]
