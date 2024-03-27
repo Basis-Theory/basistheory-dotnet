@@ -84,4 +84,13 @@ public static class ThreeDSFactory
 
     return session;
   }
+
+  public static ThreeDSAuthentication ThreeDSAuthentication(Action<ThreeDSAuthentication> applyOverrides = null)
+  {
+    var authentication = ThreeDSAuthenticationFaker.Generate();
+
+    applyOverrides?.Invoke(authentication);
+
+    return authentication;
+  }
 }
