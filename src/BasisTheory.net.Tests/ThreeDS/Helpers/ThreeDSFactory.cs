@@ -68,7 +68,6 @@ public static class ThreeDSFactory
   .RuleFor(a => a.AcsChallengeMandated, (f, _) => f.Lorem.Word())
   .RuleFor(a => a.AcsDecoupledAuthentication, (f, _) => f.Lorem.Word())
   .RuleFor(a => a.AuthenticationChallengeType, (f, _) => f.Lorem.Word())
-  .RuleFor(a => a.AcsRenderingType, (f, _) => f.PickRandom<ThreeDSAcsRenderingType>())
   .RuleFor(a => a.AcsSignedContent, (f, _) => f.Lorem.Word())
   .RuleFor(a => a.AcsChallengeUrl, (f, _) => f.Internet.Url())
   .RuleFor(a => a.ChallengeAttempts, (f, _) => f.Lorem.Word())
@@ -76,7 +75,16 @@ public static class ThreeDSFactory
   .RuleFor(a => a.CardholderInfo, (f, _) => f.Lorem.Word())
   .RuleFor(a => a.WhitelistStatus, (f, _) => f.Lorem.Word())
   .RuleFor(a => a.WhitelistStatusSource, (f, _) => f.Lorem.Word())
-  .RuleFor(a => a.MessageExtensions, (f, _) => f.Make(5, () => new ThreeDSMessageExtension()).ToList());
+  .RuleFor(a => a.MessageExtensions, (f, _) => new List<ThreeDSMessageExtension>
+    {
+      new()
+        {
+          Name = f.Random.Word(),
+          Id = f.Random.Word(),
+          Critical = f.Random.Bool(),
+          Data = f.Random.Word()
+        }
+    });
 
   public static readonly Faker<ThreeDSPurchaseInfo> PurchaseInfoFaker = new Faker<ThreeDSPurchaseInfo>()
     .RuleFor(i => i.Amount, (f, _) => f.Random.Int().ToString())
