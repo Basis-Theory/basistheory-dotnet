@@ -60,7 +60,7 @@ namespace BasisTheory.net.Tests.ThreeDS
       var response = await mut(_fixture.Client, sessionId.ToString(), request, null);
 
       Assert.Equal(expectedSerializedResponse, JsonConvert.SerializeObject(response));
-      Assert.Equal(HttpMethod.Get, requestMessage.Method);
+      Assert.Equal(HttpMethod.Post, requestMessage.Method);
       Assert.Equal($"/3ds/sessions/{sessionId}/authenticate", requestMessage.RequestUri?.PathAndQuery);
       Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
       _fixture.AssertUserAgent(requestMessage);
