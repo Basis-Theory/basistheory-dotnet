@@ -30,13 +30,13 @@ namespace BasisTheory.net.Tests.Applications
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, ApplicationGetRequest, RequestOptions, Task<PaginatedList<Application>>>)(
                         async (client, request, options) => await client.GetAsync(request, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, ApplicationGetRequest, RequestOptions, Task<PaginatedList<Application>>>)(
                         (client, request, options) =>  Task.FromResult(client.Get(request, options))

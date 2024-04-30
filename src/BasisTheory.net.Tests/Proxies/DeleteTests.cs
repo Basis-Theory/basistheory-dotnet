@@ -27,25 +27,25 @@ namespace BasisTheory.net.Tests.Proxies
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, RequestOptions, Task>)(
                         async (client, proxyId, options) => await client.DeleteAsync(proxyId, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, RequestOptions, Task>)(
                         async (client, proxyId, options) => await client.DeleteAsync(proxyId.ToString(), options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, RequestOptions, Task>)(
                         (client, proxyId, options) => Task.Run(() => client.Delete(proxyId, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, RequestOptions, Task>)(
                         (client, proxyId, options) => Task.Run(() => client.Delete(proxyId.ToString(), options))

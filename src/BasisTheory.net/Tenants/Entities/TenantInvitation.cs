@@ -42,7 +42,7 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonPropertyName("modified_at")]
         public DateTimeOffset? ModifiedDate { get; set; }
     }
-    
+
     public enum TenantInvitationStatus
     {
         PENDING,

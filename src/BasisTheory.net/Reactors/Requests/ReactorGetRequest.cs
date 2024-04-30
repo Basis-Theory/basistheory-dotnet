@@ -24,7 +24,7 @@ namespace BasisTheory.net.Reactors.Requests
             if (ReactorIds?.Any() ?? false)
                 queryParts.AddRange(ReactorIds.Select(reactorId => $"id={reactorId}"));
 
-            if(!string.IsNullOrWhiteSpace(Name))
+            if (!string.IsNullOrWhiteSpace(Name))
                 queryParts.Add($"name={Name}");
 
             return string.Join("&", queryParts);

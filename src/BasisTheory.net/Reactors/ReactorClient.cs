@@ -59,7 +59,7 @@ namespace BasisTheory.net.Reactors
             Reactor reactor,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        
+
         Reactor Patch(Guid reactorId, Reactor reactor, RequestOptions requestOptions = null);
         Reactor Patch(string reactorId, Reactor reactor, RequestOptions requestOptions = null);
 
@@ -202,7 +202,7 @@ namespace BasisTheory.net.Reactors
             return await PutAsync<Reactor>($"{BasePath}/{reactorId}", reactor, requestOptions,
                 cancellationToken);
         }
-        
+
         public Reactor Patch(Guid reactorId, Reactor reactor, RequestOptions requestOptions = null)
         {
             return Patch(reactorId.ToString(), reactor, requestOptions);

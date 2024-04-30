@@ -27,25 +27,25 @@ namespace BasisTheory.net.Tests.Reactors
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorClient, Guid, RequestOptions, Task>)(
                         async (client, reactorId, options) => await client.DeleteAsync(reactorId, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorClient, Guid, RequestOptions, Task>)(
                         async (client, reactorId, options) => await client.DeleteAsync(reactorId.ToString(), options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorClient, Guid, RequestOptions, Task>)(
                         (client, reactorId, options) => Task.Run(() => client.Delete(reactorId, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorClient, Guid, RequestOptions, Task>)(
                         (client, reactorId, options) => Task.Run(() => client.Delete(reactorId.ToString(), options))

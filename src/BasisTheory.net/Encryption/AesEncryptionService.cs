@@ -12,7 +12,8 @@ namespace BasisTheory.net.Encryption
         {
 #if NETSTANDARD2_0
             using var msEncrypt = new MemoryStream();
-            using (var cryptoStream = new CryptoStream(msEncrypt, key.CreateEncryptor(), CryptoStreamMode.Write)) {
+            using (var cryptoStream = new CryptoStream(msEncrypt, key.CreateEncryptor(), CryptoStreamMode.Write))
+            {
                 using (var streamWriter = new StreamWriter(cryptoStream))
 #else
             await using var msEncrypt = new MemoryStream();

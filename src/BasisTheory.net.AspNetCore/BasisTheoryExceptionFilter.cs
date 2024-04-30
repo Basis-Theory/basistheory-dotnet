@@ -28,7 +28,7 @@ namespace BasisTheory.net.AspNetCore
 
             context.Result = new ObjectResult(exception.Error)
             {
-                StatusCode = (int) exception.HttpStatusCode
+                StatusCode = (int)exception.HttpStatusCode
             };
             context.ExceptionHandled = true;
         }

@@ -12,7 +12,7 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("id")]
         [JsonPropertyName("id")]
         public string Id { get; set; }
-        
+
         [JsonProperty("type", Order = -1)]
         [JsonPropertyName("type"), JsonPropertyOrder(-1)]
         public string Type { get; set; }
@@ -20,7 +20,7 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("data")]
         [JsonPropertyName("data")]
         public dynamic Data { get; set; }
-        
+
         [JsonProperty("mask")]
         [JsonPropertyName("mask")]
         public dynamic Mask { get; set; }
@@ -52,7 +52,7 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("deduplicate_token")]
         [JsonPropertyName("deduplicate_token")]
         public bool? DeduplicateToken { get; set; }
-        
+
         [JsonProperty("expires_at")]
         [JsonPropertyName("expires_at")]
         public DateTimeOffset? ExpiresAt { get; set; }

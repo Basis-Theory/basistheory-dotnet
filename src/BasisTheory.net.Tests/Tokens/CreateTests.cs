@@ -29,25 +29,25 @@ public class CreateTests : IClassFixture<TokenFixture>
     {
         get
         {
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenCreateRequest, RequestOptions, Task<Token>>)(
                     async (client, token, options) => await client.CreateAsync(token, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenCreateRequest, RequestOptions, Task<Token>>)(
                     async (client, token, options) => await client.CreateAsync(token.Data, token.Metadata, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenCreateRequest, RequestOptions, Task<Token>>)(
                     (client, token, options) => Task.FromResult(client.Create(token, options))
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenCreateRequest, RequestOptions, Task<Token>>)(
                     (client, token, options) => Task.FromResult(client.Create(token.Data, token.Metadata, options))
@@ -107,7 +107,7 @@ public class CreateTests : IClassFixture<TokenFixture>
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
         var expectedIdempotencyKey = Guid.NewGuid().ToString();
-        
+
         var content = TokenFactory.Token();
         var expectedSerialized = JsonConvert.SerializeObject(content);
         var request = TokenFactory.TokenCreateRequest();

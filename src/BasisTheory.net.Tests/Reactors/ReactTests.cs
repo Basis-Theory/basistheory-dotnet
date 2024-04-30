@@ -83,7 +83,7 @@ public class ReactTests : IClassFixture<ReactorFixture>
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
-    
+
     [Theory]
     [MemberData(nameof(Methods))]
     public async Task ShouldReactWithCallbackUrlAndTimeout(Func<IReactorClient, Guid, ReactRequest, RequestOptions, Task<ReactResponse>> mut)

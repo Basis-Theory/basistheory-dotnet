@@ -25,14 +25,14 @@ namespace BasisTheory.net.Common.Errors
             HttpStatusCode = httpStatusCode;
             Error = new BasisTheoryError
             {
-                Status = (int) httpStatusCode,
+                Status = (int)httpStatusCode,
             };
         }
 
         public BasisTheoryException(HttpStatusCode httpStatusCode, string message)
             : this(httpStatusCode, new BasisTheoryError
             {
-                Status = (int) httpStatusCode,
+                Status = (int)httpStatusCode,
                 Title = message
             }, message)
         {

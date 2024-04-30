@@ -17,7 +17,7 @@ public class LogGetRequest : PaginatedGetRequest
     public override string BuildQuery()
     {
         var queryParts = new List<string>();
-        
+
         if (Start != null)
             queryParts.Add($"start={Start}");
 

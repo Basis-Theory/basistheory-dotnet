@@ -174,7 +174,7 @@ namespace BasisTheory.net.Common
         {
             var error = new BasisTheoryError
             {
-                Status = (int) response.StatusCode
+                Status = (int)response.StatusCode
             };
             var errorMessage = content;
 
@@ -202,7 +202,7 @@ namespace BasisTheory.net.Common
 
             if (!string.IsNullOrEmpty(requestOptions?.CorrelationId))
                 message.Headers.Add("BT-TRACE-ID", requestOptions.CorrelationId);
-            
+
             if (!string.IsNullOrEmpty(requestOptions?.IdempotencyKey))
                 message.Headers.Add("BT-IDEMPOTENCY-KEY", requestOptions.IdempotencyKey);
         }

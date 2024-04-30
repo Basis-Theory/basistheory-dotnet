@@ -29,13 +29,13 @@ namespace BasisTheory.net.Tests.Permissions
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>>)(
                         async (client, request, options) => await client.GetAsync(request, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IPermissionClient, PermissionGetRequest, RequestOptions, Task<List<Permission>>>)(
                         (client, request, options) => Task.FromResult(client.Get(request, options))

@@ -28,25 +28,25 @@ namespace BasisTheory.net.Tests.Applications
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task<Application>>)(
                         async (client, applicationId, options) => await client.RegenerateKeyAsync(applicationId, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task<Application>>)(
                         async (client, applicationId, options) => await client.RegenerateKeyAsync(applicationId.ToString(), options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task<Application>>)(
                         (client, applicationId, options) => Task.FromResult(client.RegenerateKey(applicationId, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task<Application>>)(
                         (client, applicationId, options) => Task.FromResult(client.RegenerateKey(applicationId.ToString(), options))

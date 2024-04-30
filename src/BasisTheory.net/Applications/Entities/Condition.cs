@@ -8,11 +8,11 @@ namespace BasisTheory.net.Applications.Entities
         [JsonProperty("attribute")]
         [JsonPropertyName("attribute")]
         public string Attribute { get; set; }
-        
+
         [JsonProperty("operator")]
         [JsonPropertyName("operator")]
         public string Operator { get; set; }
-        
+
         [JsonProperty("value")]
         [JsonPropertyName("value")]
         public string Value { get; set; }

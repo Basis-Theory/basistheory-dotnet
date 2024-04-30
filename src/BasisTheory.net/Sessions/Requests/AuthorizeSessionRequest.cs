@@ -19,7 +19,7 @@ namespace BasisTheory.net.Sessions.Requests
         [JsonProperty("permissions")]
         [JsonPropertyName("permissions")]
         public List<string>? Permissions { get; set; }
-        
+
         [JsonProperty("rules")]
         [JsonPropertyName("rules")]
         public List<AccessRule>? Rules { get; set; }

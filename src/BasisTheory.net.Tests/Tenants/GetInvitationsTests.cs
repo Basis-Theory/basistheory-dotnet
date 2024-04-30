@@ -75,7 +75,7 @@ public class GetInvitationsTests : IClassFixture<TenantFixture>
         Func<ITenantClient, TenantInvitationsGetRequest, RequestOptions, Task<PaginatedList<TenantInvitation>>> mut)
     {
         var invitationStatus = _fixture.Faker.Lorem.Word();
-        
+
         var content = TenantInvitationFactory.PaginatedTenantInvitations();
         var expectedSerialized = JsonConvert.SerializeObject(content);
 

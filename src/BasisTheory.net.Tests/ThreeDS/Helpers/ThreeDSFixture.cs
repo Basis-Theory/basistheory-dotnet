@@ -5,10 +5,10 @@ namespace BasisTheory.net.Tests.ThreeDS.Helpers;
 
 public class ThreeDSFixture : BaseFixture
 {
-  public readonly IThreeDSClient Client;
+    public readonly IThreeDSClient Client;
 
-  public ThreeDSFixture()
-  {
-    Client = new ThreeDSClient(ApiKey, HttpClient, appInfo: AppInfo);
-  }
+    public ThreeDSFixture()
+    {
+        Client = new ThreeDSClient(ApiKey, HttpClient, appInfo: AppInfo);
+    }
 }

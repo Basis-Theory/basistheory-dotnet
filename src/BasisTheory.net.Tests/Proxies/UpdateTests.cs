@@ -29,25 +29,25 @@ namespace BasisTheory.net.Tests.Proxies
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, ProxyUpdateRequest, RequestOptions, Task<Proxy>>)(
                         async (client, proxyId, proxy, options) => await client.UpdateAsync(proxyId, proxy, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, ProxyUpdateRequest, RequestOptions, Task<Proxy>>)(
                         async (client, proxyId, proxy, options) => await client.UpdateAsync(proxyId.ToString(), proxy, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, ProxyUpdateRequest, RequestOptions, Task<Proxy>>)(
                         (client, proxyId, proxy, options) => Task.FromResult(client.Update(proxyId, proxy, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, Guid, ProxyUpdateRequest, RequestOptions, Task<Proxy>>)(
                         (client, proxyId, proxy, options) => Task.FromResult(client.Update(proxyId.ToString(), proxy, options))
@@ -107,7 +107,7 @@ namespace BasisTheory.net.Tests.Proxies
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var expectedIdempotencyKey = Guid.NewGuid().ToString();
-            
+
             var content = ProxyFactory.Proxy();
             var expectedSerialized = JsonConvert.SerializeObject(content);
             var request = ProxyFactory.ProxyUpdateRequest();

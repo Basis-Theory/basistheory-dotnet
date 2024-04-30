@@ -28,13 +28,13 @@ namespace BasisTheory.net.Tests.Applications
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
                         async (client, application, options) => await client.CreateAsync(application, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Application, RequestOptions, Task<Application>>)(
                         (client, application, options) => Task.FromResult(client.Create(application, options))
@@ -61,7 +61,7 @@ namespace BasisTheory.net.Tests.Applications
             Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
             _fixture.AssertUserAgent(requestMessage);
         }
-        
+
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldCreateWithoutName(Func<IApplicationClient, Application, RequestOptions, Task<Application>> mut)

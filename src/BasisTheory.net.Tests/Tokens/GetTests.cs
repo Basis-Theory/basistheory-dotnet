@@ -30,13 +30,13 @@ public class GetTests : IClassFixture<TokenFixture>
     {
         get
         {
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
                     async (client, request, options) => await client.GetAsync(request, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>>)(
                     (client, request, options) => Task.FromResult(client.Get(request, options))
@@ -118,9 +118,9 @@ public class GetTests : IClassFixture<TokenFixture>
     [MemberData(nameof(Methods))]
     public async Task ShouldGetWithMetadataQuery(Func<ITokenClient, TokenGetRequest, RequestOptions, Task<PaginatedList<Token>>> mut)
     {
-        var metadata1 = new KeyValuePair<string ,string>(
+        var metadata1 = new KeyValuePair<string, string>(
             _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
-        var metadata2 = new KeyValuePair<string ,string>(
+        var metadata2 = new KeyValuePair<string, string>(
             _fixture.Faker.Random.String2(10, 20), _fixture.Faker.Random.String2(10, 20));
 
         var content = TokenFactory.PaginatedTokens();

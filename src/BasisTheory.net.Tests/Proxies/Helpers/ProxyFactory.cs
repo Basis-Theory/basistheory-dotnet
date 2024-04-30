@@ -79,7 +79,7 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
                     new KeyValuePair<string, string>(
                         f.Random.String2(10, 20, AlphanumericUnderscoreChars), f.Random.Word()))
                 .ToDictionary(x => x.Key, x => x.Value));
-        
+
         public static readonly Faker<ProxyPatchRequest> ProxyPatchRequestFaker = new Faker<ProxyPatchRequest>()
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
             .RuleFor(a => a.DestinationUrl, (f, _) => f.Internet.Url())
@@ -137,7 +137,7 @@ namespace BasisTheory.net.Tests.Proxies.Helpers
 
             return request;
         }
-        
+
         public static ProxyPatchRequest ProxyPatchRequest(Action<ProxyPatchRequest> applyOverrides = null)
         {
             var request = ProxyPatchRequestFaker.Generate();

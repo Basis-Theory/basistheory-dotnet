@@ -21,7 +21,7 @@ namespace BasisTheory.net.Tokens.Extensions
 
         public static T ToDataType<T>(this Token token) where T : class
         {
-            return token == null ? default : (T) ConvertDynamicToObject<T>(token.Data);
+            return token == null ? default : (T)ConvertDynamicToObject<T>(token.Data);
         }
 
         public static T ToMetadataType<T>(this Token token) where T : class
