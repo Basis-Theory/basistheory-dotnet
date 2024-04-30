@@ -22,6 +22,13 @@ public static class ApplicationFactory
         .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
         .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()))
         .RuleFor(a => a.ExpiresAt, (f, _) => f.Date.FutureOffset());
+    
+    public static readonly Faker<CreateApplicationRequest> CreateApplicationRequestFaker = new Faker<CreateApplicationRequest>()
+        .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
+        .RuleFor(a => a.Type, (f, _) => f.Lorem.Word())
+        .RuleFor(a => a.CreateKey, (f, _) => f.Random.Bool())
+        .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()))
+        .RuleFor(a => a.ExpiresAt, (f, _) => f.Date.FutureOffset().ToString());
 
     public static readonly Faker<ApplicationKey> ApplicationKeyFaker = new Faker<ApplicationKey>()
         .RuleFor(a => a.Id, (f) => Guid.NewGuid())
@@ -77,6 +84,15 @@ public static class ApplicationFactory
         applyOverrides?.Invoke(applicationKey);
 
         return applicationKey;
+    }
+    
+    public static CreateApplicationRequest CreateApplicationRequest(Action<CreateApplicationRequest> applyOverrides = null)
+    {
+        var createApplicationRequest = CreateApplicationRequestFaker.Generate();
+
+        applyOverrides?.Invoke(createApplicationRequest);
+
+        return createApplicationRequest;
     }
 
     public static PaginatedList<Application> PaginatedApplications(

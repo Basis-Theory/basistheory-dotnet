@@ -37,9 +37,9 @@ namespace BasisTheory.net.Applications
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
-        Application Create(Application application, RequestOptions requestOptions = null);
+        Application Create(CreateApplicationRequest application, RequestOptions requestOptions = null);
 
-        Task<Application> CreateAsync(Application application, RequestOptions requestOptions = null,
+        Task<Application> CreateAsync(CreateApplicationRequest application, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
         Application Update(Guid applicationId, Application application, RequestOptions requestOptions = null);
@@ -129,12 +129,12 @@ namespace BasisTheory.net.Applications
             return await GetAsync<PaginatedList<Application>>(BasePath, request, requestOptions, cancellationToken);
         }
 
-        public Application Create(Application application, RequestOptions requestOptions = null)
+        public Application Create(CreateApplicationRequest application, RequestOptions requestOptions = null)
         {
             return Post<Application>(BasePath, application, requestOptions);
         }
 
-        public async Task<Application> CreateAsync(Application application, RequestOptions requestOptions = null,
+        public async Task<Application> CreateAsync(CreateApplicationRequest application, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default)
         {
             return await PostAsync<Application>(BasePath, application, requestOptions, cancellationToken);
