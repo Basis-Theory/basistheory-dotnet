@@ -29,6 +29,6 @@ namespace BasisTheory.net.Applications.Entities
         [JsonProperty("create_key")]
         [JsonPropertyName("create_key")]
         public bool? CreateKey { get; set; }
-        
+
     }
 }
