@@ -52,12 +52,14 @@ namespace BasisTheory.net.Applications
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 
+        [Obsolete("This method is deprecated. Use Terraform or https://portal.basistheory.com to manage keys instead.")]
         Application RegenerateKey(Guid applicationId, RequestOptions requestOptions = null);
+        [Obsolete("This method is deprecated. Use Terraform or https://portal.basistheory.com to manage keys instead.")]
         Application RegenerateKey(string applicationId, RequestOptions requestOptions = null);
-
+        [Obsolete("This method is deprecated. Use Terraform or https://portal.basistheory.com to manage keys instead.")]
         Task<Application> RegenerateKeyAsync(Guid applicationId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-
+        [Obsolete("This method is deprecated. Use Terraform or https://portal.basistheory.com to manage keys instead.")]
         Task<Application> RegenerateKeyAsync(string applicationId, RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BasisTheory.net.ApplicationKeys.Entities;
 using BasisTheory.net.Common.Responses;
 using BasisTheory.net.Applications.Entities;
 using Bogus;
@@ -21,6 +22,11 @@ public static class ApplicationFactory
         .RuleFor(a => a.ModifiedDate, (f, _) => f.Date.PastOffset())
         .RuleFor(t => t.Permissions, (f, _) => f.Make(f.Random.Int(1, 5), () => f.Random.Word()))
         .RuleFor(a => a.ExpiresAt, (f, _) => f.Date.FutureOffset());
+
+    public static readonly Faker<ApplicationKey> ApplicationKeyFaker = new Faker<ApplicationKey>()
+        .RuleFor(a => a.Id, (f) => Guid.NewGuid())
+        .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
+        .RuleFor(a => a.CreatedAt, (f, _) => f.Date.PastOffset().ToString());
 
     public static readonly Faker<AccessRule> AccessRuleFaker = new Faker<AccessRule>()
         .RuleFor(a => a.Description, (f, _) => f.Lorem.Sentence())
@@ -62,6 +68,15 @@ public static class ApplicationFactory
         applyOverrides?.Invoke(accessRule);
 
         return accessRule;
+    }
+
+    public static ApplicationKey ApplicationKey(Action<ApplicationKey> applyOverrides = null)
+    {
+        var applicationKey = ApplicationKeyFaker.Generate();
+
+        applyOverrides?.Invoke(applicationKey);
+
+        return applicationKey;
     }
 
     public static PaginatedList<Application> PaginatedApplications(
