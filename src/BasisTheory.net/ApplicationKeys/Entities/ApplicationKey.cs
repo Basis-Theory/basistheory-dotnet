@@ -16,12 +16,12 @@ namespace BasisTheory.net.ApplicationKeys.Entities
         [JsonPropertyName("key")]
         public Guid? Key { get; set; }
 
-        [JsonProperty("createdAt")]
-        [JsonPropertyName("createdAt")]
+        [JsonProperty("created_at")]
+        [JsonPropertyName("created_at")]
         public string CreatedAt { get; set; }
 
-        [JsonProperty("createdBy")]
-        [JsonPropertyName("createdBy")]
+        [JsonProperty("created_by")]
+        [JsonPropertyName("created_by")]
         public Guid CreatedBy { get; set; }
 
     }
