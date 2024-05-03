@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.1.0...v2.2.0) (2024-05-03)
+
+
+### Features
+
+* add application keys endpoints ([#249](https://github.com/Basis-Theory/basistheory-dotnet/issues/249)) ([abfc1d5](https://github.com/Basis-Theory/basistheory-dotnet/commit/abfc1d5d3cc63bedde1b800b6455f664ceab03bf))
+
 # [2.1.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.0.0...v2.1.0) (2024-03-28)
 
 
