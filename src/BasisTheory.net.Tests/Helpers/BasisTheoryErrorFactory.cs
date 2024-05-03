@@ -14,7 +14,7 @@ namespace BasisTheory.net.Tests.Helpers
             .RuleFor(a => a.Status, (_, _) => 400)
             .RuleFor(t => t.Errors, (f, _) =>
                 f.Make(f.Random.Int(1, 5), () => KeyValuePair.Create(f.Random.String(10, 20, 'A', 'Z'), f.Lorem.Sentence()))
-                    .ToDictionary(x => x.Key, x => new [] { x.Value }));
+                    .ToDictionary(x => x.Key, x => new[] { x.Value }));
 
         public static BasisTheoryError BasisTheoryError(Action<BasisTheoryError> applyOverrides = null)
         {

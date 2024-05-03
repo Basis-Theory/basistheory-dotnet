@@ -29,13 +29,13 @@ namespace BasisTheory.net.Tests.Tenants
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>>)(
                         async (client, tenant, options) => await client.UpdateAsync(tenant, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>>)(
                         (client, tenant, options) => Task.FromResult(client.Update(tenant, options))
@@ -103,7 +103,7 @@ namespace BasisTheory.net.Tests.Tenants
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var expectedIdempotencyKey = Guid.NewGuid().ToString();
-            
+
             var content = TenantFactory.Tenant();
             var expectedSerialized = JsonConvert.SerializeObject(content);
             var updateRequest = new TenantUpdateRequest

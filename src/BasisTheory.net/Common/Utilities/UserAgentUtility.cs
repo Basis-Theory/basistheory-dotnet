@@ -61,6 +61,6 @@ namespace BasisTheory.net.Common.Utilities
 
             return JsonUtility.SerializeObject(values);
         }
-        
+
     }
 }

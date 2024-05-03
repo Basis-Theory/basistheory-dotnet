@@ -30,13 +30,13 @@ public class GetTests : IClassFixture<LogFixture>
     {
         get
         {
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>>)(
                     async (client, request, options) => await client.GetAsync(request, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<ILogClient, LogGetRequest, RequestOptions, Task<PaginatedList<Log>>>)(
                     (client, request, options) => Task.FromResult(client.Get(request, options))

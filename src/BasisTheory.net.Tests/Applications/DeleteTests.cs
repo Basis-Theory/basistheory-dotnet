@@ -27,25 +27,25 @@ namespace BasisTheory.net.Tests.Applications
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task>)(
                         async (client, applicationId, options) => await client.DeleteAsync(applicationId, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task>)(
                         async (client, applicationId, options) => await client.DeleteAsync(applicationId.ToString(), options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task>)(
                         (client, applicationId, options) => Task.Run(() => client.Delete(applicationId, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IApplicationClient, Guid, RequestOptions, Task>)(
                         (client, applicationId, options) => Task.Run(() => client.Delete(applicationId.ToString(), options))

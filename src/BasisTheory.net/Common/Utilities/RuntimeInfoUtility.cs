@@ -60,7 +60,7 @@ namespace BasisTheory.net.Common.Utilities
             if (bracket1 == -1 || bracket2 == -1) return $"Mono/{version}";
 
             var comment = version.Substring(bracket1 + 1, bracket2 - bracket1 - 1);
-            var commentParts = comment.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var commentParts = comment.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             if (commentParts.Length > 2)
                 version = version[..bracket1] + $"({commentParts[0]} {commentParts[1]})";
 

@@ -57,7 +57,7 @@ namespace BasisTheory.net.Tokens
             TokenUpdateRequest updateRequest,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        
+
         void Delete(string tokenId, RequestOptions requestOptions = null);
 
         Task DeleteAsync(

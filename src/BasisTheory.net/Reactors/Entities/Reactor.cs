@@ -20,7 +20,7 @@ namespace BasisTheory.net.Reactors.Entities
         [JsonProperty("name")]
         [JsonPropertyName("name")]
         public string Name { get; set; }
-        
+
         [JsonProperty("code")]
         [JsonPropertyName("code")]
         public string? Code { get; set; }

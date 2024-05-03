@@ -5,8 +5,8 @@ namespace BasisTheory.net.Tokens.Entities
 {
     public class BinDetails
     {
-        [JsonProperty("card_brand")] 
-        [JsonPropertyName("card_brand")] 
+        [JsonProperty("card_brand")]
+        [JsonPropertyName("card_brand")]
         public string? CardBrand { get; set; }
 
         [JsonProperty("type")]

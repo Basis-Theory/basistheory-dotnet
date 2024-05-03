@@ -17,7 +17,7 @@ namespace BasisTheory.net.Sessions
         Task<CreateSessionResponse> CreateAsync(
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        
+
         void Authorize(AuthorizeSessionRequest authorizeSessionRequest, RequestOptions requestOptions = null);
 
         Task AuthorizeAsync(
@@ -25,11 +25,11 @@ namespace BasisTheory.net.Sessions
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
     }
-    
+
     public class SessionClient : BaseClient, ISessionClient
     {
         protected override string BasePath => "sessions";
-        
+
         public SessionClient(
             string apiKey = null,
             HttpClient httpClient = null,
@@ -38,7 +38,7 @@ namespace BasisTheory.net.Sessions
             base(apiKey, httpClient, apiBase, appInfo)
         {
         }
-        
+
         public CreateSessionResponse Create(RequestOptions requestOptions = null)
         {
             return Post<CreateSessionResponse>(BasePath, null, requestOptions);
@@ -50,7 +50,7 @@ namespace BasisTheory.net.Sessions
         {
             return await PostAsync<CreateSessionResponse>(BasePath, null, requestOptions, cancellationToken);
         }
-        
+
         public void Authorize(AuthorizeSessionRequest authorizeSessionRequest, RequestOptions requestOptions = null)
         {
             Post($"{BasePath}/authorize", authorizeSessionRequest, requestOptions);

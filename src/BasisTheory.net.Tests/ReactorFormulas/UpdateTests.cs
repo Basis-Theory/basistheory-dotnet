@@ -28,25 +28,25 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         async (client, reactorFormula, options) => await client.UpdateAsync(reactorFormula.Id, reactorFormula, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         async (client, reactorFormula, options) => await client.UpdateAsync(reactorFormula.Id.ToString(), reactorFormula, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         (client, reactorFormula, options) => Task.FromResult(client.Update(reactorFormula.Id, reactorFormula, options))
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         (client, reactorFormula, options) => Task.FromResult(client.Update(reactorFormula.Id.ToString(), reactorFormula, options))
@@ -104,7 +104,7 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             var expectedCorrelationId = Guid.NewGuid().ToString();
             var expectedIdempotencyKey = Guid.NewGuid().ToString();
-            
+
             var content = ReactorFormulaFactory.ReactorFormula();
             var expectedSerialized = JsonConvert.SerializeObject(content);
 

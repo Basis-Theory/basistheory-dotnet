@@ -28,13 +28,13 @@ namespace BasisTheory.net.Tests.Tenants
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, RequestOptions, Task<Tenant>>)(
                         async (client, options) => await client.GetSelfAsync(options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, RequestOptions, Task<Tenant>>)(
                         (client, options) => Task.FromResult(client.GetSelf(options))

@@ -30,13 +30,13 @@ namespace BasisTheory.net.Tests.Proxies
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, ProxyGetRequest, RequestOptions, Task<PaginatedList<Proxy>>>)(
                         async (client, request, options) => await client.GetAsync(request, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IProxyClient, ProxyGetRequest, RequestOptions, Task<PaginatedList<Proxy>>>)(
                         (client, request, options) =>  Task.FromResult(client.Get(request, options))

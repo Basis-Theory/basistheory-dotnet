@@ -20,7 +20,7 @@ public class Pagination
     [JsonProperty("total_pages")]
     [JsonPropertyName("total_pages")]
     public int? TotalPages { get; set; }
-        
+
     [JsonProperty("after")]
     [JsonPropertyName("after")]
     public string After { get; set; }

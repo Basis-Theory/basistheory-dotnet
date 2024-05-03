@@ -7,7 +7,7 @@ namespace BasisTheory.net.Common.Requests
         public string ApiKey { get; set; }
 
         public string CorrelationId { get; set; } = Guid.NewGuid().ToString();
-        
+
         public string IdempotencyKey { get; set; }
     }
 }

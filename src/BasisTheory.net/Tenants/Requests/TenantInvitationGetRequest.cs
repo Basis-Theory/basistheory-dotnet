@@ -17,7 +17,7 @@ namespace BasisTheory.net.Tenants.Requests
             if (PageSize.HasValue)
                 queryParts.Add($"size={PageSize}");
 
-            if(!string.IsNullOrWhiteSpace(Status))
+            if (!string.IsNullOrWhiteSpace(Status))
                 queryParts.Add($"status={Status}");
 
             return string.Join("&", queryParts);

@@ -17,23 +17,23 @@ namespace BasisTheory.net.Tests.Sessions
     public class CreateTests : IClassFixture<SessionFixture>
     {
         private readonly SessionFixture _fixture;
-        
+
         public CreateTests(SessionFixture fixture)
         {
             _fixture = fixture;
         }
-        
+
         public static IEnumerable<object[]> Methods
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ISessionClient, RequestOptions, Task<CreateSessionResponse>>)(
                         async (client, options) => await client.CreateAsync(options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ISessionClient, RequestOptions, Task<CreateSessionResponse>>)(
                         (client, options) => Task.FromResult(client.Create(options))
@@ -41,14 +41,14 @@ namespace BasisTheory.net.Tests.Sessions
                 };
             }
         }
-        
+
         [Theory]
         [MemberData(nameof(Methods))]
         public async Task ShouldCreate(Func<ISessionClient, RequestOptions, Task<CreateSessionResponse>> mut)
         {
             var content = new CreateSessionResponse();
             var expectedSerialized = JsonConvert.SerializeObject(content);
-            
+
             HttpRequestMessage requestMessage = null;
             _fixture.SetupHandler(HttpStatusCode.Created, expectedSerialized, (message, _) => requestMessage = message);
 

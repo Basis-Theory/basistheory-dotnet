@@ -28,25 +28,25 @@ public class PatchTests : IClassFixture<ReactorFixture>
     {
         get
         {
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
                     async (client, reactor, options) => await client.PatchAsync(reactor.Id, reactor, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
                     async (client, reactor, options) => await client.PatchAsync(reactor.Id.ToString(), reactor, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
                     (client, reactor, options) => Task.FromResult(client.Patch(reactor.Id, reactor, options))
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IReactorClient, Reactor, RequestOptions, Task<Reactor>>)(
                     (client, reactor, options) => Task.FromResult(client.Patch(reactor.Id.ToString(), reactor, options))

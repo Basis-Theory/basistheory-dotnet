@@ -27,13 +27,13 @@ namespace BasisTheory.net.Tests.Tenants
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, RequestOptions, Task>)(
                         async (client, options) => await client.DeleteAsync(options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<ITenantClient, RequestOptions, Task>)(
                         (client, options) => Task.Run(() => client.Delete(options))

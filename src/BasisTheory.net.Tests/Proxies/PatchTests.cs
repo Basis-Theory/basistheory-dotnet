@@ -29,25 +29,25 @@ public class PatchTests : IClassFixture<ProxyFixture>
     {
         get
         {
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IProxyClient, Guid, ProxyPatchRequest, RequestOptions, Task<Proxy>>)(
                     async (client, proxyId, proxy, options) => await client.PatchAsync(proxyId, proxy, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IProxyClient, Guid, ProxyPatchRequest, RequestOptions, Task<Proxy>>)(
                     async (client, proxyId, proxy, options) => await client.PatchAsync(proxyId.ToString(), proxy, options)
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IProxyClient, Guid, ProxyPatchRequest, RequestOptions, Task<Proxy>>)(
                     (client, proxyId, proxy, options) => Task.FromResult(client.Patch(proxyId, proxy, options))
                 )
             };
-            yield return new object []
+            yield return new object[]
             {
                 (Func<IProxyClient, Guid, ProxyPatchRequest, RequestOptions, Task<Proxy>>)(
                     (client, proxyId, proxy, options) => Task.FromResult(client.Patch(proxyId.ToString(), proxy, options))
@@ -109,7 +109,7 @@ public class PatchTests : IClassFixture<ProxyFixture>
     {
         var expectedCorrelationId = Guid.NewGuid().ToString();
         var expectedIdempotencyKey = Guid.NewGuid().ToString();
-            
+
         var content = ProxyFactory.Proxy();
         var expectedSerialized = JsonConvert.SerializeObject(content);
         var request = ProxyFactory.ProxyPatchRequest();

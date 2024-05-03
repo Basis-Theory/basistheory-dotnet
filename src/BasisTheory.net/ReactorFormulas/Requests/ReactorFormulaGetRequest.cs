@@ -17,7 +17,7 @@ namespace BasisTheory.net.ReactorFormulas.Requests
             if (PageSize.HasValue)
                 queryParts.Add($"size={PageSize}");
 
-            if(!string.IsNullOrWhiteSpace(Name))
+            if (!string.IsNullOrWhiteSpace(Name))
                 queryParts.Add($"name={Name}");
 
             return string.Join("&", queryParts);

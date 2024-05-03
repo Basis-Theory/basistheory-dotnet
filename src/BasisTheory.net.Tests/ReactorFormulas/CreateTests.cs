@@ -28,13 +28,13 @@ namespace BasisTheory.net.Tests.ReactorFormulas
         {
             get
             {
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         async (client, reactorFormula, options) => await client.CreateAsync(reactorFormula, options)
                     )
                 };
-                yield return new object []
+                yield return new object[]
                 {
                     (Func<IReactorFormulaClient, ReactorFormula, RequestOptions, Task<ReactorFormula>>)(
                         (client, reactorFormula, options) => Task.FromResult(client.Create(reactorFormula, options))

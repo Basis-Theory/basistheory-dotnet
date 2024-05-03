@@ -59,7 +59,7 @@ namespace BasisTheory.net.Proxies
             ProxyUpdateRequest request,
             RequestOptions requestOptions = null,
             CancellationToken cancellationToken = default);
-        
+
         Proxy Patch(Guid proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null);
         Proxy Patch(string proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null);
 
@@ -186,7 +186,7 @@ namespace BasisTheory.net.Proxies
             return await PutAsync<Proxy>($"{BasePath}/{proxyId}", request, requestOptions,
                 cancellationToken);
         }
-        
+
         public Proxy Patch(Guid proxyId, ProxyPatchRequest request, RequestOptions requestOptions = null)
         {
             return Patch(proxyId.ToString(), request, requestOptions);

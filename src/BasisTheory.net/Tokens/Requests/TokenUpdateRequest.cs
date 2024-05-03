@@ -11,11 +11,11 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("data")]
         [JsonPropertyName("data")]
         public dynamic Data { get; set; }
-        
+
         [JsonProperty("mask")]
         [JsonPropertyName("mask")]
         public dynamic Mask { get; set; }
-        
+
         [JsonProperty("encryption")]
         [JsonPropertyName("encryption")]
         public EncryptionMetadata Encryption { get; set; }
@@ -43,12 +43,12 @@ namespace BasisTheory.net.Tokens.Requests
         [JsonProperty("deduplicate_token")]
         [JsonPropertyName("deduplicate_token")]
         public bool? DeduplicateToken { get; set; }
-        
+
         [JsonProperty("expires_at")]
         [JsonPropertyName("expires_at")]
         public DateTimeOffset? ExpiresAt { get; set; }
     }
-    
+
     public class PrivacyUpdateModel
     {
         [JsonProperty("impact_level")]

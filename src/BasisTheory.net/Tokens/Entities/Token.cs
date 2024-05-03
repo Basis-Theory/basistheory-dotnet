@@ -12,7 +12,7 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("data")]
         [JsonPropertyName("data")]
         public dynamic Data { get; set; }
-        
+
         [JsonProperty("mask")]
         [JsonPropertyName("mask")]
         public dynamic Mask { get; set; }
@@ -44,7 +44,7 @@ namespace BasisTheory.net.Tokens.Entities
         [JsonProperty("enrichments")]
         [JsonPropertyName("enrichments")]
         public TokenEnrichments Enrichments { get; set; }
-        
+
         public Token()
         {
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BasisTheory.net.ApplicationKeys.Entities;
 using Newtonsoft.Json;
 
 namespace BasisTheory.net.Applications.Entities
@@ -21,7 +22,12 @@ namespace BasisTheory.net.Applications.Entities
 
         [JsonProperty("key")]
         [JsonPropertyName("key")]
+        [Obsolete("Use `keys` instead.")]
         public string Key { get; set; }
+
+        [JsonProperty("keys")]
+        [JsonPropertyName("keys")]
+        public List<ApplicationKey> Keys { get; set; }
 
         [JsonProperty("type")]
         [JsonPropertyName("type")]

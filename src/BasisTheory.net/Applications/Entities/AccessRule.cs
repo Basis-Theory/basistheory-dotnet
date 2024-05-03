@@ -25,7 +25,7 @@ namespace BasisTheory.net.Applications.Entities
         [JsonProperty("permissions")]
         [JsonPropertyName("permissions")]
         public List<string> Permissions { get; set; }
-        
+
         [JsonProperty("conditions")]
         [JsonPropertyName("conditions")]
         public List<Condition> Conditions { get; set; }

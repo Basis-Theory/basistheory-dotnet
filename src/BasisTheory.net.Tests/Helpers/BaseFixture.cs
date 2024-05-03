@@ -82,7 +82,7 @@ namespace BasisTheory.net.Tests.Helpers
             var type = target.GetType();
             var method = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
                 .Single(x => x.Name == name);
-            
+
             return method.Invoke(target, args);
         }
     }
