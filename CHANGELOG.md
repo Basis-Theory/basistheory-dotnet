@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.2.0...v2.3.0) (2024-05-08)
+
+
+### Features
+
+* add tenant type ([#250](https://github.com/Basis-Theory/basistheory-dotnet/issues/250)) ([5ee1cd1](https://github.com/Basis-Theory/basistheory-dotnet/commit/5ee1cd15869c6676bf6caa054d79936d9c1ccdbb))
+
 # [2.2.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.1.0...v2.2.0) (2024-05-03)
 
 
