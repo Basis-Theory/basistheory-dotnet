@@ -12,6 +12,7 @@ namespace BasisTheory.net.Tests.Tenants.Helpers
             .RuleFor(a => a.Id, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.OwnerId, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.Name, (f, _) => f.Lorem.Word())
+            .RuleFor(a => a.Type, (f, _) => f.PickRandom("\"TEST\", \"PRODUCTION\""))
             .RuleFor(a => a.CreatedBy, (_, _) => Guid.NewGuid())
             .RuleFor(a => a.CreatedDate, (f, _) => f.Date.PastOffset())
             .RuleFor(a => a.ModifiedBy, (_, _) => Guid.NewGuid())

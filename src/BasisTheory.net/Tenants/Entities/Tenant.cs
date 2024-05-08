@@ -18,6 +18,10 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonProperty("name")]
         [JsonPropertyName("name")]
         public string Name { get; set; }
+        
+        [JsonProperty("type")]
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
 
         [JsonProperty("settings")]
         [JsonPropertyName("settings")]
