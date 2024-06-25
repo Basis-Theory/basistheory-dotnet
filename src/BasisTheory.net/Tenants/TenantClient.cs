@@ -87,6 +87,24 @@ namespace BasisTheory.net.Tenants
             TenantMemberGetRequest tenantMembersGetRequest = null,
             RequestOptions requestOptions = null);
 
+        TenantMember UpdateMember(Guid tenantMemberId,
+            TenantMemberUpdateRequest request,
+            RequestOptions requestOptions = null);
+
+        TenantMember UpdateMember(string tenantMemberId,
+            TenantMemberUpdateRequest request,
+            RequestOptions requestOptions = null);
+
+        Task<TenantMember> UpdateMemberAsync(
+            Guid tenantMemberId,
+            TenantMemberUpdateRequest request,
+            RequestOptions requestOptions = null);
+
+        Task<TenantMember> UpdateMemberAsync(
+            string tenantMemberId,
+            TenantMemberUpdateRequest request,
+            RequestOptions requestOptions = null);
+
         void DeleteMember(Guid tenantMemberId,
             RequestOptions requestOptions = null);
 
@@ -284,6 +302,26 @@ namespace BasisTheory.net.Tenants
             return await GetAsync<PaginatedList<TenantMember>>($"{BasePath}/self/members",
                 tenantMembersGetRequest,
                 requestOptions);
+        }
+
+        public TenantMember UpdateMember(Guid tenantMemberId, TenantMemberUpdateRequest request, RequestOptions requestOptions = null)
+        {
+            return UpdateMember(tenantMemberId.ToString(), request, requestOptions);
+        }
+
+        public TenantMember UpdateMember(string tenantMemberId, TenantMemberUpdateRequest request, RequestOptions requestOptions = null)
+        {
+            return Put<TenantMember>($"{BasePath}/self/members/{tenantMemberId}", request, requestOptions);
+        }
+
+        public async Task<TenantMember> UpdateMemberAsync(Guid tenantMemberId, TenantMemberUpdateRequest request, RequestOptions requestOptions = null)
+        {
+            return await UpdateMemberAsync(tenantMemberId.ToString(), request, requestOptions);
+        }
+
+        public async Task<TenantMember> UpdateMemberAsync(string tenantMemberId, TenantMemberUpdateRequest request, RequestOptions requestOptions = null)
+        {
+            return await PutAsync<TenantMember>($"{BasePath}/self/members/{tenantMemberId}", request, requestOptions);
         }
 
         public void DeleteMember(Guid tenantMemberId,
