@@ -12,6 +12,7 @@ public class TenantInvitationFactory
         .RuleFor(i => i.Id, (_, _) => Guid.NewGuid())
         .RuleFor(i => i.TenantId, (_, _) => Guid.NewGuid())
         .RuleFor(i => i.Email, (f, _) => f.Internet.Email())
+        .RuleFor(i => i.Role, (f, _) => "admin")
         .RuleFor(i => i.Status, (_, _) => TenantInvitationStatus.PENDING)
         .RuleFor(i => i.ExpirationDate, (f, _) => f.Date.PastOffset())
         .RuleFor(i => i.CreatedBy, (_, _) => Guid.NewGuid())

@@ -18,6 +18,10 @@ namespace BasisTheory.net.Tenants.Entities
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
+        [JsonProperty("role")]
+        [JsonPropertyName("role")]
+        public string Role { get; set; }
+
         [JsonProperty("status")]
         [JsonPropertyName("status")]
         public TenantInvitationStatus Status { get; set; }
