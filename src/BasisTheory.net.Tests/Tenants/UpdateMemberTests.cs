@@ -74,113 +74,111 @@ public class UpdateMemberTests: IClassFixture<TenantFixture>
 
         Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
         Assert.Equal(HttpMethod.Put, requestMessage.Method);
-        Assert.Equal("/tenants/self/members/" + content.Id, requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal($"/tenants/self/members/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
         Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
         _fixture.AssertUserAgent(requestMessage);
     }
     
     [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateWithPerRequestApiKey(Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>> mut)
+    [MemberData(nameof(Methods))]
+    public async Task ShouldUpdateWithPerRequestApiKey(Func<ITenantClient, Guid, TenantMemberUpdateRequest, RequestOptions, Task<TenantMember>> mut)
+    {
+        var expectedApiKey = Guid.NewGuid().ToString();
+
+        var content = TenantMemberFactory.TenantMemberFaker.Generate();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+        var updateRequest = new TenantMemberUpdateRequest
         {
-            var expectedApiKey = Guid.NewGuid().ToString();
+            Role = content.Role
+        };
 
-            var content = TenantFactory.Tenant();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-            var updateRequest = new TenantUpdateRequest
-            {
-                Name = content.Name,
-                Settings = content.Settings
-            };
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
-
-            var response = await mut(_fixture.Client, updateRequest, new RequestOptions
-            {
-                ApiKey = expectedApiKey
-            });
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Put, requestMessage.Method);
-            Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldUpdateWithCustomHeaders(Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>> mut)
+        var response = await mut(_fixture.Client, content.Id, updateRequest, new RequestOptions
         {
-            var expectedCorrelationId = Guid.NewGuid().ToString();
-            var expectedIdempotencyKey = Guid.NewGuid().ToString();
+            ApiKey = expectedApiKey
+        });
 
-            var content = TenantFactory.Tenant();
-            var expectedSerialized = JsonConvert.SerializeObject(content);
-            var updateRequest = new TenantUpdateRequest
-            {
-                Name = content.Name,
-                Settings = content.Settings
-            };
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Put, requestMessage.Method);
+        Assert.Equal($"/tenants/self/members/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(expectedApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            HttpRequestMessage requestMessage = null;
-            _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldUpdateWithCustomHeaders(Func<ITenantClient, Guid, TenantMemberUpdateRequest, RequestOptions, Task<TenantMember>> mut)
+    {
+        var expectedCorrelationId = Guid.NewGuid().ToString();
+        var expectedIdempotencyKey = Guid.NewGuid().ToString();
 
-            var response = await mut(_fixture.Client, updateRequest, new RequestOptions
-            {
-                CorrelationId = expectedCorrelationId,
-                IdempotencyKey = expectedIdempotencyKey
-            });
-
-            Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
-            Assert.Equal(HttpMethod.Put, requestMessage.Method);
-            Assert.Equal("/tenants/self", requestMessage.RequestUri?.PathAndQuery);
-            Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
-            Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
-            Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
-            _fixture.AssertUserAgent(requestMessage);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>> mut)
+        var content = TenantMemberFactory.TenantMemberFaker.Generate();
+        var expectedSerialized = JsonConvert.SerializeObject(content);
+        var updateRequest = new TenantMemberUpdateRequest
         {
-            var error = BasisTheoryErrorFactory.BasisTheoryError();
-            var expectedSerializedError = JsonConvert.SerializeObject(error);
+            Role = content.Role
+        };
 
-            _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
+        HttpRequestMessage requestMessage = null;
+        _fixture.SetupHandler(HttpStatusCode.OK, expectedSerialized, (message, _) => requestMessage = message);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new TenantUpdateRequest(), null));
-            var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
-
-            Assert.Equal(expectedSerializedError, actualSerializedError);
-        }
-
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleEmptyErrorResponse(Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>> mut)
+        var response = await mut(_fixture.Client, content.Id, updateRequest, new RequestOptions
         {
-            _fixture.SetupHandler(HttpStatusCode.Forbidden);
+            CorrelationId = expectedCorrelationId,
+            IdempotencyKey = expectedIdempotencyKey
+        });
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new TenantUpdateRequest(), null));
+        Assert.Equal(expectedSerialized, JsonConvert.SerializeObject(response));
+        Assert.Equal(HttpMethod.Put, requestMessage.Method);
+        Assert.Equal($"/tenants/self/members/{content.Id}", requestMessage.RequestUri?.PathAndQuery);
+        Assert.Equal(_fixture.ApiKey, requestMessage.Headers.GetValues("BT-API-KEY").First());
+        Assert.Equal(expectedCorrelationId, requestMessage.Headers.GetValues("BT-TRACE-ID").First());
+        Assert.Equal(expectedIdempotencyKey, requestMessage.Headers.GetValues("BT-IDEMPOTENCY-KEY").First());
+        _fixture.AssertUserAgent(requestMessage);
+    }
 
-            Assert.Equal(403, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldBubbleUpBasisTheoryErrors(Func<ITenantClient, Guid, TenantMemberUpdateRequest, RequestOptions, Task<TenantMember>> mut)
+    {
+        var error = BasisTheoryErrorFactory.BasisTheoryError();
+        var expectedSerializedError = JsonConvert.SerializeObject(error);
 
-        [Theory]
-        [MemberData(nameof(Methods))]
-        public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITenantClient, TenantUpdateRequest, RequestOptions, Task<Tenant>> mut)
-        {
-            var error = Guid.NewGuid().ToString();
+        _fixture.SetupHandler(HttpStatusCode.BadRequest, expectedSerializedError);
 
-            _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TenantMemberUpdateRequest(), null));
+        var actualSerializedError = JsonConvert.SerializeObject(exception.Error);
 
-            var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, new TenantUpdateRequest(), null));
+        Assert.Equal(expectedSerializedError, actualSerializedError);
+    }
 
-            Assert.Equal(500, exception.Error.Status);
-            Assert.Null(exception.Error.Title);
-            Assert.Null(exception.Error.Detail);
-        }
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleEmptyErrorResponse(Func<ITenantClient, Guid, TenantMemberUpdateRequest, RequestOptions, Task<TenantMember>> mut)
+    {
+        _fixture.SetupHandler(HttpStatusCode.Forbidden);
+
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TenantMemberUpdateRequest(), null));
+
+        Assert.Equal(403, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
+    }
+
+    [Theory]
+    [MemberData(nameof(Methods))]
+    public async Task ShouldHandleNonBasisTheoryErrorResponse(Func<ITenantClient, Guid, TenantMemberUpdateRequest, RequestOptions, Task<TenantMember>> mut)
+    {
+        var error = Guid.NewGuid().ToString();
+
+        _fixture.SetupHandler(HttpStatusCode.InternalServerError, error);
+
+        var exception = await Assert.ThrowsAsync<BasisTheoryException>(() => mut(_fixture.Client, Guid.NewGuid(), new TenantMemberUpdateRequest(), null));
+
+        Assert.Equal(500, exception.Error.Status);
+        Assert.Null(exception.Error.Title);
+        Assert.Null(exception.Error.Detail);
+    }
 }
