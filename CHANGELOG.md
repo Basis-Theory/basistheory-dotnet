@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.3.0...v2.4.0) (2024-06-25)
+
+
+### Features
+
+* Update SDK for invitations and tenant members ([#251](https://github.com/Basis-Theory/basistheory-dotnet/issues/251)) ([5610028](https://github.com/Basis-Theory/basistheory-dotnet/commit/56100283d4ad25a30b346b686aab875e52888dcd))
+
 # [2.3.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.2.0...v2.3.0) (2024-05-08)
 
 
