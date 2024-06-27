@@ -6,5 +6,5 @@ nullableReferenceTypes: false
 packageName: BasisTheory.net
 #returnICollection: true
 #sourceFolder: /src
-targetFramework: net8.0
+targetFramework: netstandard2.0;netstandard2.1
 #useCollection: true
