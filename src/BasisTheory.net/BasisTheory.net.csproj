@@ -6,17 +6,18 @@
     <AssemblyName>BasisTheory.net</AssemblyName>
     <PackageId>BasisTheory.net</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
-    <Company>OpenAPI</Company>
-    <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>A library generated from a OpenAPI doc</Description>
-    <Copyright>No Copyright</Copyright>
+    <Authors>Basis Theory</Authors>
+    <Company>Basis Theory</Company>
+    <AssemblyTitle>BasisTheory.net</AssemblyTitle>
+    <Description>Basis Theory .NET SDK</Description>
+    <Copyright>Copyright 2024</Copyright>
     <RootNamespace>BasisTheory.net</RootNamespace>
     <Version>1.0.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\BasisTheory.net.xml</DocumentationFile>
-    <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Minor update</PackageReleaseNotes>
+    <PackageReleaseNotes>Updating to latest changes</PackageReleaseNotes>
+    <PackageTags>BasisTheory,SDK</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
