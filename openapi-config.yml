@@ -1,0 +1,10 @@
+apiName: Vault
+hideGenerationTimestamp: true
+#interfacePrefix: true
+nullableReferenceTypes: false
+#optionalAssemblyInfo: true
+packageName: BasisTheory.net
+#returnICollection: true
+sourceFolder: /local/src
+targetFramework: net8.0
+#useCollection: true
