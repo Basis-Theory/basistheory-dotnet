@@ -1,22 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>BasisTheory.net</RootNamespace>
     <AssemblyName>BasisTheory.net</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
-    <IsPackable>true</IsPackable>
-    <Description>Basis Theory .NET SDK</Description>
-    <Copyright>Copyright 2021</Copyright>
-    <PackageProjectUrl>https://github.com/Basis-Theory/basistheory-dotnet</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
-    <PackageTags>BasisTheory,SDK</PackageTags>
-    <Nullable>enable</Nullable>
-    <NuspecProperties>version=$(Version)</NuspecProperties>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="JsonSubTypes" Version="1.6.0" />
     <PackageReference Include="RestSharp" Version="105.1.0" />
   </ItemGroup>
 </Project>
