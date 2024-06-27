@@ -25,10 +25,10 @@
 .github/**/*
 .gitignore
 .travis.yml
-BasisTheory.net.sln
-src/BasisTheory.net/BasisTheory.net.csproj
-src/BasisTheory.net/Properties/AssemblyInfo.cs
-src/BasisTheory.net.Test/BasisTheory.net.Test.csproj
+# BasisTheory.net.sln
+# src/BasisTheory.net/BasisTheory.net.csproj
+# src/BasisTheory.net/Properties/AssemblyInfo.cs
+# src/BasisTheory.net.Test/BasisTheory.net.Test.csproj
 git_push.sh
 README.md
 scripts/**/*
