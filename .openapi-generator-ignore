@@ -25,6 +25,7 @@
 .github/**/*
 .gitignore
 .travis.yml
+AssemblyInfo.cs
 git_push.sh
 README.md
 scripts/**/*
