@@ -5,6 +5,6 @@ nullableReferenceTypes: false
 #optionalAssemblyInfo: true
 packageName: BasisTheory.net
 #returnICollection: true
-sourceFolder: /local/src
+#sourceFolder: /src
 targetFramework: net8.0
 #useCollection: true
