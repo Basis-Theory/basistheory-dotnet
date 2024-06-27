@@ -119,7 +119,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 50000)
+            if(this.Code != null && this.Code.ToString().Length > 50000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 50000.", new [] { "Code" });
             }

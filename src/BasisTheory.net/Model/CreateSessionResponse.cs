@@ -153,7 +153,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ExpiresAt (DateTime?) maxLength
-            if(this.ExpiresAt != null && this.ExpiresAt.Length > 40)
+            if(this.ExpiresAt != null && this.ExpiresAt.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiresAt, length must be less than 40.", new [] { "ExpiresAt" });
             }

@@ -324,7 +324,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Id (Guid) maxLength
-            if(this.Id != null && this.Id.Length > 36)
+            if(this.Id != null && this.Id.ToString().Length > 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be less than 36.", new [] { "Id" });
             }
@@ -332,13 +332,13 @@ namespace BasisTheory.net.Model
 
             // Id (Guid) pattern
             Regex regexId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexId.Match(this.Id).Success)
+            if (false == regexId.Match(this.Id.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, must match a pattern of " + regexId, new [] { "Id" });
             }
 
             // Type (string) maxLength
-            if(this.Type != null && this.Type.Length > 25)
+            if(this.Type != null && this.Type.ToString().Length > 25)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 25.", new [] { "Type" });
             }
@@ -346,13 +346,13 @@ namespace BasisTheory.net.Model
 
             // Type (string) pattern
             Regex regexType = new Regex(@"^(?:private|official)$", RegexOptions.CultureInvariant);
-            if (false == regexType.Match(this.Type).Success)
+            if (false == regexType.Match(this.Type.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
             }
 
             // Status (string) maxLength
-            if(this.Status != null && this.Status.Length > 25)
+            if(this.Status != null && this.Status.ToString().Length > 25)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Status, length must be less than 25.", new [] { "Status" });
             }
@@ -360,13 +360,13 @@ namespace BasisTheory.net.Model
 
             // Status (string) pattern
             Regex regexStatus = new Regex(@"^(?:verified|coming_soon)$", RegexOptions.CultureInvariant);
-            if (false == regexStatus.Match(this.Status).Success)
+            if (false == regexStatus.Match(this.Status.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Status, must match a pattern of " + regexStatus, new [] { "Status" });
             }
 
             // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 200)
+            if(this.Name != null && this.Name.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
             }
@@ -374,13 +374,13 @@ namespace BasisTheory.net.Model
 
             // Name (string) pattern
             Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name).Success)
+            if (false == regexName.Match(this.Name.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
             }
 
             // Description (string) maxLength
-            if(this.Description != null && this.Description.Length > 1000)
+            if(this.Description != null && this.Description.ToString().Length > 1000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
             }
@@ -388,13 +388,13 @@ namespace BasisTheory.net.Model
 
             // Description (string) pattern
             Regex regexDescription = new Regex(@"^[\\S\\s]*$", RegexOptions.CultureInvariant);
-            if (false == regexDescription.Match(this.Description).Success)
+            if (false == regexDescription.Match(this.Description.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
             }
 
             // Icon (string) maxLength
-            if(this.Icon != null && this.Icon.Length > 50000)
+            if(this.Icon != null && this.Icon.ToString().Length > 50000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Icon, length must be less than 50000.", new [] { "Icon" });
             }
@@ -402,13 +402,13 @@ namespace BasisTheory.net.Model
 
             // Icon (string) pattern
             Regex regexIcon = new Regex(@"(^data:(image\/png|image\/jpg|image\/jpeg|image\/svg\\+xml);\\s*base64,\\s*(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$)|(^data:(image\/png|image\/jpg|image\/jpeg);\\s*base64,\\s*(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$)", RegexOptions.CultureInvariant);
-            if (false == regexIcon.Match(this.Icon).Success)
+            if (false == regexIcon.Match(this.Icon.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Icon, must match a pattern of " + regexIcon, new [] { "Icon" });
             }
 
             // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 4000)
+            if(this.Code != null && this.Code.ToString().Length > 4000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 4000.", new [] { "Code" });
             }
@@ -416,13 +416,13 @@ namespace BasisTheory.net.Model
 
             // Code (string) pattern
             Regex regexCode = new Regex(@"^[\\S\\s]*$", RegexOptions.CultureInvariant);
-            if (false == regexCode.Match(this.Code).Success)
+            if (false == regexCode.Match(this.Code.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
             }
 
             // CreatedBy (Guid?) maxLength
-            if(this.CreatedBy != null && this.CreatedBy.Length > 36)
+            if(this.CreatedBy != null && this.CreatedBy.ToString().Length > 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, length must be less than 36.", new [] { "CreatedBy" });
             }
@@ -430,20 +430,20 @@ namespace BasisTheory.net.Model
 
             // CreatedBy (Guid?) pattern
             Regex regexCreatedBy = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexCreatedBy.Match(this.CreatedBy).Success)
+            if (false == regexCreatedBy.Match(this.CreatedBy.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, must match a pattern of " + regexCreatedBy, new [] { "CreatedBy" });
             }
 
             // CreatedAt (DateTime?) maxLength
-            if(this.CreatedAt != null && this.CreatedAt.Length > 40)
+            if(this.CreatedAt != null && this.CreatedAt.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedAt, length must be less than 40.", new [] { "CreatedAt" });
             }
 
 
             // ModifiedBy (Guid?) maxLength
-            if(this.ModifiedBy != null && this.ModifiedBy.Length > 36)
+            if(this.ModifiedBy != null && this.ModifiedBy.ToString().Length > 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedBy, length must be less than 36.", new [] { "ModifiedBy" });
             }
@@ -451,13 +451,13 @@ namespace BasisTheory.net.Model
 
             // ModifiedBy (Guid?) pattern
             Regex regexModifiedBy = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexModifiedBy.Match(this.ModifiedBy).Success)
+            if (false == regexModifiedBy.Match(this.ModifiedBy.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedBy, must match a pattern of " + regexModifiedBy, new [] { "ModifiedBy" });
             }
 
             // ModifiedAt (DateTime?) maxLength
-            if(this.ModifiedAt != null && this.ModifiedAt.Length > 40)
+            if(this.ModifiedAt != null && this.ModifiedAt.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedAt, length must be less than 40.", new [] { "ModifiedAt" });
             }

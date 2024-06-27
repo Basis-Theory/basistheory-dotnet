@@ -153,7 +153,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Classification (string) maxLength
-            if(this.Classification != null && this.Classification.Length > 25)
+            if(this.Classification != null && this.Classification.ToString().Length > 25)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Classification, length must be less than 25.", new [] { "Classification" });
             }
@@ -161,13 +161,13 @@ namespace BasisTheory.net.Model
 
             // Classification (string) pattern
             Regex regexClassification = new Regex(@"^[A-z]*$", RegexOptions.CultureInvariant);
-            if (false == regexClassification.Match(this.Classification).Success)
+            if (false == regexClassification.Match(this.Classification.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Classification, must match a pattern of " + regexClassification, new [] { "Classification" });
             }
 
             // ImpactLevel (string) maxLength
-            if(this.ImpactLevel != null && this.ImpactLevel.Length > 10)
+            if(this.ImpactLevel != null && this.ImpactLevel.ToString().Length > 10)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ImpactLevel, length must be less than 10.", new [] { "ImpactLevel" });
             }
@@ -175,13 +175,13 @@ namespace BasisTheory.net.Model
 
             // ImpactLevel (string) pattern
             Regex regexImpactLevel = new Regex(@"^(?:low|moderate|high)$", RegexOptions.CultureInvariant);
-            if (false == regexImpactLevel.Match(this.ImpactLevel).Success)
+            if (false == regexImpactLevel.Match(this.ImpactLevel.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ImpactLevel, must match a pattern of " + regexImpactLevel, new [] { "ImpactLevel" });
             }
 
             // RestrictionPolicy (string) maxLength
-            if(this.RestrictionPolicy != null && this.RestrictionPolicy.Length > 10)
+            if(this.RestrictionPolicy != null && this.RestrictionPolicy.ToString().Length > 10)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RestrictionPolicy, length must be less than 10.", new [] { "RestrictionPolicy" });
             }
@@ -189,7 +189,7 @@ namespace BasisTheory.net.Model
 
             // RestrictionPolicy (string) pattern
             Regex regexRestrictionPolicy = new Regex(@"^(?:mask|redact)$", RegexOptions.CultureInvariant);
-            if (false == regexRestrictionPolicy.Match(this.RestrictionPolicy).Success)
+            if (false == regexRestrictionPolicy.Match(this.RestrictionPolicy.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RestrictionPolicy, must match a pattern of " + regexRestrictionPolicy, new [] { "RestrictionPolicy" });
             }

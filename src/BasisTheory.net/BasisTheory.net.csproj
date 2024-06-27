@@ -12,7 +12,7 @@ The version of the OpenAPI document: v1
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D8C778B-D6E4-49B9-822C-B7292EE5F101}</ProjectGuid>
+    <ProjectGuid>{ED92046F-DDD0-494B-8985-063D024A82B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BasisTheory.net</RootNamespace>

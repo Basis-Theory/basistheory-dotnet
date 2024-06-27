@@ -157,7 +157,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Key (string) maxLength
-            if(this.Key != null && this.Key.Length > 200)
+            if(this.Key != null && this.Key.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, length must be less than 200.", new [] { "Key" });
             }
@@ -170,13 +170,13 @@ namespace BasisTheory.net.Model
 
             // Key (string) pattern
             Regex regexKey = new Regex(@"^[\\w-]+$", RegexOptions.CultureInvariant);
-            if (false == regexKey.Match(this.Key).Success)
+            if (false == regexKey.Match(this.Key.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, must match a pattern of " + regexKey, new [] { "Key" });
             }
 
             // Value (string) maxLength
-            if(this.Value != null && this.Value.Length > 200)
+            if(this.Value != null && this.Value.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be less than 200.", new [] { "Value" });
             }

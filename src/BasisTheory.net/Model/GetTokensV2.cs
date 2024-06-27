@@ -136,7 +136,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Start (string) maxLength
-            if(this.Start != null && this.Start.Length > 500)
+            if(this.Start != null && this.Start.ToString().Length > 500)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, length must be less than 500.", new [] { "Start" });
             }
@@ -144,7 +144,7 @@ namespace BasisTheory.net.Model
 
             // Start (string) pattern
             Regex regexStart = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexStart.Match(this.Start).Success)
+            if (false == regexStart.Match(this.Start.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, must match a pattern of " + regexStart, new [] { "Start" });
             }

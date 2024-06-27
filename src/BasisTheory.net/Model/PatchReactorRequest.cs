@@ -170,7 +170,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 200)
+            if(this.Name != null && this.Name.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
             }
@@ -178,13 +178,13 @@ namespace BasisTheory.net.Model
 
             // Name (string) pattern
             Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name).Success)
+            if (false == regexName.Match(this.Name.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
             }
 
             // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 50000)
+            if(this.Code != null && this.Code.ToString().Length > 50000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 50000.", new [] { "Code" });
             }
@@ -192,7 +192,7 @@ namespace BasisTheory.net.Model
 
             // Code (string) pattern
             Regex regexCode = new Regex(@"^[\\S\\s]*$", RegexOptions.CultureInvariant);
-            if (false == regexCode.Match(this.Code).Success)
+            if (false == regexCode.Match(this.Code.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
             }

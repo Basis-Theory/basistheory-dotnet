@@ -170,7 +170,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Query (string) maxLength
-            if(this.Query != null && this.Query.Length > 200)
+            if(this.Query != null && this.Query.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, length must be less than 200.", new [] { "Query" });
             }
@@ -178,7 +178,7 @@ namespace BasisTheory.net.Model
 
             // Query (string) pattern
             Regex regexQuery = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexQuery.Match(this.Query).Success)
+            if (false == regexQuery.Match(this.Query.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, must match a pattern of " + regexQuery, new [] { "Query" });
             }

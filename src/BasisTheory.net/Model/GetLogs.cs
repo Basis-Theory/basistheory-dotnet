@@ -221,7 +221,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // EntityType (string) maxLength
-            if(this.EntityType != null && this.EntityType.Length > 50)
+            if(this.EntityType != null && this.EntityType.ToString().Length > 50)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, length must be less than 50.", new [] { "EntityType" });
             }
@@ -229,13 +229,13 @@ namespace BasisTheory.net.Model
 
             // EntityType (string) pattern
             Regex regexEntityType = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityType.Match(this.EntityType).Success)
+            if (false == regexEntityType.Match(this.EntityType.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, must match a pattern of " + regexEntityType, new [] { "EntityType" });
             }
 
             // EntityId (string) maxLength
-            if(this.EntityId != null && this.EntityId.Length > 200)
+            if(this.EntityId != null && this.EntityId.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, length must be less than 200.", new [] { "EntityId" });
             }
@@ -243,27 +243,27 @@ namespace BasisTheory.net.Model
 
             // EntityId (string) pattern
             Regex regexEntityId = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityId.Match(this.EntityId).Success)
+            if (false == regexEntityId.Match(this.EntityId.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, must match a pattern of " + regexEntityId, new [] { "EntityId" });
             }
 
             // StartDate (DateTime?) maxLength
-            if(this.StartDate != null && this.StartDate.Length > 40)
+            if(this.StartDate != null && this.StartDate.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartDate, length must be less than 40.", new [] { "StartDate" });
             }
 
 
             // EndDate (DateTime?) maxLength
-            if(this.EndDate != null && this.EndDate.Length > 40)
+            if(this.EndDate != null && this.EndDate.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndDate, length must be less than 40.", new [] { "EndDate" });
             }
 
 
             // Start (string) maxLength
-            if(this.Start != null && this.Start.Length > 500)
+            if(this.Start != null && this.Start.ToString().Length > 500)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, length must be less than 500.", new [] { "Start" });
             }
@@ -271,7 +271,7 @@ namespace BasisTheory.net.Model
 
             // Start (string) pattern
             Regex regexStart = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexStart.Match(this.Start).Success)
+            if (false == regexStart.Match(this.Start.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, must match a pattern of " + regexStart, new [] { "Start" });
             }

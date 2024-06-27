@@ -119,7 +119,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ApplicationType (string) maxLength
-            if(this.ApplicationType != null && this.ApplicationType.Length > 25)
+            if(this.ApplicationType != null && this.ApplicationType.ToString().Length > 25)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationType, length must be less than 25.", new [] { "ApplicationType" });
             }
@@ -127,7 +127,7 @@ namespace BasisTheory.net.Model
 
             // ApplicationType (string) pattern
             Regex regexApplicationType = new Regex(@"^[A-z_]+$", RegexOptions.CultureInvariant);
-            if (false == regexApplicationType.Match(this.ApplicationType).Success)
+            if (false == regexApplicationType.Match(this.ApplicationType.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationType, must match a pattern of " + regexApplicationType, new [] { "ApplicationType" });
             }

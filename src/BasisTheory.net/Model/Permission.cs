@@ -154,7 +154,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) maxLength
-            if(this.Type != null && this.Type.Length > 100)
+            if(this.Type != null && this.Type.ToString().Length > 100)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 100.", new [] { "Type" });
             }
@@ -162,13 +162,13 @@ namespace BasisTheory.net.Model
 
             // Type (string) pattern
             Regex regexType = new Regex(@"^[a-z]+(?::[a-z]+){1,2}:[a-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexType.Match(this.Type).Success)
+            if (false == regexType.Match(this.Type.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
             }
 
             // Description (string) maxLength
-            if(this.Description != null && this.Description.Length > 250)
+            if(this.Description != null && this.Description.ToString().Length > 250)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 250.", new [] { "Description" });
             }
@@ -176,7 +176,7 @@ namespace BasisTheory.net.Model
 
             // Description (string) pattern
             Regex regexDescription = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexDescription.Match(this.Description).Success)
+            if (false == regexDescription.Match(this.Description.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
             }

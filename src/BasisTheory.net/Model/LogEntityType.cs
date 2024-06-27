@@ -136,7 +136,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // DisplayName (string) maxLength
-            if(this.DisplayName != null && this.DisplayName.Length > 50)
+            if(this.DisplayName != null && this.DisplayName.ToString().Length > 50)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, length must be less than 50.", new [] { "DisplayName" });
             }
@@ -144,13 +144,13 @@ namespace BasisTheory.net.Model
 
             // DisplayName (string) pattern
             Regex regexDisplayName = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexDisplayName.Match(this.DisplayName).Success)
+            if (false == regexDisplayName.Match(this.DisplayName.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, must match a pattern of " + regexDisplayName, new [] { "DisplayName" });
             }
 
             // Value (string) maxLength
-            if(this.Value != null && this.Value.Length > 50)
+            if(this.Value != null && this.Value.ToString().Length > 50)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be less than 50.", new [] { "Value" });
             }
@@ -158,7 +158,7 @@ namespace BasisTheory.net.Model
 
             // Value (string) pattern
             Regex regexValue = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexValue.Match(this.Value).Success)
+            if (false == regexValue.Match(this.Value.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, must match a pattern of " + regexValue, new [] { "Value" });
             }

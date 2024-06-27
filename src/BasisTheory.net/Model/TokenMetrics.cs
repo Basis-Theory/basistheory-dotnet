@@ -149,7 +149,7 @@ namespace BasisTheory.net.Model
             }
 
             // LastCreatedAt (DateTime?) maxLength
-            if(this.LastCreatedAt != null && this.LastCreatedAt.Length > 40)
+            if(this.LastCreatedAt != null && this.LastCreatedAt.ToString().Length > 40)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LastCreatedAt, length must be less than 40.", new [] { "LastCreatedAt" });
             }

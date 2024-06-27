@@ -259,7 +259,7 @@ namespace BasisTheory.net.Model
 
 
             // FingerprintExpression (string) maxLength
-            if(this.FingerprintExpression != null && this.FingerprintExpression.Length > 400)
+            if(this.FingerprintExpression != null && this.FingerprintExpression.ToString().Length > 400)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FingerprintExpression, length must be less than 400.", new [] { "FingerprintExpression" });
             }
@@ -267,7 +267,7 @@ namespace BasisTheory.net.Model
 
             // FingerprintExpression (string) pattern
             Regex regexFingerprintExpression = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexFingerprintExpression.Match(this.FingerprintExpression).Success)
+            if (false == regexFingerprintExpression.Match(this.FingerprintExpression.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FingerprintExpression, must match a pattern of " + regexFingerprintExpression, new [] { "FingerprintExpression" });
             }

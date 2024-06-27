@@ -261,7 +261,7 @@ namespace BasisTheory.net.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Id (Guid?) maxLength
-            if(this.Id != null && this.Id.Length > 36)
+            if(this.Id != null && this.Id.ToString().Length > 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be less than 36.", new [] { "Id" });
             }
@@ -269,13 +269,13 @@ namespace BasisTheory.net.Model
 
             // Id (Guid?) pattern
             Regex regexId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexId.Match(this.Id).Success)
+            if (false == regexId.Match(this.Id.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, must match a pattern of " + regexId, new [] { "Id" });
             }
 
             // Type (string) maxLength
-            if(this.Type != null && this.Type.Length > 25)
+            if(this.Type != null && this.Type.ToString().Length > 25)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 25.", new [] { "Type" });
             }
@@ -288,13 +288,13 @@ namespace BasisTheory.net.Model
 
             // Type (string) pattern
             Regex regexType = new Regex(@"^(?:private|official)$", RegexOptions.CultureInvariant);
-            if (false == regexType.Match(this.Type).Success)
+            if (false == regexType.Match(this.Type.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
             }
 
             // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 200)
+            if(this.Name != null && this.Name.ToString().Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
             }
@@ -307,13 +307,13 @@ namespace BasisTheory.net.Model
 
             // Name (string) pattern
             Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name).Success)
+            if (false == regexName.Match(this.Name.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
             }
 
             // Description (string) maxLength
-            if(this.Description != null && this.Description.Length > 1000)
+            if(this.Description != null && this.Description.ToString().Length > 1000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
             }
@@ -321,13 +321,13 @@ namespace BasisTheory.net.Model
 
             // Description (string) pattern
             Regex regexDescription = new Regex(@"^[\\S\\s]*$", RegexOptions.CultureInvariant);
-            if (false == regexDescription.Match(this.Description).Success)
+            if (false == regexDescription.Match(this.Description.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
             }
 
             // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 50000)
+            if(this.Code != null && this.Code.ToString().Length > 50000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 50000.", new [] { "Code" });
             }
