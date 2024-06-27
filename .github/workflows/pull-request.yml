@@ -16,5 +16,5 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Verify
-        run: bash scripts/verify.sh
+      - name: Build
+        run: bash scripts/build.sh
