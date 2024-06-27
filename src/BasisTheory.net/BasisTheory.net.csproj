@@ -1,9 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>BasisTheory.net</RootNamespace>
     <AssemblyName>BasisTheory.net</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <IsPackable>true</IsPackable>
+    <Description>Basis Theory .NET SDK</Description>
+    <Copyright>Copyright 2021</Copyright>
+    <PackageProjectUrl>https://github.com/Basis-Theory/basistheory-dotnet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Basis-Theory/basistheory-dotnet</RepositoryUrl>
+    <PackageTags>BasisTheory,SDK</PackageTags>
+    <Nullable>enable</Nullable>
+    <NuspecProperties>version=$(Version)</NuspecProperties>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
