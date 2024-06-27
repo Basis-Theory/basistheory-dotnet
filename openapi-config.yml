@@ -8,3 +8,4 @@ packageName: BasisTheory.net
 #sourceFolder: /src
 targetFramework: netstandard2.0;netstandard2.1
 #useCollection: true
+validatable: false
