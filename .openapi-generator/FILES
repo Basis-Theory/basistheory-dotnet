@@ -239,5 +239,4 @@ src/BasisTheory.net/Model/UpdateTenantRequest.cs
 src/BasisTheory.net/Model/UpdateTokenRequest.cs
 src/BasisTheory.net/Model/User.cs
 src/BasisTheory.net/Model/ValidationProblemDetails.cs
-src/BasisTheory.net/Properties/AssemblyInfo.cs
 src/BasisTheory.net/packages.config

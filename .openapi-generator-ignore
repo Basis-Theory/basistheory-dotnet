@@ -25,7 +25,7 @@
 .github/**/*
 .gitignore
 .travis.yml
-Properties/AssemblyInfo.cs
+src/BasisTheory.net/Properties/AssemblyInfo.cs
 git_push.sh
 README.md
 scripts/**/*
