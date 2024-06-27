@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// Condition
     /// </summary>
     [DataContract]
-    public partial class Condition :  IEquatable<Condition>, IValidatableObject
+    public partial class Condition :  IEquatable<Condition>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Condition" /> class.
@@ -145,15 +145,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

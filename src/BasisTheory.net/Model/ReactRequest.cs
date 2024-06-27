@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ReactRequest
     /// </summary>
     [DataContract]
-    public partial class ReactRequest :  IEquatable<ReactRequest>, IValidatableObject
+    public partial class ReactRequest :  IEquatable<ReactRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReactRequest" /> class.
@@ -128,15 +128,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

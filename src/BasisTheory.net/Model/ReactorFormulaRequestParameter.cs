@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ReactorFormulaRequestParameter
     /// </summary>
     [DataContract]
-    public partial class ReactorFormulaRequestParameter :  IEquatable<ReactorFormulaRequestParameter>, IValidatableObject
+    public partial class ReactorFormulaRequestParameter :  IEquatable<ReactorFormulaRequestParameter>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReactorFormulaRequestParameter" /> class.
@@ -182,67 +182,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if(this.Name != null && this.Name.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
-            }
-
-            // Name (string) pattern
-            Regex regexName = new Regex(@"^[A-z0-9][A-z0-9.\\-_]*[A-z0-9]$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
-            }
-
-            // Description (string) maxLength
-            if(this.Description != null && this.Description.ToString().Length > 400)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 400.", new [] { "Description" });
-            }
-
-
-            // Description (string) pattern
-            Regex regexDescription = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexDescription.Match(this.Description.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
-            }
-
-            // Type (string) maxLength
-            if(this.Type != null && this.Type.ToString().Length > 25)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 25.", new [] { "Type" });
-            }
-
-            // Type (string) minLength
-            if(this.Type != null && this.Type.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
-            }
-
-            // Type (string) pattern
-            Regex regexType = new Regex(@"^(?:string|boolean|number)$", RegexOptions.CultureInvariant);
-            if (false == regexType.Match(this.Type.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
-            }
-
-            yield break;
-        }
     }
 
 }

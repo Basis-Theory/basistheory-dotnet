@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// GetLogs
     /// </summary>
     [DataContract]
-    public partial class GetLogs :  IEquatable<GetLogs>, IValidatableObject
+    public partial class GetLogs :  IEquatable<GetLogs>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetLogs" /> class.
@@ -213,85 +213,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EntityType (string) maxLength
-            if(this.EntityType != null && this.EntityType.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, length must be less than 50.", new [] { "EntityType" });
-            }
-
-
-            // EntityType (string) pattern
-            Regex regexEntityType = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityType.Match(this.EntityType.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, must match a pattern of " + regexEntityType, new [] { "EntityType" });
-            }
-
-            // EntityId (string) maxLength
-            if(this.EntityId != null && this.EntityId.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, length must be less than 200.", new [] { "EntityId" });
-            }
-
-
-            // EntityId (string) pattern
-            Regex regexEntityId = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityId.Match(this.EntityId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, must match a pattern of " + regexEntityId, new [] { "EntityId" });
-            }
-
-            // StartDate (DateTime?) maxLength
-            if(this.StartDate != null && this.StartDate.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartDate, length must be less than 40.", new [] { "StartDate" });
-            }
-
-
-            // EndDate (DateTime?) maxLength
-            if(this.EndDate != null && this.EndDate.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndDate, length must be less than 40.", new [] { "EndDate" });
-            }
-
-
-            // Start (string) maxLength
-            if(this.Start != null && this.Start.ToString().Length > 500)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, length must be less than 500.", new [] { "Start" });
-            }
-
-
-            // Start (string) pattern
-            Regex regexStart = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexStart.Match(this.Start.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, must match a pattern of " + regexStart, new [] { "Start" });
-            }
-
-
-
-            // Size (int?) maximum
-            if(this.Size > (int?)5000)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value less than or equal to 5000.", new [] { "Size" });
-            }
-
-            // Size (int?) minimum
-            if(this.Size < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value greater than or equal to 0.", new [] { "Size" });
-            }
-
-            yield break;
-        }
     }
 
 }

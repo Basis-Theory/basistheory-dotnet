@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// AuthorizeSessionRequest
     /// </summary>
     [DataContract]
-    public partial class AuthorizeSessionRequest :  IEquatable<AuthorizeSessionRequest>, IValidatableObject
+    public partial class AuthorizeSessionRequest :  IEquatable<AuthorizeSessionRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizeSessionRequest" /> class.
@@ -177,24 +177,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-            // Nonce (string) minLength
-            if(this.Nonce != null && this.Nonce.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Nonce, length must be greater than 1.", new [] { "Nonce" });
-            }
-
-
-
-            yield break;
-        }
     }
 
 }

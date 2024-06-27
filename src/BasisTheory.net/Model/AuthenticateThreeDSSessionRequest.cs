@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// AuthenticateThreeDSSessionRequest
     /// </summary>
     [DataContract]
-    public partial class AuthenticateThreeDSSessionRequest :  IEquatable<AuthenticateThreeDSSessionRequest>, IValidatableObject
+    public partial class AuthenticateThreeDSSessionRequest :  IEquatable<AuthenticateThreeDSSessionRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticateThreeDSSessionRequest" /> class.
@@ -274,29 +274,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-            // AuthenticationCategory (string) minLength
-            if(this.AuthenticationCategory != null && this.AuthenticationCategory.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AuthenticationCategory, length must be greater than 1.", new [] { "AuthenticationCategory" });
-            }
-
-
-            // AuthenticationType (string) minLength
-            if(this.AuthenticationType != null && this.AuthenticationType.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AuthenticationType, length must be greater than 1.", new [] { "AuthenticationType" });
-            }
-
-            yield break;
-        }
     }
 
 }

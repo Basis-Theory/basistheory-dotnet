@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// UpdateProxyRequest
     /// </summary>
     [DataContract]
-    public partial class UpdateProxyRequest :  IEquatable<UpdateProxyRequest>, IValidatableObject
+    public partial class UpdateProxyRequest :  IEquatable<UpdateProxyRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateProxyRequest" /> class.
@@ -266,83 +266,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if(this.Name != null && this.Name.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
-            }
-
-            // Name (string) pattern
-            Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
-            }
-
-            // DestinationUrl (string) maxLength
-            if(this.DestinationUrl != null && this.DestinationUrl.ToString().Length > 400)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationUrl, length must be less than 400.", new [] { "DestinationUrl" });
-            }
-
-            // DestinationUrl (string) minLength
-            if(this.DestinationUrl != null && this.DestinationUrl.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationUrl, length must be greater than 1.", new [] { "DestinationUrl" });
-            }
-
-            // DestinationUrl (string) pattern
-            Regex regexDestinationUrl = new Regex(@"^https:\/\/.+$", RegexOptions.CultureInvariant);
-            if (false == regexDestinationUrl.Match(this.DestinationUrl.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationUrl, must match a pattern of " + regexDestinationUrl, new [] { "DestinationUrl" });
-            }
-
-            // RequestReactorId (Guid?) maxLength
-            if(this.RequestReactorId != null && this.RequestReactorId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestReactorId, length must be less than 36.", new [] { "RequestReactorId" });
-            }
-
-
-            // RequestReactorId (Guid?) pattern
-            Regex regexRequestReactorId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexRequestReactorId.Match(this.RequestReactorId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestReactorId, must match a pattern of " + regexRequestReactorId, new [] { "RequestReactorId" });
-            }
-
-            // ResponseReactorId (Guid?) maxLength
-            if(this.ResponseReactorId != null && this.ResponseReactorId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ResponseReactorId, length must be less than 36.", new [] { "ResponseReactorId" });
-            }
-
-
-            // ResponseReactorId (Guid?) pattern
-            Regex regexResponseReactorId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexResponseReactorId.Match(this.ResponseReactorId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ResponseReactorId, must match a pattern of " + regexResponseReactorId, new [] { "ResponseReactorId" });
-            }
-
-
-
-            yield break;
-        }
     }
 
 }

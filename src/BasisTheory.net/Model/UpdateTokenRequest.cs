@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// UpdateTokenRequest
     /// </summary>
     [DataContract]
-    public partial class UpdateTokenRequest :  IEquatable<UpdateTokenRequest>, IValidatableObject
+    public partial class UpdateTokenRequest :  IEquatable<UpdateTokenRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateTokenRequest" /> class.
@@ -249,33 +249,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-
-            // FingerprintExpression (string) maxLength
-            if(this.FingerprintExpression != null && this.FingerprintExpression.ToString().Length > 400)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FingerprintExpression, length must be less than 400.", new [] { "FingerprintExpression" });
-            }
-
-
-            // FingerprintExpression (string) pattern
-            Regex regexFingerprintExpression = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexFingerprintExpression.Match(this.FingerprintExpression.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FingerprintExpression, must match a pattern of " + regexFingerprintExpression, new [] { "FingerprintExpression" });
-            }
-
-
-
-            yield break;
-        }
     }
 
 }

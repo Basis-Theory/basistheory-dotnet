@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ThreeDSMerchantInfo
     /// </summary>
     [DataContract]
-    public partial class ThreeDSMerchantInfo :  IEquatable<ThreeDSMerchantInfo>, IValidatableObject
+    public partial class ThreeDSMerchantInfo :  IEquatable<ThreeDSMerchantInfo>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSMerchantInfo" /> class.
@@ -195,15 +195,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

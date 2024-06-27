@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// CreateTenantConnectionRequest
     /// </summary>
     [DataContract]
-    public partial class CreateTenantConnectionRequest :  IEquatable<CreateTenantConnectionRequest>, IValidatableObject
+    public partial class CreateTenantConnectionRequest :  IEquatable<CreateTenantConnectionRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTenantConnectionRequest" /> class.
@@ -149,22 +149,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-            // Strategy (string) minLength
-            if(this.Strategy != null && this.Strategy.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Strategy, length must be greater than 1.", new [] { "Strategy" });
-            }
-
-            yield break;
-        }
     }
 
 }

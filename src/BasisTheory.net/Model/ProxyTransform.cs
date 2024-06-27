@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ProxyTransform
     /// </summary>
     [DataContract]
-    public partial class ProxyTransform :  IEquatable<ProxyTransform>, IValidatableObject
+    public partial class ProxyTransform :  IEquatable<ProxyTransform>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxyTransform" /> class.
@@ -111,22 +111,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Code (string) maxLength
-            if(this.Code != null && this.Code.ToString().Length > 50000)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 50000.", new [] { "Code" });
-            }
-
-
-            yield break;
-        }
     }
 
 }

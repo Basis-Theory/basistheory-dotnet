@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// Log
     /// </summary>
     [DataContract]
-    public partial class Log :  IEquatable<Log>, IValidatableObject
+    public partial class Log :  IEquatable<Log>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Log" /> class.
@@ -246,120 +246,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // TenantId (Guid) maxLength
-            if(this.TenantId != null && this.TenantId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TenantId, length must be less than 36.", new [] { "TenantId" });
-            }
-
-
-            // TenantId (Guid) pattern
-            Regex regexTenantId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexTenantId.Match(this.TenantId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TenantId, must match a pattern of " + regexTenantId, new [] { "TenantId" });
-            }
-
-            // ActorId (Guid?) maxLength
-            if(this.ActorId != null && this.ActorId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ActorId, length must be less than 36.", new [] { "ActorId" });
-            }
-
-
-            // ActorId (Guid?) pattern
-            Regex regexActorId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexActorId.Match(this.ActorId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ActorId, must match a pattern of " + regexActorId, new [] { "ActorId" });
-            }
-
-            // ActorType (string) maxLength
-            if(this.ActorType != null && this.ActorType.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ActorType, length must be less than 50.", new [] { "ActorType" });
-            }
-
-
-            // ActorType (string) pattern
-            Regex regexActorType = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexActorType.Match(this.ActorType.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ActorType, must match a pattern of " + regexActorType, new [] { "ActorType" });
-            }
-
-            // EntityType (string) maxLength
-            if(this.EntityType != null && this.EntityType.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, length must be less than 50.", new [] { "EntityType" });
-            }
-
-
-            // EntityType (string) pattern
-            Regex regexEntityType = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityType.Match(this.EntityType.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityType, must match a pattern of " + regexEntityType, new [] { "EntityType" });
-            }
-
-            // EntityId (string) maxLength
-            if(this.EntityId != null && this.EntityId.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, length must be less than 200.", new [] { "EntityId" });
-            }
-
-
-            // EntityId (string) pattern
-            Regex regexEntityId = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexEntityId.Match(this.EntityId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EntityId, must match a pattern of " + regexEntityId, new [] { "EntityId" });
-            }
-
-            // Operation (string) maxLength
-            if(this.Operation != null && this.Operation.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Operation, length must be less than 50.", new [] { "Operation" });
-            }
-
-
-            // Operation (string) pattern
-            Regex regexOperation = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexOperation.Match(this.Operation.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Operation, must match a pattern of " + regexOperation, new [] { "Operation" });
-            }
-
-            // Message (string) maxLength
-            if(this.Message != null && this.Message.ToString().Length > 250)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Message, length must be less than 250.", new [] { "Message" });
-            }
-
-
-            // Message (string) pattern
-            Regex regexMessage = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexMessage.Match(this.Message.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Message, must match a pattern of " + regexMessage, new [] { "Message" });
-            }
-
-            // CreatedAt (DateTime?) maxLength
-            if(this.CreatedAt != null && this.CreatedAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedAt, length must be less than 40.", new [] { "CreatedAt" });
-            }
-
-
-            yield break;
-        }
     }
 
 }

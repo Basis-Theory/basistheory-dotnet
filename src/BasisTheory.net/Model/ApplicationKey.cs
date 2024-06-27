@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ApplicationKey
     /// </summary>
     [DataContract]
-    public partial class ApplicationKey :  IEquatable<ApplicationKey>, IValidatableObject
+    public partial class ApplicationKey :  IEquatable<ApplicationKey>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationKey" /> class.
@@ -178,50 +178,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Id (Guid) maxLength
-            if(this.Id != null && this.Id.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be less than 36.", new [] { "Id" });
-            }
-
-
-            // Id (Guid) pattern
-            Regex regexId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexId.Match(this.Id.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, must match a pattern of " + regexId, new [] { "Id" });
-            }
-
-            // CreatedBy (Guid?) maxLength
-            if(this.CreatedBy != null && this.CreatedBy.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, length must be less than 36.", new [] { "CreatedBy" });
-            }
-
-
-            // CreatedBy (Guid?) pattern
-            Regex regexCreatedBy = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexCreatedBy.Match(this.CreatedBy.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, must match a pattern of " + regexCreatedBy, new [] { "CreatedBy" });
-            }
-
-            // CreatedAt (DateTime?) maxLength
-            if(this.CreatedAt != null && this.CreatedAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedAt, length must be less than 40.", new [] { "CreatedAt" });
-            }
-
-
-            yield break;
-        }
     }
 
 }

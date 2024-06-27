@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// TokenPaginatedList
     /// </summary>
     [DataContract]
-    public partial class TokenPaginatedList :  IEquatable<TokenPaginatedList>, IValidatableObject
+    public partial class TokenPaginatedList :  IEquatable<TokenPaginatedList>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenPaginatedList" /> class.
@@ -128,17 +128,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-
-            yield break;
-        }
     }
 
 }

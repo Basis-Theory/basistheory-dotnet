@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// ThreeDSAuthentication
     /// </summary>
     [DataContract]
-    public partial class ThreeDSAuthentication :  IEquatable<ThreeDSAuthentication>, IValidatableObject
+    public partial class ThreeDSAuthentication :  IEquatable<ThreeDSAuthentication>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSAuthentication" /> class.
@@ -502,57 +502,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AcsTransactionId (Guid?) maxLength
-            if(this.AcsTransactionId != null && this.AcsTransactionId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcsTransactionId, length must be less than 36.", new [] { "AcsTransactionId" });
-            }
-
-
-            // AcsTransactionId (Guid?) pattern
-            Regex regexAcsTransactionId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexAcsTransactionId.Match(this.AcsTransactionId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcsTransactionId, must match a pattern of " + regexAcsTransactionId, new [] { "AcsTransactionId" });
-            }
-
-            // DsTransactionId (Guid?) maxLength
-            if(this.DsTransactionId != null && this.DsTransactionId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsTransactionId, length must be less than 36.", new [] { "DsTransactionId" });
-            }
-
-
-            // DsTransactionId (Guid?) pattern
-            Regex regexDsTransactionId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexDsTransactionId.Match(this.DsTransactionId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsTransactionId, must match a pattern of " + regexDsTransactionId, new [] { "DsTransactionId" });
-            }
-
-            // SdkTransactionId (Guid?) maxLength
-            if(this.SdkTransactionId != null && this.SdkTransactionId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkTransactionId, length must be less than 36.", new [] { "SdkTransactionId" });
-            }
-
-
-            // SdkTransactionId (Guid?) pattern
-            Regex regexSdkTransactionId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexSdkTransactionId.Match(this.SdkTransactionId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkTransactionId, must match a pattern of " + regexSdkTransactionId, new [] { "SdkTransactionId" });
-            }
-
-            yield break;
-        }
     }
 
 }

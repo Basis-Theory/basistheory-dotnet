@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// PatchProxyRequest
     /// </summary>
     [DataContract]
-    public partial class PatchProxyRequest :  IEquatable<PatchProxyRequest>, IValidatableObject
+    public partial class PatchProxyRequest :  IEquatable<PatchProxyRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PatchProxyRequest" /> class.
@@ -211,31 +211,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
-            }
-
-
-            // Name (string) pattern
-            Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
-            }
-
-
-
-            yield break;
-        }
     }
 
 }

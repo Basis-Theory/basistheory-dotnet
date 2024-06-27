@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// LogEntityType
     /// </summary>
     [DataContract]
-    public partial class LogEntityType :  IEquatable<LogEntityType>, IValidatableObject
+    public partial class LogEntityType :  IEquatable<LogEntityType>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEntityType" /> class.
@@ -128,43 +128,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // DisplayName (string) maxLength
-            if(this.DisplayName != null && this.DisplayName.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, length must be less than 50.", new [] { "DisplayName" });
-            }
-
-
-            // DisplayName (string) pattern
-            Regex regexDisplayName = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexDisplayName.Match(this.DisplayName.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, must match a pattern of " + regexDisplayName, new [] { "DisplayName" });
-            }
-
-            // Value (string) maxLength
-            if(this.Value != null && this.Value.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be less than 50.", new [] { "Value" });
-            }
-
-
-            // Value (string) pattern
-            Regex regexValue = new Regex(@"^[A-z]+$", RegexOptions.CultureInvariant);
-            if (false == regexValue.Match(this.Value.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, must match a pattern of " + regexValue, new [] { "Value" });
-            }
-
-            yield break;
-        }
     }
 
 }

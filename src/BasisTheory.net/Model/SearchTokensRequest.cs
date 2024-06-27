@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// SearchTokensRequest
     /// </summary>
     [DataContract]
-    public partial class SearchTokensRequest :  IEquatable<SearchTokensRequest>, IValidatableObject
+    public partial class SearchTokensRequest :  IEquatable<SearchTokensRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchTokensRequest" /> class.
@@ -162,57 +162,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Query (string) maxLength
-            if(this.Query != null && this.Query.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, length must be less than 200.", new [] { "Query" });
-            }
-
-
-            // Query (string) pattern
-            Regex regexQuery = new Regex(@"^.*$", RegexOptions.CultureInvariant);
-            if (false == regexQuery.Match(this.Query.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, must match a pattern of " + regexQuery, new [] { "Query" });
-            }
-
-
-
-            // Page (int?) maximum
-            if(this.Page > (int?)2147483647)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Page, must be a value less than or equal to 2147483647.", new [] { "Page" });
-            }
-
-            // Page (int?) minimum
-            if(this.Page < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Page, must be a value greater than or equal to 0.", new [] { "Page" });
-            }
-
-
-
-            // Size (int?) maximum
-            if(this.Size > (int?)100)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value less than or equal to 100.", new [] { "Size" });
-            }
-
-            // Size (int?) minimum
-            if(this.Size < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value greater than or equal to 0.", new [] { "Size" });
-            }
-
-            yield break;
-        }
     }
 
 }

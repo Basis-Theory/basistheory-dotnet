@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// UpdateTenantMemberRequest
     /// </summary>
     [DataContract]
-    public partial class UpdateTenantMemberRequest :  IEquatable<UpdateTenantMemberRequest>, IValidatableObject
+    public partial class UpdateTenantMemberRequest :  IEquatable<UpdateTenantMemberRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateTenantMemberRequest" /> class.
@@ -124,22 +124,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-            // Role (string) minLength
-            if(this.Role != null && this.Role.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Role, length must be greater than 1.", new [] { "Role" });
-            }
-
-            yield break;
-        }
     }
 
 }

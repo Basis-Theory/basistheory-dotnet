@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// TokenReport
     /// </summary>
     [DataContract]
-    public partial class TokenReport :  IEquatable<TokenReport>, IValidatableObject
+    public partial class TokenReport :  IEquatable<TokenReport>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenReport" /> class.
@@ -160,45 +160,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-
-            // IncludedMonthlyActiveTokens (long) maximum
-            if(this.IncludedMonthlyActiveTokens > (long)2147483647)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IncludedMonthlyActiveTokens, must be a value less than or equal to 2147483647.", new [] { "IncludedMonthlyActiveTokens" });
-            }
-
-            // IncludedMonthlyActiveTokens (long) minimum
-            if(this.IncludedMonthlyActiveTokens < (long)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IncludedMonthlyActiveTokens, must be a value greater than or equal to 0.", new [] { "IncludedMonthlyActiveTokens" });
-            }
-
-
-
-            // MonthlyActiveTokens (long) minimum
-            if(this.MonthlyActiveTokens < (long)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MonthlyActiveTokens, must be a value greater than or equal to 0.", new [] { "MonthlyActiveTokens" });
-            }
-
-
-
-            // TotalTokens (long) minimum
-            if(this.TotalTokens < (long)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalTokens, must be a value greater than or equal to 0.", new [] { "TotalTokens" });
-            }
-
-            yield break;
-        }
     }
 
 }

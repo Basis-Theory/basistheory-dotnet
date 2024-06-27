@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// CreateTenantInvitationRequest
     /// </summary>
     [DataContract]
-    public partial class CreateTenantInvitationRequest :  IEquatable<CreateTenantInvitationRequest>, IValidatableObject
+    public partial class CreateTenantInvitationRequest :  IEquatable<CreateTenantInvitationRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTenantInvitationRequest" /> class.
@@ -141,27 +141,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Email (string) maxLength
-            if(this.Email != null && this.Email.ToString().Length > 330)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Email, length must be less than 330.", new [] { "Email" });
-            }
-
-            // Email (string) minLength
-            if(this.Email != null && this.Email.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Email, length must be greater than 1.", new [] { "Email" });
-            }
-
-            yield break;
-        }
     }
 
 }

@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// GetTenantMembers
     /// </summary>
     [DataContract]
-    public partial class GetTenantMembers :  IEquatable<GetTenantMembers>, IValidatableObject
+    public partial class GetTenantMembers :  IEquatable<GetTenantMembers>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTenantMembers" /> class.
@@ -163,43 +163,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-
-            // Page (int?) maximum
-            if(this.Page > (int?)2147483647)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Page, must be a value less than or equal to 2147483647.", new [] { "Page" });
-            }
-
-            // Page (int?) minimum
-            if(this.Page < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Page, must be a value greater than or equal to 0.", new [] { "Page" });
-            }
-
-
-
-            // Size (int?) maximum
-            if(this.Size > (int?)50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value less than or equal to 50.", new [] { "Size" });
-            }
-
-            // Size (int?) minimum
-            if(this.Size < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value greater than or equal to 0.", new [] { "Size" });
-            }
-
-            yield break;
-        }
     }
 
 }

@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// CreateSessionResponse
     /// </summary>
     [DataContract]
-    public partial class CreateSessionResponse :  IEquatable<CreateSessionResponse>, IValidatableObject
+    public partial class CreateSessionResponse :  IEquatable<CreateSessionResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSessionResponse" /> class.
@@ -145,22 +145,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ExpiresAt (DateTime?) maxLength
-            if(this.ExpiresAt != null && this.ExpiresAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiresAt, length must be less than 40.", new [] { "ExpiresAt" });
-            }
-
-
-            yield break;
-        }
     }
 
 }

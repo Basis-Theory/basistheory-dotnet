@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// StringStringKeyValuePair
     /// </summary>
     [DataContract]
-    public partial class StringStringKeyValuePair :  IEquatable<StringStringKeyValuePair>, IValidatableObject
+    public partial class StringStringKeyValuePair :  IEquatable<StringStringKeyValuePair>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StringStringKeyValuePair" /> class.
@@ -149,46 +149,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Key (string) maxLength
-            if(this.Key != null && this.Key.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, length must be less than 200.", new [] { "Key" });
-            }
-
-            // Key (string) minLength
-            if(this.Key != null && this.Key.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, length must be greater than 1.", new [] { "Key" });
-            }
-
-            // Key (string) pattern
-            Regex regexKey = new Regex(@"^[\\w-]+$", RegexOptions.CultureInvariant);
-            if (false == regexKey.Match(this.Key.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, must match a pattern of " + regexKey, new [] { "Key" });
-            }
-
-            // Value (string) maxLength
-            if(this.Value != null && this.Value.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be less than 200.", new [] { "Value" });
-            }
-
-            // Value (string) minLength
-            if(this.Value != null && this.Value.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be greater than 1.", new [] { "Value" });
-            }
-
-            yield break;
-        }
     }
 
 }

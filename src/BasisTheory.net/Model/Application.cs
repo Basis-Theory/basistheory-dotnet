@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// Application
     /// </summary>
     [DataContract]
-    public partial class Application :  IEquatable<Application>, IValidatableObject
+    public partial class Application :  IEquatable<Application>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Application" /> class.
@@ -317,138 +317,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Id (Guid) maxLength
-            if(this.Id != null && this.Id.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be less than 36.", new [] { "Id" });
-            }
-
-
-            // Id (Guid) pattern
-            Regex regexId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexId.Match(this.Id.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, must match a pattern of " + regexId, new [] { "Id" });
-            }
-
-            // TenantId (Guid) maxLength
-            if(this.TenantId != null && this.TenantId.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TenantId, length must be less than 36.", new [] { "TenantId" });
-            }
-
-
-            // TenantId (Guid) pattern
-            Regex regexTenantId = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexTenantId.Match(this.TenantId.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TenantId, must match a pattern of " + regexTenantId, new [] { "TenantId" });
-            }
-
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.ToString().Length > 200)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
-            }
-
-
-            // Name (string) pattern
-            Regex regexName = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexName.Match(this.Name.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
-            }
-
-            // Key (string) maxLength
-            if(this.Key != null && this.Key.ToString().Length > 100)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, length must be less than 100.", new [] { "Key" });
-            }
-
-
-            // Key (string) pattern
-            Regex regexKey = new Regex(@"[A-z0-9_.]+", RegexOptions.CultureInvariant);
-            if (false == regexKey.Match(this.Key.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Key, must match a pattern of " + regexKey, new [] { "Key" });
-            }
-
-
-
-            // Type (string) maxLength
-            if(this.Type != null && this.Type.ToString().Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 50.", new [] { "Type" });
-            }
-
-
-            // Type (string) pattern
-            Regex regexType = new Regex(@"^[A-z_]+$", RegexOptions.CultureInvariant);
-            if (false == regexType.Match(this.Type.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
-            }
-
-            // CreatedBy (Guid?) maxLength
-            if(this.CreatedBy != null && this.CreatedBy.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, length must be less than 36.", new [] { "CreatedBy" });
-            }
-
-
-            // CreatedBy (Guid?) pattern
-            Regex regexCreatedBy = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexCreatedBy.Match(this.CreatedBy.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedBy, must match a pattern of " + regexCreatedBy, new [] { "CreatedBy" });
-            }
-
-            // CreatedAt (DateTime?) maxLength
-            if(this.CreatedAt != null && this.CreatedAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CreatedAt, length must be less than 40.", new [] { "CreatedAt" });
-            }
-
-
-            // ModifiedBy (Guid?) maxLength
-            if(this.ModifiedBy != null && this.ModifiedBy.ToString().Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedBy, length must be less than 36.", new [] { "ModifiedBy" });
-            }
-
-
-            // ModifiedBy (Guid?) pattern
-            Regex regexModifiedBy = new Regex(@"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", RegexOptions.CultureInvariant);
-            if (false == regexModifiedBy.Match(this.ModifiedBy.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedBy, must match a pattern of " + regexModifiedBy, new [] { "ModifiedBy" });
-            }
-
-            // ModifiedAt (DateTime?) maxLength
-            if(this.ModifiedAt != null && this.ModifiedAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ModifiedAt, length must be less than 40.", new [] { "ModifiedAt" });
-            }
-
-
-            // ExpiresAt (DateTime?) maxLength
-            if(this.ExpiresAt != null && this.ExpiresAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiresAt, length must be less than 40.", new [] { "ExpiresAt" });
-            }
-
-
-
-
-            yield break;
-        }
     }
 
 }

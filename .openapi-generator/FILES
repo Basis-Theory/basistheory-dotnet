@@ -1,4 +1,3 @@
-BasisTheory.net.sln
 build.bat
 build.sh
 docs/AccessRule.md
@@ -114,7 +113,6 @@ docs/UpdateTokenRequest.md
 docs/User.md
 docs/ValidationProblemDetails.md
 mono_nunit_test.sh
-src/BasisTheory.net.Test/BasisTheory.net.Test.csproj
 src/BasisTheory.net.Test/packages.config
 src/BasisTheory.net/Api/ApplicationKeysApi.cs
 src/BasisTheory.net/Api/ApplicationTemplatesApi.cs
@@ -130,7 +128,6 @@ src/BasisTheory.net/Api/TenantsApi.cs
 src/BasisTheory.net/Api/ThreeDSApi.cs
 src/BasisTheory.net/Api/TokenizeApi.cs
 src/BasisTheory.net/Api/TokensApi.cs
-src/BasisTheory.net/BasisTheory.net.csproj
 src/BasisTheory.net/BasisTheory.net.nuspec
 src/BasisTheory.net/Client/ApiClient.cs
 src/BasisTheory.net/Client/ApiException.cs

@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// GetTokensV2
     /// </summary>
     [DataContract]
-    public partial class GetTokensV2 :  IEquatable<GetTokensV2>, IValidatableObject
+    public partial class GetTokensV2 :  IEquatable<GetTokensV2>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTokensV2" /> class.
@@ -128,43 +128,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Start (string) maxLength
-            if(this.Start != null && this.Start.ToString().Length > 500)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, length must be less than 500.", new [] { "Start" });
-            }
-
-
-            // Start (string) pattern
-            Regex regexStart = new Regex(@"^.+$", RegexOptions.CultureInvariant);
-            if (false == regexStart.Match(this.Start.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Start, must match a pattern of " + regexStart, new [] { "Start" });
-            }
-
-
-
-            // Size (int?) maximum
-            if(this.Size > (int?)100)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value less than or equal to 100.", new [] { "Size" });
-            }
-
-            // Size (int?) minimum
-            if(this.Size < (int?)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Size, must be a value greater than or equal to 0.", new [] { "Size" });
-            }
-
-            yield break;
-        }
     }
 
 }

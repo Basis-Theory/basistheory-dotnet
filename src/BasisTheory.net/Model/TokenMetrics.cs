@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// TokenMetrics
     /// </summary>
     [DataContract]
-    public partial class TokenMetrics :  IEquatable<TokenMetrics>, IValidatableObject
+    public partial class TokenMetrics :  IEquatable<TokenMetrics>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenMetrics" /> class.
@@ -127,36 +127,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-
-
-            // Count (long) maximum
-            if(this.Count > (long)2147483647)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Count, must be a value less than or equal to 2147483647.", new [] { "Count" });
-            }
-
-            // Count (long) minimum
-            if(this.Count < (long)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Count, must be a value greater than or equal to 0.", new [] { "Count" });
-            }
-
-            // LastCreatedAt (DateTime?) maxLength
-            if(this.LastCreatedAt != null && this.LastCreatedAt.ToString().Length > 40)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LastCreatedAt, length must be less than 40.", new [] { "LastCreatedAt" });
-            }
-
-
-            yield break;
-        }
     }
 
 }

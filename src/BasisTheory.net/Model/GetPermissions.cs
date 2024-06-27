@@ -28,7 +28,7 @@ namespace BasisTheory.net.Model
     /// GetPermissions
     /// </summary>
     [DataContract]
-    public partial class GetPermissions :  IEquatable<GetPermissions>, IValidatableObject
+    public partial class GetPermissions :  IEquatable<GetPermissions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPermissions" /> class.
@@ -111,29 +111,6 @@ namespace BasisTheory.net.Model
             }
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ApplicationType (string) maxLength
-            if(this.ApplicationType != null && this.ApplicationType.ToString().Length > 25)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationType, length must be less than 25.", new [] { "ApplicationType" });
-            }
-
-
-            // ApplicationType (string) pattern
-            Regex regexApplicationType = new Regex(@"^[A-z_]+$", RegexOptions.CultureInvariant);
-            if (false == regexApplicationType.Match(this.ApplicationType.ToString()).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationType, must match a pattern of " + regexApplicationType, new [] { "ApplicationType" });
-            }
-
-            yield break;
-        }
     }
 
 }
