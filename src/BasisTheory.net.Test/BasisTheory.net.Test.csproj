@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>BasisTheory.net.Test</AssemblyName>
     <RootNamespace>BasisTheory.net.Test</RootNamespace>
-    <TargetFrameworks>netcoreapp3.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
