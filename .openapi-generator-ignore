@@ -25,6 +25,7 @@
 .github/**/*
 .gitignore
 .travis.yml
+BasisTheory.net.sln
 git_push.sh
 scripts/**/*
 makefile

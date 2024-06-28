@@ -15,47 +15,33 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new LogsApi(config);
+var entityType = "entityType_example";
+var entityId = "entityId_example";
+var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");
+var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");
+var page = 56;
+var start = "start_example";
+var size = 56;
+
+try
 {
-    public class GetExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new LogsApi(config);
-            var entityType = "entityType_example";  // string |  (optional) 
-            var entityId = "entityId_example";  // string |  (optional) 
-            var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
-            var page = 56;  // int? |  (optional) 
-            var start = "start_example";  // string |  (optional) 
-            var size = 56;  // int? |  (optional) 
-
-            try
-            {
-                LogPaginatedList result = apiInstance.Get(entityType, entityId, startDate, endDate, page, start, size);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling LogsApi.Get: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    LogPaginatedList result = apiInstance.Get(entityType, entityId, startDate, endDate, page, start, size);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling LogsApi.Get: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -122,40 +108,26 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new LogsApi(config);
+
+try
 {
-    public class GetEntityTypesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new LogsApi(config);
-
-            try
-            {
-                List<LogEntityType> result = apiInstance.GetEntityTypes();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling LogsApi.GetEntityTypes: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    List<LogEntityType> result = apiInstance.GetEntityTypes();
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling LogsApi.GetEntityTypes: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 

@@ -14,40 +14,26 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new RolesApi(config);
+
+try
 {
-    public class GetExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new RolesApi(config);
-
-            try
-            {
-                List<Role> result = apiInstance.Get();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling RolesApi.Get: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    List<Role> result = apiInstance.Get();
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling RolesApi.Get: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 

@@ -26,41 +26,30 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var createTenantConnectionRequest = new CreateTenantConnectionRequest(/*required parameters*/)
 {
-    public class CreateConnectionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TenantsApi(config);
-            var createTenantConnectionRequest = new CreateTenantConnectionRequest(); // CreateTenantConnectionRequest | 
-
-            try
-            {
-                CreateTenantConnectionResponse result = apiInstance.CreateConnection(createTenantConnectionRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.CreateConnection: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    CreateTenantConnectionResponse result = apiInstance.CreateConnection(createTenantConnectionRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.CreateConnection: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -121,41 +110,30 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var createTenantInvitationRequest = new CreateTenantInvitationRequest(/*required parameters*/)
 {
-    public class CreateInvitationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TenantsApi(config);
-            var createTenantInvitationRequest = new CreateTenantInvitationRequest(); // CreateTenantInvitationRequest | 
-
-            try
-            {
-                TenantInvitationResponse result = apiInstance.CreateInvitation(createTenantInvitationRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.CreateInvitation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    TenantInvitationResponse result = apiInstance.CreateInvitation(createTenantInvitationRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.CreateInvitation: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -216,39 +194,25 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+
+try
 {
-    public class DeleteExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-
-            try
-            {
-                apiInstance.Delete();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.Delete: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    apiInstance.Delete();
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.Delete: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -302,40 +266,26 @@ void (empty response body)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+
+try
 {
-    public class DeleteConnectionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-
-            try
-            {
-                CreateTenantConnectionResponse result = apiInstance.DeleteConnection();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.DeleteConnection: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    CreateTenantConnectionResponse result = apiInstance.DeleteConnection();
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.DeleteConnection: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -392,40 +342,26 @@ This endpoint does not need any parameter.
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var invitationId = "invitationId_example";
+
+try
 {
-    public class DeleteInvitationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-            var invitationId = "invitationId_example";  // Guid | 
-
-            try
-            {
-                apiInstance.DeleteInvitation(invitationId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.DeleteInvitation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    apiInstance.DeleteInvitation(invitationId);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.DeleteInvitation: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -483,40 +419,26 @@ void (empty response body)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var memberId = "memberId_example";
+
+try
 {
-    public class DeleteMemberExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-            var memberId = "memberId_example";  // Guid | 
-
-            try
-            {
-                apiInstance.DeleteMember(memberId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.DeleteMember: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    apiInstance.DeleteMember(memberId);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.DeleteMember: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -575,40 +497,26 @@ void (empty response body)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+
+try
 {
-    public class GetExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-
-            try
-            {
-                Tenant result = apiInstance.Get();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.Get: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    Tenant result = apiInstance.Get();
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.Get: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -665,44 +573,30 @@ This endpoint does not need any parameter.
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var status = (TenantInvitationStatus) "PENDING";
+var page = 56;
+var start = "start_example";
+var size = 56;
+
+try
 {
-    public class GetInvitationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-            var status = (TenantInvitationStatus) "PENDING";  // TenantInvitationStatus? |  (optional) 
-            var page = 56;  // int? |  (optional) 
-            var start = "start_example";  // string |  (optional) 
-            var size = 56;  // int? |  (optional) 
-
-            try
-            {
-                TenantInvitationResponsePaginatedList result = apiInstance.GetInvitations(status, page, start, size);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.GetInvitations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    TenantInvitationResponsePaginatedList result = apiInstance.GetInvitations(status, page, start, size);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.GetInvitations: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -765,44 +659,33 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var userId = new List<Guid>(/*required parameters*/)
 {
-    public class GetMembersExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
+var page = 56;
+var start = "start_example";
+var size = 56;
 
-            var apiInstance = new TenantsApi(config);
-            var userId = new List<Guid>(); // List<Guid> |  (optional) 
-            var page = 56;  // int? |  (optional) 
-            var start = "start_example";  // string |  (optional) 
-            var size = 56;  // int? |  (optional) 
-
-            try
-            {
-                TenantMemberResponsePaginatedList result = apiInstance.GetMembers(userId, page, start, size);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.GetMembers: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    TenantMemberResponsePaginatedList result = apiInstance.GetMembers(userId, page, start, size);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.GetMembers: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -865,40 +748,26 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+
+try
 {
-    public class GetTenantUsageReportExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-
-            try
-            {
-                TenantUsageReport result = apiInstance.GetTenantUsageReport();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.GetTenantUsageReport: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    TenantUsageReport result = apiInstance.GetTenantUsageReport();
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.GetTenantUsageReport: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -955,41 +824,27 @@ This endpoint does not need any parameter.
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var invitationId = "invitationId_example";
+
+try
 {
-    public class ResendInvitationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TenantsApi(config);
-            var invitationId = "invitationId_example";  // Guid | 
-
-            try
-            {
-                TenantInvitationResponse result = apiInstance.ResendInvitation(invitationId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.ResendInvitation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    TenantInvitationResponse result = apiInstance.ResendInvitation(invitationId);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.ResendInvitation: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -1050,41 +905,30 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var updateTenantRequest = new UpdateTenantRequest(/*required parameters*/)
 {
-    public class UpdateExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TenantsApi(config);
-            var updateTenantRequest = new UpdateTenantRequest(); // UpdateTenantRequest | 
-
-            try
-            {
-                Tenant result = apiInstance.Update(updateTenantRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.Update: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    Tenant result = apiInstance.Update(updateTenantRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.Update: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -1146,42 +990,31 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+var memberId = "memberId_example";
+var updateTenantMemberRequest = new UpdateTenantMemberRequest(/*required parameters*/)
 {
-    public class UpdateMemberExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TenantsApi(config);
-            var memberId = "memberId_example";  // Guid | 
-            var updateTenantMemberRequest = new UpdateTenantMemberRequest(); // UpdateTenantMemberRequest |  (optional) 
-
-            try
-            {
-                TenantMemberResponse result = apiInstance.UpdateMember(memberId, updateTenantMemberRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TenantsApi.UpdateMember: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    TenantMemberResponse result = apiInstance.UpdateMember(memberId, updateTenantMemberRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TenantsApi.UpdateMember: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 

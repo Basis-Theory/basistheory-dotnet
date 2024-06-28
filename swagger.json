@@ -4177,6 +4177,66 @@
           }
         }
       }
+    },
+    "/v2/tokens/search": {
+      "post": {
+        "tags": [
+          "Tokens"
+        ],
+        "operationId": "Tokens_Search_V2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTokensRequestV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenCursorPaginatedList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -6055,6 +6115,31 @@
         },
         "additionalProperties": false
       },
+      "SearchTokensRequestV2": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "maxLength": 200,
+            "pattern": "^.*$",
+            "type": "string",
+            "nullable": true
+          },
+          "start": {
+            "maxLength": 500,
+            "pattern": "^.+$",
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StringStringKeyValuePair": {
         "required": [
           "key",
@@ -6173,6 +6258,10 @@
             "maxLength": 200,
             "type": "string",
             "format": "email",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
             "nullable": true
           },
           "status": {

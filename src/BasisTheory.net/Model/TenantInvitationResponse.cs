@@ -42,17 +42,19 @@ namespace BasisTheory.net.Model
         /// <param name="id">id.</param>
         /// <param name="tenantId">tenantId.</param>
         /// <param name="email">email.</param>
+        /// <param name="role">role.</param>
         /// <param name="status">status.</param>
         /// <param name="expiresAt">expiresAt.</param>
         /// <param name="createdBy">createdBy.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="modifiedBy">modifiedBy.</param>
         /// <param name="modifiedAt">modifiedAt.</param>
-        public TenantInvitationResponse(Guid id = default(Guid), Guid tenantId = default(Guid), string email = default(string), TenantInvitationStatus? status = default(TenantInvitationStatus?), DateTime expiresAt = default(DateTime), Guid? createdBy = default(Guid?), DateTime? createdAt = default(DateTime?), Guid? modifiedBy = default(Guid?), DateTime? modifiedAt = default(DateTime?))
+        public TenantInvitationResponse(Guid id = default(Guid), Guid tenantId = default(Guid), string email = default(string), string role = default(string), TenantInvitationStatus? status = default(TenantInvitationStatus?), DateTime expiresAt = default(DateTime), Guid? createdBy = default(Guid?), DateTime? createdAt = default(DateTime?), Guid? modifiedBy = default(Guid?), DateTime? modifiedAt = default(DateTime?))
         {
             this.Id = id;
             this.TenantId = tenantId;
             this.Email = email;
+            this.Role = role;
             this.Status = status;
             this.ExpiresAt = expiresAt;
             this.CreatedBy = createdBy;
@@ -78,6 +80,12 @@ namespace BasisTheory.net.Model
         /// </summary>
         [DataMember(Name = "email", EmitDefaultValue = true)]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Role
+        /// </summary>
+        [DataMember(Name = "role", EmitDefaultValue = true)]
+        public string Role { get; set; }
 
         /// <summary>
         /// Gets or Sets ExpiresAt
@@ -120,6 +128,7 @@ namespace BasisTheory.net.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  TenantId: ").Append(TenantId).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  Role: ").Append(Role).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
@@ -177,6 +186,11 @@ namespace BasisTheory.net.Model
                     this.Email.Equals(input.Email))
                 ) && 
                 (
+                    this.Role == input.Role ||
+                    (this.Role != null &&
+                    this.Role.Equals(input.Role))
+                ) && 
+                (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
                 ) && 
@@ -227,6 +241,10 @@ namespace BasisTheory.net.Model
                 if (this.Email != null)
                 {
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
+                if (this.Role != null)
+                {
+                    hashCode = (hashCode * 59) + this.Role.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.ExpiresAt != null)

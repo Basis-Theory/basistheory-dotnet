@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **Guid** |  | [optional] 
 **TenantId** | **Guid** |  | [optional] 
 **Email** | **string** |  | [optional] 
+**Role** | **string** |  | [optional] 
 **Status** | **TenantInvitationStatus** |  | [optional] 
 **ExpiresAt** | **DateTime** |  | [optional] 
 **CreatedBy** | **Guid?** |  | [optional] 

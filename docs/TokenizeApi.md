@@ -14,41 +14,27 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokenizeApi(config);
+var body = null;
+
+try
 {
-    public class TokenizeExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TokenizeApi(config);
-            var body = null;  // Object |  (optional) 
-
-            try
-            {
-                Object result = apiInstance.Tokenize(body);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokenizeApi.Tokenize: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    Object result = apiInstance.Tokenize(body);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokenizeApi.Tokenize: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 

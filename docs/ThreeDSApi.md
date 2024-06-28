@@ -16,42 +16,31 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new ThreeDSApi(config);
+var sessionId = "sessionId_example";
+var authenticateThreeDSSessionRequest = new AuthenticateThreeDSSessionRequest(/*required parameters*/)
 {
-    public class ThreeDSAuthenticateSessionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new ThreeDSApi(config);
-            var sessionId = "sessionId_example";  // Guid | 
-            var authenticateThreeDSSessionRequest = new AuthenticateThreeDSSessionRequest(); // AuthenticateThreeDSSessionRequest |  (optional) 
-
-            try
-            {
-                ThreeDSAuthentication result = apiInstance.ThreeDSAuthenticateSession(sessionId, authenticateThreeDSSessionRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ThreeDSApi.ThreeDSAuthenticateSession: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    ThreeDSAuthentication result = apiInstance.ThreeDSAuthenticateSession(sessionId, authenticateThreeDSSessionRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSAuthenticateSession: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -113,41 +102,27 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new ThreeDSApi(config);
+var sessionId = "sessionId_example";
+
+try
 {
-    public class ThreeDSGetChallengeResultExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new ThreeDSApi(config);
-            var sessionId = "sessionId_example";  // Guid | 
-
-            try
-            {
-                ThreeDSAuthentication result = apiInstance.ThreeDSGetChallengeResult(sessionId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ThreeDSApi.ThreeDSGetChallengeResult: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    ThreeDSAuthentication result = apiInstance.ThreeDSGetChallengeResult(sessionId);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSGetChallengeResult: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -208,41 +183,27 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new ThreeDSApi(config);
+var id = "id_example";
+
+try
 {
-    public class ThreeDSGetSessionByIdExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new ThreeDSApi(config);
-            var id = "id_example";  // Guid | 
-
-            try
-            {
-                ThreeDSSession result = apiInstance.ThreeDSGetSessionById(id);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ThreeDSApi.ThreeDSGetSessionById: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    ThreeDSSession result = apiInstance.ThreeDSGetSessionById(id);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSGetSessionById: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 

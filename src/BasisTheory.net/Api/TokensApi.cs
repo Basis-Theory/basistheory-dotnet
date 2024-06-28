@@ -160,6 +160,26 @@ namespace BasisTheory.net.Api
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TokenCursorPaginatedList</returns>
+        TokenCursorPaginatedList SearchV2(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TokenCursorPaginatedList</returns>
+        ApiResponse<TokenCursorPaginatedList> SearchV2WithHttpInfo(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateTokenRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -347,6 +367,31 @@ namespace BasisTheory.net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TokenPaginatedList)</returns>
         System.Threading.Tasks.Task<ApiResponse<TokenPaginatedList>> SearchWithHttpInfoAsync(SearchTokensRequest searchTokensRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TokenCursorPaginatedList</returns>
+        System.Threading.Tasks.Task<TokenCursorPaginatedList> SearchV2Async(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TokenCursorPaginatedList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TokenCursorPaginatedList>> SearchV2WithHttpInfoAsync(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -1458,6 +1503,162 @@ namespace BasisTheory.net.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Search", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TokenCursorPaginatedList</returns>
+        public TokenCursorPaginatedList SearchV2(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0)
+        {
+            BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList> localVarResponse = SearchV2WithHttpInfo(searchTokensRequestV2);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TokenCursorPaginatedList</returns>
+        public BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList> SearchV2WithHttpInfo(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0)
+        {
+            // verify the required parameter 'searchTokensRequestV2' is set
+            if (searchTokensRequestV2 == null)
+            {
+                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequestV2' when calling TokensApi->SearchV2");
+            }
+
+            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = searchTokensRequestV2;
+
+            localVarRequestOptions.Operation = "TokensApi.SearchV2";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<TokenCursorPaginatedList>("/v2/tokens/search", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchV2", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TokenCursorPaginatedList</returns>
+        public async System.Threading.Tasks.Task<TokenCursorPaginatedList> SearchV2Async(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList> localVarResponse = await SearchV2WithHttpInfoAsync(searchTokensRequestV2, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="searchTokensRequestV2"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TokenCursorPaginatedList)</returns>
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList>> SearchV2WithHttpInfoAsync(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'searchTokensRequestV2' is set
+            if (searchTokensRequestV2 == null)
+            {
+                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequestV2' when calling TokensApi->SearchV2");
+            }
+
+
+            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = searchTokensRequestV2;
+
+            localVarRequestOptions.Operation = "TokensApi.SearchV2";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<TokenCursorPaginatedList>("/v2/tokens/search", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchV2", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

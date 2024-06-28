@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **GET** /tokens/{id} | 
 *TokensApi* | [**GetV2**](docs/TokensApi.md#getv2) | **GET** /v2/tokens | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **POST** /tokens/search | 
+*TokensApi* | [**SearchV2**](docs/TokensApi.md#searchv2) | **POST** /v2/tokens/search | 
 *TokensApi* | [**Update**](docs/TokensApi.md#update) | **PATCH** /tokens/{id} | 
 
 
@@ -228,6 +229,7 @@ Class | Method | HTTP request | Description
  - [Model.ReactorPaginatedList](docs/ReactorPaginatedList.md)
  - [Model.Role](docs/Role.md)
  - [Model.SearchTokensRequest](docs/SearchTokensRequest.md)
+ - [Model.SearchTokensRequestV2](docs/SearchTokensRequestV2.md)
  - [Model.StringStringKeyValuePair](docs/StringStringKeyValuePair.md)
  - [Model.Tenant](docs/Tenant.md)
  - [Model.TenantConnectionOptions](docs/TenantConnectionOptions.md)

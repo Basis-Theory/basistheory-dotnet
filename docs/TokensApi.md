@@ -10,6 +10,7 @@ All URIs are relative to *https://api.basistheory.com*
 | [**GetById**](TokensApi.md#getbyid) | **GET** /tokens/{id} |  |
 | [**GetV2**](TokensApi.md#getv2) | **GET** /v2/tokens |  |
 | [**Search**](TokensApi.md#search) | **POST** /tokens/search |  |
+| [**SearchV2**](TokensApi.md#searchv2) | **POST** /v2/tokens/search |  |
 | [**Update**](TokensApi.md#update) | **PATCH** /tokens/{id} |  |
 
 <a name="create"></a>
@@ -20,41 +21,30 @@ All URIs are relative to *https://api.basistheory.com*
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var createTokenRequest = new CreateTokenRequest(/*required parameters*/)
 {
-    public class CreateExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TokensApi(config);
-            var createTokenRequest = new CreateTokenRequest(); // CreateTokenRequest | 
-
-            try
-            {
-                Token result = apiInstance.Create(createTokenRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.Create: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    Token result = apiInstance.Create(createTokenRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.Create: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -116,40 +106,26 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var id = "id_example";
+
+try
 {
-    public class DeleteExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TokensApi(config);
-            var id = "id_example";  // string | 
-
-            try
-            {
-                apiInstance.Delete(id);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.Delete: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    apiInstance.Delete(id);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.Delete: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -208,45 +184,37 @@ void (empty response body)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var id = new List<string>(/*required parameters*/)
 {
-    public class GetExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
+var metadata = new Dictionary<string, string>(/*required parameters*/)
+{
+    // Additional parameters
+};
+var page = 56;
+var start = "start_example";
+var size = 56;
 
-            var apiInstance = new TokensApi(config);
-            var id = new List<string>(); // List<string> |  (optional) 
-            var metadata = new Dictionary<string, string>(); // Dictionary<string, string> |  (optional) 
-            var page = 56;  // int? |  (optional) 
-            var start = "start_example";  // string |  (optional) 
-            var size = 56;  // int? |  (optional) 
-
-            try
-            {
-                TokenPaginatedList result = apiInstance.Get(id, metadata, page, start, size);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.Get: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    TokenPaginatedList result = apiInstance.Get(id, metadata, page, start, size);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.Get: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -310,41 +278,27 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var id = "id_example";
+
+try
 {
-    public class GetByIdExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TokensApi(config);
-            var id = "id_example";  // string | 
-
-            try
-            {
-                Token result = apiInstance.GetById(id);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.GetById: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    Token result = apiInstance.GetById(id);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.GetById: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -405,42 +359,28 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var start = "start_example";
+var size = 56;
+
+try
 {
-    public class GetV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
-
-            var apiInstance = new TokensApi(config);
-            var start = "start_example";  // string |  (optional) 
-            var size = 56;  // int? |  (optional) 
-
-            try
-            {
-                TokenCursorPaginatedList result = apiInstance.GetV2(start, size);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.GetV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+    TokenCursorPaginatedList result = apiInstance.GetV2(start, size);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.GetV2: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -501,41 +441,30 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var searchTokensRequest = new SearchTokensRequest(/*required parameters*/)
 {
-    public class SearchExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TokensApi(config);
-            var searchTokensRequest = new SearchTokensRequest(); // SearchTokensRequest | 
-
-            try
-            {
-                TokenPaginatedList result = apiInstance.Search(searchTokensRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.Search: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    TokenPaginatedList result = apiInstance.Search(searchTokensRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.Search: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
@@ -588,6 +517,90 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="searchv2"></a>
+# **SearchV2**
+> TokenCursorPaginatedList SearchV2 (SearchTokensRequestV2 searchTokensRequestV2)
+
+
+
+### Example
+```csharp
+using BasisTheory.net.Api;
+using BasisTheory.net.Client;
+using BasisTheory.net.Model;
+
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var searchTokensRequestV2 = new SearchTokensRequestV2(/*required parameters*/)
+{
+    // Additional parameters
+};
+
+try
+{
+    TokenCursorPaginatedList result = apiInstance.SearchV2(searchTokensRequestV2);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.SearchV2: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
+}
+```
+
+#### Using the SearchV2WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<TokenCursorPaginatedList> response = apiInstance.SearchV2WithHttpInfo(searchTokensRequestV2);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TokensApi.SearchV2WithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **searchTokensRequestV2** | [**SearchTokensRequestV2**](SearchTokensRequestV2.md) |  |  |
+
+### Return type
+
+[**TokenCursorPaginatedList**](TokenCursorPaginatedList.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="update"></a>
 # **Update**
 > Token Update (string id, UpdateTokenRequest updateTokenRequest)
@@ -596,42 +609,31 @@ catch (ApiException e)
 
 ### Example
 ```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
 using BasisTheory.net.Api;
 using BasisTheory.net.Client;
 using BasisTheory.net.Model;
 
-namespace Example
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TokensApi(config);
+var id = "id_example";
+var updateTokenRequest = new UpdateTokenRequest(/*required parameters*/)
 {
-    public class UpdateExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.basistheory.com";
-            // Configure API key authorization: ApiKey
-            config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("BT-API-KEY", "Bearer");
+    // Additional parameters
+};
 
-            var apiInstance = new TokensApi(config);
-            var id = "id_example";  // string | 
-            var updateTokenRequest = new UpdateTokenRequest(); // UpdateTokenRequest | 
-
-            try
-            {
-                Token result = apiInstance.Update(id, updateTokenRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TokensApi.Update: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
+try
+{
+    Token result = apiInstance.Update(id, updateTokenRequest);
+    Console.WriteLine(result);
+}
+catch (ApiException  e)
+{
+    Console.WriteLine("Exception when calling TokensApi.Update: " + e.Message);
+    Console.WriteLine("Status Code: " + e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
 }
 ```
 
