@@ -24,9 +24,12 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new SessionsApi(config);
-var authorizeSessionRequest = new AuthorizeSessionRequest(/*required parameters*/)
+var authorizeSessionRequest = new AuthorizeSessionRequest()
 {
-    // Additional parameters
+    Nonce = ...
+    ExpiresAt = ...
+    Permissions = ...
+    Rules = ...
 };
 
 apiInstance.Authorize(authorizeSessionRequest);

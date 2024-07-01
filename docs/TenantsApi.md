@@ -35,9 +35,10 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var createTenantConnectionRequest = new CreateTenantConnectionRequest(/*required parameters*/)
+var createTenantConnectionRequest = new CreateTenantConnectionRequest()
 {
-    // Additional parameters
+    Strategy = ...
+    Options = ...
 };
 
 CreateTenantConnectionResponse result = apiInstance.CreateConnection(createTenantConnectionRequest);
@@ -109,9 +110,10 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var createTenantInvitationRequest = new CreateTenantInvitationRequest(/*required parameters*/)
+var createTenantInvitationRequest = new CreateTenantInvitationRequest()
 {
-    // Additional parameters
+    Email = ...
+    Role = ...
 };
 
 TenantInvitationResponse result = apiInstance.CreateInvitation(createTenantInvitationRequest);
@@ -804,9 +806,10 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var updateTenantRequest = new UpdateTenantRequest(/*required parameters*/)
+var updateTenantRequest = new UpdateTenantRequest()
 {
-    // Additional parameters
+    Name = ...
+    Settings = ...
 };
 
 Tenant result = apiInstance.Update(updateTenantRequest);
@@ -880,9 +883,9 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 var memberId = Guid.Parse("");
-var updateTenantMemberRequest = new UpdateTenantMemberRequest(/*required parameters*/)
+var updateTenantMemberRequest = new UpdateTenantMemberRequest()
 {
-    // Additional parameters
+    Role = ...
 };
 
 TenantMemberResponse result = apiInstance.UpdateMember(memberId, updateTenantMemberRequest);

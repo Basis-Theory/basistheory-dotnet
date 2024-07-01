@@ -76,10 +76,12 @@ var {{paramName}} = {{#isInteger}}1{{/isInteger}}{{^isInteger}}{{{example}}}{{/i
 var {{paramName}} = new {{{dataType}}}();
 {{/isArray}}
 {{^isArray}}
-var {{paramName}} = new {{{dataType}}}({{#hasRequired}}/*required parameters*/{{/hasRequired}})
+var {{paramName}} = new {{{dataType}}}()
 {{#hasVars}}
 {
-    // Additional parameters
+{{#vars}}
+    {{name}} = ...
+{{/vars}}
 };
 {{/hasVars}}
 {{/isArray}}

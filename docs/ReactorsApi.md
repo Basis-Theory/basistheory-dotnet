@@ -29,9 +29,12 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var createReactorRequest = new CreateReactorRequest(/*required parameters*/)
+var createReactorRequest = new CreateReactorRequest()
 {
-    // Additional parameters
+    Name = ...
+    Code = ...
+    Application = ...
+    _Configuration = ...
 };
 
 Reactor result = apiInstance.Create(createReactorRequest);
@@ -324,7 +327,10 @@ var apiInstance = new ReactorsApi(config);
 var id = Guid.Parse("");
 var patchReactorRequest = new PatchReactorRequest()
 {
-    // Additional parameters
+    Name = ...
+    Application = ...
+    Code = ...
+    _Configuration = ...
 };
 
 apiInstance.Patch(id, patchReactorRequest);
@@ -398,7 +404,8 @@ var apiInstance = new ReactorsApi(config);
 var id = Guid.Parse("");
 var reactRequest = new ReactRequest()
 {
-    // Additional parameters
+    Args = ...
+    CallbackUrl = ...
 };
 
 ReactResponse result = apiInstance.React(id, reactRequest);
@@ -475,9 +482,12 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
 var id = Guid.Parse("");
-var updateReactorRequest = new UpdateReactorRequest(/*required parameters*/)
+var updateReactorRequest = new UpdateReactorRequest()
 {
-    // Additional parameters
+    Name = ...
+    Application = ...
+    Code = ...
+    _Configuration = ...
 };
 
 Reactor result = apiInstance.Update(id, updateReactorRequest);
