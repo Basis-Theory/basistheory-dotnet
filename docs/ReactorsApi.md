@@ -322,7 +322,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
 var id = "";
-var patchReactorRequest = new PatchReactorRequest(/*required parameters*/)
+var patchReactorRequest = new PatchReactorRequest()
 {
     // Additional parameters
 };
@@ -396,7 +396,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
 var id = "";
-var reactRequest = new ReactRequest(/*required parameters*/)
+var reactRequest = new ReactRequest()
 {
     // Additional parameters
 };

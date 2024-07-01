@@ -175,10 +175,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
 var id = new List<string>();
-var metadata = new Dictionary<string, string>(/*required parameters*/)
-{
-    // Additional parameters
-};
+var metadata = new Dictionary<string, string>()
 var page = 1;
 var start = "";
 var size = 1;
@@ -398,7 +395,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var searchTokensRequest = new SearchTokensRequest(/*required parameters*/)
+var searchTokensRequest = new SearchTokensRequest()
 {
     // Additional parameters
 };
@@ -472,7 +469,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var searchTokensRequestV2 = new SearchTokensRequestV2(/*required parameters*/)
+var searchTokensRequestV2 = new SearchTokensRequestV2()
 {
     // Additional parameters
 };
@@ -547,7 +544,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
 var id = "";
-var updateTokenRequest = new UpdateTokenRequest(/*required parameters*/)
+var updateTokenRequest = new UpdateTokenRequest()
 {
     // Additional parameters
 };

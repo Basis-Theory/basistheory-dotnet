@@ -321,7 +321,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ProxiesApi(config);
 var id = "";
-var patchProxyRequest = new PatchProxyRequest(/*required parameters*/)
+var patchProxyRequest = new PatchProxyRequest()
 {
     // Additional parameters
 };
