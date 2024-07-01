@@ -113,7 +113,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -190,17 +190,11 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = new List<Guid>(/*required parameters*/)
-{
-    // Additional parameters
-};
-var type = new List<string>(/*required parameters*/)
-{
-    // Additional parameters
-};
-var page = 56;
-var start = "start_example";
-var size = 56;
+var id = new List<Guid>();
+var type = new List<string>();
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {
@@ -285,7 +279,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -441,7 +435,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -523,7 +517,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "id_example";
+var id = "";
 var updateApplicationRequest = new UpdateApplicationRequest(/*required parameters*/)
 {
     // Additional parameters

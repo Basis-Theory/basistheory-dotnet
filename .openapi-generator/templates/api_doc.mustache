@@ -64,13 +64,23 @@ var apiInstance = new {{classname}}(config);
 {{/useHttpClient}}
 {{#allParams}}
 {{#isPrimitiveType}}
-var {{paramName}} = {{{example}}};
+{{#isString}}
+var {{paramName}} = "";
+{{/isString}}
+{{^isString}}
+var {{paramName}} = {{#isInteger}}1{{/isInteger}}{{^isInteger}}{{{example}}}{{/isInteger}};
+{{/isString}}
 {{/isPrimitiveType}}
 {{^isPrimitiveType}}
+{{#isArray}}
+var {{paramName}} = new {{{dataType}}}();
+{{/isArray}}
+{{^isArray}}
 var {{paramName}} = new {{{dataType}}}(/*required parameters*/)
 {
     // Additional parameters
 };
+{{/isArray}}
 {{/isPrimitiveType}}
 {{/allParams}}
 

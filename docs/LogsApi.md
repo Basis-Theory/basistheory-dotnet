@@ -24,13 +24,13 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new LogsApi(config);
-var entityType = "entityType_example";
-var entityId = "entityId_example";
+var entityType = "";
+var entityId = "";
 var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");
 var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");
-var page = 56;
-var start = "start_example";
-var size = 56;
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {

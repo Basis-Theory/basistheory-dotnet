@@ -99,7 +99,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationTemplatesApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {

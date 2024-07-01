@@ -115,7 +115,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -193,17 +193,14 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var id = new List<string>(/*required parameters*/)
-{
-    // Additional parameters
-};
+var id = new List<string>();
 var metadata = new Dictionary<string, string>(/*required parameters*/)
 {
     // Additional parameters
 };
-var page = 56;
-var start = "start_example";
-var size = 56;
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {
@@ -287,7 +284,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -368,8 +365,8 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var start = "start_example";
-var size = 56;
+var start = "";
+var size = 1;
 
 try
 {
@@ -618,7 +615,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TokensApi(config);
-var id = "id_example";
+var id = "";
 var updateTokenRequest = new UpdateTokenRequest(/*required parameters*/)
 {
     // Additional parameters

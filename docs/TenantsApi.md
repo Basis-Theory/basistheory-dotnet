@@ -351,7 +351,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var invitationId = "invitationId_example";
+var invitationId = "";
 
 try
 {
@@ -428,7 +428,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var memberId = "memberId_example";
+var memberId = "";
 
 try
 {
@@ -583,9 +583,9 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 var status = (TenantInvitationStatus) "PENDING";
-var page = 56;
-var start = "start_example";
-var size = 56;
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {
@@ -668,13 +668,10 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var userId = new List<Guid>(/*required parameters*/)
-{
-    // Additional parameters
-};
-var page = 56;
-var start = "start_example";
-var size = 56;
+var userId = new List<Guid>();
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {
@@ -833,7 +830,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var invitationId = "invitationId_example";
+var invitationId = "";
 
 try
 {
@@ -999,7 +996,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
-var memberId = "memberId_example";
+var memberId = "";
 var updateTenantMemberRequest = new UpdateTenantMemberRequest(/*required parameters*/)
 {
     // Additional parameters

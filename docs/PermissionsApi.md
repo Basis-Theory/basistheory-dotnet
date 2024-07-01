@@ -23,7 +23,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new PermissionsApi(config);
-var applicationType = "applicationType_example";
+var applicationType = "";
 
 try
 {

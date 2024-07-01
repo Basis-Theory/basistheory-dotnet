@@ -113,7 +113,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -190,14 +190,11 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = new List<Guid>(/*required parameters*/)
-{
-    // Additional parameters
-};
-var name = "name_example";
-var page = 56;
-var start = "start_example";
-var size = 56;
+var id = new List<Guid>();
+var name = "";
+var page = 1;
+var start = "";
+var size = 1;
 
 try
 {
@@ -282,7 +279,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
@@ -363,7 +360,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = "id_example";
+var id = "";
 var patchReactorRequest = new PatchReactorRequest(/*required parameters*/)
 {
     // Additional parameters
@@ -446,7 +443,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = "id_example";
+var id = "";
 var reactRequest = new ReactRequest(/*required parameters*/)
 {
     // Additional parameters
@@ -535,7 +532,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ReactorsApi(config);
-var id = "id_example";
+var id = "";
 var updateReactorRequest = new UpdateReactorRequest(/*required parameters*/)
 {
     // Additional parameters

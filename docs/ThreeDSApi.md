@@ -25,7 +25,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ThreeDSApi(config);
-var sessionId = "sessionId_example";
+var sessionId = "";
 var authenticateThreeDSSessionRequest = new AuthenticateThreeDSSessionRequest(/*required parameters*/)
 {
     // Additional parameters
@@ -111,7 +111,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ThreeDSApi(config);
-var sessionId = "sessionId_example";
+var sessionId = "";
 
 try
 {
@@ -192,7 +192,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ThreeDSApi(config);
-var id = "id_example";
+var id = "";
 
 try
 {
