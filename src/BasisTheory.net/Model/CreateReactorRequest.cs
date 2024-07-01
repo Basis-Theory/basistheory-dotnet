@@ -44,17 +44,7 @@ namespace BasisTheory.net.Model
         /// <param name="configuration">configuration.</param>
         public CreateReactorRequest(string name = default(string), string code = default(string), Application application = default(Application), Dictionary<string, string> configuration = default(Dictionary<string, string>))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for CreateReactorRequest and cannot be null");
-            }
             this.Name = name;
-            // to ensure "code" is required (not null)
-            if (code == null)
-            {
-                throw new ArgumentNullException("code is a required property for CreateReactorRequest and cannot be null");
-            }
             this.Code = code;
             this.Application = application;
             this._Configuration = configuration;

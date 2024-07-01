@@ -18,3 +18,4 @@ targetFramework: netstandard2.0;netstandard2.1
 testTargetFramework: net8.0
 #useCollection: true
 validatable: false
+vendorExtensions.x-csharp-value-type: true

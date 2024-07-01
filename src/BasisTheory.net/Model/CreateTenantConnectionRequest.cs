@@ -42,17 +42,7 @@ namespace BasisTheory.net.Model
         /// <param name="options">options (required).</param>
         public CreateTenantConnectionRequest(string strategy = default(string), TenantConnectionOptions options = default(TenantConnectionOptions))
         {
-            // to ensure "strategy" is required (not null)
-            if (strategy == null)
-            {
-                throw new ArgumentNullException("strategy is a required property for CreateTenantConnectionRequest and cannot be null");
-            }
             this.Strategy = strategy;
-            // to ensure "options" is required (not null)
-            if (options == null)
-            {
-                throw new ArgumentNullException("options is a required property for CreateTenantConnectionRequest and cannot be null");
-            }
             this.Options = options;
         }
 

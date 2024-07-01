@@ -42,11 +42,6 @@ namespace BasisTheory.net.Model
         /// <param name="settings">settings.</param>
         public UpdateTenantRequest(string name = default(string), Dictionary<string, string> settings = default(Dictionary<string, string>))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for UpdateTenantRequest and cannot be null");
-            }
             this.Name = name;
             this.Settings = settings;
         }

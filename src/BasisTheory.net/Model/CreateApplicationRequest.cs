@@ -46,17 +46,7 @@ namespace BasisTheory.net.Model
         /// <param name="createKey">createKey.</param>
         public CreateApplicationRequest(string name = default(string), string type = default(string), string expiresAt = default(string), List<string> permissions = default(List<string>), List<AccessRule> rules = default(List<AccessRule>), bool? createKey = default(bool?))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for CreateApplicationRequest and cannot be null");
-            }
             this.Name = name;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for CreateApplicationRequest and cannot be null");
-            }
             this.Type = type;
             this.ExpiresAt = expiresAt;
             this.Permissions = permissions;

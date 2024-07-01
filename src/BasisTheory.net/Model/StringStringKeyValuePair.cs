@@ -42,17 +42,7 @@ namespace BasisTheory.net.Model
         /// <param name="value">value (required).</param>
         public StringStringKeyValuePair(string key = default(string), string value = default(string))
         {
-            // to ensure "key" is required (not null)
-            if (key == null)
-            {
-                throw new ArgumentNullException("key is a required property for StringStringKeyValuePair and cannot be null");
-            }
             this.Key = key;
-            // to ensure "value" is required (not null)
-            if (value == null)
-            {
-                throw new ArgumentNullException("value is a required property for StringStringKeyValuePair and cannot be null");
-            }
             this.Value = value;
         }
 

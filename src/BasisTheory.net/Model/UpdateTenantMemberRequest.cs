@@ -41,11 +41,6 @@ namespace BasisTheory.net.Model
         /// <param name="role">role (required).</param>
         public UpdateTenantMemberRequest(string role = default(string))
         {
-            // to ensure "role" is required (not null)
-            if (role == null)
-            {
-                throw new ArgumentNullException("role is a required property for UpdateTenantMemberRequest and cannot be null");
-            }
             this.Role = role;
         }
 

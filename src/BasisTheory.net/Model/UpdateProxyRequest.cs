@@ -49,17 +49,7 @@ namespace BasisTheory.net.Model
         /// <param name="requireAuth">requireAuth.</param>
         public UpdateProxyRequest(string name = default(string), string destinationUrl = default(string), Guid? requestReactorId = default(Guid?), Guid? responseReactorId = default(Guid?), ProxyTransform requestTransform = default(ProxyTransform), ProxyTransform responseTransform = default(ProxyTransform), Application application = default(Application), Dictionary<string, string> configuration = default(Dictionary<string, string>), bool? requireAuth = default(bool?))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for UpdateProxyRequest and cannot be null");
-            }
             this.Name = name;
-            // to ensure "destinationUrl" is required (not null)
-            if (destinationUrl == null)
-            {
-                throw new ArgumentNullException("destinationUrl is a required property for UpdateProxyRequest and cannot be null");
-            }
             this.DestinationUrl = destinationUrl;
             this.RequestReactorId = requestReactorId;
             this.ResponseReactorId = responseReactorId;

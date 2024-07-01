@@ -512,12 +512,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Application</returns>
         public BasisTheory.net.Client.ApiResponse<Application> CreateWithHttpInfo(CreateApplicationRequest createApplicationRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createApplicationRequest' is set
-            if (createApplicationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createApplicationRequest' when calling ApplicationsApi->Create");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -590,12 +584,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Application)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Application>> CreateWithHttpInfoAsync(CreateApplicationRequest createApplicationRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createApplicationRequest' is set
-            if (createApplicationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createApplicationRequest' when calling ApplicationsApi->Create");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1430,12 +1418,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Application</returns>
         public BasisTheory.net.Client.ApiResponse<Application> UpdateWithHttpInfo(Guid id, UpdateApplicationRequest updateApplicationRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'updateApplicationRequest' is set
-            if (updateApplicationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateApplicationRequest' when calling ApplicationsApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1511,12 +1493,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Application)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Application>> UpdateWithHttpInfoAsync(Guid id, UpdateApplicationRequest updateApplicationRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'updateApplicationRequest' is set
-            if (updateApplicationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateApplicationRequest' when calling ApplicationsApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

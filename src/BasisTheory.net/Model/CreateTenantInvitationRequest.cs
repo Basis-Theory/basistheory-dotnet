@@ -42,11 +42,6 @@ namespace BasisTheory.net.Model
         /// <param name="role">role.</param>
         public CreateTenantInvitationRequest(string email = default(string), string role = default(string))
         {
-            // to ensure "email" is required (not null)
-            if (email == null)
-            {
-                throw new ArgumentNullException("email is a required property for CreateTenantInvitationRequest and cannot be null");
-            }
             this.Email = email;
             this.Role = role;
         }

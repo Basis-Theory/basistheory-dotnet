@@ -44,11 +44,6 @@ namespace BasisTheory.net.Model
         /// <param name="rules">rules.</param>
         public AuthorizeSessionRequest(string nonce = default(string), string expiresAt = default(string), List<string> permissions = default(List<string>), List<AccessRule> rules = default(List<AccessRule>))
         {
-            // to ensure "nonce" is required (not null)
-            if (nonce == null)
-            {
-                throw new ArgumentNullException("nonce is a required property for AuthorizeSessionRequest and cannot be null");
-            }
             this.Nonce = nonce;
             this.ExpiresAt = expiresAt;
             this.Permissions = permissions;

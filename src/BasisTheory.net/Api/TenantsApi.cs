@@ -774,12 +774,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of CreateTenantConnectionResponse</returns>
         public BasisTheory.net.Client.ApiResponse<CreateTenantConnectionResponse> CreateConnectionWithHttpInfo(CreateTenantConnectionRequest createTenantConnectionRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createTenantConnectionRequest' is set
-            if (createTenantConnectionRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTenantConnectionRequest' when calling TenantsApi->CreateConnection");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -852,12 +846,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (CreateTenantConnectionResponse)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<CreateTenantConnectionResponse>> CreateConnectionWithHttpInfoAsync(CreateTenantConnectionRequest createTenantConnectionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createTenantConnectionRequest' is set
-            if (createTenantConnectionRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTenantConnectionRequest' when calling TenantsApi->CreateConnection");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -930,12 +918,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of TenantInvitationResponse</returns>
         public BasisTheory.net.Client.ApiResponse<TenantInvitationResponse> CreateInvitationWithHttpInfo(CreateTenantInvitationRequest createTenantInvitationRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createTenantInvitationRequest' is set
-            if (createTenantInvitationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTenantInvitationRequest' when calling TenantsApi->CreateInvitation");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1008,12 +990,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (TenantInvitationResponse)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<TenantInvitationResponse>> CreateInvitationWithHttpInfoAsync(CreateTenantInvitationRequest createTenantInvitationRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createTenantInvitationRequest' is set
-            if (createTenantInvitationRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTenantInvitationRequest' when calling TenantsApi->CreateInvitation");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -2418,12 +2394,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Tenant</returns>
         public BasisTheory.net.Client.ApiResponse<Tenant> UpdateWithHttpInfo(UpdateTenantRequest updateTenantRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'updateTenantRequest' is set
-            if (updateTenantRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateTenantRequest' when calling TenantsApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -2496,12 +2466,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Tenant)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Tenant>> UpdateWithHttpInfoAsync(UpdateTenantRequest updateTenantRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'updateTenantRequest' is set
-            if (updateTenantRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateTenantRequest' when calling TenantsApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

@@ -49,23 +49,8 @@ namespace BasisTheory.net.Model
         /// <param name="messageExtensions">messageExtensions.</param>
         public AuthenticateThreeDSSessionRequest(string authenticationCategory = default(string), string authenticationType = default(string), string challengePreference = default(string), ThreeDSPurchaseInfo purchaseInfo = default(ThreeDSPurchaseInfo), ThreeDSMerchantInfo merchantInfo = default(ThreeDSMerchantInfo), ThreeDSRequestorInfo requestorInfo = default(ThreeDSRequestorInfo), ThreeDSCardholderInfo cardholderInfo = default(ThreeDSCardholderInfo), Object broadcastInfo = default(Object), List<ThreeDSMessageExtension> messageExtensions = default(List<ThreeDSMessageExtension>))
         {
-            // to ensure "authenticationCategory" is required (not null)
-            if (authenticationCategory == null)
-            {
-                throw new ArgumentNullException("authenticationCategory is a required property for AuthenticateThreeDSSessionRequest and cannot be null");
-            }
             this.AuthenticationCategory = authenticationCategory;
-            // to ensure "authenticationType" is required (not null)
-            if (authenticationType == null)
-            {
-                throw new ArgumentNullException("authenticationType is a required property for AuthenticateThreeDSSessionRequest and cannot be null");
-            }
             this.AuthenticationType = authenticationType;
-            // to ensure "requestorInfo" is required (not null)
-            if (requestorInfo == null)
-            {
-                throw new ArgumentNullException("requestorInfo is a required property for AuthenticateThreeDSSessionRequest and cannot be null");
-            }
             this.RequestorInfo = requestorInfo;
             this.ChallengePreference = challengePreference;
             this.PurchaseInfo = purchaseInfo;

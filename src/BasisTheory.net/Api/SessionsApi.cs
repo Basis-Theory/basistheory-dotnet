@@ -262,12 +262,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Object(void)</returns>
         public BasisTheory.net.Client.ApiResponse<Object> AuthorizeWithHttpInfo(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'authorizeSessionRequest' is set
-            if (authorizeSessionRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'authorizeSessionRequest' when calling SessionsApi->Authorize");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -339,12 +333,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> AuthorizeWithHttpInfoAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'authorizeSessionRequest' is set
-            if (authorizeSessionRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'authorizeSessionRequest' when calling SessionsApi->Authorize");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

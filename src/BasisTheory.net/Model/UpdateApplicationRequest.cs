@@ -43,11 +43,6 @@ namespace BasisTheory.net.Model
         /// <param name="rules">rules.</param>
         public UpdateApplicationRequest(string name = default(string), List<string> permissions = default(List<string>), List<AccessRule> rules = default(List<AccessRule>))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for UpdateApplicationRequest and cannot be null");
-            }
             this.Name = name;
             this.Permissions = permissions;
             this.Rules = rules;

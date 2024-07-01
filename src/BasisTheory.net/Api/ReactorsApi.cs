@@ -520,12 +520,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Reactor</returns>
         public BasisTheory.net.Client.ApiResponse<Reactor> CreateWithHttpInfo(CreateReactorRequest createReactorRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createReactorRequest' is set
-            if (createReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createReactorRequest' when calling ReactorsApi->Create");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -598,12 +592,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Reactor)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> CreateWithHttpInfoAsync(CreateReactorRequest createReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createReactorRequest' is set
-            if (createReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createReactorRequest' when calling ReactorsApi->Create");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1155,12 +1143,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Object(void)</returns>
         public BasisTheory.net.Client.ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'patchReactorRequest' is set
-            if (patchReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'patchReactorRequest' when calling ReactorsApi->Patch");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1235,12 +1217,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'patchReactorRequest' is set
-            if (patchReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'patchReactorRequest' when calling ReactorsApi->Patch");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1316,12 +1292,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of ReactResponse</returns>
         public BasisTheory.net.Client.ApiResponse<ReactResponse> ReactWithHttpInfo(Guid id, ReactRequest reactRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'reactRequest' is set
-            if (reactRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'reactRequest' when calling ReactorsApi->React");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1397,12 +1367,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (ReactResponse)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'reactRequest' is set
-            if (reactRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'reactRequest' when calling ReactorsApi->React");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1478,12 +1442,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Reactor</returns>
         public BasisTheory.net.Client.ApiResponse<Reactor> UpdateWithHttpInfo(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'updateReactorRequest' is set
-            if (updateReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateReactorRequest' when calling ReactorsApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1559,12 +1517,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Reactor)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'updateReactorRequest' is set
-            if (updateReactorRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateReactorRequest' when calling ReactorsApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

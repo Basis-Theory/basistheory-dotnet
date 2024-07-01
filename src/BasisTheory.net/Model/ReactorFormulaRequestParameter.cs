@@ -44,17 +44,7 @@ namespace BasisTheory.net.Model
         /// <param name="optional">optional.</param>
         public ReactorFormulaRequestParameter(string name = default(string), string description = default(string), string type = default(string), bool optional = default(bool))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for ReactorFormulaRequestParameter and cannot be null");
-            }
             this.Name = name;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for ReactorFormulaRequestParameter and cannot be null");
-            }
             this.Type = type;
             this.Description = description;
             this.Optional = optional;

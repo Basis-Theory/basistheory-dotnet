@@ -418,12 +418,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of ReactorFormula</returns>
         public BasisTheory.net.Client.ApiResponse<ReactorFormula> CreateWithHttpInfo(CreateReactorFormulaRequest createReactorFormulaRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createReactorFormulaRequest' is set
-            if (createReactorFormulaRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createReactorFormulaRequest' when calling ReactorFormulasApi->Create");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -496,12 +490,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (ReactorFormula)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactorFormula>> CreateWithHttpInfoAsync(CreateReactorFormulaRequest createReactorFormulaRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createReactorFormulaRequest' is set
-            if (createReactorFormulaRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createReactorFormulaRequest' when calling ReactorFormulasApi->Create");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1042,12 +1030,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of ReactorFormula</returns>
         public BasisTheory.net.Client.ApiResponse<ReactorFormula> UpdateWithHttpInfo(Guid id, UpdateReactorFormulaRequest updateReactorFormulaRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'updateReactorFormulaRequest' is set
-            if (updateReactorFormulaRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateReactorFormulaRequest' when calling ReactorFormulasApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1123,12 +1105,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (ReactorFormula)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactorFormula>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorFormulaRequest updateReactorFormulaRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'updateReactorFormulaRequest' is set
-            if (updateReactorFormulaRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateReactorFormulaRequest' when calling ReactorFormulasApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

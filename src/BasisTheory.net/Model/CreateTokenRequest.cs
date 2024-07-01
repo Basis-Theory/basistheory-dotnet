@@ -51,11 +51,6 @@ namespace BasisTheory.net.Model
         /// <param name="containers">containers.</param>
         public CreateTokenRequest(string id = default(string), string type = default(string), Object data = default(Object), Privacy privacy = default(Privacy), Dictionary<string, string> metadata = default(Dictionary<string, string>), List<string> searchIndexes = default(List<string>), string fingerprintExpression = default(string), Object mask = default(Object), bool? deduplicateToken = default(bool?), string expiresAt = default(string), List<string> containers = default(List<string>))
         {
-            // to ensure "data" is required (not null)
-            if (data == null)
-            {
-                throw new ArgumentNullException("data is a required property for CreateTokenRequest and cannot be null");
-            }
             this.Data = data;
             this.Id = id;
             this.Type = type;

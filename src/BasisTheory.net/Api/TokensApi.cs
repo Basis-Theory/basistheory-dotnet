@@ -561,12 +561,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Token</returns>
         public BasisTheory.net.Client.ApiResponse<Token> CreateWithHttpInfo(CreateTokenRequest createTokenRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createTokenRequest' is set
-            if (createTokenRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTokenRequest' when calling TokensApi->Create");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -639,12 +633,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Token)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Token>> CreateWithHttpInfoAsync(CreateTokenRequest createTokenRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createTokenRequest' is set
-            if (createTokenRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createTokenRequest' when calling TokensApi->Create");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -716,12 +704,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Object(void)</returns>
         public BasisTheory.net.Client.ApiResponse<Object> DeleteWithHttpInfo(string id, int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->Delete");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -792,12 +774,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->Delete");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1064,12 +1040,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Token</returns>
         public BasisTheory.net.Client.ApiResponse<Token> GetByIdWithHttpInfo(string id, int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->GetById");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1141,12 +1111,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Token)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Token>> GetByIdWithHttpInfoAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->GetById");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1378,12 +1342,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of TokenPaginatedList</returns>
         public BasisTheory.net.Client.ApiResponse<TokenPaginatedList> SearchWithHttpInfo(SearchTokensRequest searchTokensRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'searchTokensRequest' is set
-            if (searchTokensRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequest' when calling TokensApi->Search");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1456,12 +1414,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (TokenPaginatedList)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<TokenPaginatedList>> SearchWithHttpInfoAsync(SearchTokensRequest searchTokensRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'searchTokensRequest' is set
-            if (searchTokensRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequest' when calling TokensApi->Search");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1534,12 +1486,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of TokenCursorPaginatedList</returns>
         public BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList> SearchV2WithHttpInfo(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0)
         {
-            // verify the required parameter 'searchTokensRequestV2' is set
-            if (searchTokensRequestV2 == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequestV2' when calling TokensApi->SearchV2");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1612,12 +1558,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (TokenCursorPaginatedList)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<TokenCursorPaginatedList>> SearchV2WithHttpInfoAsync(SearchTokensRequestV2 searchTokensRequestV2, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'searchTokensRequestV2' is set
-            if (searchTokensRequestV2 == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'searchTokensRequestV2' when calling TokensApi->SearchV2");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1692,18 +1632,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Token</returns>
         public BasisTheory.net.Client.ApiResponse<Token> UpdateWithHttpInfo(string id, UpdateTokenRequest updateTokenRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->Update");
-            }
-
-            // verify the required parameter 'updateTokenRequest' is set
-            if (updateTokenRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateTokenRequest' when calling TokensApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1779,18 +1707,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Token)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Token>> UpdateWithHttpInfoAsync(string id, UpdateTokenRequest updateTokenRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'id' when calling TokensApi->Update");
-            }
-
-            // verify the required parameter 'updateTokenRequest' is set
-            if (updateTokenRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateTokenRequest' when calling TokensApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

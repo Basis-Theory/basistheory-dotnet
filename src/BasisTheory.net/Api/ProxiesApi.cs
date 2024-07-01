@@ -471,12 +471,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Proxy</returns>
         public BasisTheory.net.Client.ApiResponse<Proxy> CreateWithHttpInfo(CreateProxyRequest createProxyRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'createProxyRequest' is set
-            if (createProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createProxyRequest' when calling ProxiesApi->Create");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -549,12 +543,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Proxy)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Proxy>> CreateWithHttpInfoAsync(CreateProxyRequest createProxyRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'createProxyRequest' is set
-            if (createProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'createProxyRequest' when calling ProxiesApi->Create");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1106,12 +1094,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Object(void)</returns>
         public BasisTheory.net.Client.ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchProxyRequest patchProxyRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'patchProxyRequest' is set
-            if (patchProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'patchProxyRequest' when calling ProxiesApi->Patch");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1186,12 +1168,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchProxyRequest patchProxyRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'patchProxyRequest' is set
-            if (patchProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'patchProxyRequest' when calling ProxiesApi->Patch");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
@@ -1267,12 +1243,6 @@ namespace BasisTheory.net.Api
         /// <returns>ApiResponse of Proxy</returns>
         public BasisTheory.net.Client.ApiResponse<Proxy> UpdateWithHttpInfo(Guid id, UpdateProxyRequest updateProxyRequest, int operationIndex = 0)
         {
-            // verify the required parameter 'updateProxyRequest' is set
-            if (updateProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateProxyRequest' when calling ProxiesApi->Update");
-            }
-
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1348,12 +1318,6 @@ namespace BasisTheory.net.Api
         /// <returns>Task of ApiResponse (Proxy)</returns>
         public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Proxy>> UpdateWithHttpInfoAsync(Guid id, UpdateProxyRequest updateProxyRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'updateProxyRequest' is set
-            if (updateProxyRequest == null)
-            {
-                throw new BasisTheory.net.Client.ApiException(400, "Missing required parameter 'updateProxyRequest' when calling ProxiesApi->Update");
-            }
-
 
             BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
 

@@ -47,17 +47,7 @@ namespace BasisTheory.net.Model
         /// <param name="requestParameters">requestParameters.</param>
         public UpdateReactorFormulaRequest(string type = default(string), string name = default(string), string description = default(string), string icon = default(string), string code = default(string), List<ReactorFormulaConfiguration> configuration = default(List<ReactorFormulaConfiguration>), List<ReactorFormulaRequestParameter> requestParameters = default(List<ReactorFormulaRequestParameter>))
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for UpdateReactorFormulaRequest and cannot be null");
-            }
             this.Type = type;
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for UpdateReactorFormulaRequest and cannot be null");
-            }
             this.Name = name;
             this.Description = description;
             this.Icon = icon;
