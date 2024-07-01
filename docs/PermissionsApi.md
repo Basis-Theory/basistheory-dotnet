@@ -25,17 +25,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new PermissionsApi(config);
 var applicationType = "";
 
-try
-{
-    List<Permission> result = apiInstance.Get(applicationType);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling PermissionsApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+List<Permission> result = apiInstance.Get(applicationType);
 ```
 
 #### Using the GetWithHttpInfo variant

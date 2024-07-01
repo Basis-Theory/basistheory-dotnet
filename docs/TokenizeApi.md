@@ -25,17 +25,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TokenizeApi(config);
 var body = null;
 
-try
-{
-    Object result = apiInstance.Tokenize(body);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokenizeApi.Tokenize: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Object result = apiInstance.Tokenize(body);
 ```
 
 #### Using the TokenizeWithHttpInfo variant

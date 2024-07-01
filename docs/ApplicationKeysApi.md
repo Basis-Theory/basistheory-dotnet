@@ -28,17 +28,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ApplicationKeysApi(config);
 var id = "";
 
-try
-{
-    ApplicationKey result = apiInstance.Create(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationKeysApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ApplicationKey result = apiInstance.Create(id);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -110,16 +100,7 @@ var apiInstance = new ApplicationKeysApi(config);
 var id = "";
 var keyId = "";
 
-try
-{
-    apiInstance.Delete(id, keyId);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationKeysApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id, keyId);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -190,17 +171,7 @@ var id = "";
 var id2 = new List<Guid>();
 var type = new List<string>();
 
-try
-{
-    List<ApplicationKey> result = apiInstance.Get(id, id2, type);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationKeysApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+List<ApplicationKey> result = apiInstance.Get(id, id2, type);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -274,17 +245,7 @@ var apiInstance = new ApplicationKeysApi(config);
 var id = "";
 var keyId = "";
 
-try
-{
-    ApplicationKey result = apiInstance.GetById(id, keyId);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationKeysApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ApplicationKey result = apiInstance.GetById(id, keyId);
 ```
 
 #### Using the GetByIdWithHttpInfo variant

@@ -33,17 +33,7 @@ var createProxyRequest = new CreateProxyRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Proxy result = apiInstance.Create(createProxyRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Proxy result = apiInstance.Create(createProxyRequest);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -114,16 +104,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ProxiesApi(config);
 var id = "";
 
-try
-{
-    apiInstance.Delete(id);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -195,17 +176,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    ProxyPaginatedList result = apiInstance.Get(id, name, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ProxyPaginatedList result = apiInstance.Get(id, name, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -280,17 +251,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ProxiesApi(config);
 var id = "";
 
-try
-{
-    Proxy result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Proxy result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant
@@ -365,16 +326,7 @@ var patchProxyRequest = new PatchProxyRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    apiInstance.Patch(id, patchProxyRequest);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.Patch: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Patch(id, patchProxyRequest);
 ```
 
 #### Using the PatchWithHttpInfo variant
@@ -448,17 +400,7 @@ var updateProxyRequest = new UpdateProxyRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Proxy result = apiInstance.Update(id, updateProxyRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ProxiesApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Proxy result = apiInstance.Update(id, updateProxyRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant

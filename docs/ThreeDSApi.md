@@ -31,17 +31,7 @@ var authenticateThreeDSSessionRequest = new AuthenticateThreeDSSessionRequest(/*
     // Additional parameters
 };
 
-try
-{
-    ThreeDSAuthentication result = apiInstance.ThreeDSAuthenticateSession(sessionId, authenticateThreeDSSessionRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSAuthenticateSession: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ThreeDSAuthentication result = apiInstance.ThreeDSAuthenticateSession(sessionId, authenticateThreeDSSessionRequest);
 ```
 
 #### Using the ThreeDSAuthenticateSessionWithHttpInfo variant
@@ -113,17 +103,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ThreeDSApi(config);
 var sessionId = "";
 
-try
-{
-    ThreeDSAuthentication result = apiInstance.ThreeDSGetChallengeResult(sessionId);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSGetChallengeResult: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ThreeDSAuthentication result = apiInstance.ThreeDSGetChallengeResult(sessionId);
 ```
 
 #### Using the ThreeDSGetChallengeResultWithHttpInfo variant
@@ -194,17 +174,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ThreeDSApi(config);
 var id = "";
 
-try
-{
-    ThreeDSSession result = apiInstance.ThreeDSGetSessionById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ThreeDSApi.ThreeDSGetSessionById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ThreeDSSession result = apiInstance.ThreeDSGetSessionById(id);
 ```
 
 #### Using the ThreeDSGetSessionByIdWithHttpInfo variant

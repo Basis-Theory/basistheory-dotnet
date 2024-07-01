@@ -29,16 +29,7 @@ var authorizeSessionRequest = new AuthorizeSessionRequest(/*required parameters*
     // Additional parameters
 };
 
-try
-{
-    apiInstance.Authorize(authorizeSessionRequest);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling SessionsApi.Authorize: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Authorize(authorizeSessionRequest);
 ```
 
 #### Using the AuthorizeWithHttpInfo variant
@@ -107,17 +98,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new SessionsApi(config);
 
-try
-{
-    CreateSessionResponse result = apiInstance.Create();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling SessionsApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+CreateSessionResponse result = apiInstance.Create();
 ```
 
 #### Using the CreateWithHttpInfo variant

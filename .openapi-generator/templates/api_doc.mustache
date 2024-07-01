@@ -84,20 +84,10 @@ var {{paramName}} = new {{{dataType}}}(/*required parameters*/)
 {{/isPrimitiveType}}
 {{/allParams}}
 
-try
-{
-    {{#summary}}
-    // {{{.}}}
-    {{/summary}}
-    {{#returnType}}{{{.}}} result = {{/returnType}}apiInstance.{{{operationId}}}({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});{{#returnType}}
-    Console.WriteLine(result);{{/returnType}}
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling {{classname}}.{{operationId}}: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+{{#summary}}
+// {{{.}}}
+{{/summary}}
+{{#returnType}}{{{.}}} result = {{/returnType}}apiInstance.{{{operationId}}}({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
 ```
 
 #### Using the {{operationId}}WithHttpInfo variant

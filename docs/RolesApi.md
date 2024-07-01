@@ -24,17 +24,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new RolesApi(config);
 
-try
-{
-    List<Role> result = apiInstance.Get();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling RolesApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+List<Role> result = apiInstance.Get();
 ```
 
 #### Using the GetWithHttpInfo variant

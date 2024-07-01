@@ -32,17 +32,7 @@ var createReactorFormulaRequest = new CreateReactorFormulaRequest(/*required par
     // Additional parameters
 };
 
-try
-{
-    ReactorFormula result = apiInstance.Create(createReactorFormulaRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorFormulasApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactorFormula result = apiInstance.Create(createReactorFormulaRequest);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -113,16 +103,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ReactorFormulasApi(config);
 var id = "";
 
-try
-{
-    apiInstance.Delete(id);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorFormulasApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -193,17 +174,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    ReactorFormulaPaginatedList result = apiInstance.Get(name, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorFormulasApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactorFormulaPaginatedList result = apiInstance.Get(name, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -277,17 +248,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ReactorFormulasApi(config);
 var id = "";
 
-try
-{
-    ReactorFormula result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorFormulasApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactorFormula result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant
@@ -362,17 +323,7 @@ var updateReactorFormulaRequest = new UpdateReactorFormulaRequest(/*required par
     // Additional parameters
 };
 
-try
-{
-    ReactorFormula result = apiInstance.Update(id, updateReactorFormulaRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorFormulasApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactorFormula result = apiInstance.Update(id, updateReactorFormulaRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant

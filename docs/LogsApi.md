@@ -32,17 +32,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    LogPaginatedList result = apiInstance.Get(entityType, entityId, startDate, endDate, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling LogsApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+LogPaginatedList result = apiInstance.Get(entityType, entityId, startDate, endDate, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -118,17 +108,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new LogsApi(config);
 
-try
-{
-    List<LogEntityType> result = apiInstance.GetEntityTypes();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling LogsApi.GetEntityTypes: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+List<LogEntityType> result = apiInstance.GetEntityTypes();
 ```
 
 #### Using the GetEntityTypesWithHttpInfo variant

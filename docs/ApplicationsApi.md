@@ -34,17 +34,7 @@ var createApplicationRequest = new CreateApplicationRequest(/*required parameter
     // Additional parameters
 };
 
-try
-{
-    Application result = apiInstance.Create(createApplicationRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Application result = apiInstance.Create(createApplicationRequest);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -115,16 +105,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ApplicationsApi(config);
 var id = "";
 
-try
-{
-    apiInstance.Delete(id);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -196,17 +177,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    ApplicationPaginatedList result = apiInstance.Get(id, type, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ApplicationPaginatedList result = apiInstance.Get(id, type, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -281,17 +252,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ApplicationsApi(config);
 var id = "";
 
-try
-{
-    Application result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Application result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant
@@ -361,17 +322,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
 
-try
-{
-    Application result = apiInstance.GetByKey();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.GetByKey: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Application result = apiInstance.GetByKey();
 ```
 
 #### Using the GetByKeyWithHttpInfo variant
@@ -437,17 +388,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ApplicationsApi(config);
 var id = "";
 
-try
-{
-    Application result = apiInstance.RegenerateKey(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.RegenerateKey: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Application result = apiInstance.RegenerateKey(id);
 ```
 
 #### Using the RegenerateKeyWithHttpInfo variant
@@ -523,17 +464,7 @@ var updateApplicationRequest = new UpdateApplicationRequest(/*required parameter
     // Additional parameters
 };
 
-try
-{
-    Application result = apiInstance.Update(id, updateApplicationRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationsApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Application result = apiInstance.Update(id, updateApplicationRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant

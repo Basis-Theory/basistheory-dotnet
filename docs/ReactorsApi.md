@@ -34,17 +34,7 @@ var createReactorRequest = new CreateReactorRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Reactor result = apiInstance.Create(createReactorRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Reactor result = apiInstance.Create(createReactorRequest);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -115,16 +105,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ReactorsApi(config);
 var id = "";
 
-try
-{
-    apiInstance.Delete(id);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -196,17 +177,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    ReactorPaginatedList result = apiInstance.Get(id, name, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactorPaginatedList result = apiInstance.Get(id, name, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -281,17 +252,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ReactorsApi(config);
 var id = "";
 
-try
-{
-    Reactor result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Reactor result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant
@@ -366,16 +327,7 @@ var patchReactorRequest = new PatchReactorRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    apiInstance.Patch(id, patchReactorRequest);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.Patch: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Patch(id, patchReactorRequest);
 ```
 
 #### Using the PatchWithHttpInfo variant
@@ -449,17 +401,7 @@ var reactRequest = new ReactRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    ReactResponse result = apiInstance.React(id, reactRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.React: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ReactResponse result = apiInstance.React(id, reactRequest);
 ```
 
 #### Using the ReactWithHttpInfo variant
@@ -538,17 +480,7 @@ var updateReactorRequest = new UpdateReactorRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Reactor result = apiInstance.Update(id, updateReactorRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ReactorsApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Reactor result = apiInstance.Update(id, updateReactorRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant

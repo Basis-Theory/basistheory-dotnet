@@ -25,17 +25,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationTemplatesApi(config);
 
-try
-{
-    List<ApplicationTemplate> result = apiInstance.Get();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationTemplatesApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+List<ApplicationTemplate> result = apiInstance.Get();
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -101,17 +91,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new ApplicationTemplatesApi(config);
 var id = "";
 
-try
-{
-    ApplicationTemplate result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling ApplicationTemplatesApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+ApplicationTemplate result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant

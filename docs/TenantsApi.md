@@ -40,17 +40,7 @@ var createTenantConnectionRequest = new CreateTenantConnectionRequest(/*required
     // Additional parameters
 };
 
-try
-{
-    CreateTenantConnectionResponse result = apiInstance.CreateConnection(createTenantConnectionRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.CreateConnection: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+CreateTenantConnectionResponse result = apiInstance.CreateConnection(createTenantConnectionRequest);
 ```
 
 #### Using the CreateConnectionWithHttpInfo variant
@@ -124,17 +114,7 @@ var createTenantInvitationRequest = new CreateTenantInvitationRequest(/*required
     // Additional parameters
 };
 
-try
-{
-    TenantInvitationResponse result = apiInstance.CreateInvitation(createTenantInvitationRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.CreateInvitation: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantInvitationResponse result = apiInstance.CreateInvitation(createTenantInvitationRequest);
 ```
 
 #### Using the CreateInvitationWithHttpInfo variant
@@ -204,16 +184,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 
-try
-{
-    apiInstance.Delete();
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete();
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -276,17 +247,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 
-try
-{
-    CreateTenantConnectionResponse result = apiInstance.DeleteConnection();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.DeleteConnection: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+CreateTenantConnectionResponse result = apiInstance.DeleteConnection();
 ```
 
 #### Using the DeleteConnectionWithHttpInfo variant
@@ -353,16 +314,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TenantsApi(config);
 var invitationId = "";
 
-try
-{
-    apiInstance.DeleteInvitation(invitationId);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.DeleteInvitation: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.DeleteInvitation(invitationId);
 ```
 
 #### Using the DeleteInvitationWithHttpInfo variant
@@ -430,16 +382,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TenantsApi(config);
 var memberId = "";
 
-try
-{
-    apiInstance.DeleteMember(memberId);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.DeleteMember: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.DeleteMember(memberId);
 ```
 
 #### Using the DeleteMemberWithHttpInfo variant
@@ -507,17 +450,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 
-try
-{
-    Tenant result = apiInstance.Get();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Tenant result = apiInstance.Get();
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -587,17 +520,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    TenantInvitationResponsePaginatedList result = apiInstance.GetInvitations(status, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.GetInvitations: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantInvitationResponsePaginatedList result = apiInstance.GetInvitations(status, page, start, size);
 ```
 
 #### Using the GetInvitationsWithHttpInfo variant
@@ -673,17 +596,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    TenantMemberResponsePaginatedList result = apiInstance.GetMembers(userId, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.GetMembers: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantMemberResponsePaginatedList result = apiInstance.GetMembers(userId, page, start, size);
 ```
 
 #### Using the GetMembersWithHttpInfo variant
@@ -755,17 +668,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new TenantsApi(config);
 
-try
-{
-    TenantUsageReport result = apiInstance.GetTenantUsageReport();
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.GetTenantUsageReport: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantUsageReport result = apiInstance.GetTenantUsageReport();
 ```
 
 #### Using the GetTenantUsageReportWithHttpInfo variant
@@ -832,17 +735,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TenantsApi(config);
 var invitationId = "";
 
-try
-{
-    TenantInvitationResponse result = apiInstance.ResendInvitation(invitationId);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.ResendInvitation: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantInvitationResponse result = apiInstance.ResendInvitation(invitationId);
 ```
 
 #### Using the ResendInvitationWithHttpInfo variant
@@ -916,17 +809,7 @@ var updateTenantRequest = new UpdateTenantRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Tenant result = apiInstance.Update(updateTenantRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Tenant result = apiInstance.Update(updateTenantRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant
@@ -1002,17 +885,7 @@ var updateTenantMemberRequest = new UpdateTenantMemberRequest(/*required paramet
     // Additional parameters
 };
 
-try
-{
-    TenantMemberResponse result = apiInstance.UpdateMember(memberId, updateTenantMemberRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TenantsApi.UpdateMember: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TenantMemberResponse result = apiInstance.UpdateMember(memberId, updateTenantMemberRequest);
 ```
 
 #### Using the UpdateMemberWithHttpInfo variant

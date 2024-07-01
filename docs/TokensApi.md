@@ -35,17 +35,7 @@ var createTokenRequest = new CreateTokenRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Token result = apiInstance.Create(createTokenRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.Create: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Token result = apiInstance.Create(createTokenRequest);
 ```
 
 #### Using the CreateWithHttpInfo variant
@@ -117,16 +107,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TokensApi(config);
 var id = "";
 
-try
-{
-    apiInstance.Delete(id);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.Delete: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+apiInstance.Delete(id);
 ```
 
 #### Using the DeleteWithHttpInfo variant
@@ -202,17 +183,7 @@ var page = 1;
 var start = "";
 var size = 1;
 
-try
-{
-    TokenPaginatedList result = apiInstance.Get(id, metadata, page, start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.Get: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TokenPaginatedList result = apiInstance.Get(id, metadata, page, start, size);
 ```
 
 #### Using the GetWithHttpInfo variant
@@ -286,17 +257,7 @@ config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 var apiInstance = new TokensApi(config);
 var id = "";
 
-try
-{
-    Token result = apiInstance.GetById(id);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.GetById: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Token result = apiInstance.GetById(id);
 ```
 
 #### Using the GetByIdWithHttpInfo variant
@@ -368,17 +329,7 @@ var apiInstance = new TokensApi(config);
 var start = "";
 var size = 1;
 
-try
-{
-    TokenCursorPaginatedList result = apiInstance.GetV2(start, size);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.GetV2: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TokenCursorPaginatedList result = apiInstance.GetV2(start, size);
 ```
 
 #### Using the GetV2WithHttpInfo variant
@@ -452,17 +403,7 @@ var searchTokensRequest = new SearchTokensRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    TokenPaginatedList result = apiInstance.Search(searchTokensRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.Search: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TokenPaginatedList result = apiInstance.Search(searchTokensRequest);
 ```
 
 #### Using the SearchWithHttpInfo variant
@@ -536,17 +477,7 @@ var searchTokensRequestV2 = new SearchTokensRequestV2(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    TokenCursorPaginatedList result = apiInstance.SearchV2(searchTokensRequestV2);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.SearchV2: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+TokenCursorPaginatedList result = apiInstance.SearchV2(searchTokensRequestV2);
 ```
 
 #### Using the SearchV2WithHttpInfo variant
@@ -621,17 +552,7 @@ var updateTokenRequest = new UpdateTokenRequest(/*required parameters*/)
     // Additional parameters
 };
 
-try
-{
-    Token result = apiInstance.Update(id, updateTokenRequest);
-    Console.WriteLine(result);
-}
-catch (ApiException  e)
-{
-    Console.WriteLine("Exception when calling TokensApi.Update: " + e.Message);
-    Console.WriteLine("Status Code: " + e.ErrorCode);
-    Console.WriteLine(e.StackTrace);
-}
+Token result = apiInstance.Update(id, updateTokenRequest);
 ```
 
 #### Using the UpdateWithHttpInfo variant
