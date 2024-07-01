@@ -65,7 +65,7 @@ var apiInstance = new {{classname}}(config);
 {{#allParams}}
 {{#isPrimitiveType}}
 {{#isString}}
-var {{paramName}} = "";
+var {{paramName}} = {{#isUuid}}Guid.Parse(""){{/isUuid}}{{^isUuid}}""{{/isUuid}};
 {{/isString}}
 {{^isString}}
 var {{paramName}} = {{#isInteger}}1{{/isInteger}}{{^isInteger}}{{{example}}}{{/isInteger}};

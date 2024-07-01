@@ -103,7 +103,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "";
+var id = Guid.Parse("");
 
 apiInstance.Delete(id);
 ```
@@ -250,7 +250,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "";
+var id = Guid.Parse("");
 
 Application result = apiInstance.GetById(id);
 ```
@@ -386,7 +386,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "";
+var id = Guid.Parse("");
 
 Application result = apiInstance.RegenerateKey(id);
 ```
@@ -458,7 +458,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ApplicationsApi(config);
-var id = "";
+var id = Guid.Parse("");
 var updateApplicationRequest = new UpdateApplicationRequest(/*required parameters*/)
 {
     // Additional parameters

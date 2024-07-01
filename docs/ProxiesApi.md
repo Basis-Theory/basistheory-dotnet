@@ -102,7 +102,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ProxiesApi(config);
-var id = "";
+var id = Guid.Parse("");
 
 apiInstance.Delete(id);
 ```
@@ -249,7 +249,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ProxiesApi(config);
-var id = "";
+var id = Guid.Parse("");
 
 Proxy result = apiInstance.GetById(id);
 ```
@@ -320,7 +320,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ProxiesApi(config);
-var id = "";
+var id = Guid.Parse("");
 var patchProxyRequest = new PatchProxyRequest()
 {
     // Additional parameters
@@ -394,7 +394,7 @@ config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
 
 var apiInstance = new ProxiesApi(config);
-var id = "";
+var id = Guid.Parse("");
 var updateProxyRequest = new UpdateProxyRequest(/*required parameters*/)
 {
     // Additional parameters
