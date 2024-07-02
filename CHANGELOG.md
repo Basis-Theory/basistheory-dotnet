@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.4.0...v2.5.0) (2024-07-02)
+
+
+### Features
+
+* Autogenerate SDK ([#255](https://github.com/Basis-Theory/basistheory-dotnet/issues/255)) ([0f1df12](https://github.com/Basis-Theory/basistheory-dotnet/commit/0f1df12b0adca531574b868bace38e176b782ab9))
+
 # [2.4.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.3.0...v2.4.0) (2024-06-25)
 
 
