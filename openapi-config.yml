@@ -1,0 +1,21 @@
+apiName: Vault
+hideGenerationTimestamp: true
+nullableReferenceTypes: false
+gitHost: github.com
+gitUserId: Basis-Theory
+gitRepoId: basistheory-dotnet
+packageAuthors: Basis Theory
+packageCompany: Basis Theory
+packageCopyright: Copyright 2024
+packageDescription: Basis Theory .NET SDK
+packageName: BasisTheory.net
+packageTags: BasisTheory,SDK
+packageTitle: BasisTheory.net
+releaseNote: Updating to latest changes
+#returnICollection: true
+#sourceFolder: /src
+targetFramework: netstandard2.0;netstandard2.1
+testTargetFramework: net8.0
+#useCollection: true
+validatable: false
+vendorExtensions.x-csharp-value-type: true
