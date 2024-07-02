@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.5.0...v3.0.0) (2024-07-02)
+
+
+* feat! Update major version (#258) ([c7076c1](https://github.com/Basis-Theory/basistheory-dotnet/commit/c7076c1c24da069dac93e9cb11a77fd95ebb5a8b)), closes [#258](https://github.com/Basis-Theory/basistheory-dotnet/issues/258)
+
+
+### BREAKING CHANGES
+
+* New generated API
+
 # [2.5.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.4.0...v2.5.0) (2024-07-02)
 
 
