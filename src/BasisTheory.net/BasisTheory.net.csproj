@@ -14,7 +14,6 @@
     <RootNamespace>BasisTheory.net</RootNamespace>
     <Version>1.0.0</Version>
     <NuspecProperties>version=$(Version)</NuspecProperties>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <LangVersion>11.0</LangVersion>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\BasisTheory.net.xml</DocumentationFile>
