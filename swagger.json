@@ -7669,12 +7669,27 @@
         "description": "Authorization by API Key inside request's BT-API-KEY header",
         "name": "BT-API-KEY",
         "in": "header"
+      },
+      "oauth2_password": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "tokenUrl": "https://your-auth-server.com/token",
+            "scopes": {
+              "read:pets": "Read your pets",
+              "write:pets": "Modify your pets"
+            }
+          }
+        }
       }
     }
   },
   "security": [
     {
       "ApiKey": [ ]
+    },
+    {
+      "oauth2_password": []
     }
   ]
 }
