@@ -39,9 +39,9 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>LogPaginatedList</returns>
-        LogPaginatedList Get(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
+        LogPaginatedList Get(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -57,17 +57,17 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of LogPaginatedList</returns>
-        ApiResponse<LogPaginatedList> GetWithHttpInfo(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
+        ApiResponse<LogPaginatedList> GetWithHttpInfo(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>List&lt;LogEntityType&gt;</returns>
-        List<LogEntityType> GetEntityTypes(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
+        List<LogEntityType> GetEntityTypes(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -76,9 +76,9 @@ namespace BasisTheory.net.Api
         /// 
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of List&lt;LogEntityType&gt;</returns>
-        ApiResponse<List<LogEntityType>> GetEntityTypesWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
+        ApiResponse<List<LogEntityType>> GetEntityTypesWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         #endregion Synchronous Operations
     }
 
@@ -103,10 +103,10 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LogPaginatedList</returns>
-        System.Threading.Tasks.Task<LogPaginatedList> GetAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LogPaginatedList> GetAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -123,10 +123,10 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LogPaginatedList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LogPaginatedList>> GetWithHttpInfoAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LogPaginatedList>> GetWithHttpInfoAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -135,10 +135,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;LogEntityType&gt;</returns>
-        System.Threading.Tasks.Task<List<LogEntityType>> GetEntityTypesAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<LogEntityType>> GetEntityTypesAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -148,10 +148,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;LogEntityType&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<LogEntityType>>> GetEntityTypesWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<LogEntityType>>> GetEntityTypesWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -284,11 +284,11 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>LogPaginatedList</returns>
-        public LogPaginatedList Get(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
+        public LogPaginatedList Get(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<LogPaginatedList> localVarResponse = GetWithHttpInfo(entityType, entityId, startDate, endDate, page, start, size, operationIndex, localVarRequestOptions);
+            BasisTheory.net.Client.ApiResponse<LogPaginatedList> localVarResponse = GetWithHttpInfo(entityType, entityId, startDate, endDate, page, start, size, operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -304,13 +304,13 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of LogPaginatedList</returns>
-        public BasisTheory.net.Client.ApiResponse<LogPaginatedList> GetWithHttpInfo(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
+        public BasisTheory.net.Client.ApiResponse<LogPaginatedList> GetWithHttpInfo(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
             {
-                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
             }
 
             
@@ -326,71 +326,71 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
             if (entityType != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_type", entityType));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_type", entityType));
             }
             if (entityId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_id", entityId));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_id", entityId));
             }
             if (startDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start_date", startDate));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start_date", startDate));
             }
             if (endDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "end_date", endDate));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "end_date", endDate));
             }
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (start != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start", start));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start", start));
             }
             if (size != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
             }
 
-            localVarRequestOptions.Operation = "LogsApi.Get";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "LogsApi.Get";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
                 {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
                 }
                 else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
                          this.Configuration.OAuthFlow != null)
                 {
-                    localVarRequestOptions.OAuth = true;
+                    requestOptions.OAuth = true;
                 }
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<LogPaginatedList>("/logs", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<LogPaginatedList>("/logs", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Get", localVarResponse);
@@ -415,12 +415,12 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LogPaginatedList</returns>
-        public async System.Threading.Tasks.Task<LogPaginatedList> GetAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LogPaginatedList> GetAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<LogPaginatedList> localVarResponse = await GetWithHttpInfoAsync(entityType, entityId, startDate, endDate, page, start, size, operationIndex, localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<LogPaginatedList> localVarResponse = await GetWithHttpInfoAsync(entityType, entityId, startDate, endDate, page, start, size, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -436,15 +436,15 @@ namespace BasisTheory.net.Api
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LogPaginatedList)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<LogPaginatedList>> GetWithHttpInfoAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<LogPaginatedList>> GetWithHttpInfoAsync(string entityType = default(string), string entityId = default(string), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
             {
-                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
             }
 
             string[] _contentTypes = new string[] {
@@ -458,71 +458,71 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
             if (entityType != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_type", entityType));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_type", entityType));
             }
             if (entityId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_id", entityId));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "entity_id", entityId));
             }
             if (startDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start_date", startDate));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start_date", startDate));
             }
             if (endDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "end_date", endDate));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "end_date", endDate));
             }
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (start != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start", start));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "start", start));
             }
             if (size != null)
             {
-                localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
+                requestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
             }
 
-            localVarRequestOptions.Operation = "LogsApi.Get";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "LogsApi.Get";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
                 {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
                 }
                 else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
                          this.Configuration.OAuthFlow != null)
                 {
-                    localVarRequestOptions.OAuth = true;
+                    requestOptions.OAuth = true;
                 }
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<LogPaginatedList>("/logs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<LogPaginatedList>("/logs", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -541,11 +541,11 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>List&lt;LogEntityType&gt;</returns>
-        public List<LogEntityType> GetEntityTypes(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
+        public List<LogEntityType> GetEntityTypes(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<List<LogEntityType>> localVarResponse = GetEntityTypesWithHttpInfo(operationIndex, localVarRequestOptions);
+            BasisTheory.net.Client.ApiResponse<List<LogEntityType>> localVarResponse = GetEntityTypesWithHttpInfo(operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -554,13 +554,13 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of List&lt;LogEntityType&gt;</returns>
-        public BasisTheory.net.Client.ApiResponse<List<LogEntityType>> GetEntityTypesWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
+        public BasisTheory.net.Client.ApiResponse<List<LogEntityType>> GetEntityTypesWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
             {
-                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
             }
 
             
@@ -576,43 +576,43 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
 
-            localVarRequestOptions.Operation = "LogsApi.GetEntityTypes";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "LogsApi.GetEntityTypes";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
                 {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
                 }
                 else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
                          this.Configuration.OAuthFlow != null)
                 {
-                    localVarRequestOptions.OAuth = true;
+                    requestOptions.OAuth = true;
                 }
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<LogEntityType>>("/logs/entity-types", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<LogEntityType>>("/logs/entity-types", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetEntityTypes", localVarResponse);
@@ -630,12 +630,12 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;LogEntityType&gt;</returns>
-        public async System.Threading.Tasks.Task<List<LogEntityType>> GetEntityTypesAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<LogEntityType>> GetEntityTypesAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<List<LogEntityType>> localVarResponse = await GetEntityTypesWithHttpInfoAsync(operationIndex, localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<List<LogEntityType>> localVarResponse = await GetEntityTypesWithHttpInfoAsync(operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -644,15 +644,15 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="localVarRequestOptions"></param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;LogEntityType&gt;)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<List<LogEntityType>>> GetEntityTypesWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<List<LogEntityType>>> GetEntityTypesWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
             {
-                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
             }
 
             string[] _contentTypes = new string[] {
@@ -666,43 +666,43 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
 
-            localVarRequestOptions.Operation = "LogsApi.GetEntityTypes";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "LogsApi.GetEntityTypes";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
                 {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
                 }
                 else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
                          !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
                          this.Configuration.OAuthFlow != null)
                 {
-                    localVarRequestOptions.OAuth = true;
+                    requestOptions.OAuth = true;
                 }
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<LogEntityType>>("/logs/entity-types", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<LogEntityType>>("/logs/entity-types", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
