@@ -19,4 +19,4 @@ testTargetFramework: net8.0
 #useCollection: true
 validatable: false
 vendorExtensions.x-csharp-value-type: true
-library: httpclient
+#library: httpclient
