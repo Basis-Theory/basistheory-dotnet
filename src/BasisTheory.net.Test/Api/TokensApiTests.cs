@@ -131,6 +131,18 @@ namespace BasisTheory.net.Test.Api
         }
 
         /// <summary>
+        /// Test SearchV2
+        /// </summary>
+        [Fact]
+        public void SearchV2Test()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SearchTokensRequestV2 searchTokensRequestV2 = null;
+            //var response = instance.SearchV2(searchTokensRequestV2);
+            //Assert.IsType<TokenCursorPaginatedList>(response);
+        }
+
+        /// <summary>
         /// Test Update
         /// </summary>
         [Fact]

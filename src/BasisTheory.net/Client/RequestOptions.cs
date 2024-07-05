@@ -72,6 +72,10 @@ namespace BasisTheory.net.Client
         /// If request should be authenticated with OAuth.
         /// </summary>
         public bool OAuth { get; set; }
+        
+        public String CorrelationId { get; set; }
+        
+        public String IdempotencyKey { get; set; }
 
         /// <summary>
         /// Constructs a new instance of <see cref="RequestOptions"/>

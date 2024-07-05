@@ -438,7 +438,7 @@ namespace BasisTheory.net.Api
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
@@ -594,7 +594,7 @@ namespace BasisTheory.net.Api
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
@@ -750,7 +750,7 @@ namespace BasisTheory.net.Api
             }
             // authentication (oauth2_password) required
             // oauth required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
             {
                 localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }

@@ -65,6 +65,10 @@ namespace {{packageName}}.Client
         /// If request should be authenticated with OAuth.
         /// </summary>
         public bool OAuth { get; set; }
+        
+        public String CorrelationId { get; set; }
+        
+        public String IdempotencyKey { get; set; }
 
         {{/hasOAuthMethods}}
         /// <summary>

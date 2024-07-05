@@ -81,6 +81,14 @@ namespace BasisTheory.net.Test.Model
             // TODO unit test for the property 'Email'
         }
         /// <summary>
+        /// Test the property 'Role'
+        /// </summary>
+        [Fact]
+        public void RoleTest()
+        {
+            // TODO unit test for the property 'Role'
+        }
+        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]
