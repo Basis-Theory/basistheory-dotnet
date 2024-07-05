@@ -7676,8 +7676,6 @@
           "password": {
             "tokenUrl": "https://your-auth-server.com/token",
             "scopes": {
-              "read:pets": "Read your pets",
-              "write:pets": "Modify your pets"
             }
           }
         }
