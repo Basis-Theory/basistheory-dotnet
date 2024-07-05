@@ -69,6 +69,11 @@ namespace BasisTheory.net.Client
         public Object Data { get; set; }
 
         /// <summary>
+        /// If request should be authenticated with OAuth.
+        /// </summary>
+        public bool OAuth { get; set; }
+
+        /// <summary>
         /// Constructs a new instance of <see cref="RequestOptions"/>
         /// </summary>
         public RequestOptions()

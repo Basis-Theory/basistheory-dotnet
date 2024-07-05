@@ -31,9 +31,9 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        Reactor Create(CreateReactorRequest createReactorRequest, int operationIndex = 0);
+        Reactor Create(CreateReactorRequest createReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -43,17 +43,17 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        ApiResponse<Reactor> CreateWithHttpInfo(CreateReactorRequest createReactorRequest, int operationIndex = 0);
+        ApiResponse<Reactor> CreateWithHttpInfo(CreateReactorRequest createReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns></returns>
-        void Delete(Guid id, int operationIndex = 0);
+        void Delete(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -63,9 +63,9 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteWithHttpInfo(Guid id, int operationIndex = 0);
+        ApiResponse<Object> DeleteWithHttpInfo(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -75,9 +75,9 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ReactorPaginatedList</returns>
-        ReactorPaginatedList Get(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0);
+        ReactorPaginatedList Get(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -91,17 +91,17 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of ReactorPaginatedList</returns>
-        ApiResponse<ReactorPaginatedList> GetWithHttpInfo(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0);
+        ApiResponse<ReactorPaginatedList> GetWithHttpInfo(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        Reactor GetById(Guid id, int operationIndex = 0);
+        Reactor GetById(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -111,18 +111,18 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        ApiResponse<Reactor> GetByIdWithHttpInfo(Guid id, int operationIndex = 0);
+        ApiResponse<Reactor> GetByIdWithHttpInfo(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns></returns>
-        void Patch(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0);
+        void Patch(Guid id, PatchReactorRequest patchReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -133,18 +133,18 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0);
+        ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchReactorRequest patchReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ReactResponse</returns>
-        ReactResponse React(Guid id, ReactRequest reactRequest, int operationIndex = 0);
+        ReactResponse React(Guid id, ReactRequest reactRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -155,18 +155,18 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of ReactResponse</returns>
-        ApiResponse<ReactResponse> ReactWithHttpInfo(Guid id, ReactRequest reactRequest, int operationIndex = 0);
+        ApiResponse<ReactResponse> ReactWithHttpInfo(Guid id, ReactRequest reactRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        Reactor Update(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0);
+        Reactor Update(Guid id, UpdateReactorRequest updateReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -177,9 +177,9 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        ApiResponse<Reactor> UpdateWithHttpInfo(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0);
+        ApiResponse<Reactor> UpdateWithHttpInfo(Guid id, UpdateReactorRequest updateReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         #endregion Synchronous Operations
     }
 
@@ -197,10 +197,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        System.Threading.Tasks.Task<Reactor> CreateAsync(CreateReactorRequest createReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Reactor> CreateAsync(CreateReactorRequest createReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -210,10 +210,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Reactor>> CreateWithHttpInfoAsync(CreateReactorRequest createReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Reactor>> CreateWithHttpInfoAsync(CreateReactorRequest createReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -222,10 +222,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -235,10 +235,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -251,10 +251,10 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ReactorPaginatedList</returns>
-        System.Threading.Tasks.Task<ReactorPaginatedList> GetAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ReactorPaginatedList> GetAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -268,10 +268,10 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (ReactorPaginatedList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ReactorPaginatedList>> GetWithHttpInfoAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ReactorPaginatedList>> GetWithHttpInfoAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -280,10 +280,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        System.Threading.Tasks.Task<Reactor> GetByIdAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Reactor> GetByIdAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -293,10 +293,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Reactor>> GetByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Reactor>> GetByIdWithHttpInfoAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -306,10 +306,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PatchAsync(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task PatchAsync(Guid id, PatchReactorRequest patchReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -320,10 +320,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchReactorRequest patchReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -333,10 +333,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ReactResponse</returns>
-        System.Threading.Tasks.Task<ReactResponse> ReactAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ReactResponse> ReactAsync(Guid id, ReactRequest reactRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -347,10 +347,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (ReactResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
@@ -360,10 +360,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        System.Threading.Tasks.Task<Reactor> UpdateAsync(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Reactor> UpdateAsync(Guid id, UpdateReactorRequest updateReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -374,10 +374,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Reactor>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Reactor>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorRequest updateReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions));
         #endregion Asynchronous Operations
     }
 
@@ -503,11 +503,11 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        public Reactor Create(CreateReactorRequest createReactorRequest, int operationIndex = 0)
+        public Reactor Create(CreateReactorRequest createReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = CreateWithHttpInfo(createReactorRequest);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = CreateWithHttpInfo(createReactorRequest, localVarRequestOptions);
             return localVarResponse.Data;
         }
 
@@ -516,11 +516,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        public BasisTheory.net.Client.ApiResponse<Reactor> CreateWithHttpInfo(CreateReactorRequest createReactorRequest, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Reactor> CreateWithHttpInfo(CreateReactorRequest createReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -545,13 +550,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.Data = createReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Create";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -573,12 +581,12 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        public async System.Threading.Tasks.Task<Reactor> CreateAsync(CreateReactorRequest createReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Reactor> CreateAsync(CreateReactorRequest createReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await CreateWithHttpInfoAsync(createReactorRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await CreateWithHttpInfoAsync(createReactorRequest, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -587,13 +595,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> CreateWithHttpInfoAsync(CreateReactorRequest createReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> CreateWithHttpInfoAsync(CreateReactorRequest createReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -618,13 +629,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.Data = createReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Create";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -647,11 +661,11 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns></returns>
-        public void Delete(Guid id, int operationIndex = 0)
+        public void Delete(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            DeleteWithHttpInfo(id);
+            DeleteWithHttpInfo(id, localVarRequestOptions);
         }
 
         /// <summary>
@@ -659,11 +673,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public BasisTheory.net.Client.ApiResponse<Object> DeleteWithHttpInfo(Guid id, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Object> DeleteWithHttpInfo(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -687,13 +706,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ReactorsApi.Delete";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -715,12 +737,12 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            await DeleteWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            await DeleteWithHttpInfoAsync(id, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -728,13 +750,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -758,13 +783,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ReactorsApi.Delete";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -791,11 +819,11 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ReactorPaginatedList</returns>
-        public ReactorPaginatedList Get(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0)
+        public ReactorPaginatedList Get(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> localVarResponse = GetWithHttpInfo(id, name, page, start, size);
+            BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> localVarResponse = GetWithHttpInfo(id, name, page, start, size, localVarRequestOptions);
             return localVarResponse.Data;
         }
 
@@ -808,11 +836,16 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of ReactorPaginatedList</returns>
-        public BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> GetWithHttpInfo(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> GetWithHttpInfo(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -855,13 +888,16 @@ namespace BasisTheory.net.Api
                 localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
             }
 
-            localVarRequestOptions.Operation = "ReactorsApi.Get";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -887,12 +923,12 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ReactorPaginatedList</returns>
-        public async System.Threading.Tasks.Task<ReactorPaginatedList> GetAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ReactorPaginatedList> GetAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> localVarResponse = await GetWithHttpInfoAsync(id, name, page, start, size, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<ReactorPaginatedList> localVarResponse = await GetWithHttpInfoAsync(id, name, page, start, size, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -905,13 +941,16 @@ namespace BasisTheory.net.Api
         /// <param name="page"> (optional)</param>
         /// <param name="start"> (optional)</param>
         /// <param name="size"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (ReactorPaginatedList)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactorPaginatedList>> GetWithHttpInfoAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactorPaginatedList>> GetWithHttpInfoAsync(List<Guid> id = default(List<Guid>), string name = default(string), int? page = default(int?), string start = default(string), int? size = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -954,13 +993,16 @@ namespace BasisTheory.net.Api
                 localVarRequestOptions.QueryParameters.Add(BasisTheory.net.Client.ClientUtils.ParameterToMultiMap("", "size", size));
             }
 
-            localVarRequestOptions.Operation = "ReactorsApi.Get";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -983,11 +1025,11 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        public Reactor GetById(Guid id, int operationIndex = 0)
+        public Reactor GetById(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = GetByIdWithHttpInfo(id);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = GetByIdWithHttpInfo(id, localVarRequestOptions);
             return localVarResponse.Data;
         }
 
@@ -996,11 +1038,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        public BasisTheory.net.Client.ApiResponse<Reactor> GetByIdWithHttpInfo(Guid id, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Reactor> GetByIdWithHttpInfo(Guid id, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -1024,13 +1071,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ReactorsApi.GetById";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1052,12 +1102,12 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        public async System.Threading.Tasks.Task<Reactor> GetByIdAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Reactor> GetByIdAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await GetByIdWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await GetByIdWithHttpInfoAsync(id, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1066,13 +1116,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> GetByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> GetByIdWithHttpInfoAsync(Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -1096,13 +1149,16 @@ namespace BasisTheory.net.Api
 
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ReactorsApi.GetById";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1126,11 +1182,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns></returns>
-        public void Patch(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0)
+        public void Patch(Guid id, PatchReactorRequest patchReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            PatchWithHttpInfo(id, patchReactorRequest);
+            PatchWithHttpInfo(id, patchReactorRequest, localVarRequestOptions);
         }
 
         /// <summary>
@@ -1139,11 +1195,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public BasisTheory.net.Client.ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Object> PatchWithHttpInfo(Guid id, PatchReactorRequest patchReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/merge-patch+json"
@@ -1169,13 +1230,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = patchReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Patch";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1198,12 +1262,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PatchAsync(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task PatchAsync(Guid id, PatchReactorRequest patchReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            await PatchWithHttpInfoAsync(id, patchReactorRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            await PatchWithHttpInfoAsync(id, patchReactorRequest, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1212,13 +1276,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="patchReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchReactorRequest patchReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> PatchWithHttpInfoAsync(Guid id, PatchReactorRequest patchReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/merge-patch+json"
@@ -1244,13 +1311,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = patchReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Patch";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1274,11 +1344,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ReactResponse</returns>
-        public ReactResponse React(Guid id, ReactRequest reactRequest, int operationIndex = 0)
+        public ReactResponse React(Guid id, ReactRequest reactRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = ReactWithHttpInfo(id, reactRequest);
+            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = ReactWithHttpInfo(id, reactRequest, localVarRequestOptions);
             return localVarResponse.Data;
         }
 
@@ -1288,11 +1358,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of ReactResponse</returns>
-        public BasisTheory.net.Client.ApiResponse<ReactResponse> ReactWithHttpInfo(Guid id, ReactRequest reactRequest, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<ReactResponse> ReactWithHttpInfo(Guid id, ReactRequest reactRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1318,13 +1393,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = reactRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.React";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1347,12 +1425,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ReactResponse</returns>
-        public async System.Threading.Tasks.Task<ReactResponse> ReactAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ReactResponse> ReactAsync(Guid id, ReactRequest reactRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = await ReactWithHttpInfoAsync(id, reactRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = await ReactWithHttpInfoAsync(id, reactRequest, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1362,13 +1440,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="reactRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (ReactResponse)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1394,13 +1475,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = reactRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.React";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1424,11 +1508,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Reactor</returns>
-        public Reactor Update(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0)
+        public Reactor Update(Guid id, UpdateReactorRequest updateReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = UpdateWithHttpInfo(id, updateReactorRequest);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = UpdateWithHttpInfo(id, updateReactorRequest, localVarRequestOptions);
             return localVarResponse.Data;
         }
 
@@ -1438,11 +1522,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>ApiResponse of Reactor</returns>
-        public BasisTheory.net.Client.ApiResponse<Reactor> UpdateWithHttpInfo(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Reactor> UpdateWithHttpInfo(Guid id, UpdateReactorRequest updateReactorRequest, BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1468,13 +1557,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Update";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request
@@ -1497,12 +1589,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of Reactor</returns>
-        public async System.Threading.Tasks.Task<Reactor> UpdateAsync(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Reactor> UpdateAsync(Guid id, UpdateReactorRequest updateReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await UpdateWithHttpInfoAsync(id, updateReactorRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<Reactor> localVarResponse = await UpdateWithHttpInfoAsync(id, updateReactorRequest, cancellationToken, localVarRequestOptions).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1512,13 +1604,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="localVarRequestOptions"></param>
         /// <returns>Task of ApiResponse (Reactor)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorRequest updateReactorRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Reactor>> UpdateWithHttpInfoAsync(Guid id, UpdateReactorRequest updateReactorRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), BasisTheory.net.Client.RequestOptions localVarRequestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(localVarRequestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1544,13 +1639,16 @@ namespace BasisTheory.net.Api
             localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = updateReactorRequest;
 
-            localVarRequestOptions.Operation = "ReactorsApi.Update";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+            // authentication (oauth2_password) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
             }
 
             // make the HTTP request

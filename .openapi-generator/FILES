@@ -131,6 +131,9 @@ src/BasisTheory.net/BasisTheory.net.csproj
 src/BasisTheory.net/Client/ApiClient.cs
 src/BasisTheory.net/Client/ApiException.cs
 src/BasisTheory.net/Client/ApiResponse.cs
+src/BasisTheory.net/Client/Auth/OAuthAuthenticator.cs
+src/BasisTheory.net/Client/Auth/OAuthFlow.cs
+src/BasisTheory.net/Client/Auth/TokenResponse.cs
 src/BasisTheory.net/Client/ClientUtils.cs
 src/BasisTheory.net/Client/Configuration.cs
 src/BasisTheory.net/Client/ExceptionFactory.cs

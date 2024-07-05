@@ -22,6 +22,8 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+// Configure OAuth2 access token for authorization: oauth2_password
+config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new LogsApi(config);
 var entityType = "";
@@ -72,7 +74,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
 
 ### HTTP request headers
 
@@ -105,6 +107,8 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+// Configure OAuth2 access token for authorization: oauth2_password
+config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new LogsApi(config);
 
@@ -138,7 +142,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
 
 ### HTTP request headers
 

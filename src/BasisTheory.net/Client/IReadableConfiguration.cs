@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using BasisTheory.net.Client.Auth;
 
 namespace BasisTheory.net.Client
 {
@@ -25,6 +26,30 @@ namespace BasisTheory.net.Client
         /// </summary>
         /// <value>Access token.</value>
         string AccessToken { get; }
+
+        /// <summary>
+        /// Gets the OAuth token URL.
+        /// </summary>
+        /// <value>OAuth Token URL.</value>
+        string OAuthTokenUrl { get; }
+
+        /// <summary>
+        /// Gets the OAuth client ID.
+        /// </summary>
+        /// <value>OAuth Client ID.</value>
+        string OAuthClientId { get; }
+
+        /// <summary>
+        /// Gets the OAuth client secret.
+        /// </summary>
+        /// <value>OAuth Client Secret.</value>
+        string OAuthClientSecret { get; }
+
+        /// <summary>
+        /// Gets the OAuth flow.
+        /// </summary>
+        /// <value>OAuth Flow.</value>
+        OAuthFlow? OAuthFlow { get; }
 
         /// <summary>
         /// Gets the API key.
