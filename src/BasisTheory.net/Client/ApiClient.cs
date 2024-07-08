@@ -473,7 +473,8 @@ namespace BasisTheory.net.Client
                 CookieContainer = cookies,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+                UserAgent = configuration.UserAgent,
+                ThrowOnAnyError = true
             };
 
             RestClient client = new RestClient(_httpClient, clientOptions)
@@ -582,7 +583,8 @@ namespace BasisTheory.net.Client
                 ClientCertificates = configuration.ClientCertificates,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+                UserAgent = configuration.UserAgent,
+                ThrowOnAnyError = true
             };
 
             RestClient client = new RestClient(_httpClient, clientOptions)
@@ -608,7 +610,7 @@ namespace BasisTheory.net.Client
             if (RetryConfiguration.AsyncRetryPolicy != null)
             {
                 var policy = RetryConfiguration.AsyncRetryPolicy;
-                var policyResult = await policy.ExecuteAndCaptureAsync((ct) => client.ExecuteAsync(req, ct), cancellationToken);
+                var policyResult = await policy.ExecuteAndCaptureAsync((ct) => client.ExecuteAsync(req, ct), cancellationToken).ConfigureAwait(false);
                 response = (policyResult.Outcome == OutcomeType.Successful) ? client.Deserialize<T>(policyResult.Result) : new RestResponse<T>
                 {
                     Request = req,
@@ -617,7 +619,7 @@ namespace BasisTheory.net.Client
             }
             else
             {
-                response = await client.ExecuteAsync<T>(req, cancellationToken);
+                response = await client.ExecuteAsync<T>(req, cancellationToken).ConfigureAwait(false);
             }
 
             // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
