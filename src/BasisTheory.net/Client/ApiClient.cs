@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
@@ -172,6 +173,7 @@ namespace BasisTheory.net.Client
     public partial class ApiClient : ISynchronousClient, IAsynchronousClient
     {
         private readonly string _baseUrl;
+        private HttpClient _httpClient;
 
         /// <summary>
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
@@ -209,6 +211,7 @@ namespace BasisTheory.net.Client
         public ApiClient()
         {
             _baseUrl = BasisTheory.net.Client.GlobalConfiguration.Instance.BasePath;
+            _httpClient = new HttpClient();
         }
 
         /// <summary>
@@ -222,6 +225,22 @@ namespace BasisTheory.net.Client
                 throw new ArgumentException("basePath cannot be empty");
 
             _baseUrl = basePath;
+            _httpClient = new HttpClient();
+        }
+
+        public ApiClient(HttpClient httpClient)
+        {
+            _baseUrl = BasisTheory.net.Client.GlobalConfiguration.Instance.BasePath;
+            _httpClient = httpClient;
+        }
+
+        public ApiClient(string basePath, HttpClient httpClient)
+        {
+            if (string.IsNullOrEmpty(basePath))
+                throw new ArgumentException("basePath cannot be empty");
+
+            _baseUrl = basePath;
+            _httpClient = httpClient;
         }
 
         /// <summary>
@@ -457,7 +476,7 @@ namespace BasisTheory.net.Client
                 UserAgent = configuration.UserAgent
             };
 
-            RestClient client = new RestClient(clientOptions)
+            RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
 
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
@@ -566,7 +585,7 @@ namespace BasisTheory.net.Client
                 UserAgent = configuration.UserAgent
             };
 
-            RestClient client = new RestClient(clientOptions)
+            RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
 
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
@@ -589,7 +608,7 @@ namespace BasisTheory.net.Client
             if (RetryConfiguration.AsyncRetryPolicy != null)
             {
                 var policy = RetryConfiguration.AsyncRetryPolicy;
-                var policyResult = await policy.ExecuteAndCaptureAsync((ct) => client.ExecuteAsync(req, ct), cancellationToken).ConfigureAwait(false);
+                var policyResult = await policy.ExecuteAndCaptureAsync((ct) => client.ExecuteAsync(req, ct), cancellationToken);
                 response = (policyResult.Outcome == OutcomeType.Successful) ? client.Deserialize<T>(policyResult.Result) : new RestResponse<T>
                 {
                     Request = req,
@@ -598,7 +617,7 @@ namespace BasisTheory.net.Client
             }
             else
             {
-                response = await client.ExecuteAsync<T>(req, cancellationToken).ConfigureAwait(false);
+                response = await client.ExecuteAsync<T>(req, cancellationToken);
             }
 
             // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
