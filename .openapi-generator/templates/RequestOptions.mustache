@@ -60,12 +60,6 @@ namespace {{packageName}}.Client
         /// </summary>
         public Object Data { get; set; }
 
-        {{#hasOAuthMethods}}
-        /// <summary>
-        /// If request should be authenticated with OAuth.
-        /// </summary>
-        public bool OAuth { get; set; }
-
         public String CorrelationId
         {
             set
@@ -74,7 +68,7 @@ namespace {{packageName}}.Client
                 this.HeaderParameters.Add("BT-TRACE-ID", value);
             }
         }
-
+    
         public String IdempotencyKey
         {
             set
@@ -83,6 +77,12 @@ namespace {{packageName}}.Client
                 this.HeaderParameters.Add("BT-IDEMPOTENCY-KEY", value);
             }
         }
+
+        {{#hasOAuthMethods}}
+        /// <summary>
+        /// If request should be authenticated with OAuth.
+        /// </summary>
+        public bool OAuth { get; set; }
 
         {{/hasOAuthMethods}}
         /// <summary>

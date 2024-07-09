@@ -68,6 +68,24 @@ namespace BasisTheory.net.Client
         /// </summary>
         public Object Data { get; set; }
 
+        public String CorrelationId
+        {
+            set
+            {
+                this.HeaderParameters.Remove("BT-TRACE-ID");
+                this.HeaderParameters.Add("BT-TRACE-ID", value);
+            }
+        }
+    
+        public String IdempotencyKey
+        {
+            set
+            {
+                this.HeaderParameters.Remove("BT-IDEMPOTENCY-KEY");
+                this.HeaderParameters.Add("BT-IDEMPOTENCY-KEY", value);
+            }
+        }
+
         /// <summary>
         /// Constructs a new instance of <see cref="RequestOptions"/>
         /// </summary>
