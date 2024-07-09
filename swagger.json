@@ -6229,12 +6229,16 @@
         "type": "object",
         "properties": {
           "scopes": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "domain_aliases": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -7669,25 +7673,12 @@
         "description": "Authorization by API Key inside request's BT-API-KEY header",
         "name": "BT-API-KEY",
         "in": "header"
-      },
-      "oauth2_password": {
-        "type": "oauth2",
-        "flows": {
-          "password": {
-            "tokenUrl": "https://your-auth-server.com/token",
-            "scopes": {
-            }
-          }
-        }
       }
     }
   },
   "security": [
     {
       "ApiKey": [ ]
-    },
-    {
-      "oauth2_password": []
     }
   ]
 }
