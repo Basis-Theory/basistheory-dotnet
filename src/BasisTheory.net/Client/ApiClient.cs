@@ -29,7 +29,6 @@ using RestSharp;
 using RestSharp.Serializers;
 using RestSharpMethod = RestSharp.Method;
 using Polly;
-using BasisTheory.net.Client.Auth;
 
 namespace BasisTheory.net.Client
 {
@@ -479,20 +478,6 @@ namespace BasisTheory.net.Client
             RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
 
-            if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientId) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientSecret) &&
-                configuration.OAuthFlow != null)
-            {
-                client = client.UseAuthenticator(new OAuthAuthenticator(
-                    configuration.OAuthTokenUrl,
-                    configuration.OAuthClientId,
-                    configuration.OAuthClientSecret,
-                    configuration.OAuthFlow,
-                    SerializerSettings,
-                    configuration));
-            }
-
             InterceptRequest(req);
 
             RestResponse<T> response;
@@ -588,20 +573,6 @@ namespace BasisTheory.net.Client
 
             RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
-
-            if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientId) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientSecret) &&
-                configuration.OAuthFlow != null)
-            {
-                client = client.UseAuthenticator(new OAuthAuthenticator(
-                    configuration.OAuthTokenUrl,
-                    configuration.OAuthClientId,
-                    configuration.OAuthClientSecret,
-                    configuration.OAuthFlow,
-                    SerializerSettings,
-                    configuration));
-            }
 
             InterceptRequest(req);
 

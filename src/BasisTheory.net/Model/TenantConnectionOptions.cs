@@ -33,16 +33,17 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TenantConnectionOptions" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        public TenantConnectionOptions()
+        /// <param name="domainAliases">domainAliases.</param>
+        public TenantConnectionOptions(List<string> domainAliases = default(List<string>))
         {
+            this.DomainAliases = domainAliases;
         }
 
         /// <summary>
         /// Gets or Sets Scopes
         /// </summary>
         [DataMember(Name = "scopes", EmitDefaultValue = true)]
-        public List<string> Scopes { get; private set; }
+        public string Scopes { get; private set; }
 
         /// <summary>
         /// Returns false as Scopes should not be serialized given that it's read-only.
@@ -53,6 +54,12 @@ namespace BasisTheory.net.Model
             return false;
         }
         /// <summary>
+        /// Gets or Sets DomainAliases
+        /// </summary>
+        [DataMember(Name = "domain_aliases", EmitDefaultValue = true)]
+        public List<string> DomainAliases { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -61,6 +68,7 @@ namespace BasisTheory.net.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class TenantConnectionOptions {\n");
             sb.Append("  Scopes: ").Append(Scopes).Append("\n");
+            sb.Append("  DomainAliases: ").Append(DomainAliases).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -98,9 +106,14 @@ namespace BasisTheory.net.Model
             return 
                 (
                     this.Scopes == input.Scopes ||
-                    this.Scopes != null &&
-                    input.Scopes != null &&
-                    this.Scopes.SequenceEqual(input.Scopes)
+                    (this.Scopes != null &&
+                    this.Scopes.Equals(input.Scopes))
+                ) && 
+                (
+                    this.DomainAliases == input.DomainAliases ||
+                    this.DomainAliases != null &&
+                    input.DomainAliases != null &&
+                    this.DomainAliases.SequenceEqual(input.DomainAliases)
                 );
         }
 
@@ -116,6 +129,10 @@ namespace BasisTheory.net.Model
                 if (this.Scopes != null)
                 {
                     hashCode = (hashCode * 59) + this.Scopes.GetHashCode();
+                }
+                if (this.DomainAliases != null)
+                {
+                    hashCode = (hashCode * 59) + this.DomainAliases.GetHashCode();
                 }
                 return hashCode;
             }

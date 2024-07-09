@@ -64,6 +64,14 @@ namespace BasisTheory.net.Test.Model
         {
             // TODO unit test for the property 'Scopes'
         }
+        /// <summary>
+        /// Test the property 'DomainAliases'
+        /// </summary>
+        [Fact]
+        public void DomainAliasesTest()
+        {
+            // TODO unit test for the property 'DomainAliases'
+        }
 
     }
 

@@ -33,8 +33,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var createTenantConnectionRequest = new CreateTenantConnectionRequest()
@@ -77,7 +75,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -110,8 +108,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var createTenantInvitationRequest = new CreateTenantInvitationRequest()
@@ -154,7 +150,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -187,8 +183,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 
@@ -219,7 +213,7 @@ void (empty response body)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -252,8 +246,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 
@@ -287,7 +279,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -320,8 +312,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var invitationId = Guid.Parse("");
@@ -357,7 +347,7 @@ void (empty response body)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -390,8 +380,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var memberId = Guid.Parse("");
@@ -427,7 +415,7 @@ void (empty response body)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -461,8 +449,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 
@@ -496,7 +482,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -529,8 +515,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var status = (TenantInvitationStatus) "PENDING";
@@ -575,7 +559,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -607,8 +591,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var userId = new List<Guid>();
@@ -653,7 +635,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -685,8 +667,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 
@@ -720,7 +700,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -753,8 +733,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var invitationId = Guid.Parse("");
@@ -793,7 +771,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -826,8 +804,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var updateTenantRequest = new UpdateTenantRequest()
@@ -870,7 +846,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -904,8 +880,6 @@ using BasisTheory.net.Model;
 Configuration config = new Configuration();
 config.BasePath = "https://api.basistheory.com";
 config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
-// Configure OAuth2 access token for authorization: oauth2_password
-config.AccessToken = "YOUR_ACCESS_TOKEN";
 
 var apiInstance = new TenantsApi(config);
 var memberId = Guid.Parse("");
@@ -949,7 +923,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey), [oauth2_password](../README.md#oauth2_password)
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 

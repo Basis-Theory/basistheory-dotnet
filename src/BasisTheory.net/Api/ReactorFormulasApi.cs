@@ -15,7 +15,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using BasisTheory.net.Client;
-using BasisTheory.net.Client.Auth;
 using BasisTheory.net.Model;
 
 namespace BasisTheory.net.Api
@@ -474,22 +473,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ReactorFormula>("/reactor-formulas", requestOptions, this.Configuration);
@@ -568,22 +551,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = await this.AsynchronousClient.PostAsync<ReactorFormula>("/reactor-formulas", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
@@ -660,22 +627,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<Object>("/reactor-formulas/{id}", requestOptions, this.Configuration);
@@ -751,22 +702,6 @@ namespace BasisTheory.net.Api
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
-            }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
             }
 
             // make the HTTP request
@@ -866,22 +801,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<ReactorFormulaPaginatedList>("/reactor-formulas", requestOptions, this.Configuration);
@@ -980,22 +899,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = await this.AsynchronousClient.GetAsync<ReactorFormulaPaginatedList>("/reactor-formulas", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
@@ -1073,22 +976,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<ReactorFormula>("/reactor-formulas/{id}", requestOptions, this.Configuration);
@@ -1165,22 +1052,6 @@ namespace BasisTheory.net.Api
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
-            }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
             }
 
             // make the HTTP request
@@ -1263,22 +1134,6 @@ namespace BasisTheory.net.Api
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<ReactorFormula>("/reactor-formulas/{id}", requestOptions, this.Configuration);
@@ -1359,22 +1214,6 @@ namespace BasisTheory.net.Api
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
                 requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
-            }
-            // authentication (oauth2_password) required
-            // oauth required
-            if (!requestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    requestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    requestOptions.OAuth = true;
-                }
             }
 
             // make the HTTP request

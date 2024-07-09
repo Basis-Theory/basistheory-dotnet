@@ -79,8 +79,6 @@ namespace Example
             config.ApiKey.Add("BT-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.ApiKeyPrefix.Add("BT-API-KEY", "Bearer");
-            // Configure OAuth2 access token for authorization: oauth2_password
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ApplicationKeysApi(config);
             var id = "id_example";  // Guid | 
@@ -286,12 +284,4 @@ Class | Method | HTTP request | Description
 - **Type**: API key
 - **API key parameter name**: BT-API-KEY
 - **Location**: HTTP header
-
-<a name="oauth2_password"></a>
-### oauth2_password
-
-- **Type**: OAuth
-- **Flow**: password
-- **Authorization URL**: 
-- **Scopes**: N/A
 
