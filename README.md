@@ -1,6 +1,6 @@
 # BasisTheory.net - the C# library for the Basis Theory API
 
-## Getting Started 
+## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
 * All permissions should be selected

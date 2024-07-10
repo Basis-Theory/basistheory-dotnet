@@ -33,8 +33,9 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSAuthentication</returns>
-        ThreeDSAuthentication ThreeDSAuthenticateSession(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0);
+        ThreeDSAuthentication ThreeDSAuthenticateSession(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -45,17 +46,18 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSAuthentication</returns>
-        ApiResponse<ThreeDSAuthentication> ThreeDSAuthenticateSessionWithHttpInfo(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0);
+        ApiResponse<ThreeDSAuthentication> ThreeDSAuthenticateSessionWithHttpInfo(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSAuthentication</returns>
-        ThreeDSAuthentication ThreeDSGetChallengeResult(Guid sessionId, int operationIndex = 0);
+        ThreeDSAuthentication ThreeDSGetChallengeResult(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -65,17 +67,18 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSAuthentication</returns>
-        ApiResponse<ThreeDSAuthentication> ThreeDSGetChallengeResultWithHttpInfo(Guid sessionId, int operationIndex = 0);
+        ApiResponse<ThreeDSAuthentication> ThreeDSGetChallengeResultWithHttpInfo(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSSession</returns>
-        ThreeDSSession ThreeDSGetSessionById(Guid id, int operationIndex = 0);
+        ThreeDSSession ThreeDSGetSessionById(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -85,9 +88,9 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSSession</returns>
-        ApiResponse<ThreeDSSession> ThreeDSGetSessionByIdWithHttpInfo(Guid id, int operationIndex = 0);
+        ApiResponse<ThreeDSSession> ThreeDSGetSessionByIdWithHttpInfo(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         #endregion Synchronous Operations
     }
 
@@ -107,9 +110,10 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSAuthentication</returns>
-        System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSAuthenticateSessionAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSAuthenticateSessionAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -121,9 +125,10 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSAuthentication)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ThreeDSAuthentication>> ThreeDSAuthenticateSessionWithHttpInfoAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ThreeDSAuthentication>> ThreeDSAuthenticateSessionWithHttpInfoAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -133,9 +138,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSAuthentication</returns>
-        System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSGetChallengeResultAsync(Guid sessionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSGetChallengeResultAsync(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -146,9 +152,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSAuthentication)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ThreeDSAuthentication>> ThreeDSGetChallengeResultWithHttpInfoAsync(Guid sessionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ThreeDSAuthentication>> ThreeDSGetChallengeResultWithHttpInfoAsync(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -158,9 +165,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSSession</returns>
-        System.Threading.Tasks.Task<ThreeDSSession> ThreeDSGetSessionByIdAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ThreeDSSession> ThreeDSGetSessionByIdAsync(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -171,9 +179,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSSession)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ThreeDSSession>> ThreeDSGetSessionByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ThreeDSSession>> ThreeDSGetSessionByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -301,10 +310,11 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSAuthentication</returns>
-        public ThreeDSAuthentication ThreeDSAuthenticateSession(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0)
+        public ThreeDSAuthentication ThreeDSAuthenticateSession(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = ThreeDSAuthenticateSessionWithHttpInfo(sessionId, authenticateThreeDSSessionRequest);
+            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = ThreeDSAuthenticateSessionWithHttpInfo(sessionId, authenticateThreeDSSessionRequest, operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -315,10 +325,16 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSAuthentication</returns>
-        public BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> ThreeDSAuthenticateSessionWithHttpInfo(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> ThreeDSAuthenticateSessionWithHttpInfo(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -332,29 +348,29 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
-            localVarRequestOptions.Data = authenticateThreeDSSessionRequest;
+            requestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
+            requestOptions.Data = authenticateThreeDSSessionRequest;
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSAuthenticateSession";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSAuthenticateSession";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/authenticate", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/authenticate", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ThreeDSAuthenticateSession", localVarResponse);
@@ -374,11 +390,12 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSAuthentication</returns>
-        public async System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSAuthenticateSessionAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSAuthenticateSessionAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = await ThreeDSAuthenticateSessionWithHttpInfoAsync(sessionId, authenticateThreeDSSessionRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = await ThreeDSAuthenticateSessionWithHttpInfoAsync(sessionId, authenticateThreeDSSessionRequest, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -389,12 +406,16 @@ namespace BasisTheory.net.Api
         /// <param name="sessionId"></param>
         /// <param name="authenticateThreeDSSessionRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSAuthentication)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication>> ThreeDSAuthenticateSessionWithHttpInfoAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication>> ThreeDSAuthenticateSessionWithHttpInfoAsync(Guid sessionId, AuthenticateThreeDSSessionRequest authenticateThreeDSSessionRequest = default(AuthenticateThreeDSSessionRequest), int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -408,29 +429,29 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
-            localVarRequestOptions.Data = authenticateThreeDSSessionRequest;
+            requestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
+            requestOptions.Data = authenticateThreeDSSessionRequest;
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSAuthenticateSession";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSAuthenticateSession";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/authenticate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/authenticate", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -450,10 +471,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSAuthentication</returns>
-        public ThreeDSAuthentication ThreeDSGetChallengeResult(Guid sessionId, int operationIndex = 0)
+        public ThreeDSAuthentication ThreeDSGetChallengeResult(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = ThreeDSGetChallengeResultWithHttpInfo(sessionId);
+            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = ThreeDSGetChallengeResultWithHttpInfo(sessionId, operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -463,10 +485,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSAuthentication</returns>
-        public BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> ThreeDSGetChallengeResultWithHttpInfo(Guid sessionId, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> ThreeDSGetChallengeResultWithHttpInfo(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -479,28 +507,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
+            requestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSGetChallengeResult";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSGetChallengeResult";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/challenge-result", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/challenge-result", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ThreeDSGetChallengeResult", localVarResponse);
@@ -519,11 +547,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSAuthentication</returns>
-        public async System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSGetChallengeResultAsync(Guid sessionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ThreeDSAuthentication> ThreeDSGetChallengeResultAsync(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = await ThreeDSGetChallengeResultWithHttpInfoAsync(sessionId, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication> localVarResponse = await ThreeDSGetChallengeResultWithHttpInfoAsync(sessionId, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -533,12 +562,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSAuthentication)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication>> ThreeDSGetChallengeResultWithHttpInfoAsync(Guid sessionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSAuthentication>> ThreeDSGetChallengeResultWithHttpInfoAsync(Guid sessionId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -551,28 +584,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
+            requestOptions.PathParameters.Add("sessionId", BasisTheory.net.Client.ClientUtils.ParameterToString(sessionId)); // path parameter
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSGetChallengeResult";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSGetChallengeResult";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/challenge-result", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ThreeDSAuthentication>("/3ds/sessions/{sessionId}/challenge-result", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -592,10 +625,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ThreeDSSession</returns>
-        public ThreeDSSession ThreeDSGetSessionById(Guid id, int operationIndex = 0)
+        public ThreeDSSession ThreeDSGetSessionById(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSSession> localVarResponse = ThreeDSGetSessionByIdWithHttpInfo(id);
+            BasisTheory.net.Client.ApiResponse<ThreeDSSession> localVarResponse = ThreeDSGetSessionByIdWithHttpInfo(id, operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -605,10 +639,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of ThreeDSSession</returns>
-        public BasisTheory.net.Client.ApiResponse<ThreeDSSession> ThreeDSGetSessionByIdWithHttpInfo(Guid id, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<ThreeDSSession> ThreeDSGetSessionByIdWithHttpInfo(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -621,28 +661,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSGetSessionById";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSGetSessionById";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ThreeDSSession>("/3ds/sessions/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ThreeDSSession>("/3ds/sessions/{id}", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ThreeDSGetSessionById", localVarResponse);
@@ -661,11 +701,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ThreeDSSession</returns>
-        public async System.Threading.Tasks.Task<ThreeDSSession> ThreeDSGetSessionByIdAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ThreeDSSession> ThreeDSGetSessionByIdAsync(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<ThreeDSSession> localVarResponse = await ThreeDSGetSessionByIdWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<ThreeDSSession> localVarResponse = await ThreeDSGetSessionByIdWithHttpInfoAsync(id, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -675,12 +716,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ThreeDSSession)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSSession>> ThreeDSGetSessionByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ThreeDSSession>> ThreeDSGetSessionByIdWithHttpInfoAsync(Guid id, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -693,28 +738,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
 
-            localVarRequestOptions.Operation = "ThreeDSApi.ThreeDSGetSessionById";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "ThreeDSApi.ThreeDSGetSessionById";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<ThreeDSSession>("/3ds/sessions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ThreeDSSession>("/3ds/sessions/{id}", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

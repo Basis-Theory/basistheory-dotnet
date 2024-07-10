@@ -17,7 +17,7 @@ namespace BasisTheory.net.Client
 {
     /// <summary>
     /// A container for generalized request inputs. This type allows consumers to extend the request functionality
-    /// by abstracting away from the default (built-in) request framework (e.g. RestSharp).
+    /// by abstracting away from the default (built-in) request framework (e.g. RestSharp). 
     /// </summary>
     public class RequestOptions
     {
@@ -67,6 +67,24 @@ namespace BasisTheory.net.Client
         /// Any data associated with a request body.
         /// </summary>
         public Object Data { get; set; }
+
+        public String CorrelationId
+        {
+            set
+            {
+                this.HeaderParameters.Remove("BT-TRACE-ID");
+                this.HeaderParameters.Add("BT-TRACE-ID", value);
+            }
+        }
+    
+        public String IdempotencyKey
+        {
+            set
+            {
+                this.HeaderParameters.Remove("BT-IDEMPOTENCY-KEY");
+                this.HeaderParameters.Add("BT-IDEMPOTENCY-KEY", value);
+            }
+        }
 
         /// <summary>
         /// Constructs a new instance of <see cref="RequestOptions"/>

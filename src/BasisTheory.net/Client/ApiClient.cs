@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
@@ -171,6 +172,7 @@ namespace BasisTheory.net.Client
     public partial class ApiClient : ISynchronousClient, IAsynchronousClient
     {
         private readonly string _baseUrl;
+        private HttpClient _httpClient;
 
         /// <summary>
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
@@ -208,6 +210,7 @@ namespace BasisTheory.net.Client
         public ApiClient()
         {
             _baseUrl = BasisTheory.net.Client.GlobalConfiguration.Instance.BasePath;
+            _httpClient = new HttpClient();
         }
 
         /// <summary>
@@ -221,6 +224,22 @@ namespace BasisTheory.net.Client
                 throw new ArgumentException("basePath cannot be empty");
 
             _baseUrl = basePath;
+            _httpClient = new HttpClient();
+        }
+
+        public ApiClient(HttpClient httpClient)
+        {
+            _baseUrl = BasisTheory.net.Client.GlobalConfiguration.Instance.BasePath;
+            _httpClient = httpClient;
+        }
+
+        public ApiClient(string basePath, HttpClient httpClient)
+        {
+            if (string.IsNullOrEmpty(basePath))
+                throw new ArgumentException("basePath cannot be empty");
+
+            _baseUrl = basePath;
+            _httpClient = httpClient;
         }
 
         /// <summary>
@@ -450,13 +469,13 @@ namespace BasisTheory.net.Client
             var clientOptions = new RestClientOptions(baseUrl)
             {
                 ClientCertificates = configuration.ClientCertificates,
-                CookieContainer = cookies,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+                UserAgent = configuration.UserAgent,
+                ThrowOnAnyError = true
             };
 
-            RestClient client = new RestClient(clientOptions)
+            RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
 
             InterceptRequest(req);
@@ -548,10 +567,11 @@ namespace BasisTheory.net.Client
                 ClientCertificates = configuration.ClientCertificates,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+                UserAgent = configuration.UserAgent,
+                ThrowOnAnyError = true
             };
 
-            RestClient client = new RestClient(clientOptions)
+            RestClient client = new RestClient(_httpClient, clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
 
             InterceptRequest(req);

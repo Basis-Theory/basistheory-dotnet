@@ -6229,12 +6229,16 @@
         "type": "object",
         "properties": {
           "scopes": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "domain_aliases": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           }
         },
         "additionalProperties": false

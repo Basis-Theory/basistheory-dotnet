@@ -32,8 +32,9 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns></returns>
-        void Authorize(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0);
+        void Authorize(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -43,16 +44,17 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AuthorizeWithHttpInfo(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0);
+        ApiResponse<Object> AuthorizeWithHttpInfo(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>CreateSessionResponse</returns>
-        CreateSessionResponse Create(int operationIndex = 0);
+        CreateSessionResponse Create(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
 
         /// <summary>
         /// 
@@ -61,9 +63,9 @@ namespace BasisTheory.net.Api
         /// 
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of CreateSessionResponse</returns>
-        ApiResponse<CreateSessionResponse> CreateWithHttpInfo(int operationIndex = 0);
+        ApiResponse<CreateSessionResponse> CreateWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
         #endregion Synchronous Operations
     }
 
@@ -82,9 +84,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AuthorizeAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task AuthorizeAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -95,9 +98,10 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AuthorizeWithHttpInfoAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> AuthorizeWithHttpInfoAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -106,9 +110,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateSessionResponse</returns>
-        System.Threading.Tasks.Task<CreateSessionResponse> CreateAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<CreateSessionResponse> CreateAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -118,9 +123,10 @@ namespace BasisTheory.net.Api
         /// </remarks>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateSessionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateSessionResponse>> CreateWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CreateSessionResponse>> CreateWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -247,10 +253,11 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns></returns>
-        public void Authorize(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0)
+        public void Authorize(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            AuthorizeWithHttpInfo(authorizeSessionRequest);
+            AuthorizeWithHttpInfo(authorizeSessionRequest, operationIndex, requestOptions);
         }
 
         /// <summary>
@@ -259,10 +266,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public BasisTheory.net.Client.ApiResponse<Object> AuthorizeWithHttpInfo(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<Object> AuthorizeWithHttpInfo(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -276,28 +289,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = authorizeSessionRequest;
+            requestOptions.Data = authorizeSessionRequest;
 
-            localVarRequestOptions.Operation = "SessionsApi.Authorize";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "SessionsApi.Authorize";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/sessions/authorize", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<Object>("/sessions/authorize", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Authorize", localVarResponse);
@@ -316,11 +329,12 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AuthorizeAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task AuthorizeAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await AuthorizeWithHttpInfoAsync(authorizeSessionRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            await AuthorizeWithHttpInfoAsync(authorizeSessionRequest, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -329,12 +343,16 @@ namespace BasisTheory.net.Api
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorizeSessionRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> AuthorizeWithHttpInfoAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> AuthorizeWithHttpInfoAsync(AuthorizeSessionRequest authorizeSessionRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -348,28 +366,28 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = authorizeSessionRequest;
+            requestOptions.Data = authorizeSessionRequest;
 
-            localVarRequestOptions.Operation = "SessionsApi.Authorize";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "SessionsApi.Authorize";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/sessions/authorize", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/sessions/authorize", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -388,10 +406,11 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>CreateSessionResponse</returns>
-        public CreateSessionResponse Create(int operationIndex = 0)
+        public CreateSessionResponse Create(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.ApiResponse<CreateSessionResponse> localVarResponse = CreateWithHttpInfo();
+            BasisTheory.net.Client.ApiResponse<CreateSessionResponse> localVarResponse = CreateWithHttpInfo(operationIndex, requestOptions);
             return localVarResponse.Data;
         }
 
@@ -400,10 +419,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <returns>ApiResponse of CreateSessionResponse</returns>
-        public BasisTheory.net.Client.ApiResponse<CreateSessionResponse> CreateWithHttpInfo(int operationIndex = 0)
+        public BasisTheory.net.Client.ApiResponse<CreateSessionResponse> CreateWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
         {
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
 
             string[] _contentTypes = new string[] {
             };
@@ -416,27 +441,27 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
 
-            localVarRequestOptions.Operation = "SessionsApi.Create";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "SessionsApi.Create";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateSessionResponse>("/sessions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateSessionResponse>("/sessions", requestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Create", localVarResponse);
@@ -454,11 +479,12 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateSessionResponse</returns>
-        public async System.Threading.Tasks.Task<CreateSessionResponse> CreateAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<CreateSessionResponse> CreateAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            BasisTheory.net.Client.ApiResponse<CreateSessionResponse> localVarResponse = await CreateWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            BasisTheory.net.Client.ApiResponse<CreateSessionResponse> localVarResponse = await CreateWithHttpInfoAsync(operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -467,12 +493,16 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateSessionResponse)</returns>
-        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<CreateSessionResponse>> CreateWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<CreateSessionResponse>> CreateWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            BasisTheory.net.Client.RequestOptions localVarRequestOptions = new BasisTheory.net.Client.RequestOptions();
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -485,27 +515,27 @@ namespace BasisTheory.net.Api
             var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
             }
 
             var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
 
-            localVarRequestOptions.Operation = "SessionsApi.Create";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            requestOptions.Operation = "SessionsApi.Create";
+            requestOptions.OperationIndex = operationIndex;
 
             // authentication (ApiKey) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
             {
-                localVarRequestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSessionResponse>("/sessions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSessionResponse>("/sessions", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
