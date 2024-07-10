@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v3.0.0...v3.1.0) (2024-07-10)
+
+
+### Features
+
+* support HttpClient configuration ([#259](https://github.com/Basis-Theory/basistheory-dotnet/issues/259)) ([8b5afc9](https://github.com/Basis-Theory/basistheory-dotnet/commit/8b5afc9343df3d1ababd56f7c849097a85ff0917))
+
 # [3.0.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v2.5.0...v3.0.0) (2024-07-02)
 
 
