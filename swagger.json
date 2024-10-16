@@ -874,6 +874,66 @@
         }
       }
     },
+    "/detokenize": {
+      "post": {
+        "tags": [
+          "Detokenize"
+        ],
+        "operationId": "Detokenize_Detokenize",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/logs": {
       "get": {
         "tags": [
@@ -2430,6 +2490,181 @@
         }
       }
     },
+    "/reactors/{id}/react-async": {
+      "post": {
+        "tags": [
+          "Reactors"
+        ],
+        "operationId": "Reactors_React_Async",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReactRequestAsync"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReactResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reactors/{id}/results/{requestId}": {
+      "get": {
+        "tags": [
+          "Reactors"
+        ],
+        "operationId": "Reactors_Result_GetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/roles": {
       "get": {
         "tags": [
@@ -3214,6 +3449,56 @@
         }
       }
     },
+    "/tenants/self/owner": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "Tenants_Owner_Get",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantMemberResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tenants/self/reports/usage": {
       "get": {
         "tags": [
@@ -3396,6 +3681,65 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/3ds/sessions": {
+      "post": {
+        "tags": [
+          "ThreeDS"
+        ],
+        "operationId": "ThreeDS.CreateSession",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateThreeDSSessionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateThreeDSSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
                 }
               }
             }
@@ -4974,6 +5318,67 @@
         },
         "additionalProperties": false
       },
+      "CreateThreeDSSessionRequest": {
+        "required": [
+          "pan"
+        ],
+        "type": "object",
+        "properties": {
+          "pan": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "device": {
+            "type": "string",
+            "nullable": true
+          },
+          "device_info": {
+            "$ref": "#/components/schemas/ThreeDSDeviceInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateThreeDSSessionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardBrand": {
+            "type": "string",
+            "nullable": true
+          },
+          "method_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "method_notification_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "directory_server_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommended_version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateTokenRequest": {
         "required": [
           "data"
@@ -5783,8 +6188,24 @@
       "ProxyTransform": {
         "type": "object",
         "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
           "code": {
             "maxLength": 50000,
+            "type": "string",
+            "nullable": true
+          },
+          "matcher": {
+            "type": "string",
+            "nullable": true
+          },
+          "expression": {
+            "type": "string",
+            "nullable": true
+          },
+          "replacement": {
             "type": "string",
             "nullable": true
           }
@@ -5799,6 +6220,15 @@
           },
           "callback_url": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReactRequestAsync": {
+        "type": "object",
+        "properties": {
+          "args": {
             "nullable": true
           }
         },
@@ -6228,11 +6658,6 @@
       "TenantConnectionOptions": {
         "type": "object",
         "properties": {
-          "scopes": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
           "domain_aliases": {
             "type": "array",
             "items": {
@@ -7000,6 +7425,10 @@
             "type": "string",
             "format": "uuid"
           },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
           "tenant_id": {
             "maxLength": 36,
             "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
@@ -7211,6 +7640,9 @@
               "type": "string"
             },
             "nullable": true
+          },
+          "_extras": {
+            "$ref": "#/components/schemas/TokenExtras"
           }
         },
         "additionalProperties": false
@@ -7239,6 +7671,15 @@
           },
           "card_details": {
             "$ref": "#/components/schemas/CardDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenExtras": {
+        "type": "object",
+        "properties": {
+          "deduplicated": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -7552,7 +7993,7 @@
             "nullable": true
           },
           "search_indexes": {
-            "maxItems": 10,
+            "maxItems": 5,
             "type": "array",
             "items": {
               "type": "string"

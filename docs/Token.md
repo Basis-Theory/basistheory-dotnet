@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **ExpiresAt** | **DateTime?** |  | [optional] 
 **Containers** | **List&lt;string&gt;** |  | [optional] 
 **Aliases** | **List&lt;string&gt;** |  | [optional] 
+**Extras** | [**TokenExtras**](TokenExtras.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

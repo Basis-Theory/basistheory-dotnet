@@ -169,6 +169,52 @@ namespace BasisTheory.net.Api
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ReactResponse</returns>
+        ReactResponse ReactAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of ReactResponse</returns>
+        ApiResponse<ReactResponse> ReactAsyncWithHttpInfo(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>Object</returns>
+        Object ResultGetById(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> ResultGetByIdWithHttpInfo(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="updateReactorRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="requestOptions"></param>
@@ -370,6 +416,64 @@ namespace BasisTheory.net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReactResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReactResponse>> ReactWithHttpInfoAsync(Guid id, ReactRequest reactRequest, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReactResponse</returns>
+        System.Threading.Tasks.Task<ReactResponse> ReactAsyncAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReactResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReactResponse>> ReactAsyncWithHttpInfoAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> ResultGetByIdAsync(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ResultGetByIdWithHttpInfoAsync(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -1502,6 +1606,328 @@ namespace BasisTheory.net.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("React", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ReactResponse</returns>
+        public ReactResponse ReactAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = ReactAsyncWithHttpInfo(id, reactRequestAsync, operationIndex, requestOptions);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of ReactResponse</returns>
+        public BasisTheory.net.Client.ApiResponse<ReactResponse> ReactAsyncWithHttpInfo(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.Data = reactRequestAsync;
+
+            requestOptions.Operation = "ReactorsApi.ReactAsync";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReactResponse>("/reactors/{id}/react-async", requestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReactAsync", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReactResponse</returns>
+        public async System.Threading.Tasks.Task<ReactResponse> ReactAsyncAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            BasisTheory.net.Client.ApiResponse<ReactResponse> localVarResponse = await ReactAsyncWithHttpInfoAsync(id, reactRequestAsync, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="reactRequestAsync"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReactResponse)</returns>
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<ReactResponse>> ReactAsyncWithHttpInfoAsync(Guid id, ReactRequestAsync reactRequestAsync, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.Data = reactRequestAsync;
+
+            requestOptions.Operation = "ReactorsApi.ReactAsync";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReactResponse>("/reactors/{id}/react-async", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReactAsync", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>Object</returns>
+        public Object ResultGetById(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            BasisTheory.net.Client.ApiResponse<Object> localVarResponse = ResultGetByIdWithHttpInfo(id, requestId, operationIndex, requestOptions);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public BasisTheory.net.Client.ApiResponse<Object> ResultGetByIdWithHttpInfo(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.PathParameters.Add("requestId", BasisTheory.net.Client.ClientUtils.ParameterToString(requestId)); // path parameter
+
+            requestOptions.Operation = "ReactorsApi.ResultGetById";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<Object>("/reactors/{id}/results/{requestId}", requestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ResultGetById", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> ResultGetByIdAsync(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            BasisTheory.net.Client.ApiResponse<Object> localVarResponse = await ResultGetByIdWithHttpInfoAsync(id, requestId, operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<Object>> ResultGetByIdWithHttpInfoAsync(Guid id, Guid requestId, int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            requestOptions.PathParameters.Add("id", BasisTheory.net.Client.ClientUtils.ParameterToString(id)); // path parameter
+            requestOptions.PathParameters.Add("requestId", BasisTheory.net.Client.ClientUtils.ParameterToString(requestId)); // path parameter
+
+            requestOptions.Operation = "ReactorsApi.ResultGetById";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/reactors/{id}/results/{requestId}", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ResultGetById", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

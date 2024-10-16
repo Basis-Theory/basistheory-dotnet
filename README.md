@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
 *ApplicationsApi* | [**GetByKey**](docs/ApplicationsApi.md#getbykey) | **GET** /applications/key | 
 *ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **POST** /applications/{id}/regenerate | 
 *ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **PUT** /applications/{id} | 
+*DetokenizeApi* | [**Detokenize**](docs/DetokenizeApi.md#detokenize) | **POST** /detokenize | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **GET** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **GET** /logs/entity-types | 
 *PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **GET** /permissions | 
@@ -140,6 +141,8 @@ Class | Method | HTTP request | Description
 *ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **GET** /reactors/{id} | 
 *ReactorsApi* | [**Patch**](docs/ReactorsApi.md#patch) | **PATCH** /reactors/{id} | 
 *ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **POST** /reactors/{id}/react | 
+*ReactorsApi* | [**ReactAsync**](docs/ReactorsApi.md#reactasync) | **POST** /reactors/{id}/react-async | 
+*ReactorsApi* | [**ResultGetById**](docs/ReactorsApi.md#resultgetbyid) | **GET** /reactors/{id}/results/{requestId} | 
 *ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **PUT** /reactors/{id} | 
 *RolesApi* | [**Get**](docs/RolesApi.md#get) | **GET** /roles | 
 *SessionsApi* | [**Authorize**](docs/SessionsApi.md#authorize) | **POST** /sessions/authorize | 
@@ -154,10 +157,12 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**GetInvitations**](docs/TenantsApi.md#getinvitations) | **GET** /tenants/self/invitations | 
 *TenantsApi* | [**GetMembers**](docs/TenantsApi.md#getmembers) | **GET** /tenants/self/members | 
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **GET** /tenants/self/reports/usage | 
+*TenantsApi* | [**OwnerGet**](docs/TenantsApi.md#ownerget) | **GET** /tenants/self/owner | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **POST** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **PUT** /tenants/self | 
 *TenantsApi* | [**UpdateMember**](docs/TenantsApi.md#updatemember) | **PUT** /tenants/self/members/{memberId} | 
 *ThreeDSApi* | [**ThreeDSAuthenticateSession**](docs/ThreeDSApi.md#threedsauthenticatesession) | **POST** /3ds/sessions/{sessionId}/authenticate | 
+*ThreeDSApi* | [**ThreeDSCreateSession**](docs/ThreeDSApi.md#threedscreatesession) | **POST** /3ds/sessions | 
 *ThreeDSApi* | [**ThreeDSGetChallengeResult**](docs/ThreeDSApi.md#threedsgetchallengeresult) | **GET** /3ds/sessions/{sessionId}/challenge-result | 
 *ThreeDSApi* | [**ThreeDSGetSessionById**](docs/ThreeDSApi.md#threedsgetsessionbyid) | **GET** /3ds/sessions/{id} | 
 *TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **POST** /tokenize | 
@@ -195,6 +200,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateTenantConnectionRequest](docs/CreateTenantConnectionRequest.md)
  - [Model.CreateTenantConnectionResponse](docs/CreateTenantConnectionResponse.md)
  - [Model.CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
+ - [Model.CreateThreeDSSessionRequest](docs/CreateThreeDSSessionRequest.md)
+ - [Model.CreateThreeDSSessionResponse](docs/CreateThreeDSSessionResponse.md)
  - [Model.CreateTokenRequest](docs/CreateTokenRequest.md)
  - [Model.CursorPagination](docs/CursorPagination.md)
  - [Model.GetApplications](docs/GetApplications.md)
@@ -220,6 +227,7 @@ Class | Method | HTTP request | Description
  - [Model.ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [Model.ProxyTransform](docs/ProxyTransform.md)
  - [Model.ReactRequest](docs/ReactRequest.md)
+ - [Model.ReactRequestAsync](docs/ReactRequestAsync.md)
  - [Model.ReactResponse](docs/ReactResponse.md)
  - [Model.Reactor](docs/Reactor.md)
  - [Model.ReactorFormula](docs/ReactorFormula.md)
@@ -260,6 +268,7 @@ Class | Method | HTTP request | Description
  - [Model.Token](docs/Token.md)
  - [Model.TokenCursorPaginatedList](docs/TokenCursorPaginatedList.md)
  - [Model.TokenEnrichments](docs/TokenEnrichments.md)
+ - [Model.TokenExtras](docs/TokenExtras.md)
  - [Model.TokenMetrics](docs/TokenMetrics.md)
  - [Model.TokenPaginatedList](docs/TokenPaginatedList.md)
  - [Model.TokenReport](docs/TokenReport.md)

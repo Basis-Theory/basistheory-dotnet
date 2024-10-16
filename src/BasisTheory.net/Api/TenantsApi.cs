@@ -244,6 +244,25 @@ namespace BasisTheory.net.Api
         /// 
         /// </summary>
         /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>TenantMemberResponse</returns>
+        TenantMemberResponse OwnerGet(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of TenantMemberResponse</returns>
+        ApiResponse<TenantMemberResponse> OwnerGetWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="invitationId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="requestOptions"></param>
@@ -588,6 +607,31 @@ namespace BasisTheory.net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TenantUsageReport)</returns>
         System.Threading.Tasks.Task<ApiResponse<TenantUsageReport>> GetTenantUsageReportWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TenantMemberResponse</returns>
+        System.Threading.Tasks.Task<TenantMemberResponse> OwnerGetAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TenantMemberResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TenantMemberResponse>> OwnerGetWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -2380,6 +2424,154 @@ namespace BasisTheory.net.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTenantUsageReport", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>TenantMemberResponse</returns>
+        public TenantMemberResponse OwnerGet(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            BasisTheory.net.Client.ApiResponse<TenantMemberResponse> localVarResponse = OwnerGetWithHttpInfo(operationIndex, requestOptions);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <returns>ApiResponse of TenantMemberResponse</returns>
+        public BasisTheory.net.Client.ApiResponse<TenantMemberResponse> OwnerGetWithHttpInfo(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions))
+        {
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+
+            requestOptions.Operation = "TenantsApi.OwnerGet";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<TenantMemberResponse>("/tenants/self/owner", requestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OwnerGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TenantMemberResponse</returns>
+        public async System.Threading.Tasks.Task<TenantMemberResponse> OwnerGetAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            BasisTheory.net.Client.ApiResponse<TenantMemberResponse> localVarResponse = await OwnerGetWithHttpInfoAsync(operationIndex, requestOptions, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BasisTheory.net.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="requestOptions"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TenantMemberResponse)</returns>
+        public async System.Threading.Tasks.Task<BasisTheory.net.Client.ApiResponse<TenantMemberResponse>> OwnerGetWithHttpInfoAsync(int operationIndex = 0, BasisTheory.net.Client.RequestOptions requestOptions = default(BasisTheory.net.Client.RequestOptions), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            if(requestOptions == default(BasisTheory.net.Client.RequestOptions))
+            {
+                requestOptions = new BasisTheory.net.Client.RequestOptions();
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BasisTheory.net.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                requestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BasisTheory.net.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                requestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+
+            requestOptions.Operation = "TenantsApi.OwnerGet";
+            requestOptions.OperationIndex = operationIndex;
+
+            // authentication (ApiKey) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("BT-API-KEY")))
+            {
+                requestOptions.HeaderParameters.Add("BT-API-KEY", this.Configuration.GetApiKeyWithPrefix("BT-API-KEY"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<TenantMemberResponse>("/tenants/self/owner", requestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OwnerGet", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

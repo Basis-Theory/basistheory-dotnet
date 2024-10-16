@@ -23,8 +23,11 @@ docs/CreateSessionResponse.md
 docs/CreateTenantConnectionRequest.md
 docs/CreateTenantConnectionResponse.md
 docs/CreateTenantInvitationRequest.md
+docs/CreateThreeDSSessionRequest.md
+docs/CreateThreeDSSessionResponse.md
 docs/CreateTokenRequest.md
 docs/CursorPagination.md
+docs/DetokenizeApi.md
 docs/GetApplications.md
 docs/GetLogs.md
 docs/GetPermissions.md
@@ -51,6 +54,7 @@ docs/Proxy.md
 docs/ProxyPaginatedList.md
 docs/ProxyTransform.md
 docs/ReactRequest.md
+docs/ReactRequestAsync.md
 docs/ReactResponse.md
 docs/Reactor.md
 docs/ReactorFormula.md
@@ -97,6 +101,7 @@ docs/ThreeDSVersion.md
 docs/Token.md
 docs/TokenCursorPaginatedList.md
 docs/TokenEnrichments.md
+docs/TokenExtras.md
 docs/TokenMetrics.md
 docs/TokenPaginatedList.md
 docs/TokenReport.md
@@ -112,10 +117,16 @@ docs/UpdateTenantRequest.md
 docs/UpdateTokenRequest.md
 docs/User.md
 docs/ValidationProblemDetails.md
+src/BasisTheory.net.Test/Api/DetokenizeApiTests.cs
 src/BasisTheory.net.Test/BasisTheory.net.Test.csproj
+src/BasisTheory.net.Test/Model/CreateThreeDSSessionRequestTests.cs
+src/BasisTheory.net.Test/Model/CreateThreeDSSessionResponseTests.cs
+src/BasisTheory.net.Test/Model/ReactRequestAsyncTests.cs
+src/BasisTheory.net.Test/Model/TokenExtrasTests.cs
 src/BasisTheory.net/Api/ApplicationKeysApi.cs
 src/BasisTheory.net/Api/ApplicationTemplatesApi.cs
 src/BasisTheory.net/Api/ApplicationsApi.cs
+src/BasisTheory.net/Api/DetokenizeApi.cs
 src/BasisTheory.net/Api/LogsApi.cs
 src/BasisTheory.net/Api/PermissionsApi.cs
 src/BasisTheory.net/Api/ProxiesApi.cs
@@ -166,6 +177,8 @@ src/BasisTheory.net/Model/CreateSessionResponse.cs
 src/BasisTheory.net/Model/CreateTenantConnectionRequest.cs
 src/BasisTheory.net/Model/CreateTenantConnectionResponse.cs
 src/BasisTheory.net/Model/CreateTenantInvitationRequest.cs
+src/BasisTheory.net/Model/CreateThreeDSSessionRequest.cs
+src/BasisTheory.net/Model/CreateThreeDSSessionResponse.cs
 src/BasisTheory.net/Model/CreateTokenRequest.cs
 src/BasisTheory.net/Model/CursorPagination.cs
 src/BasisTheory.net/Model/GetApplications.cs
@@ -191,6 +204,7 @@ src/BasisTheory.net/Model/Proxy.cs
 src/BasisTheory.net/Model/ProxyPaginatedList.cs
 src/BasisTheory.net/Model/ProxyTransform.cs
 src/BasisTheory.net/Model/ReactRequest.cs
+src/BasisTheory.net/Model/ReactRequestAsync.cs
 src/BasisTheory.net/Model/ReactResponse.cs
 src/BasisTheory.net/Model/Reactor.cs
 src/BasisTheory.net/Model/ReactorFormula.cs
@@ -231,6 +245,7 @@ src/BasisTheory.net/Model/ThreeDSVersion.cs
 src/BasisTheory.net/Model/Token.cs
 src/BasisTheory.net/Model/TokenCursorPaginatedList.cs
 src/BasisTheory.net/Model/TokenEnrichments.cs
+src/BasisTheory.net/Model/TokenExtras.cs
 src/BasisTheory.net/Model/TokenMetrics.cs
 src/BasisTheory.net/Model/TokenPaginatedList.cs
 src/BasisTheory.net/Model/TokenReport.cs

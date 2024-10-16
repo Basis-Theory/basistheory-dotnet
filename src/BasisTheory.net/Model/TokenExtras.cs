@@ -25,25 +25,25 @@ using OpenAPIDateConverter = BasisTheory.net.Client.OpenAPIDateConverter;
 namespace BasisTheory.net.Model
 {
     /// <summary>
-    /// TenantConnectionOptions
+    /// TokenExtras
     /// </summary>
-    [DataContract(Name = "TenantConnectionOptions")]
-    public partial class TenantConnectionOptions : IEquatable<TenantConnectionOptions>
+    [DataContract(Name = "TokenExtras")]
+    public partial class TokenExtras : IEquatable<TokenExtras>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TenantConnectionOptions" /> class.
+        /// Initializes a new instance of the <see cref="TokenExtras" /> class.
         /// </summary>
-        /// <param name="domainAliases">domainAliases.</param>
-        public TenantConnectionOptions(List<string> domainAliases = default(List<string>))
+        /// <param name="deduplicated">deduplicated.</param>
+        public TokenExtras(bool deduplicated = default(bool))
         {
-            this.DomainAliases = domainAliases;
+            this.Deduplicated = deduplicated;
         }
 
         /// <summary>
-        /// Gets or Sets DomainAliases
+        /// Gets or Sets Deduplicated
         /// </summary>
-        [DataMember(Name = "domain_aliases", EmitDefaultValue = true)]
-        public List<string> DomainAliases { get; set; }
+        [DataMember(Name = "deduplicated", EmitDefaultValue = true)]
+        public bool Deduplicated { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -52,8 +52,8 @@ namespace BasisTheory.net.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TenantConnectionOptions {\n");
-            sb.Append("  DomainAliases: ").Append(DomainAliases).Append("\n");
+            sb.Append("class TokenExtras {\n");
+            sb.Append("  Deduplicated: ").Append(Deduplicated).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -74,15 +74,15 @@ namespace BasisTheory.net.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TenantConnectionOptions);
+            return this.Equals(input as TokenExtras);
         }
 
         /// <summary>
-        /// Returns true if TenantConnectionOptions instances are equal
+        /// Returns true if TokenExtras instances are equal
         /// </summary>
-        /// <param name="input">Instance of TenantConnectionOptions to be compared</param>
+        /// <param name="input">Instance of TokenExtras to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TenantConnectionOptions input)
+        public bool Equals(TokenExtras input)
         {
             if (input == null)
             {
@@ -90,10 +90,8 @@ namespace BasisTheory.net.Model
             }
             return 
                 (
-                    this.DomainAliases == input.DomainAliases ||
-                    this.DomainAliases != null &&
-                    input.DomainAliases != null &&
-                    this.DomainAliases.SequenceEqual(input.DomainAliases)
+                    this.Deduplicated == input.Deduplicated ||
+                    this.Deduplicated.Equals(input.Deduplicated)
                 );
         }
 
@@ -106,10 +104,7 @@ namespace BasisTheory.net.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DomainAliases != null)
-                {
-                    hashCode = (hashCode * 59) + this.DomainAliases.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Deduplicated.GetHashCode();
                 return hashCode;
             }
         }

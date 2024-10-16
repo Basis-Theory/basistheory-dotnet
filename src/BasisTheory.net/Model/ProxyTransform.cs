@@ -33,17 +33,49 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxyTransform" /> class.
         /// </summary>
+        /// <param name="type">type.</param>
         /// <param name="code">code.</param>
-        public ProxyTransform(string code = default(string))
+        /// <param name="matcher">matcher.</param>
+        /// <param name="expression">expression.</param>
+        /// <param name="replacement">replacement.</param>
+        public ProxyTransform(string type = default(string), string code = default(string), string matcher = default(string), string expression = default(string), string replacement = default(string))
         {
+            this.Type = type;
             this.Code = code;
+            this.Matcher = matcher;
+            this.Expression = expression;
+            this.Replacement = replacement;
         }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Gets or Sets Code
         /// </summary>
         [DataMember(Name = "code", EmitDefaultValue = true)]
         public string Code { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Matcher
+        /// </summary>
+        [DataMember(Name = "matcher", EmitDefaultValue = true)]
+        public string Matcher { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Expression
+        /// </summary>
+        [DataMember(Name = "expression", EmitDefaultValue = true)]
+        public string Expression { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Replacement
+        /// </summary>
+        [DataMember(Name = "replacement", EmitDefaultValue = true)]
+        public string Replacement { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -53,7 +85,11 @@ namespace BasisTheory.net.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ProxyTransform {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Matcher: ").Append(Matcher).Append("\n");
+            sb.Append("  Expression: ").Append(Expression).Append("\n");
+            sb.Append("  Replacement: ").Append(Replacement).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,9 +126,29 @@ namespace BasisTheory.net.Model
             }
             return 
                 (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                ) && 
+                (
                     this.Code == input.Code ||
                     (this.Code != null &&
                     this.Code.Equals(input.Code))
+                ) && 
+                (
+                    this.Matcher == input.Matcher ||
+                    (this.Matcher != null &&
+                    this.Matcher.Equals(input.Matcher))
+                ) && 
+                (
+                    this.Expression == input.Expression ||
+                    (this.Expression != null &&
+                    this.Expression.Equals(input.Expression))
+                ) && 
+                (
+                    this.Replacement == input.Replacement ||
+                    (this.Replacement != null &&
+                    this.Replacement.Equals(input.Replacement))
                 );
         }
 
@@ -105,9 +161,25 @@ namespace BasisTheory.net.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.Code != null)
                 {
                     hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                }
+                if (this.Matcher != null)
+                {
+                    hashCode = (hashCode * 59) + this.Matcher.GetHashCode();
+                }
+                if (this.Expression != null)
+                {
+                    hashCode = (hashCode * 59) + this.Expression.GetHashCode();
+                }
+                if (this.Replacement != null)
+                {
+                    hashCode = (hashCode * 59) + this.Replacement.GetHashCode();
                 }
                 return hashCode;
             }
