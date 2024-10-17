@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v3.1.0...v3.2.0) (2024-10-17)
+
+
+### Features
+
+* add detokenize api, updates to reactors, proxy, 3ds and more ([#260](https://github.com/Basis-Theory/basistheory-dotnet/issues/260)) ([a515108](https://github.com/Basis-Theory/basistheory-dotnet/commit/a515108f0815c49cb6539c516445aa1da2a60e9b))
+
 # [3.1.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v3.0.0...v3.1.0) (2024-07-10)
 
 
