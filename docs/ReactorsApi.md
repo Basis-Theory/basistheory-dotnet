@@ -10,6 +10,8 @@ All URIs are relative to *https://api.basistheory.com*
 | [**GetById**](ReactorsApi.md#getbyid) | **GET** /reactors/{id} |  |
 | [**Patch**](ReactorsApi.md#patch) | **PATCH** /reactors/{id} |  |
 | [**React**](ReactorsApi.md#react) | **POST** /reactors/{id}/react |  |
+| [**ReactAsync**](ReactorsApi.md#reactasync) | **POST** /reactors/{id}/react-async |  |
+| [**ResultGetById**](ReactorsApi.md#resultgetbyid) | **GET** /reactors/{id}/results/{requestId} |  |
 | [**Update**](ReactorsApi.md#update) | **PUT** /reactors/{id} |  |
 
 <a name="create"></a>
@@ -461,6 +463,158 @@ catch (ApiException e)
 | **422** | Client Error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="reactasync"></a>
+# **ReactAsync**
+> ReactResponse ReactAsync (Guid id, ReactRequestAsync reactRequestAsync)
+
+
+
+### Example
+```csharp
+using BasisTheory.net.Api;
+using BasisTheory.net.Client;
+using BasisTheory.net.Model;
+
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new ReactorsApi(config);
+var id = Guid.Parse("");
+var reactRequestAsync = new ReactRequestAsync()
+{
+    Args = ...
+};
+
+ReactResponse result = apiInstance.ReactAsync(id, reactRequestAsync);
+```
+
+#### Using the ReactAsyncWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<ReactResponse> response = apiInstance.ReactAsyncWithHttpInfo(id, reactRequestAsync);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ReactorsApi.ReactAsyncWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **Guid** |  |  |
+| **reactRequestAsync** | [**ReactRequestAsync**](ReactRequestAsync.md) |  |  |
+
+### Return type
+
+[**ReactResponse**](ReactResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Accepted |  -  |
+| **400** | Bad Request |  -  |
+| **404** | Not Found |  -  |
+| **422** | Client Error |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="resultgetbyid"></a>
+# **ResultGetById**
+> Object ResultGetById (Guid id, Guid requestId)
+
+
+
+### Example
+```csharp
+using BasisTheory.net.Api;
+using BasisTheory.net.Client;
+using BasisTheory.net.Model;
+
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new ReactorsApi(config);
+var id = Guid.Parse("");
+var requestId = Guid.Parse("");
+
+Object result = apiInstance.ResultGetById(id, requestId);
+```
+
+#### Using the ResultGetByIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<Object> response = apiInstance.ResultGetByIdWithHttpInfo(id, requestId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ReactorsApi.ResultGetByIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **Guid** |  |  |
+| **requestId** | **Guid** |  |  |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **404** | Not Found |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **422** | Client Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

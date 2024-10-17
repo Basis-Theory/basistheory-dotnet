@@ -51,7 +51,8 @@ namespace BasisTheory.net.Model
         /// <param name="expiresAt">expiresAt.</param>
         /// <param name="containers">containers.</param>
         /// <param name="aliases">aliases.</param>
-        public Token(string id = default(string), string type = default(string), Guid tenantId = default(Guid), Object data = default(Object), Dictionary<string, string> metadata = default(Dictionary<string, string>), TokenEnrichments enrichments = default(TokenEnrichments), Guid? createdBy = default(Guid?), DateTime? createdAt = default(DateTime?), Guid? modifiedBy = default(Guid?), DateTime? modifiedAt = default(DateTime?), string fingerprint = default(string), string fingerprintExpression = default(string), Object mask = default(Object), Privacy privacy = default(Privacy), List<string> searchIndexes = default(List<string>), DateTime? expiresAt = default(DateTime?), List<string> containers = default(List<string>), List<string> aliases = default(List<string>))
+        /// <param name="extras">extras.</param>
+        public Token(string id = default(string), string type = default(string), Guid tenantId = default(Guid), Object data = default(Object), Dictionary<string, string> metadata = default(Dictionary<string, string>), TokenEnrichments enrichments = default(TokenEnrichments), Guid? createdBy = default(Guid?), DateTime? createdAt = default(DateTime?), Guid? modifiedBy = default(Guid?), DateTime? modifiedAt = default(DateTime?), string fingerprint = default(string), string fingerprintExpression = default(string), Object mask = default(Object), Privacy privacy = default(Privacy), List<string> searchIndexes = default(List<string>), DateTime? expiresAt = default(DateTime?), List<string> containers = default(List<string>), List<string> aliases = default(List<string>), TokenExtras extras = default(TokenExtras))
         {
             this.Id = id;
             this.Type = type;
@@ -71,6 +72,7 @@ namespace BasisTheory.net.Model
             this.ExpiresAt = expiresAt;
             this.Containers = containers;
             this.Aliases = aliases;
+            this.Extras = extras;
         }
 
         /// <summary>
@@ -182,6 +184,12 @@ namespace BasisTheory.net.Model
         public List<string> Aliases { get; set; }
 
         /// <summary>
+        /// Gets or Sets Extras
+        /// </summary>
+        [DataMember(Name = "_extras", EmitDefaultValue = false)]
+        public TokenExtras Extras { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -207,6 +215,7 @@ namespace BasisTheory.net.Model
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  Containers: ").Append(Containers).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
+            sb.Append("  Extras: ").Append(Extras).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -335,6 +344,11 @@ namespace BasisTheory.net.Model
                     this.Aliases != null &&
                     input.Aliases != null &&
                     this.Aliases.SequenceEqual(input.Aliases)
+                ) && 
+                (
+                    this.Extras == input.Extras ||
+                    (this.Extras != null &&
+                    this.Extras.Equals(input.Extras))
                 );
         }
 
@@ -418,6 +432,10 @@ namespace BasisTheory.net.Model
                 if (this.Aliases != null)
                 {
                     hashCode = (hashCode * 59) + this.Aliases.GetHashCode();
+                }
+                if (this.Extras != null)
+                {
+                    hashCode = (hashCode * 59) + this.Extras.GetHashCode();
                 }
                 return hashCode;
             }

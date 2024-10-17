@@ -14,6 +14,7 @@ All URIs are relative to *https://api.basistheory.com*
 | [**GetInvitations**](TenantsApi.md#getinvitations) | **GET** /tenants/self/invitations |  |
 | [**GetMembers**](TenantsApi.md#getmembers) | **GET** /tenants/self/members |  |
 | [**GetTenantUsageReport**](TenantsApi.md#gettenantusagereport) | **GET** /tenants/self/reports/usage |  |
+| [**OwnerGet**](TenantsApi.md#ownerget) | **GET** /tenants/self/owner |  |
 | [**ResendInvitation**](TenantsApi.md#resendinvitation) | **POST** /tenants/self/invitations/{invitationId}/resend |  |
 | [**Update**](TenantsApi.md#update) | **PUT** /tenants/self |  |
 | [**UpdateMember**](TenantsApi.md#updatemember) | **PUT** /tenants/self/members/{memberId} |  |
@@ -697,6 +698,72 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**TenantUsageReport**](TenantUsageReport.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **404** | Not Found |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="ownerget"></a>
+# **OwnerGet**
+> TenantMemberResponse OwnerGet ()
+
+
+
+### Example
+```csharp
+using BasisTheory.net.Api;
+using BasisTheory.net.Client;
+using BasisTheory.net.Model;
+
+Configuration config = new Configuration();
+config.BasePath = "https://api.basistheory.com";
+config.AddApiKey("BT-API-KEY", "YOUR_API_KEY");
+
+var apiInstance = new TenantsApi(config);
+
+TenantMemberResponse result = apiInstance.OwnerGet();
+```
+
+#### Using the OwnerGetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<TenantMemberResponse> response = apiInstance.OwnerGetWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TenantsApi.OwnerGetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**TenantMemberResponse**](TenantMemberResponse.md)
 
 ### Authorization
 

@@ -34,6 +34,7 @@ namespace BasisTheory.net.Model
         /// Initializes a new instance of the <see cref="ThreeDSSession" /> class.
         /// </summary>
         /// <param name="id">id.</param>
+        /// <param name="type">type.</param>
         /// <param name="tenantId">tenantId.</param>
         /// <param name="panTokenId">panTokenId.</param>
         /// <param name="cardBrand">cardBrand.</param>
@@ -47,9 +48,10 @@ namespace BasisTheory.net.Model
         /// <param name="version">version.</param>
         /// <param name="method">method.</param>
         /// <param name="authentication">authentication.</param>
-        public ThreeDSSession(Guid id = default(Guid), Guid tenantId = default(Guid), string panTokenId = default(string), string cardBrand = default(string), DateTime expirationDate = default(DateTime), DateTime? createdDate = default(DateTime?), Guid? createdBy = default(Guid?), DateTime? modifiedDate = default(DateTime?), Guid? modifiedBy = default(Guid?), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo), ThreeDSVersion version = default(ThreeDSVersion), ThreeDSMethod method = default(ThreeDSMethod), ThreeDSAuthentication authentication = default(ThreeDSAuthentication))
+        public ThreeDSSession(Guid id = default(Guid), string type = default(string), Guid tenantId = default(Guid), string panTokenId = default(string), string cardBrand = default(string), DateTime expirationDate = default(DateTime), DateTime? createdDate = default(DateTime?), Guid? createdBy = default(Guid?), DateTime? modifiedDate = default(DateTime?), Guid? modifiedBy = default(Guid?), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo), ThreeDSVersion version = default(ThreeDSVersion), ThreeDSMethod method = default(ThreeDSMethod), ThreeDSAuthentication authentication = default(ThreeDSAuthentication))
         {
             this.Id = id;
+            this.Type = type;
             this.TenantId = tenantId;
             this.PanTokenId = panTokenId;
             this.CardBrand = cardBrand;
@@ -70,6 +72,12 @@ namespace BasisTheory.net.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Gets or Sets TenantId
@@ -158,6 +166,7 @@ namespace BasisTheory.net.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSSession {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  TenantId: ").Append(TenantId).Append("\n");
             sb.Append("  PanTokenId: ").Append(PanTokenId).Append("\n");
             sb.Append("  CardBrand: ").Append(CardBrand).Append("\n");
@@ -210,6 +219,11 @@ namespace BasisTheory.net.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.TenantId == input.TenantId ||
@@ -290,6 +304,10 @@ namespace BasisTheory.net.Model
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 if (this.TenantId != null)
                 {

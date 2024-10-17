@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **Guid** |  | [optional] 
+**Type** | **string** |  | [optional] 
 **TenantId** | **Guid** |  | [optional] 
 **PanTokenId** | **string** |  | [optional] 
 **CardBrand** | **string** |  | [optional] 

@@ -1,14 +1,10 @@
-# BasisTheory.net.Model.ProxyTransform
+# BasisTheory.net.Model.TokenExtras
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | [optional] 
-**Code** | **string** |  | [optional] 
-**Matcher** | **string** |  | [optional] 
-**Expression** | **string** |  | [optional] 
-**Replacement** | **string** |  | [optional] 
+**Deduplicated** | **bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

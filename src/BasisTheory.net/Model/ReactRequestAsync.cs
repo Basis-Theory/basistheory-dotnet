@@ -25,25 +25,25 @@ using OpenAPIDateConverter = BasisTheory.net.Client.OpenAPIDateConverter;
 namespace BasisTheory.net.Model
 {
     /// <summary>
-    /// TenantConnectionOptions
+    /// ReactRequestAsync
     /// </summary>
-    [DataContract(Name = "TenantConnectionOptions")]
-    public partial class TenantConnectionOptions : IEquatable<TenantConnectionOptions>
+    [DataContract(Name = "ReactRequestAsync")]
+    public partial class ReactRequestAsync : IEquatable<ReactRequestAsync>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TenantConnectionOptions" /> class.
+        /// Initializes a new instance of the <see cref="ReactRequestAsync" /> class.
         /// </summary>
-        /// <param name="domainAliases">domainAliases.</param>
-        public TenantConnectionOptions(List<string> domainAliases = default(List<string>))
+        /// <param name="args">args.</param>
+        public ReactRequestAsync(Object args = default(Object))
         {
-            this.DomainAliases = domainAliases;
+            this.Args = args;
         }
 
         /// <summary>
-        /// Gets or Sets DomainAliases
+        /// Gets or Sets Args
         /// </summary>
-        [DataMember(Name = "domain_aliases", EmitDefaultValue = true)]
-        public List<string> DomainAliases { get; set; }
+        [DataMember(Name = "args", EmitDefaultValue = true)]
+        public Object Args { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -52,8 +52,8 @@ namespace BasisTheory.net.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TenantConnectionOptions {\n");
-            sb.Append("  DomainAliases: ").Append(DomainAliases).Append("\n");
+            sb.Append("class ReactRequestAsync {\n");
+            sb.Append("  Args: ").Append(Args).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -74,15 +74,15 @@ namespace BasisTheory.net.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TenantConnectionOptions);
+            return this.Equals(input as ReactRequestAsync);
         }
 
         /// <summary>
-        /// Returns true if TenantConnectionOptions instances are equal
+        /// Returns true if ReactRequestAsync instances are equal
         /// </summary>
-        /// <param name="input">Instance of TenantConnectionOptions to be compared</param>
+        /// <param name="input">Instance of ReactRequestAsync to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TenantConnectionOptions input)
+        public bool Equals(ReactRequestAsync input)
         {
             if (input == null)
             {
@@ -90,10 +90,9 @@ namespace BasisTheory.net.Model
             }
             return 
                 (
-                    this.DomainAliases == input.DomainAliases ||
-                    this.DomainAliases != null &&
-                    input.DomainAliases != null &&
-                    this.DomainAliases.SequenceEqual(input.DomainAliases)
+                    this.Args == input.Args ||
+                    (this.Args != null &&
+                    this.Args.Equals(input.Args))
                 );
         }
 
@@ -106,9 +105,9 @@ namespace BasisTheory.net.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DomainAliases != null)
+                if (this.Args != null)
                 {
-                    hashCode = (hashCode * 59) + this.DomainAliases.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Args.GetHashCode();
                 }
                 return hashCode;
             }
