@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    environment: PR
 
     steps:
       - uses: actions/checkout@v2
