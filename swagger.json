@@ -934,6 +934,59 @@
         }
       }
     },
+    "/enrichments/bank-account-verify": {
+      "post": {
+        "tags": [
+          "Enrichments"
+        ],
+        "operationId": "Enrichments_BankAccountVerify",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankVerificationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/logs": {
       "get": {
         "tags": [
@@ -4829,6 +4882,14 @@
             "type": "string",
             "nullable": true
           },
+          "request_decoupled_challenge": {
+            "type": "boolean"
+          },
+          "decoupled_challenge_max_time": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "purchase_info": {
             "$ref": "#/components/schemas/ThreeDSPurchaseInfo"
           },
@@ -4881,6 +4942,27 @@
             "items": {
               "$ref": "#/components/schemas/AccessRule"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BankVerificationRequest": {
+        "required": [
+          "token_id"
+        ],
+        "type": "object",
+        "properties": {
+          "token_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "routing_number": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5319,15 +5401,23 @@
         "additionalProperties": false
       },
       "CreateThreeDSSessionRequest": {
-        "required": [
-          "pan"
-        ],
         "type": "object",
         "properties": {
           "pan": {
             "maxLength": 36,
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true,
+            "deprecated": true
+          },
+          "token_id": {
+            "maxLength": 36,
+            "type": "string",
+            "nullable": true
+          },
+          "token_intent_id": {
+            "maxLength": 36,
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "type": "string",
@@ -5380,9 +5470,6 @@
         "additionalProperties": false
       },
       "CreateTokenRequest": {
-        "required": [
-          "data"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -5393,7 +5480,9 @@
             "type": "string",
             "nullable": true
           },
-          "data": { },
+          "data": {
+            "nullable": true
+          },
           "privacy": {
             "$ref": "#/components/schemas/Privacy"
           },
@@ -5433,6 +5522,10 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          },
+          "token_intent_id": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -6886,6 +6979,15 @@
         "properties": {
           "pan_token_id": {
             "type": "string",
+            "nullable": true,
+            "deprecated": true
+          },
+          "token_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "token_intent_id": {
+            "type": "string",
             "nullable": true
           },
           "threeds_version": {
@@ -7436,6 +7538,15 @@
             "format": "uuid"
           },
           "pan_token_id": {
+            "type": "string",
+            "nullable": true,
+            "deprecated": true
+          },
+          "token_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "token_intent_id": {
             "type": "string",
             "nullable": true
           },

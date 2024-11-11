@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PanTokenId** | **string** |  | [optional] 
+**TokenId** | **string** |  | [optional] 
+**TokenIntentId** | **string** |  | [optional] 
 **ThreedsVersion** | **string** |  | [optional] 
 **AcsTransactionId** | **Guid?** |  | [optional] 
 **DsTransactionId** | **Guid?** |  | [optional] 

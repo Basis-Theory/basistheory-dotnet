@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
-**Data** | **Object** |  | 
+**Data** | **Object** |  | [optional] 
 **Privacy** | [**Privacy**](Privacy.md) |  | [optional] 
 **Metadata** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 **SearchIndexes** | **List&lt;string&gt;** |  | [optional] 
@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **DeduplicateToken** | **bool?** |  | [optional] 
 **ExpiresAt** | **string** |  | [optional] 
 **Containers** | **List&lt;string&gt;** |  | [optional] 
+**TokenIntentId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

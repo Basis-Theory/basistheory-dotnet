@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Type** | **string** |  | [optional] 
 **TenantId** | **Guid** |  | [optional] 
 **PanTokenId** | **string** |  | [optional] 
+**TokenId** | **string** |  | [optional] 
+**TokenIntentId** | **string** |  | [optional] 
 **CardBrand** | **string** |  | [optional] 
 **ExpirationDate** | **DateTime** |  | [optional] 
 **CreatedDate** | **DateTime?** |  | [optional] 

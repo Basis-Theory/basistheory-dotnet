@@ -33,14 +33,9 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTokenRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateTokenRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateTokenRequest" /> class.
-        /// </summary>
         /// <param name="id">id.</param>
         /// <param name="type">type.</param>
-        /// <param name="data">data (required).</param>
+        /// <param name="data">data.</param>
         /// <param name="privacy">privacy.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="searchIndexes">searchIndexes.</param>
@@ -49,11 +44,12 @@ namespace BasisTheory.net.Model
         /// <param name="deduplicateToken">deduplicateToken.</param>
         /// <param name="expiresAt">expiresAt.</param>
         /// <param name="containers">containers.</param>
-        public CreateTokenRequest(string id = default(string), string type = default(string), Object data = default(Object), Privacy privacy = default(Privacy), Dictionary<string, string> metadata = default(Dictionary<string, string>), List<string> searchIndexes = default(List<string>), string fingerprintExpression = default(string), Object mask = default(Object), bool? deduplicateToken = default(bool?), string expiresAt = default(string), List<string> containers = default(List<string>))
+        /// <param name="tokenIntentId">tokenIntentId.</param>
+        public CreateTokenRequest(string id = default(string), string type = default(string), Object data = default(Object), Privacy privacy = default(Privacy), Dictionary<string, string> metadata = default(Dictionary<string, string>), List<string> searchIndexes = default(List<string>), string fingerprintExpression = default(string), Object mask = default(Object), bool? deduplicateToken = default(bool?), string expiresAt = default(string), List<string> containers = default(List<string>), string tokenIntentId = default(string))
         {
-            this.Data = data;
             this.Id = id;
             this.Type = type;
+            this.Data = data;
             this.Privacy = privacy;
             this.Metadata = metadata;
             this.SearchIndexes = searchIndexes;
@@ -62,6 +58,7 @@ namespace BasisTheory.net.Model
             this.DeduplicateToken = deduplicateToken;
             this.ExpiresAt = expiresAt;
             this.Containers = containers;
+            this.TokenIntentId = tokenIntentId;
         }
 
         /// <summary>
@@ -79,7 +76,7 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "data", EmitDefaultValue = true)]
         public Object Data { get; set; }
 
         /// <summary>
@@ -131,6 +128,12 @@ namespace BasisTheory.net.Model
         public List<string> Containers { get; set; }
 
         /// <summary>
+        /// Gets or Sets TokenIntentId
+        /// </summary>
+        [DataMember(Name = "token_intent_id", EmitDefaultValue = true)]
+        public string TokenIntentId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -149,6 +152,7 @@ namespace BasisTheory.net.Model
             sb.Append("  DeduplicateToken: ").Append(DeduplicateToken).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  Containers: ").Append(Containers).Append("\n");
+            sb.Append("  TokenIntentId: ").Append(TokenIntentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -241,6 +245,11 @@ namespace BasisTheory.net.Model
                     this.Containers != null &&
                     input.Containers != null &&
                     this.Containers.SequenceEqual(input.Containers)
+                ) && 
+                (
+                    this.TokenIntentId == input.TokenIntentId ||
+                    (this.TokenIntentId != null &&
+                    this.TokenIntentId.Equals(input.TokenIntentId))
                 );
         }
 
@@ -296,6 +305,10 @@ namespace BasisTheory.net.Model
                 if (this.Containers != null)
                 {
                     hashCode = (hashCode * 59) + this.Containers.GetHashCode();
+                }
+                if (this.TokenIntentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenIntentId.GetHashCode();
                 }
                 return hashCode;
             }

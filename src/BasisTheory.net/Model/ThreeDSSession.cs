@@ -37,6 +37,8 @@ namespace BasisTheory.net.Model
         /// <param name="type">type.</param>
         /// <param name="tenantId">tenantId.</param>
         /// <param name="panTokenId">panTokenId.</param>
+        /// <param name="tokenId">tokenId.</param>
+        /// <param name="tokenIntentId">tokenIntentId.</param>
         /// <param name="cardBrand">cardBrand.</param>
         /// <param name="expirationDate">expirationDate.</param>
         /// <param name="createdDate">createdDate.</param>
@@ -48,12 +50,14 @@ namespace BasisTheory.net.Model
         /// <param name="version">version.</param>
         /// <param name="method">method.</param>
         /// <param name="authentication">authentication.</param>
-        public ThreeDSSession(Guid id = default(Guid), string type = default(string), Guid tenantId = default(Guid), string panTokenId = default(string), string cardBrand = default(string), DateTime expirationDate = default(DateTime), DateTime? createdDate = default(DateTime?), Guid? createdBy = default(Guid?), DateTime? modifiedDate = default(DateTime?), Guid? modifiedBy = default(Guid?), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo), ThreeDSVersion version = default(ThreeDSVersion), ThreeDSMethod method = default(ThreeDSMethod), ThreeDSAuthentication authentication = default(ThreeDSAuthentication))
+        public ThreeDSSession(Guid id = default(Guid), string type = default(string), Guid tenantId = default(Guid), string panTokenId = default(string), string tokenId = default(string), string tokenIntentId = default(string), string cardBrand = default(string), DateTime expirationDate = default(DateTime), DateTime? createdDate = default(DateTime?), Guid? createdBy = default(Guid?), DateTime? modifiedDate = default(DateTime?), Guid? modifiedBy = default(Guid?), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo), ThreeDSVersion version = default(ThreeDSVersion), ThreeDSMethod method = default(ThreeDSMethod), ThreeDSAuthentication authentication = default(ThreeDSAuthentication))
         {
             this.Id = id;
             this.Type = type;
             this.TenantId = tenantId;
             this.PanTokenId = panTokenId;
+            this.TokenId = tokenId;
+            this.TokenIntentId = tokenIntentId;
             this.CardBrand = cardBrand;
             this.ExpirationDate = expirationDate;
             this.CreatedDate = createdDate;
@@ -89,7 +93,20 @@ namespace BasisTheory.net.Model
         /// Gets or Sets PanTokenId
         /// </summary>
         [DataMember(Name = "pan_token_id", EmitDefaultValue = true)]
+        [Obsolete]
         public string PanTokenId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenId
+        /// </summary>
+        [DataMember(Name = "token_id", EmitDefaultValue = true)]
+        public string TokenId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenIntentId
+        /// </summary>
+        [DataMember(Name = "token_intent_id", EmitDefaultValue = true)]
+        public string TokenIntentId { get; set; }
 
         /// <summary>
         /// Gets or Sets CardBrand
@@ -169,6 +186,8 @@ namespace BasisTheory.net.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  TenantId: ").Append(TenantId).Append("\n");
             sb.Append("  PanTokenId: ").Append(PanTokenId).Append("\n");
+            sb.Append("  TokenId: ").Append(TokenId).Append("\n");
+            sb.Append("  TokenIntentId: ").Append(TokenIntentId).Append("\n");
             sb.Append("  CardBrand: ").Append(CardBrand).Append("\n");
             sb.Append("  ExpirationDate: ").Append(ExpirationDate).Append("\n");
             sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
@@ -234,6 +253,16 @@ namespace BasisTheory.net.Model
                     this.PanTokenId == input.PanTokenId ||
                     (this.PanTokenId != null &&
                     this.PanTokenId.Equals(input.PanTokenId))
+                ) && 
+                (
+                    this.TokenId == input.TokenId ||
+                    (this.TokenId != null &&
+                    this.TokenId.Equals(input.TokenId))
+                ) && 
+                (
+                    this.TokenIntentId == input.TokenIntentId ||
+                    (this.TokenIntentId != null &&
+                    this.TokenIntentId.Equals(input.TokenIntentId))
                 ) && 
                 (
                     this.CardBrand == input.CardBrand ||
@@ -316,6 +345,14 @@ namespace BasisTheory.net.Model
                 if (this.PanTokenId != null)
                 {
                     hashCode = (hashCode * 59) + this.PanTokenId.GetHashCode();
+                }
+                if (this.TokenId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenId.GetHashCode();
+                }
+                if (this.TokenIntentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenIntentId.GetHashCode();
                 }
                 if (this.CardBrand != null)
                 {
