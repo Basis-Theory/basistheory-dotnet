@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pan** | **string** |  | 
+**Pan** | **string** |  | [optional] 
+**TokenId** | **string** |  | [optional] 
+**TokenIntentId** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
 **Device** | **string** |  | [optional] 
 **DeviceInfo** | [**ThreeDSDeviceInfo**](ThreeDSDeviceInfo.md) |  | [optional] 

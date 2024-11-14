@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **AuthenticationCategory** | **string** |  | 
 **AuthenticationType** | **string** |  | 
 **ChallengePreference** | **string** |  | [optional] 
+**RequestDecoupledChallenge** | **bool** |  | [optional] 
+**DecoupledChallengeMaxTime** | **int?** |  | [optional] 
 **PurchaseInfo** | [**ThreeDSPurchaseInfo**](ThreeDSPurchaseInfo.md) |  | [optional] 
 **MerchantInfo** | [**ThreeDSMerchantInfo**](ThreeDSMerchantInfo.md) |  | [optional] 
 **RequestorInfo** | [**ThreeDSRequestorInfo**](ThreeDSRequestorInfo.md) |  | 

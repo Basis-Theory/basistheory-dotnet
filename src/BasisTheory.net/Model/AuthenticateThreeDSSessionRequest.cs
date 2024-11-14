@@ -41,18 +41,22 @@ namespace BasisTheory.net.Model
         /// <param name="authenticationCategory">authenticationCategory (required).</param>
         /// <param name="authenticationType">authenticationType (required).</param>
         /// <param name="challengePreference">challengePreference.</param>
+        /// <param name="requestDecoupledChallenge">requestDecoupledChallenge.</param>
+        /// <param name="decoupledChallengeMaxTime">decoupledChallengeMaxTime.</param>
         /// <param name="purchaseInfo">purchaseInfo.</param>
         /// <param name="merchantInfo">merchantInfo.</param>
         /// <param name="requestorInfo">requestorInfo (required).</param>
         /// <param name="cardholderInfo">cardholderInfo.</param>
         /// <param name="broadcastInfo">broadcastInfo.</param>
         /// <param name="messageExtensions">messageExtensions.</param>
-        public AuthenticateThreeDSSessionRequest(string authenticationCategory = default(string), string authenticationType = default(string), string challengePreference = default(string), ThreeDSPurchaseInfo purchaseInfo = default(ThreeDSPurchaseInfo), ThreeDSMerchantInfo merchantInfo = default(ThreeDSMerchantInfo), ThreeDSRequestorInfo requestorInfo = default(ThreeDSRequestorInfo), ThreeDSCardholderInfo cardholderInfo = default(ThreeDSCardholderInfo), Object broadcastInfo = default(Object), List<ThreeDSMessageExtension> messageExtensions = default(List<ThreeDSMessageExtension>))
+        public AuthenticateThreeDSSessionRequest(string authenticationCategory = default(string), string authenticationType = default(string), string challengePreference = default(string), bool requestDecoupledChallenge = default(bool), int? decoupledChallengeMaxTime = default(int?), ThreeDSPurchaseInfo purchaseInfo = default(ThreeDSPurchaseInfo), ThreeDSMerchantInfo merchantInfo = default(ThreeDSMerchantInfo), ThreeDSRequestorInfo requestorInfo = default(ThreeDSRequestorInfo), ThreeDSCardholderInfo cardholderInfo = default(ThreeDSCardholderInfo), Object broadcastInfo = default(Object), List<ThreeDSMessageExtension> messageExtensions = default(List<ThreeDSMessageExtension>))
         {
             this.AuthenticationCategory = authenticationCategory;
             this.AuthenticationType = authenticationType;
             this.RequestorInfo = requestorInfo;
             this.ChallengePreference = challengePreference;
+            this.RequestDecoupledChallenge = requestDecoupledChallenge;
+            this.DecoupledChallengeMaxTime = decoupledChallengeMaxTime;
             this.PurchaseInfo = purchaseInfo;
             this.MerchantInfo = merchantInfo;
             this.CardholderInfo = cardholderInfo;
@@ -77,6 +81,18 @@ namespace BasisTheory.net.Model
         /// </summary>
         [DataMember(Name = "challenge_preference", EmitDefaultValue = true)]
         public string ChallengePreference { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RequestDecoupledChallenge
+        /// </summary>
+        [DataMember(Name = "request_decoupled_challenge", EmitDefaultValue = true)]
+        public bool RequestDecoupledChallenge { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DecoupledChallengeMaxTime
+        /// </summary>
+        [DataMember(Name = "decoupled_challenge_max_time", EmitDefaultValue = true)]
+        public int? DecoupledChallengeMaxTime { get; set; }
 
         /// <summary>
         /// Gets or Sets PurchaseInfo
@@ -125,6 +141,8 @@ namespace BasisTheory.net.Model
             sb.Append("  AuthenticationCategory: ").Append(AuthenticationCategory).Append("\n");
             sb.Append("  AuthenticationType: ").Append(AuthenticationType).Append("\n");
             sb.Append("  ChallengePreference: ").Append(ChallengePreference).Append("\n");
+            sb.Append("  RequestDecoupledChallenge: ").Append(RequestDecoupledChallenge).Append("\n");
+            sb.Append("  DecoupledChallengeMaxTime: ").Append(DecoupledChallengeMaxTime).Append("\n");
             sb.Append("  PurchaseInfo: ").Append(PurchaseInfo).Append("\n");
             sb.Append("  MerchantInfo: ").Append(MerchantInfo).Append("\n");
             sb.Append("  RequestorInfo: ").Append(RequestorInfo).Append("\n");
@@ -182,6 +200,15 @@ namespace BasisTheory.net.Model
                     this.ChallengePreference.Equals(input.ChallengePreference))
                 ) && 
                 (
+                    this.RequestDecoupledChallenge == input.RequestDecoupledChallenge ||
+                    this.RequestDecoupledChallenge.Equals(input.RequestDecoupledChallenge)
+                ) && 
+                (
+                    this.DecoupledChallengeMaxTime == input.DecoupledChallengeMaxTime ||
+                    (this.DecoupledChallengeMaxTime != null &&
+                    this.DecoupledChallengeMaxTime.Equals(input.DecoupledChallengeMaxTime))
+                ) && 
+                (
                     this.PurchaseInfo == input.PurchaseInfo ||
                     (this.PurchaseInfo != null &&
                     this.PurchaseInfo.Equals(input.PurchaseInfo))
@@ -234,6 +261,11 @@ namespace BasisTheory.net.Model
                 if (this.ChallengePreference != null)
                 {
                     hashCode = (hashCode * 59) + this.ChallengePreference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.RequestDecoupledChallenge.GetHashCode();
+                if (this.DecoupledChallengeMaxTime != null)
+                {
+                    hashCode = (hashCode * 59) + this.DecoupledChallengeMaxTime.GetHashCode();
                 }
                 if (this.PurchaseInfo != null)
                 {

@@ -33,18 +33,17 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateThreeDSSessionRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateThreeDSSessionRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateThreeDSSessionRequest" /> class.
-        /// </summary>
-        /// <param name="pan">pan (required).</param>
+        /// <param name="pan">pan.</param>
+        /// <param name="tokenId">tokenId.</param>
+        /// <param name="tokenIntentId">tokenIntentId.</param>
         /// <param name="type">type.</param>
         /// <param name="device">device.</param>
         /// <param name="deviceInfo">deviceInfo.</param>
-        public CreateThreeDSSessionRequest(string pan = default(string), string type = default(string), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo))
+        public CreateThreeDSSessionRequest(string pan = default(string), string tokenId = default(string), string tokenIntentId = default(string), string type = default(string), string device = default(string), ThreeDSDeviceInfo deviceInfo = default(ThreeDSDeviceInfo))
         {
             this.Pan = pan;
+            this.TokenId = tokenId;
+            this.TokenIntentId = tokenIntentId;
             this.Type = type;
             this.Device = device;
             this.DeviceInfo = deviceInfo;
@@ -53,8 +52,21 @@ namespace BasisTheory.net.Model
         /// <summary>
         /// Gets or Sets Pan
         /// </summary>
-        [DataMember(Name = "pan", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "pan", EmitDefaultValue = true)]
+        [Obsolete]
         public string Pan { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenId
+        /// </summary>
+        [DataMember(Name = "token_id", EmitDefaultValue = true)]
+        public string TokenId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenIntentId
+        /// </summary>
+        [DataMember(Name = "token_intent_id", EmitDefaultValue = true)]
+        public string TokenIntentId { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
@@ -83,6 +95,8 @@ namespace BasisTheory.net.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateThreeDSSessionRequest {\n");
             sb.Append("  Pan: ").Append(Pan).Append("\n");
+            sb.Append("  TokenId: ").Append(TokenId).Append("\n");
+            sb.Append("  TokenIntentId: ").Append(TokenIntentId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Device: ").Append(Device).Append("\n");
             sb.Append("  DeviceInfo: ").Append(DeviceInfo).Append("\n");
@@ -127,6 +141,16 @@ namespace BasisTheory.net.Model
                     this.Pan.Equals(input.Pan))
                 ) && 
                 (
+                    this.TokenId == input.TokenId ||
+                    (this.TokenId != null &&
+                    this.TokenId.Equals(input.TokenId))
+                ) && 
+                (
+                    this.TokenIntentId == input.TokenIntentId ||
+                    (this.TokenIntentId != null &&
+                    this.TokenIntentId.Equals(input.TokenIntentId))
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -155,6 +179,14 @@ namespace BasisTheory.net.Model
                 if (this.Pan != null)
                 {
                     hashCode = (hashCode * 59) + this.Pan.GetHashCode();
+                }
+                if (this.TokenId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenId.GetHashCode();
+                }
+                if (this.TokenIntentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenIntentId.GetHashCode();
                 }
                 if (this.Type != null)
                 {

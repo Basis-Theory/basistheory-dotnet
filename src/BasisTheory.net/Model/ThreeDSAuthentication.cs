@@ -34,6 +34,8 @@ namespace BasisTheory.net.Model
         /// Initializes a new instance of the <see cref="ThreeDSAuthentication" /> class.
         /// </summary>
         /// <param name="panTokenId">panTokenId.</param>
+        /// <param name="tokenId">tokenId.</param>
+        /// <param name="tokenIntentId">tokenIntentId.</param>
         /// <param name="threedsVersion">threedsVersion.</param>
         /// <param name="acsTransactionId">acsTransactionId.</param>
         /// <param name="dsTransactionId">dsTransactionId.</param>
@@ -57,9 +59,11 @@ namespace BasisTheory.net.Model
         /// <param name="whitelistStatus">whitelistStatus.</param>
         /// <param name="whitelistStatusSource">whitelistStatusSource.</param>
         /// <param name="messageExtensions">messageExtensions.</param>
-        public ThreeDSAuthentication(string panTokenId = default(string), string threedsVersion = default(string), Guid? acsTransactionId = default(Guid?), Guid? dsTransactionId = default(Guid?), Guid? sdkTransactionId = default(Guid?), string acsReferenceNumber = default(string), string dsReferenceNumber = default(string), string authenticationValue = default(string), string authenticationStatus = default(string), string authenticationStatusCode = default(string), string authenticationStatusReason = default(string), string eci = default(string), string acsChallengeMandated = default(string), string acsDecoupledAuthentication = default(string), string authenticationChallengeType = default(string), ThreeDSAcsRenderingType acsRenderingType = default(ThreeDSAcsRenderingType), string acsSignedContent = default(string), string acsChallengeUrl = default(string), string challengeAttempts = default(string), string challengeCancelReason = default(string), string cardholderInfo = default(string), string whitelistStatus = default(string), string whitelistStatusSource = default(string), List<ThreeDSMessageExtension> messageExtensions = default(List<ThreeDSMessageExtension>))
+        public ThreeDSAuthentication(string panTokenId = default(string), string tokenId = default(string), string tokenIntentId = default(string), string threedsVersion = default(string), Guid? acsTransactionId = default(Guid?), Guid? dsTransactionId = default(Guid?), Guid? sdkTransactionId = default(Guid?), string acsReferenceNumber = default(string), string dsReferenceNumber = default(string), string authenticationValue = default(string), string authenticationStatus = default(string), string authenticationStatusCode = default(string), string authenticationStatusReason = default(string), string eci = default(string), string acsChallengeMandated = default(string), string acsDecoupledAuthentication = default(string), string authenticationChallengeType = default(string), ThreeDSAcsRenderingType acsRenderingType = default(ThreeDSAcsRenderingType), string acsSignedContent = default(string), string acsChallengeUrl = default(string), string challengeAttempts = default(string), string challengeCancelReason = default(string), string cardholderInfo = default(string), string whitelistStatus = default(string), string whitelistStatusSource = default(string), List<ThreeDSMessageExtension> messageExtensions = default(List<ThreeDSMessageExtension>))
         {
             this.PanTokenId = panTokenId;
+            this.TokenId = tokenId;
+            this.TokenIntentId = tokenIntentId;
             this.ThreedsVersion = threedsVersion;
             this.AcsTransactionId = acsTransactionId;
             this.DsTransactionId = dsTransactionId;
@@ -89,7 +93,20 @@ namespace BasisTheory.net.Model
         /// Gets or Sets PanTokenId
         /// </summary>
         [DataMember(Name = "pan_token_id", EmitDefaultValue = true)]
+        [Obsolete]
         public string PanTokenId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenId
+        /// </summary>
+        [DataMember(Name = "token_id", EmitDefaultValue = true)]
+        public string TokenId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TokenIntentId
+        /// </summary>
+        [DataMember(Name = "token_intent_id", EmitDefaultValue = true)]
+        public string TokenIntentId { get; set; }
 
         /// <summary>
         /// Gets or Sets ThreedsVersion
@@ -238,6 +255,8 @@ namespace BasisTheory.net.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSAuthentication {\n");
             sb.Append("  PanTokenId: ").Append(PanTokenId).Append("\n");
+            sb.Append("  TokenId: ").Append(TokenId).Append("\n");
+            sb.Append("  TokenIntentId: ").Append(TokenIntentId).Append("\n");
             sb.Append("  ThreedsVersion: ").Append(ThreedsVersion).Append("\n");
             sb.Append("  AcsTransactionId: ").Append(AcsTransactionId).Append("\n");
             sb.Append("  DsTransactionId: ").Append(DsTransactionId).Append("\n");
@@ -300,6 +319,16 @@ namespace BasisTheory.net.Model
                     this.PanTokenId == input.PanTokenId ||
                     (this.PanTokenId != null &&
                     this.PanTokenId.Equals(input.PanTokenId))
+                ) && 
+                (
+                    this.TokenId == input.TokenId ||
+                    (this.TokenId != null &&
+                    this.TokenId.Equals(input.TokenId))
+                ) && 
+                (
+                    this.TokenIntentId == input.TokenIntentId ||
+                    (this.TokenIntentId != null &&
+                    this.TokenIntentId.Equals(input.TokenIntentId))
                 ) && 
                 (
                     this.ThreedsVersion == input.ThreedsVersion ||
@@ -431,6 +460,14 @@ namespace BasisTheory.net.Model
                 if (this.PanTokenId != null)
                 {
                     hashCode = (hashCode * 59) + this.PanTokenId.GetHashCode();
+                }
+                if (this.TokenId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenId.GetHashCode();
+                }
+                if (this.TokenIntentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenIntentId.GetHashCode();
                 }
                 if (this.ThreedsVersion != null)
                 {

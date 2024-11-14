@@ -9,6 +9,7 @@ docs/ApplicationTemplatesApi.md
 docs/ApplicationsApi.md
 docs/AuthenticateThreeDSSessionRequest.md
 docs/AuthorizeSessionRequest.md
+docs/BankVerificationRequest.md
 docs/BinDetails.md
 docs/BinDetailsBank.md
 docs/BinDetailsCountry.md
@@ -28,6 +29,7 @@ docs/CreateThreeDSSessionResponse.md
 docs/CreateTokenRequest.md
 docs/CursorPagination.md
 docs/DetokenizeApi.md
+docs/EnrichmentsApi.md
 docs/GetApplications.md
 docs/GetLogs.md
 docs/GetPermissions.md
@@ -117,16 +119,14 @@ docs/UpdateTenantRequest.md
 docs/UpdateTokenRequest.md
 docs/User.md
 docs/ValidationProblemDetails.md
-src/BasisTheory.net.Test/Api/DetokenizeApiTests.cs
+src/BasisTheory.net.Test/Api/EnrichmentsApiTests.cs
 src/BasisTheory.net.Test/BasisTheory.net.Test.csproj
-src/BasisTheory.net.Test/Model/CreateThreeDSSessionRequestTests.cs
-src/BasisTheory.net.Test/Model/CreateThreeDSSessionResponseTests.cs
-src/BasisTheory.net.Test/Model/ReactRequestAsyncTests.cs
-src/BasisTheory.net.Test/Model/TokenExtrasTests.cs
+src/BasisTheory.net.Test/Model/BankVerificationRequestTests.cs
 src/BasisTheory.net/Api/ApplicationKeysApi.cs
 src/BasisTheory.net/Api/ApplicationTemplatesApi.cs
 src/BasisTheory.net/Api/ApplicationsApi.cs
 src/BasisTheory.net/Api/DetokenizeApi.cs
+src/BasisTheory.net/Api/EnrichmentsApi.cs
 src/BasisTheory.net/Api/LogsApi.cs
 src/BasisTheory.net/Api/PermissionsApi.cs
 src/BasisTheory.net/Api/ProxiesApi.cs
@@ -163,6 +163,7 @@ src/BasisTheory.net/Model/ApplicationPaginatedList.cs
 src/BasisTheory.net/Model/ApplicationTemplate.cs
 src/BasisTheory.net/Model/AuthenticateThreeDSSessionRequest.cs
 src/BasisTheory.net/Model/AuthorizeSessionRequest.cs
+src/BasisTheory.net/Model/BankVerificationRequest.cs
 src/BasisTheory.net/Model/BinDetails.cs
 src/BasisTheory.net/Model/BinDetailsBank.cs
 src/BasisTheory.net/Model/BinDetailsCountry.cs
