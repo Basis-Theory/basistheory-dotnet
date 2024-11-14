@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v3.2.0...v4.0.0) (2024-11-14)
+
+
+* feat!: add token intents, enrichments api, 3ds changes and more (#262) ([ac5d5f4](https://github.com/Basis-Theory/basistheory-dotnet/commit/ac5d5f4a047af9aecc914b9784772f13e739b7c7)), closes [#262](https://github.com/Basis-Theory/basistheory-dotnet/issues/262)
+
+
+### BREAKING CHANGES
+
+* data is now nullable on CreateTokenRequest
+
 # [3.2.0](https://github.com/Basis-Theory/basistheory-dotnet/compare/v3.1.0...v3.2.0) (2024-10-17)
 
 
