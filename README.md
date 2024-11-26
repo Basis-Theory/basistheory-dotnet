@@ -1,5 +1,12 @@
 # BasisTheory.net - the C# library for the Basis Theory API
 
+> [!CAUTION]
+> This SDK has been deprecated.
+>
+> Our new SDK can be found at https://github.com/Basis-Theory/dotnet-sdk
+>
+> See our documentation site for more information. https://developers.basistheory.com/docs/sdks/server-side/dotnet
+
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
