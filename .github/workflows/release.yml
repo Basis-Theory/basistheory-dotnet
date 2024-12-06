@@ -18,7 +18,7 @@ jobs:
         uses: Basis-Theory/github-actions/deploy-slack-action@master
         with:
           slack-api-token: ${{ secrets.SLACK_DUCKBOT_API_KEY }}
-          channel: ${{ vars.SLACK_DUCKBOT_PRODUCT_DEPLOY_CHANNEL }}
+          channel: ${{ vars.SLACK_DUCKBOT_RELEASE_CHANNEL_ID }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
@@ -42,5 +42,5 @@ jobs:
         uses: Basis-Theory/github-actions/deploy-slack-action@master
         with:
           slack-api-token: ${{ secrets.SLACK_DUCKBOT_API_KEY }}
-          channel: ${{ vars.SLACK_DUCKBOT_PRODUCT_DEPLOY_CHANNEL }}
+          channel: ${{ vars.SLACK_DUCKBOT_RELEASE_CHANNEL_ID }}
           status: "done"
