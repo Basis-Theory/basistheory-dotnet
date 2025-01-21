@@ -19,3 +19,8 @@ jobs:
 
       - name: Build
         run: bash scripts/build.sh
+
+  pr-security-check:
+    name: PR Security Check
+    uses: Basis-Theory/public-security-workflows/.github/workflows/pr-check.yml@master
+    secrets: inherit
